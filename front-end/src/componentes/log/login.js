@@ -1,51 +1,52 @@
+import { Formiz, useForm } from "@formiz/core";
 import {
   Stack,
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  FormErrorMessage,
-  Input,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel,
 } from "@chakra-ui/react";
-import React, { Component, useState } from "react";
-
+import React, { useEffect } from "react";
+import { PhoneIcon, AtSignIcon, EditIcon } from "@chakra-ui/icons";
+import LoginEmai from "./loginEmail";
+import LoginPhone from "./loginPhone";
+import LoginCIN from "./loginCIN";
 const Login = () => {
-  const { email } = useState("");
-  const { showpassword, setshowpassword } = useState(false);
-  const { password } = useState("");
+  const myForm = useForm();
+  const handleSubmit = (values) => {
+    console.log(values);
+  };
+  useEffect(() => {
+    // Update the document title using the browser API
+  });
   return (
     <React.Fragment>
       <Stack maxW={400} margin="auto" spacing={5} marginTop={10}>
-        <FormControl>
-          <FormLabel htmlFor="email">email address</FormLabel>
-          <Input
-            isRequired
-            type="email"
-            id="email"
-            aria-describedby="email-helper-test"
-            value={email}
-          />
-          <FormErrorMessage>nope</FormErrorMessage>
-          <FormHelperText id="email-helper-test">
-            We'll never share your password.
-          </FormHelperText>
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="password">password address</FormLabel>
-          <Input
-            isRequired
-            type={showpassword ? "text" : "password"}
-            id="password"
-            autoComplete="off"
-            aria-describedby="email-helper-test"
-            value={password}
-          />
-          <FormErrorMessage>nope</FormErrorMessage>
-          <FormHelperText>We'll never share your email.</FormHelperText>
-        </FormControl>
-        <FormControl>
-          <button type="submit"> log in</button>
-        </FormControl>
-        hi
+        <Tabs isFitted variant="enclosed">
+          <TabList mb="1em">
+            <Tab>
+              <AtSignIcon fontSize="30px" color="yellow.400" />
+            </Tab>
+            <Tab>
+              <EditIcon fontSize="30px" color="yellow.400" />
+            </Tab>
+            <Tab>
+              <PhoneIcon fontSize="30px" color="yellow.400" />
+            </Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <LoginEmai />
+            </TabPanel>
+            <TabPanel>
+              <LoginCIN />
+            </TabPanel>
+            <TabPanel>
+              <LoginPhone />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
       </Stack>
     </React.Fragment>
   );
