@@ -1,23 +1,14 @@
 import { Formiz, useForm } from "@formiz/core";
-import {
-  Stack,
-  Button,
-  FormControl,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-} from "@chakra-ui/react";
+import { Stack, Button, FormControl } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-import { MyField } from "../../MyField";
-import { MyFieldPassword } from "../../MyFieldPassword";
+import { MyField } from "../../../components/formInput/";
+import { MyFieldPassword } from "../../../components/formInput/password";
 import { isLength, isNumber } from "@formiz/validations";
-import { PhoneIcon, AtSignIcon, EditIcon } from "@formiz/validations";
-const LoginCIN = () => {
+
+const LoginCIN = (props) => {
   const myForm = useForm();
   const handleSubmit = (values) => {
-    console.log(values);
+    props.setlogindata(values);
   };
   useEffect(() => {
     // Update the document title using the browser API
@@ -28,7 +19,7 @@ const LoginCIN = () => {
         <Formiz connect={myForm} onValidSubmit={handleSubmit}>
           <form noValidate onSubmit={myForm.submit}>
             <MyField
-              name="CIN"
+              name="user"
               label="CIN"
               required="CIN is required"
               validations={[
@@ -55,8 +46,9 @@ const LoginCIN = () => {
                 borderColor="green.500"
                 disabled={!myForm.isValid}
               >
-                {!myForm.isValid ? `✋` : `👌`} Submit
-                {!myForm.isValid ? `✋` : `👌`}
+                {!myForm.isValid ? `` : `👌`}
+                Submit
+                {!myForm.isValid ? `` : `👌`}
               </Button>
             </FormControl>
           </form>

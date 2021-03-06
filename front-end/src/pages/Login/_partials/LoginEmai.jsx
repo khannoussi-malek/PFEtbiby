@@ -9,26 +9,24 @@ import {
   TabPanels,
   TabPanel,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import { MyField } from "../../MyField";
-import { MyFieldPassword } from "../../MyFieldPassword";
+import React from "react";
+import { MyField } from "../../../components/formInput/";
+import { MyFieldPassword } from "../../../components/formInput/password";
 import { isEmail } from "@formiz/validations";
 import { PhoneIcon, AtSignIcon, EditIcon } from "@formiz/validations";
-const LoginEmai = () => {
+const LoginEmai = (props) => {
   const myForm = useForm();
   const handleSubmit = (values) => {
-    console.log(values);
+    props.setlogindata(values);
   };
-  useEffect(() => {
-    // Update the document title using the browser API
-  });
+
   return (
     <React.Fragment>
       <Stack maxW={400} margin="auto" spacing={5}>
         <Formiz connect={myForm} onValidSubmit={handleSubmit}>
           <form noValidate onSubmit={myForm.submit}>
             <MyField
-              name="email"
+              name="user"
               label="Email"
               required="Email is required"
               validations={[
@@ -51,8 +49,9 @@ const LoginEmai = () => {
                 borderColor="green.500"
                 disabled={!myForm.isValid}
               >
-                {!myForm.isValid ? `✋` : `👌`} Submit
-                {!myForm.isValid ? `✋` : `👌`}
+                {!myForm.isValid ? `` : `👌`}
+                Submit
+                {!myForm.isValid ? `` : `👌`}
               </Button>
             </FormControl>
           </form>
