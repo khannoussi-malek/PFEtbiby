@@ -15,7 +15,7 @@ export const MyField = (props) => {
   const [isTouched, setIsTouched] = React.useState(false);
   const showError = !isValid && (isTouched || isSubmitted);
   return (
-    <FormControl mt={5}>
+    <FormControl p={3} mt={5}>
       <FormLabel htmlFor={id}>
         {label}
         {!!required && " *"}

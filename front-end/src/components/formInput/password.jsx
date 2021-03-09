@@ -21,7 +21,7 @@ export const MyFieldPassword = (props) => {
   const [isTouched, setIsTouched] = React.useState(false);
   const showError = !isValid && (isTouched || isSubmitted);
   return (
-    <FormControl mt={5}>
+    <FormControl mt={5} p={3}>
       <FormLabel htmlFor={id}>
         {label}
         {!!required && " *"}
@@ -38,7 +38,11 @@ export const MyFieldPassword = (props) => {
           aria-describedby={showError ? `${id}-error` : null}
         />
         <InputRightElement>
-          <Button size="sm" onClick={() => setshowPassword(!showPassword)}>
+          <Button
+            bgColor="transparent"
+            size="sm"
+            onClick={() => setshowPassword(!showPassword)}
+          >
             {showPassword ? <ViewIcon /> : <ViewOffIcon />}
           </Button>
         </InputRightElement>

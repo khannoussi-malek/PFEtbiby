@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import PublicRouter from "./router/public";
+import MainRouter from "./router";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider, CSSReset } from "@chakra-ui/react";
 
@@ -8,7 +8,7 @@ ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider>
       <CSSReset />
-      <PublicRouter />
+      <MainRouter />
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById("root")
