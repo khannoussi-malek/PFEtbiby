@@ -18,7 +18,7 @@ const log = () => {
       px={{ sm: "6", lg: "8" }}
     >
       <Box maxW={{ sm: "md" }} mx={{ sm: "auto" }} w={{ sm: "full" }}>
-        <div>
+        <Box>
           <Box>
             <Image
               maxW={200}
@@ -30,8 +30,8 @@ const log = () => {
           <Heading mt="6" textAlign="center" size="xl" fontWeight="extrabold">
             Sign in to your account
           </Heading>
-        </div>
-        <div maxW={{ sm: "md" }} mx={{ sm: "auto" }} mt="8" w={{ sm: "full" }}>
+        </Box>
+        <Box maxW={{ sm: "md" }} mx={{ sm: "auto" }} mt="8" w={{ sm: "full" }}>
           <Box
             bg={mode("white", "gray.700")}
             py="8"
@@ -42,7 +42,7 @@ const log = () => {
             <Route component={Login} exact path="/login" />
             <Route component={Singup} exact path="/Singup" />
           </Box>
-        </div>
+        </Box>
       </Box>
     </Box>
   );
