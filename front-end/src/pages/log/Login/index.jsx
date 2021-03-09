@@ -8,21 +8,22 @@ import {
   Button,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
-
 import { MyField } from "../../../components/formInput/";
 import { MyFieldPassword } from "../../../components/formInput/password";
+import Auth from "./../../../services/authentication/index";
 
 import { Link, useHistory } from "react-router-dom";
 
-const login = () => {
-  let history = useHistory;
-  const ToSingup = () => history.push("/singup");
+const Login = () => {
+  let auth = new Auth();
+  const MyForm = useForm();
+
   const handleSubmit = (values) => {
     console.log(values);
+    auth.login();
     localStorage.setItem("token", "ok");
     //login api all data in [logindata] user and password
   };
-  const MyForm = useForm;
 
   return (
     <React.Fragment>
@@ -42,7 +43,6 @@ const login = () => {
               borderColor="green.500"
               disabled={!MyForm.isValid}
             >
-              {!MyForm.isValid ? `` : `👌`}
               Submit
               {!MyForm.isValid ? `` : `👌`}
             </Button>
@@ -51,7 +51,6 @@ const login = () => {
       </Formiz>
       <Text mt="4" align="center" maxW="md" fontWeight="medium">
         <Box
-          as="a"
           marginStart="1"
           color={mode("blue.600", "blue.200")}
           _hover={{ color: "blue.600" }}
@@ -64,4 +63,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
