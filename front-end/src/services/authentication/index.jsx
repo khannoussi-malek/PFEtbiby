@@ -1,5 +1,3 @@
-import { API_URL } from "./apiHome/index";
-
 export default class Auth {
   constructor() {
     // this.logout();

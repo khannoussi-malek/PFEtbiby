@@ -6,8 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import SpecialRouter from "./Special";
 // import { isLogin } from "./../services/authentication/index";
 
-import Singup from "../pages/Sing up";
-import Login from "../pages/Login";
+import log from "../pages/log";
 import Home from "./../pages/home";
 import PrivateRoute from "./_partials/PrivateRoute";
 function MainRouter() {
@@ -16,8 +15,8 @@ function MainRouter() {
     <React.Fragment>
       <Router>
         <Switch>
-          <Route component={Login} exact path="/login" />
-          <Route component={Singup} exact path="/singup" />
+          <Route component={log} exact path="/login" />
+          <Route component={log} exact path="/singup" />
           <PrivateRoute
             path="/home"
             exact

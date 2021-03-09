@@ -1,8 +1,8 @@
 import { Formiz, useForm } from "@formiz/core";
 import { Stack, Button, FormControl, Center } from "@chakra-ui/react";
 import { isEmail, isLength, isNumber } from "@formiz/validations";
-import { MyField } from "../../components/formInput";
-import { MyFieldPassword } from "../../components/formInput/password";
+import { MyField } from "../../../components/formInput";
+import { MyFieldPassword } from "../../../components/formInput/password";
 import React from "react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
@@ -83,6 +83,13 @@ const Singup = () => {
               label="Répéter le mot de passe"
               required="password is required"
               type="password"
+              validations={[
+                {
+                  rule: (val) => val == values.password,
+                  message: "not the same",
+                  deps: [values.cin, values.telephone],
+                },
+              ]}
             />
             <FormControl mt={5} align="center">
               <Button

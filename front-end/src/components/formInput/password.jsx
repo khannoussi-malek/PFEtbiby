@@ -21,7 +21,7 @@ export const MyFieldPassword = (props) => {
   const [isTouched, setIsTouched] = React.useState(false);
   const showError = !isValid && (isTouched || isSubmitted);
   return (
-    <FormControl mt={5} p={3}>
+    <FormControl>
       <FormLabel htmlFor={id}>
         {label}
         {!!required && " *"}
