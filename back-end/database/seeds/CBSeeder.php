@@ -19,11 +19,29 @@ class CBSeeder extends Seeder
         $this->call('Cms_privileges_rolesSeeder');
         $this->call('Cms_settingsSeeder');
         $this->call('CmsEmailTemplates');
+        $this->call('cms_apicustom');
 
         $this->command->info('Updating the data completed !');
     }
 }
 
+class cms_apicustom extends seeder {
+    public function run()
+    {
+        if(DB::table('cms_apicustom')->count() == 0){
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'login',
+                'tabel' => 'cms_users',
+                'aksi' => 'detail',
+                'nama' => 'login',
+                'method_type' => 'post',
+                'parameters' => 'a:4:{i:0;a:5:{s:4:"name";s:9:"telephone";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}i:1;a:5:{s:4:"name";s:5:"photo";s:4:"type";s:5:"image";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}i:2;a:5:{s:4:"name";s:5:"email";s:4:"type";s:5:"email";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}i:3;a:5:{s:4:"name";s:8:"password";s:4:"type";s:8:"password";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
+                'responses' => 'a:12:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:3:"nom";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:6:"prenom";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:9:"telephone";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:4;a:4:{s:4:"name";s:5:"photo";s:4:"type";s:5:"image";s:8:"subquery";N;s:4:"used";s:1:"1";}i:5;a:4:{s:4:"name";s:5:"email";s:4:"type";s:5:"email";s:8:"subquery";N;s:4:"used";s:1:"1";}i:6;a:4:{s:4:"name";s:8:"password";s:4:"type";s:8:"password";s:8:"subquery";N;s:4:"used";s:1:"1";}i:7;a:4:{s:4:"name";s:17:"id_cms_privileges";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:8;a:4:{s:4:"name";s:19:"cms_privileges_name";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:9;a:4:{s:4:"name";s:28:"cms_privileges_is_superadmin";s:4:"type";s:7:"tinyint";s:8:"subquery";N;s:4:"used";s:1:"1";}i:10;a:4:{s:4:"name";s:26:"cms_privileges_theme_color";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:11;a:4:{s:4:"name";s:6:"status";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
+            ]);
+        }
+        
+    }
+}
 class CmsEmailTemplates extends Seeder
 {
     public function run()
@@ -35,7 +53,7 @@ class CmsEmailTemplates extends Seeder
                 'content' => '<p>Hi,</p><p>Someone requested forgot password, here is your new password : </p><p>[password]</p><p><br></p><p>--</p><p>Regards,</p><p>Admin</p>',
                 'description' => '[password]',
                 'from_name' => 'System',
-                'from_email' => 'system@crudbooster.com',
+                'from_email' => 'system@tbiby.com',
                 'cc_email' => null,
             ]);
     }
@@ -85,7 +103,7 @@ class Cms_settingsSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'email_sender',
                 'label' => 'Email Sender',
-                'content' => 'support@crudbooster.com',
+                'content' => 'support@tbiby.com',
                 'content_input_type' => 'text',
                 'group_setting' => trans('crudbooster.email_setting'),
                 'dataenum' => null,
@@ -148,7 +166,7 @@ class Cms_settingsSeeder extends Seeder
                 'name' => 'appname',
                 'label' => 'Application Name',
                 'group_setting' => trans('crudbooster.application_setting'),
-                'content' => 'CRUDBooster',
+                'content' => 'Tbiby',
                 'content_input_type' => 'text',
                 'dataenum' => null,
                 'helper' => null,
@@ -167,7 +185,7 @@ class Cms_settingsSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'logo',
                 'label' => 'Logo',
-                'content' => '',
+                'content' => 'uploads/2021-03/2551f23f6c4cd35a15a765d97f610630.png',
                 'content_input_type' => 'upload_image',
                 'group_setting' => trans('crudbooster.application_setting'),
                 'dataenum' => null,
@@ -177,7 +195,7 @@ class Cms_settingsSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'favicon',
                 'label' => 'Favicon',
-                'content' => '',
+                'content' => 'uploads/2021-03/2551f23f6c4cd35a15a765d97f610630.png',
                 'content_input_type' => 'upload_image',
                 'group_setting' => trans('crudbooster.application_setting'),
                 'dataenum' => null,
@@ -271,6 +289,46 @@ class Cms_privileges_rolesSeeder extends Seeder
                     'id_cms_privileges' => 1,
                     'id_cms_moduls' => $module->id,
                 ]);
+                
+                
+                $i++;
+            }
+        }
+        if (DB::table('cms_privileges_roles')->count() == 11) {
+            $modules = DB::table('cms_moduls')->get();
+            $i = 1;
+            foreach ($modules as $module) {
+
+                DB::table('cms_privileges_roles')->insert([[
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'is_visible' => 0,
+                    'is_create' => 0,
+                    'is_edit' => 0,
+                    'is_delete' => 0,
+                    'is_read' => 0,
+                    'id_cms_privileges' => 2,
+                    'id_cms_moduls' => $module->id,
+                ],[
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'is_visible' => 0,
+                    'is_create' => 0,
+                    'is_edit' => 0,
+                    'is_delete' => 0,
+                    'is_read' => 0,
+                    'id_cms_privileges' => 3,
+                    'id_cms_moduls' => $module->id,
+                ],[
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'is_visible' => 0,
+                    'is_create' => 0,
+                    'is_edit' => 0,
+                    'is_delete' => 0,
+                    'is_read' => 0,
+                    'id_cms_privileges' => 4,
+                    'id_cms_moduls' => $module->id,
+                ]]);
+                
+                
                 $i++;
             }
         }
@@ -288,6 +346,32 @@ class Cms_privilegesSeeder extends Seeder
                 'name' => 'Super Administrator',
                 'is_superadmin' => 1,
                 'theme_color' => 'skin-red',
+            ]);
+        }
+        if (DB::table('cms_privileges')->where('name', 'medecin')->count() == 0) {
+            DB::table('cms_privileges')->insert([
+                'created_at' => date('Y-m-d H:i:s'),
+                'name' => 'medecin',
+                'is_superadmin' => 0,
+                'theme_color' => 'skin-purple-light',
+            ]);
+        }
+        
+        if (DB::table('cms_privileges')->where('name', 'secretaire')->count() == 0) {
+            DB::table('cms_privileges')->insert([
+                'created_at' => date('Y-m-d H:i:s'),
+                'name' => 'secretaire',
+                'is_superadmin' => 0,
+                'theme_color' => 'skin-purple-light',
+            ]);
+        }
+        
+        if (DB::table('cms_privileges')->where('name', 'patient')->count() == 0) {
+            DB::table('cms_privileges')->insert([
+                'created_at' => date('Y-m-d H:i:s'),
+                'name' => 'patient',
+                'is_superadmin' => 0,
+                'theme_color' => 'skin-purple-light',
             ]);
         }
     }
@@ -446,8 +530,8 @@ class Cms_usersSeeder extends Seeder
             $password = \Hash::make('123456');
             $cms_users = DB::table('cms_users')->insert([
                 'created_at' => date('Y-m-d H:i:s'),
-                'name' => 'Super Admin',
-                'email' => 'admin@crudbooster.com',
+                'nom' => 'Super tbiby',
+                'email' => 'admin@tbiby.com',
                 'password' => $password,
                 'id_cms_privileges' => 1,
                 'status' => 'Active',
