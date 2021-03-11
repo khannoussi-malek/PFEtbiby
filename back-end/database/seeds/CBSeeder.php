@@ -20,6 +20,7 @@ class CBSeeder extends Seeder
         $this->call('Cms_settingsSeeder');
         $this->call('CmsEmailTemplates');
         $this->call('cms_apicustom');
+        $this->call('cms_apikey');
 
         $this->command->info('Updating the data completed !');
     }
@@ -40,6 +41,20 @@ class cms_apicustom extends seeder {
             ]);
         }
         
+    }
+}
+class cms_apikey extends Seeder
+{
+    public function run()
+    {
+        if(DB::table('cms_apikey')->count() == 0){
+        DB::table('cms_apikey')->insert([
+                'created_at' => date('Y-m-d H:i:s'),
+                'screetkey' => 'pfetbiby2020',
+                'hit' => '0',
+                'status' => 'active',
+            ]);
+        }
     }
 }
 class CmsEmailTemplates extends Seeder

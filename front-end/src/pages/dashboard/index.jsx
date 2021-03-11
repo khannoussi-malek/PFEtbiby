@@ -1,37 +1,22 @@
 import {
-  Avatar,
   Box,
-  BoxProps,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbProps,
   Flex,
-  Heading,
-  HStack,
   Input,
   InputGroup,
   InputGroupProps,
   InputLeftElement,
   InputProps,
-  Stack,
-  Text,
-  TextProps,
   useBoolean,
   useBreakpointValue,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
 import * as React from "react";
-import {
-  BsFillBookmarksFill,
-  BsFillInboxFill,
-  BsBoxArrowLeft,
-  BsPencilSquare,
-  BsSearch,
-} from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import { HiMenu, HiChevronRight, HiX } from "react-icons/hi";
-import { data } from "./data";
-import { SidebarLink } from "./SidebarLink";
 import ScrollArea from "./ScrollArea/index";
 import Menu from "./menu";
 import UserAvatar from "./userAvatar/index";

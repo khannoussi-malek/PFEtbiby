@@ -5,7 +5,7 @@ export default class Auth {
     if (!this.isAuthenticated()) {
       this.logout();
     }
-    console.log(this.isAuthenticated());
+    // console.log(this.isAuthenticated());
   }
 
   login() {
