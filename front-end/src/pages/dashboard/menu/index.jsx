@@ -19,7 +19,7 @@ const Menu = () => {
       paddingStart="3"
       color="gray.400"
       {...props}
-    />
+    ></Text>
   );
   return (
     <React.Fragment>

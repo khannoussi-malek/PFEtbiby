@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Formiz, useForm } from "@formiz/core";
 
 import {
@@ -13,16 +13,34 @@ import { MyFieldPassword } from "../../../components/formInput/password";
 import Auth from "./../../../services/authentication/index";
 
 import { Link, useHistory } from "react-router-dom";
+import useQuery from "react-query";
+import Api from "./../../../services/api/index";
 
 const Login = () => {
+  let UserPassword = {
+    user: "",
+    password: "",
+  };
+  useEffect(() => {
+    if (UserPassword.user != "") {
+      // console.log(GetApi("/login"));
+      // Your useEffect code here to be run on update
+    }
+  }, [UserPassword]);
+  // const { data, errer } = useQuery("login", loginApi("login",));
   let auth = new Auth();
   const MyForm = useForm();
 
   const handleSubmit = (values) => {
+    UserPassword = values;
     console.log(values);
-    auth.login();
-    localStorage.setItem("token", "ok");
-    //login api all data in [logindata] user and password
+    Api.get("/login", {
+      params: {
+        ...values,
+      },
+    })
+      .then((rep) => console.log(rep))
+      .catch((erroe) => console.log("ffffffffffffff" + erroe));
   };
 
   return (
