@@ -1,7 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
+import { useHistory, useLocation } from "react-router-dom";
+
 import { Formiz, useForm } from "@formiz/core";
 
 import {
+  useToast,
   Box,
   Text,
   FormControl,
@@ -10,37 +13,57 @@ import {
 } from "@chakra-ui/react";
 import { MyField } from "../../../components/formInput/";
 import { MyFieldPassword } from "../../../components/formInput/password";
-import Auth from "./../../../services/authentication/index";
-
-import { Link, useHistory } from "react-router-dom";
-import useQuery from "react-query";
-import Api from "./../../../services/api/index";
+import { Link } from "react-router-dom";
+import { useLogin } from "./../../../services/api/auth";
 
 const Login = () => {
-  let UserPassword = {
-    user: "",
-    password: "",
-  };
-  useEffect(() => {
-    if (UserPassword.user != "") {
-      // console.log(GetApi("/login"));
-      // Your useEffect code here to be run on update
-    }
-  }, [UserPassword]);
-  // const { data, errer } = useQuery("login", loginApi("login",));
-  let auth = new Auth();
-  const MyForm = useForm();
+  const { pathname } = useLocation();
+  let history = useHistory();
+  const toast = useToast();
+  const { mutate, isLoading } = useLogin({
+    onSuccess: (res) => {
+      let data = res.data;
+      if (Object.entries(res.data).length !== 0 && data.status == "Active") {
+        localStorage.setItem("userid", data.id);
+        localStorage.setItem(
+          "nomPrenom",
+          data.nom != null
+            ? `${data.nom}`
+            : `` + " " + (data.prenom != null)
+            ? `${data.prenom}`
+            : ``
+        );
+        localStorage.setItem("fonctionnalite", data.fonctionnalite);
+        localStorage.setItem("telephone", data.telephone);
+        localStorage.setItem("email", data.email);
+        localStorage.setItem("cin", data.cin);
+        localStorage.setItem("photo", data.cin);
+        toast({
+          title: "👨‍⚕️ Bienvenue Mr " + data.nom,
+          description:
+            " Vous êtes maintenant connecté à votre compte. être en bonne santé",
+          status: "success",
+          duration: `4000`,
+          isClosable: true,
+        });
 
+        history.push("/dashbord" + pathname ? `?redirect=${pathname}` : ``);
+      } else {
+        toast({
+          title: "vérifier votre information 🔐",
+          description:
+            "Entrez votre e-mail, téléphone ou CIN et votre mot de passe",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+        });
+      }
+    },
+  });
+
+  const MyForm = useForm();
   const handleSubmit = (values) => {
-    UserPassword = values;
-    console.log(values);
-    Api.get("/login", {
-      params: {
-        ...values,
-      },
-    })
-      .then((rep) => console.log(rep))
-      .catch((erroe) => console.log("ffffffffffffff" + erroe));
+    mutate(values);
   };
 
   return (

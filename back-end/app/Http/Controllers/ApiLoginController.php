@@ -5,13 +5,14 @@
 		use DB;
 		use Hash;
 		use CRUDBooster;
+		use App\Http\Controllers\Privilege as Privilege;
 
 		class ApiLoginController extends \crocodicstudio\crudbooster\controllers\ApiController {
 
 		    function __construct() {    
 				$this->table       = "cms_users";        
 				$this->permalink   = "login";    
-				$this->method_type = "get";    
+				$this->method_type = "post";    
 		    }
 		
 
@@ -22,7 +23,7 @@
 
 		    public function hook_query(&$query) {
 		        //This method is to customize the sql query
-
+				// dd("hi babe");
 		    }
 
 		    public function hook_after($postdata,&$result) {
@@ -32,10 +33,13 @@
 				->get();
 				foreach ($users as &$user) {
 					if(\Hash::check($postdata['password'], $user->password)){
+						$user->fonctionnalite=Privilege::PrivilegeName($user->id);
 						$result = $user;
 						return $result;
 					}
-				}
+				}						
+				return $result=null;
+
 				// dd($password);
 
 		    }

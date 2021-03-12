@@ -3,22 +3,48 @@
 // Otherwise, routes them to the login page
 
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { isLogin } from "./../../services/authentication/index";
+import { Route, Redirect, useLocation } from "react-router-dom";
 
-const PrivateRoute = ({
-  component: Component,
-  isAuthenticated: isAuthenticated,
-  ...rest
-}) => {
+export const PrivateRoute = ({ isAuth, ...otherProps }) => {
+  const { pathname } = useLocation();
+
+  if (isAuth) {
+    return <Route {...otherProps} />;
+  }
+
   return (
-    <Route
-      {...rest}
-      render={(props) =>
-        isAuthenticated() ? <Component {...props} /> : <Redirect to="/login" />
-      }
+    <Redirect
+      to={{
+        pathname: "/login",
+        search: pathname ? `?redirect=${pathname}` : null,
+      }}
     />
   );
 };
+
+// const PrivateRoute = ({
+//   component: Component,
+//   isAuthenticated: isAuthenticated,
+//   ...rest
+// }) => {
+//   const { pathname } = useLocation();
+//   return (
+//     <Route
+//       {...rest}
+//       render={(props) =>
+//         isAuthenticated() ? (
+//           <Component {...props} />
+//         ) : (
+//           <Redirect
+//             to={{
+//               pathname: "/login",
+//               search: pathname ? `?redirect=${pathname}` : null,
+//             }}
+//           />
+//         )
+//       }
+//     />
+//   );
+// };
 
 export default PrivateRoute;
