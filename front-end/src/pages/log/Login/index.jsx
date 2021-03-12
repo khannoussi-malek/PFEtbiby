@@ -37,6 +37,7 @@ const Login = () => {
         localStorage.setItem("telephone", data.telephone);
         localStorage.setItem("email", data.email);
         localStorage.setItem("cin", data.cin);
+        localStorage.setItem("sexes", data.sexes);
         localStorage.setItem("photo", data.cin);
         toast({
           title: "👨‍⚕️ Bienvenue Mr " + data.nom,
