@@ -28,7 +28,7 @@
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
 				$users = DB::table('cms_users')->select('*')->where('email',$postdata['user'] )->orWhere('telephone',$postdata['user'])
-				// ->orWhere('cin',$postdata['user'])
+				->orWhere('cin',$postdata['user'])
 				->get();
 				foreach ($users as &$user) {
 					if(\Hash::check($postdata['password'], $user->password)){
