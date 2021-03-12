@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { Formiz, useForm } from "@formiz/core";
 
@@ -17,7 +17,6 @@ import { Link } from "react-router-dom";
 import { useLogin } from "./../../../services/api/auth";
 
 const Login = () => {
-  const { pathname } = useLocation();
   let history = useHistory();
   const toast = useToast();
   const { mutate, isLoading } = useLogin({
@@ -48,7 +47,7 @@ const Login = () => {
           isClosable: true,
         });
 
-        history.push("/dashbord" + pathname ? `?redirect=${pathname}` : ``);
+        history.push("/dashbord");
       } else {
         toast({
           title: "vérifier votre information 🔐",
