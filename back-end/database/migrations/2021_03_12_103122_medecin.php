@@ -15,6 +15,8 @@ class Medecin extends Migration
     {
         Schema::create('medecin', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('cms_users_id')->unsigned()->nullable();
+            $table->foreign('cms_users_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('adresse_physique')->nullable();
             $table->string('spécialité')->nullable();
             $table->string('temps_de_seance')->nullable();
