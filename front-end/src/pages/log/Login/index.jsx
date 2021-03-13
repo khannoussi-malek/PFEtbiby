@@ -19,7 +19,7 @@ import { useLogin } from "./../../../services/api/auth";
 const Login = () => {
   let history = useHistory();
   const toast = useToast();
-  const { mutate, isLoading } = useLogin({
+  const { mutate } = useLogin({
     onSuccess: (res) => {
       let data = res.data;
       if (Object.entries(res.data).length !== 0 && data.status == "Active") {

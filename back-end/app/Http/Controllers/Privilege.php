@@ -14,6 +14,13 @@
 				->first();
                 return $PrivilegeName->name;
 				}
+			public static function PrivilegeID($nom) {
+				$PrivilegeName = DB::table('cms_privileges')->select('id')->where('name',$nom )
+				->first();
+				return $PrivilegeName->id;
+				}
+						
+				
 
 		    }
 

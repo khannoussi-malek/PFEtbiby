@@ -21,7 +21,6 @@ class Patient extends Migration
             $table->string('Adresse')->nullable();
             $table->string('parent')->nullable();
             $table->string('Code_APCI')->nullable();
-            $table->string('Civilité')->nullable();
             $table->timestamps();
         });
     }
