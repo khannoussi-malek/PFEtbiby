@@ -4,7 +4,6 @@ import Dashbord from "./../pages/dashboard";
 import { ReactQueryDevtools as ApiDevtools } from "react-query/devtools";
 import log from "../pages/log";
 import { QueryClient, QueryClientProvider } from "react-query";
-import Home from "./../pages/home";
 
 import PrivateRoute from "./_partials/PrivateRoute";
 import { authentication } from "./../services/authentication/auth";
@@ -26,7 +25,6 @@ function MainRouter() {
               exact
               isAuth={auth}
             />
-            <PrivateRoute path="/home" exact isAuth={auth} component={Home} />;
           </Switch>
         </Router>
         <ApiDevtools initialIsOpen={false} />
