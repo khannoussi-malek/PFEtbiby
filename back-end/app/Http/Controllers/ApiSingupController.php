@@ -20,6 +20,7 @@
 		        //This method will be execute before run the main process
 			
 				$postdata['password']=Hash::make($postdata['password']);
+				$postdata['status']="Active";
 				$postdata['id_cms_privileges']= Privilege::PrivilegeID($postdata['id_cms_privileges']);
 				
 		    }
@@ -41,6 +42,8 @@
 				$users=DB::table('cms_users')->where('cin', $postdata['cin'])->orWhere('email',  $postdata['email'])->orWhere('telephone',  $postdata['telephone'])->get();
 				$result['exists']=false;
 				if(count($users)>1){
+					$result['exists']=true;
+
 					if( !empty ($users[0]->cin)){
 						$result['elementExists']="CIN";
 					}
@@ -51,7 +54,6 @@
 						$result['elementExists']="Telephone";
 					}
 					DB::table('cms_users')->where('id', $result['id'])->delete();
-					$result['exists']=true;
 				}
 				$postdata['id_cms_privileges']=Privilege::PrivilegeName($postdata['id_cms_privileges']);
 				if(!$result['exists']){

@@ -22,7 +22,8 @@ const Login = () => {
   const { mutate } = useLogin({
     onSuccess: (res) => {
       let data = res.data;
-      if (Object.entries(res.data).length !== 0 && data.status == "Active") {
+      console.log(data);
+      if (Object.entries(data).length !== 0 && data.status == "Active") {
         localStorage.setItem("userid", data.id);
         localStorage.setItem(
           "nomPrenom",
@@ -32,12 +33,13 @@ const Login = () => {
             ? `${data.prenom}`
             : ``
         );
+        localStorage.setItem("isAuthenticated", "true");
         localStorage.setItem("fonctionnalite", data.fonctionnalite);
         localStorage.setItem("telephone", data.telephone);
         localStorage.setItem("email", data.email);
         localStorage.setItem("cin", data.cin);
         localStorage.setItem("sexes", data.sexes);
-        localStorage.setItem("photo", data.cin);
+        localStorage.setItem("photo", data.photo);
         toast({
           title: "👨‍⚕️ Bienvenue Mr " + data.nom,
           description:

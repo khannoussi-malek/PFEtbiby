@@ -6,7 +6,10 @@ import {
   Text,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
+import { link, userImage } from "./../../../services/api/index";
 const UserAvatar = () => {
+  const image = localStorage.getItem("photo");
+  console.log(image);
   return (
     <React.Fragment>
       <Box
@@ -20,15 +23,21 @@ const UserAvatar = () => {
         whiteSpace="nowrap"
       >
         <HStack display="inline-flex">
-          <Avatar size="sm" name="Esther Collins" />
+          <Avatar
+            size="sm"
+            src={image != null ? `${link}${image}` : `${link}${userImage}`}
+            name="Esther Collins"
+          />
           <Box lineHeight="1">
-            <Text fontWeight="semibold">Esther Collins</Text>
+            <Text fontWeight="semibold">
+              {localStorage.getItem("nomPrenom")}
+            </Text>
             <Text
               fontSize="xs"
               mt="1"
               color={mode("whiteAlpha.700", "gray.400")}
             >
-              esther-colls@chakra.com
+              {localStorage.getItem("email")}
             </Text>
           </Box>
         </HStack>

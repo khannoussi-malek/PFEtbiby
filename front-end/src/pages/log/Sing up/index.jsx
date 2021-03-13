@@ -90,7 +90,7 @@ const Singup = () => {
               required="nom is required"
               validations={[
                 {
-                  rule: isPattern("^[a-z]*$"),
+                  rule: isPattern("^[a-zA-Z]*$"),
                   message: "nom contien letter selmen",
                 },
               ]}
@@ -101,7 +101,7 @@ const Singup = () => {
               required="Prenom is required"
               validations={[
                 {
-                  rule: isPattern("^[a-z]*$"),
+                  rule: isPattern("^[a-zA-Z]*$"),
                   message: "Prenom contien letter selmen",
                 },
               ]}
@@ -135,9 +135,9 @@ const Singup = () => {
                 },
 
                 {
-                  rule: (val) => !!val || !!values.cin || !!values.telephone,
+                  rule: (val) => !!val || !!values.email || !!values.telephone,
                   message: "zid wa7ed",
-                  deps: [values.cin, values.telephone],
+                  deps: [values.email, values.telephone],
                 },
               ]}
             />
@@ -154,9 +154,9 @@ const Singup = () => {
                   message: "numero telephone  composé par des chiffre",
                 },
                 {
-                  rule: (val) => !!val || !!values.cin || !!values.telephone,
+                  rule: (val) => !!val || !!values.cin || !!values.email,
                   message: "zid wa7ed",
-                  deps: [values.cin, values.telephone],
+                  deps: [values.cin, values.email],
                 },
               ]}
             />

@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack, Text, useColorModeValue as mode } from "@chakra-ui/react";
+import { Stack, Text, useColorModeValue as mode, Box } from "@chakra-ui/react";
 import { SidebarLink } from "./../SidebarLink";
 import {
   BsFillBookmarksFill,
@@ -8,8 +8,13 @@ import {
   BsPencilSquare,
   BsSearch,
 } from "react-icons/bs";
-
+import { useHistory } from "react-router-dom";
 const Menu = () => {
+  let history = useHistory();
+  const logout = () => {
+    localStorage.clear();
+    history.push("/login");
+  };
   const NavSectionTitle = (props: TextProps) => (
     <Text
       casing="uppercase"
@@ -23,36 +28,45 @@ const Menu = () => {
   );
   return (
     <React.Fragment>
-      <SidebarLink
-        display={{ base: "block", lg: "none" }}
-        mb="2"
-        icon={<BsSearch />}
-      >
-        Search
-      </SidebarLink>
-      <Stack pb="6">
-        <SidebarLink icon={<BsFillInboxFill />}>Inbox</SidebarLink>
-        <SidebarLink icon={<BsFillBookmarksFill />}>Bookmarks</SidebarLink>
-        <SidebarLink icon={<BsPencilSquare />}>Drafts</SidebarLink>
-      </Stack>
-      <Stack pb="6">
-        <NavSectionTitle>Chats</NavSectionTitle>
-        <SidebarLink>🎉 Inbox</SidebarLink>
-        <SidebarLink>👍 Personal</SidebarLink>
-        <SidebarLink>🦋 Work</SidebarLink>
-      </Stack>
-      <Stack>
+      <Box mb={{ base: 8 }}>
         <SidebarLink
-          icon={<BsBoxArrowLeft />}
-          fontSize="md"
-          pb="6"
-          pos="fixed"
-          bottom="3%"
-          left={3}
+          display={{ base: "block", lg: "none" }}
+          mb="2"
+          icon={<BsSearch />}
         >
-          log out
+          Searchhh
         </SidebarLink>
-      </Stack>
+        <Stack pb="6">
+          <SidebarLink icon={<BsFillInboxFill />}>Inbox</SidebarLink>
+          <SidebarLink icon={<BsFillBookmarksFill />}>Bookmarks</SidebarLink>
+          <SidebarLink icon={<BsPencilSquare />}>Drafts</SidebarLink>
+        </Stack>
+        <Stack pb="6">
+          <NavSectionTitle>Chats</NavSectionTitle>
+          <SidebarLink>🎉 Inbox</SidebarLink>
+          <SidebarLink>👍 Personal</SidebarLink>
+          <SidebarLink>🦋 Work</SidebarLink>
+        </Stack>
+      </Box>
+      <Box pos="fixed" bottom="3%" left={3}>
+        <Stack
+          bgColor="red.400"
+          pos="fixed"
+          bottom="24px"
+          rounded={{ base: 5 }}
+          w={{ base: "100%", md: "50%" }}
+          left={{ base: "150px" }}
+        >
+          <SidebarLink
+            onClick={logout}
+            icon={<BsBoxArrowLeft />}
+            fontSize="md"
+            pb="6"
+          >
+            log out
+          </SidebarLink>
+        </Stack>
+      </Box>
     </React.Fragment>
   );
 };
