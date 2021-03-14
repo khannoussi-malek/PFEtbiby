@@ -28,7 +28,7 @@ const UserAvatar = () => {
         <HStack
           display="inline-flex"
           onClick={() => {
-            history.push("/dashbord/gestion de compte ");
+            history.push("/dashbord/gestion de compte");
           }}
         >
           <Avatar

@@ -61,7 +61,6 @@ const Login = () => {
           duration: `4000`,
           isClosable: true,
         });
-
         history.push("/dashbord");
       } else {
         toast({

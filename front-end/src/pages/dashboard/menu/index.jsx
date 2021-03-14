@@ -9,6 +9,7 @@ import {
   BsFillPersonLinesFill,
   BsBookmarks,
   BsAlarm,
+  BsFillBrightnessHighFill,
 } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
 // import PatientMenu from "./patient";
@@ -29,18 +30,18 @@ const Menu = () => {
     { url: "Reservi un rendez vous", icon: <BsBookmarks /> },
     { url: "Cherche médecin", icon: <BsSearch /> },
   ];
-
+  console.log(localStorage.getItem("fonctionnalite"));
   if (localStorage.getItem("fonctionnalite") == "patient") {
     pages = Pationmenu;
   } else if (localStorage.getItem("fonctionnalite") == "medecin") {
-    pages = Pationmenu;
+    pages = [];
   } else if (localStorage.getItem("fonctionnalite") == "secretaire") {
     pages = Pationmenu;
   }
 
   return (
     <React.Fragment>
-      <Box mb={{ base: 8 }}>
+      <Box mb={{ base: "70px" }}>
         {pages.map((page) => (
           <SidebarLink key={page.url} linkto={page.url} icon={page.icon}>
             {page.url}
