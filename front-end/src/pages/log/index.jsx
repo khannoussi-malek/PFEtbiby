@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {
   Box,
   useColorModeValue as mode,
@@ -28,7 +28,7 @@ const log = () => {
             />
           </Box>
           <Heading mt="6" textAlign="center" size="xl" fontWeight="extrabold">
-            Sign in to your account
+            Bienvenue à Tbiby
           </Heading>
         </Box>
         <Box maxW={{ sm: "md" }} mx={{ sm: "auto" }} mt="8" w={{ sm: "full" }}>

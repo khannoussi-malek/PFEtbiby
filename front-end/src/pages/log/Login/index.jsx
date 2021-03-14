@@ -1,7 +1,10 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import { Formiz, useForm } from "@formiz/core";
 
 import {
+  useToast,
   Box,
   Text,
   FormControl,
@@ -10,19 +13,57 @@ import {
 } from "@chakra-ui/react";
 import { MyField } from "../../../components/formInput/";
 import { MyFieldPassword } from "../../../components/formInput/password";
-import Auth from "./../../../services/authentication/index";
-
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useLogin } from "./../../../services/api/auth";
 
 const Login = () => {
-  let auth = new Auth();
-  const MyForm = useForm();
+  let history = useHistory();
+  const toast = useToast();
+  const { mutate } = useLogin({
+    onSuccess: (res) => {
+      let data = res.data;
+      if (Object.entries(res.data).length !== 0 && data.status == "Active") {
+        localStorage.setItem("userid", data.id);
+        localStorage.setItem(
+          "nomPrenom",
+          data.nom != null
+            ? `${data.nom}`
+            : `` + " " + (data.prenom != null)
+            ? `${data.prenom}`
+            : ``
+        );
+        localStorage.setItem("fonctionnalite", data.fonctionnalite);
+        localStorage.setItem("telephone", data.telephone);
+        localStorage.setItem("email", data.email);
+        localStorage.setItem("cin", data.cin);
+        localStorage.setItem("sexes", data.sexes);
+        localStorage.setItem("photo", data.cin);
+        toast({
+          title: "👨‍⚕️ Bienvenue Mr " + data.nom,
+          description:
+            " Vous êtes maintenant connecté à votre compte. être en bonne santé",
+          status: "success",
+          duration: `4000`,
+          isClosable: true,
+        });
 
+        history.push("/dashbord");
+      } else {
+        toast({
+          title: "vérifier votre information 🔐",
+          description:
+            "Entrez votre e-mail, téléphone ou CIN et votre mot de passe",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+        });
+      }
+    },
+  });
+
+  const MyForm = useForm();
   const handleSubmit = (values) => {
-    console.log(values);
-    auth.login();
-    localStorage.setItem("token", "ok");
-    //login api all data in [logindata] user and password
+    mutate(values);
   };
 
   return (

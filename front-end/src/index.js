@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import MainRouter from "./router";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider, CSSReset } from "@chakra-ui/react";
-
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider>
