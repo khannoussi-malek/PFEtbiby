@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 import PrivateRoute from "./_partials/PrivateRoute";
 import { authentication } from "./../services/authentication/auth";
-
+import Error404 from "./../pages/404";
 function MainRouter() {
   // const auth = new Auth();
   const auth = authentication();
@@ -19,12 +19,8 @@ function MainRouter() {
           <Switch>
             <Route component={log} exact path="/login" />
             <Route component={log} exact path="/singup" />
-            <PrivateRoute
-              component={Dashbord}
-              path="/dashbord"
-              exact
-              isAuth={auth}
-            />
+            <PrivateRoute component={Dashbord} path="/Dashbord" isAuth={auth} />
+            <Route component={Error404} path="*" />
           </Switch>
         </Router>
         <ApiDevtools initialIsOpen={false} />

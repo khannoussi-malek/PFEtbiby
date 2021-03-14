@@ -7,11 +7,11 @@ import {
   useColorModeValue as mode,
 } from "@chakra-ui/react";
 const UserAvatar = () => {
+  const image = localStorage.getItem("photo");
   return (
     <React.Fragment>
       <Box
-        as="a"
-        href="#"
+        as="div"
         p="3"
         display="block"
         transition="background 0.1s"
@@ -20,7 +20,13 @@ const UserAvatar = () => {
         whiteSpace="nowrap"
       >
         <HStack display="inline-flex">
-          <Avatar size="sm" name="Esther Collins" />
+          <Avatar
+            size="sm"
+            src={
+              link + image != null ? `${link}${image}` : `${link}${userImage}`
+            }
+            name="Esther Collins"
+          />
           <Box lineHeight="1">
             <Text fontWeight="semibold">Esther Collins</Text>
             <Text

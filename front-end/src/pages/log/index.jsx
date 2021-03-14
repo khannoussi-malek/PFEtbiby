@@ -20,12 +20,7 @@ const log = () => {
       <Box maxW={{ sm: "md" }} mx={{ sm: "auto" }} w={{ sm: "full" }}>
         <Box>
           <Box>
-            <Image
-              maxW={200}
-              m="auto"
-              src="./logo192.png"
-              alt="Segun Adebayo"
-            />
+            <Image maxW={200} m="auto" src="./logo192.png" alt="Tbiby" />
           </Box>
           <Heading mt="6" textAlign="center" size="xl" fontWeight="extrabold">
             Bienvenue à Tbiby

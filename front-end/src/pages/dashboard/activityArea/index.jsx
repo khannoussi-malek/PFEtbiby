@@ -1,13 +1,18 @@
 import React from "react";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import { Route } from "react-router-dom";
+import Rappel from "./Rappel/index";
 const ActivityArea = () => {
   return (
     <React.Fragment>
-      <Heading size="md" fontWeight="extrabold" mb="6">
-        Product Vision
-      </Heading>
-      <Box flex="1" borderWidth="3px" borderStyle="dashed" rounded="xl" p={5}>
-        hi man
+      <Box
+        flex="1"
+        borderWidth="2px"
+        rounded="xl"
+        px={{ base: 1, md: 5 }}
+        p={5}
+      >
+        <Route component={Rappel} exact path="/dashbord/rappel" />
       </Box>
     </React.Fragment>
   );
