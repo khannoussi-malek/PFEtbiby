@@ -31,14 +31,15 @@
 				$users = DB::table('cms_users')->select('*')->where('email',$postdata['user'] )->orWhere('telephone',$postdata['user'])
 				->orWhere('cin',$postdata['user'])
 				->get();
+				$result=null;
 				foreach ($users as &$user) {
 					if(\Hash::check($postdata['password'], $user->password)){
-						$user->fonctionnalite=Privilege::PrivilegeName($user->id);
+						$user->fonctionnalite=Privilege::PrivilegeName($user->id_cms_privileges);
+						
 						$result = $user;
 						return $result;
 					}
-				}						
-				return $result=null;
+				}					
 
 				// dd($password);
 

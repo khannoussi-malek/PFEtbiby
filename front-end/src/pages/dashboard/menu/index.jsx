@@ -1,58 +1,69 @@
-import React from "react";
-import { Stack, Text, useColorModeValue as mode } from "@chakra-ui/react";
+import React, { Components } from "react";
+import { Stack, useColorModeValue as mode, Box } from "@chakra-ui/react";
 import { SidebarLink } from "./../SidebarLink";
-import {
-  BsFillBookmarksFill,
-  BsFillInboxFill,
-  BsBoxArrowLeft,
-  BsPencilSquare,
-  BsSearch,
-} from "react-icons/bs";
 
+import {
+  BsBoxArrowLeft,
+  BsSearch,
+  BsFillCalendarFill,
+  BsFillPersonLinesFill,
+  BsBookmarks,
+  BsAlarm,
+} from "react-icons/bs";
+import { useHistory } from "react-router-dom";
+// import PatientMenu from "./patient";
+// import Medecinmenu from "./medecin";
+// import Secretairenmenu from "./secretaire";
+import {} from "react-icons/bs";
 const Menu = () => {
-  const NavSectionTitle = (props: TextProps) => (
-    <Text
-      casing="uppercase"
-      fontSize="xs"
-      fontWeight="semibold"
-      letterSpacing="wide"
-      paddingStart="3"
-      color="gray.400"
-      {...props}
-    ></Text>
-  );
+  let history = useHistory();
+  const logout = () => {
+    localStorage.clear();
+    history.push("/login");
+  };
+  let pages;
+  let Pationmenu = [
+    { url: "Mon rendez vous", icon: <BsFillCalendarFill /> },
+    { url: "Mon médecin", icon: <BsFillPersonLinesFill /> },
+    { url: "Rappel", icon: <BsAlarm /> },
+    { url: "Reservi un rendez vous", icon: <BsBookmarks /> },
+    { url: "Cherche médecin", icon: <BsSearch /> },
+  ];
+
+  if (localStorage.getItem("fonctionnalite") == "patient") {
+    pages = Pationmenu;
+  } else if (localStorage.getItem("fonctionnalite") == "medecin") {
+    pages = Pationmenu;
+  } else if (localStorage.getItem("fonctionnalite") == "secretaire") {
+    pages = Pationmenu;
+  }
+
   return (
     <React.Fragment>
-      <SidebarLink
-        display={{ base: "block", lg: "none" }}
-        mb="2"
-        icon={<BsSearch />}
+      <Box mb={{ base: 8 }}>
+        {pages.map((page) => (
+          <SidebarLink key={page.url} linkto={page.url} icon={page.icon}>
+            {page.url}
+          </SidebarLink>
+        ))}
+      </Box>
+      <Box
+        pos="fixed"
+        w={{ base: "100%", md: "50%" }}
+        bottom="24px"
+        left={{ base: "120px", md: "160px" }}
       >
-        Search
-      </SidebarLink>
-      <Stack pb="6">
-        <SidebarLink icon={<BsFillInboxFill />}>Inbox</SidebarLink>
-        <SidebarLink icon={<BsFillBookmarksFill />}>Bookmarks</SidebarLink>
-        <SidebarLink icon={<BsPencilSquare />}>Drafts</SidebarLink>
-      </Stack>
-      <Stack pb="6">
-        <NavSectionTitle>Chats</NavSectionTitle>
-        <SidebarLink>🎉 Inbox</SidebarLink>
-        <SidebarLink>👍 Personal</SidebarLink>
-        <SidebarLink>🦋 Work</SidebarLink>
-      </Stack>
-      <Stack>
-        <SidebarLink
-          icon={<BsBoxArrowLeft />}
-          fontSize="md"
-          pb="6"
-          pos="fixed"
-          bottom="3%"
-          left={3}
-        >
-          log out
-        </SidebarLink>
-      </Stack>
+        <Stack bgColor="red.400" rounded={8}>
+          <SidebarLink
+            onClick={logout}
+            icon={<BsBoxArrowLeft />}
+            fontSize="xlx"
+            p={4}
+          >
+            log out
+          </SidebarLink>
+        </Stack>
+      </Box>
     </React.Fragment>
   );
 };
