@@ -7,7 +7,6 @@ import {
 } from "@chakra-ui/react";
 import {} from "react-router-dom";
 
-import * as React from "react";
 import { useLocation, useHistory } from "react-router-dom";
 
 export const SidebarLink = (props) => {
