@@ -1,0 +1,7 @@
+{
+  "name": "Tbiby",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
