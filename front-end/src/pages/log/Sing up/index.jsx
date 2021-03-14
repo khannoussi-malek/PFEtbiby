@@ -43,8 +43,8 @@ const Singup = () => {
       if (res.api_status == 1) {
         if (res.exists) {
           toast({
-            title: res.elementExists + " est pris ",
-            description: "choisir autre " + res.elementExists + " 💭",
+            title: res.elementExists + " existe déja",
+            description: "choisir un autre " + res.elementExists + " 💭",
             status: "success",
             duration: `4000`,
             isClosable: true,
@@ -52,8 +52,7 @@ const Singup = () => {
         } else {
           toast({
             title: " ✨ ",
-            description:
-              "🎉Votre compte est enregistré, vous attend pour vous connecter",
+            description: "🎉Votre compte a été enregistré",
             status: "success",
             duration: `4000`,
             isClosable: true,
@@ -125,22 +124,22 @@ const Singup = () => {
             <MyField
               name="nom"
               label="Nom"
-              required="nom is required"
+              required="Il est requis de compléter le champ correspondant au nom"
               validations={[
                 {
                   rule: isPattern("^[a-z]*$"),
-                  message: "nom contien letter selmen",
+                  message: "Le nom ne contient que des lettres",
                 },
               ]}
             />
             <MyField
               name="prenom"
               label="Prenom"
-              required="Prenom is required"
+              required="Il est requis de compléter le champ correspondant au prenom"
               validations={[
                 {
                   rule: isPattern("^[a-z]*$"),
-                  message: "Prenom contien letter selmen",
+                  message: "Le prenom ne contient que des lettres",
                 },
               ]}
             />
@@ -150,11 +149,11 @@ const Singup = () => {
               validations={[
                 {
                   rule: isEmail(),
-                  message: "verifie email svp",
+                  message: "Veuillez vérifier le format de l'e-mail",
                 },
                 {
                   rule: (val) => !!val || !!values.cin || !!values.telephone,
-                  message: "zid wa7ed",
+                  message: "Le champ email doit respecter la format aa@aaaa.aaa",
                   deps: [values.cin, values.telephone],
                 },
               ]}
@@ -165,16 +164,16 @@ const Singup = () => {
               validations={[
                 {
                   rule: isLength(8),
-                  message: "carte identité composé par 8 chiffre",
+                  message: "La carte d'identité doit être constituée  de 8 chiffres",
                 },
                 {
                   rule: isNumber(),
-                  message: "carte identité composé par des chiffre",
+                  message: "La carte d'identité ne contient que des chiffres",
                 },
 
                 {
                   rule: (val) => !!val || !!values.email || !!values.telephone,
-                  message: "zid wa7ed",
+                  message: "La carte d'identité doit être constituée  de 8 chiffres",
                   deps: [values.email, values.telephone],
                 },
               ]}
@@ -185,15 +184,15 @@ const Singup = () => {
               validations={[
                 {
                   rule: isLength(8),
-                  message: "numero telephone composé par des chiffre",
+                  message: "La numéro de téléphone doit être constituée  de 8 chiffres",
                 },
                 {
                   rule: isNumber(),
-                  message: "numero telephone  composé par des chiffre",
+                  message: "La numéro de téléphone  ne contient que des chiffres",
                 },
                 {
                   rule: (val) => !!val || !!values.cin || !!values.email,
-                  message: "zid wa7ed",
+                  message: "La numéro de téléphone doit être constituée  de 8 chiffres",
                   deps: [values.cin, values.email],
                 },
               ]}
@@ -201,25 +200,25 @@ const Singup = () => {
             <MyFieldPassword
               name="password"
               label="mot de passe"
-              required="password is required"
+              required="Il est requis de compléter le champ correspondant au mot de passe"
               type="password"
               validations={[
                 {
                   rule: isMinLength(6),
                   message:
-                    "Le mot de passe doit avoir au moins une longueur de 6",
+                  "Le mot de passe doit contenir au moins 6 caractères",
                 },
               ]}
             />
             <MyFieldPassword
               name="R_password"
               label="Répéter le mot de passe"
-              required="password is required"
+              required="Il est requis de compléter le champ correspondant au répéter mot de passe"
               type="password"
               validations={[
                 {
                   rule: (val) => val == values.password,
-                  message: "not the same",
+                  message: "Le deuxième mot de passe est différent du premier mot de passe",
                   deps: [values.cin, values.telephone],
                 },
               ]}
