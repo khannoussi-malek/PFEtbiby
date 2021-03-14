@@ -32,12 +32,14 @@ const Login = () => {
             ? `${data.prenom}`
             : ``
         );
+
+        localStorage.setItem("isAuthenticated", "true");
         localStorage.setItem("fonctionnalite", data.fonctionnalite);
         localStorage.setItem("telephone", data.telephone);
         localStorage.setItem("email", data.email);
         localStorage.setItem("cin", data.cin);
         localStorage.setItem("sexes", data.sexes);
-        localStorage.setItem("photo", data.cin);
+        localStorage.setItem("photo", data.photo);
         toast({
           title: "👨‍⚕️ Bienvenue Mr " + data.nom,
           description:

@@ -41,19 +41,23 @@ const Menu = () => {
   return (
     <React.Fragment>
       <Box mb={{ base: 8 }}>
-        {/* <SouMenu /> */}
         {pages.map((page) => (
           <SidebarLink key={page.url} linkto={page.url} icon={page.icon}>
             {page.url}
           </SidebarLink>
         ))}
       </Box>
-      <Box pos="fixed" bottom="3%" left={3}>
-        <Stack bgColor="red.400" pos="fixed" bottom="3%" left={3}>
+      <Box
+        pos="fixed"
+        w={{ base: "100%", md: "50%" }}
+        bottom="24px"
+        left={{ base: "120px", md: "160px" }}
+      >
+        <Stack bgColor="red.400" rounded={8}>
           <SidebarLink
             onClick={logout}
             icon={<BsBoxArrowLeft />}
-            fontSize="lg"
+            fontSize="xlx"
             p={4}
           >
             log out
