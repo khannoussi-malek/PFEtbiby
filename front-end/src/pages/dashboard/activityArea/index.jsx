@@ -1,8 +1,11 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
-import { Route } from "react-router-dom";
-import Accountmanagement from "./../../gestion de compte/index";
+import Accountmanagement from "./../../gestion de compte/";
+import { PrivateRoute } from "./../../../router/_partials/PrivateRoute";
+import { authentication } from "./../../../services/authentication/auth";
+
 const ActivityArea = () => {
+  let auth = authentication();
   return (
     <React.Fragment>
       <Box
@@ -12,10 +15,11 @@ const ActivityArea = () => {
         px={{ base: 1, md: 5 }}
         p={5}
       >
-        <Route
-          component={Accountmanagement}
-          exact
+        <PrivateRoute
           path="/dashbord/Gestion de compte"
+          component={Accountmanagement}
+          isAuth={auth}
+          exact
         />
       </Box>
     </React.Fragment>

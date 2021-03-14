@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { isNumber, isLength } from "@formiz/validations";
 import {
   useToast,
   Box,
@@ -16,8 +16,11 @@ import {
 import { MyField } from "./../../components/formInput";
 import { MyFieldPassword } from "./../../components/formInput/password";
 import { Formiz, useForm } from "@formiz/core";
+import GestiondeCopmtePatient from "./gestion compte patient";
+import GestiondeCopmteMedecin from "./gestion compte medecin";
 
 const Accountmanagement = () => {
+  const fonctionnalite = localStorage.getItem("fonctionnalite");
   const [sexes, setSexes] = React.useState("homme");
   const isLoading = false;
   const MyForm = useForm();
@@ -41,7 +44,7 @@ const Accountmanagement = () => {
             />
             <FormControl>
               <Center>
-                <RadioGroup onChange={setSexes} value={sexes}>
+                <RadioGroup onChange={setSexes} value={sexes} name="sexes">
                   <Stack direction="row" size="lg">
                     <Radio value="homme" py={3} px={10}>
                       homme 👨‍🦰
@@ -58,19 +61,30 @@ const Accountmanagement = () => {
               name="telephone"
               label="Telephone"
               required="Telephone is required"
+              validations={[
+                {
+                  rule: isNumber(),
+                  message: "tele lazmou ykoun noumrou",
+                },
+                {
+                  rule: isLength(8),
+                  message: "tele fih 8 ar9am",
+                },
+              ]}
             />
+            <MyField name="email" label="Email" required="Email is required" />
 
-            <MyField
-              name="telephone"
-              label="Telephone"
-              required="Telephone is required"
-            />
             <MyFieldPassword
               name="password"
               label="password"
               required="password is required"
               type="password"
             />
+            {fonctionnalite == "patient" ? (
+              <GestiondeCopmtePatient />
+            ) : (
+              <GestiondeCopmteMedecin />
+            )}
             <FormControl mt={5} align="center">
               <Button
                 w="40%"
