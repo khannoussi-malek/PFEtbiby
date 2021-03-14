@@ -5,10 +5,10 @@ import {
   Text,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
+import {} from "react-router-dom";
 
 import * as React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 export const SidebarLink = (props) => {
   const { pathname } = useLocation();
