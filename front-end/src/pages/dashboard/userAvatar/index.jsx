@@ -6,8 +6,13 @@ import {
   Text,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
+import { BsGear } from "react-icons/bs";
 import { link, userImage } from "./../../../services/api/index";
+
 const UserAvatar = () => {
+  let history = useHistory();
+
   const image = localStorage.getItem("photo");
   return (
     <React.Fragment>
@@ -20,7 +25,12 @@ const UserAvatar = () => {
         _hover={{ bg: "whiteAlpha.200" }}
         whiteSpace="nowrap"
       >
-        <HStack display="inline-flex">
+        <HStack
+          display="inline-flex"
+          onClick={() => {
+            history.push("/dashbord/gestion de compte ");
+          }}
+        >
           <Avatar
             size="sm"
             src={
@@ -39,6 +49,9 @@ const UserAvatar = () => {
             >
               {localStorage.getItem("email")}
             </Text>
+          </Box>
+          <Box position="absolute" size="lg" mr={8} right="0px">
+            <BsGear />
           </Box>
         </HStack>
       </Box>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import { Route } from "react-router-dom";
-import Rappel from "./Rappel/index";
+import Accountmanagement from "./../../gestion de compte/index";
 const ActivityArea = () => {
   return (
     <React.Fragment>
@@ -12,7 +12,11 @@ const ActivityArea = () => {
         px={{ base: 1, md: 5 }}
         p={5}
       >
-        <Route component={Rappel} exact path="/dashbord/rappel" />
+        <Route
+          component={Accountmanagement}
+          exact
+          path="/dashbord/Gestion de compte"
+        />
       </Box>
     </React.Fragment>
   );

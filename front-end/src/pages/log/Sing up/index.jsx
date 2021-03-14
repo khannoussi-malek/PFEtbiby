@@ -7,6 +7,7 @@ import {
   RadioGroup,
   useToast,
   Radio,
+  Spinner,
 } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import {
@@ -27,7 +28,16 @@ const Singup = () => {
   let history = useHistory();
 
   const toast = useToast();
-  const { mutate } = useSingup({
+  const { mutate, isLoading } = useSingup({
+    onError: (error) => {
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
+    },
     onSuccess: (res) => {
       res = res.data;
       if (res.api_status == 1) {
@@ -64,7 +74,18 @@ const Singup = () => {
 
   return (
     <React.Fragment>
-      <Stack maxW={400} margin="auto" spacing={5}>
+      <Spinner
+        display={!isLoading ? `none` : ``}
+        size="xl"
+        m="auto"
+        color="red.500"
+      />
+      <Stack
+        maxW={400}
+        display={isLoading ? `none` : ``}
+        margin="auto"
+        spacing={5}
+      >
         <Formiz connect={myForm} onValidSubmit={handleSubmit}>
           <form noValidate onSubmit={myForm.submit}>
             <Center>
