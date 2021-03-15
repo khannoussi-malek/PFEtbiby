@@ -14,6 +14,7 @@ const UserAvatar = () => {
   let history = useHistory();
 
   const image = localStorage.getItem("photo");
+  console.log(link + userImage);
   return (
     <React.Fragment>
       <Box
@@ -32,10 +33,9 @@ const UserAvatar = () => {
           }}
         >
           <Avatar
-            size="sm"
-            src={
-              link + image != null ? `${link}${image}` : `${link}${userImage}`
-            }
+            size="md"
+            name={localStorage.getItem("nomPrenom")}
+            src={image != null ? link + image : link + userImage}
             name="Esther Collins"
           />
           <Box lineHeight="1">
@@ -50,7 +50,7 @@ const UserAvatar = () => {
               {localStorage.getItem("email")}
             </Text>
           </Box>
-          <Box position="absolute" size="lg" mr={8} right="0px">
+          <Box position="absolute" mr={8} right="0px">
             <BsGear />
           </Box>
         </HStack>
