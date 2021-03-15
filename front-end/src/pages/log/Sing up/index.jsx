@@ -113,8 +113,8 @@ const Singup = () => {
                     <Radio value="homme" py={3} mx={5}>
                       Homme
                     </Radio>
-                    <Radio value="famme" py={3} mx={5}>
-                      Famme
+                    <Radio value="femme" py={3} mx={5}>
+                      Femme
                     </Radio>
                   </Stack>
                 </RadioGroup>

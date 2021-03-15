@@ -49,8 +49,8 @@ const Accountmanagement = () => {
                     <Radio value="homme" py={3} px={10}>
                       homme 👨‍🦰
                     </Radio>
-                    <Radio value="famme" py={3} px={10}>
-                      Famme 👩‍🦰
+                    <Radio value="femme" py={3} px={10}>
+                      Femme 👩‍🦰
                     </Radio>
                   </Stack>
                 </RadioGroup>
