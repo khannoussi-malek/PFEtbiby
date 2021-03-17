@@ -27,7 +27,7 @@ class Medicament extends Migration
             $table->date('date_fin');
             $table->string('quantité')->nullable();
             $table->string('NBR_FOIS_JOURS')->nullable();
-            $table->string('durée_entre_chaque_médicament')->nullable();
+            $table->string('duree_entre_chaque_medicament')->nullable();
             $table->timestamps();
         });
     }
