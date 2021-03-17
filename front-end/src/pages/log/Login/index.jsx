@@ -61,7 +61,6 @@ const Login = () => {
           duration: `4000`,
           isClosable: true,
         });
-        history.push("/dashbord");
       } else {
         toast({
           title: "vérifier votre information 🔐",
@@ -72,6 +71,7 @@ const Login = () => {
           isClosable: true,
         });
       }
+      history.push("/dashbord");
     },
   });
 
