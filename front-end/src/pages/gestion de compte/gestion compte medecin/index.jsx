@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   FormControl,
   Button,
@@ -73,10 +73,8 @@ const GestiondeCopmteMedecin = () => {
                 w="40%"
                 type="submit"
                 borderColor="green.500"
-                disabled={!myForm.isValid}
               >
                 Submit
-                {!myForm.isValid ? `` : `👌`}
               </Button>
             </FormControl>
     </React.Fragment>

@@ -1,4 +1,4 @@
-/*import React, { useState } from "react";
+import React, { useState } from "react";
 import { useField } from "@formiz/core";
 
 import { ViewOffIcon, ViewIcon } from "@chakra-ui/icons";
@@ -56,4 +56,4 @@ export const MyFieldPassword = (props) => {
       {note && <FormHelperText id={`${id}-note`}>{note}</FormHelperText>}
     </FormControl>
   );
-};*/
+};
