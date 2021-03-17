@@ -97,10 +97,10 @@ const Singup = () => {
                 >
                   <Stack direction="row" size="lg">
                     <Radio value="patient" py={3} mx={5}>
-                      🙋‍♂️ Patient 🙋
+                      🙋‍♂ Patient
                     </Radio>
                     <Radio value="medecin" py={3} mx={5}>
-                      👨‍⚕️ medecin 👨‍⚕️
+                      medecin 🩺
                     </Radio>
                   </Stack>
                 </RadioGroup>
