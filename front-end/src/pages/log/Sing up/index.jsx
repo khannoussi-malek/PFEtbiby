@@ -128,7 +128,7 @@ const Singup = () => {
               required="nom is required"
               validations={[
                 {
-                  rule: isPattern("^[a-z]*$"),
+                  rule: isPattern("^[a-zA-Z ]*$"),
                   message: "nom contien letter selmen",
                 },
               ]}
@@ -139,7 +139,7 @@ const Singup = () => {
               required="Prenom is required"
               validations={[
                 {
-                  rule: isPattern("^[a-z]*$"),
+                  rule: isPattern("^[a-zA-Z ]*$"),
                   message: "Prenom contien letter selmen",
                 },
               ]}

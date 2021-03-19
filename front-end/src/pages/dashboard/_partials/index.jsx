@@ -31,7 +31,9 @@ export const NavBreadcrumb = ({ path }, props: BreadcrumbProps) => {
         <BreadcrumbItem color="inherit" key={url}>
           <BreadcrumbLink
             onClick={() => {
-              url != "dashbord" ? history.push(url) : history.push("/dashbord");
+              url != "dashboard"
+                ? history.push(url)
+                : history.push("/dashboard");
             }}
           >
             {url.charAt(0).toUpperCase() + url.slice(1)}

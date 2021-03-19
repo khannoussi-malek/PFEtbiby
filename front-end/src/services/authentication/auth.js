@@ -1,4 +1,4 @@
 export const authentication = () => {
-  const token = localStorage.getItem("isAuthenticated");
-  return !!token;
+  const user = localStorage.getItem("user");
+  return !!JSON.parse(user);
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Avatar,
   Box,
@@ -9,11 +9,13 @@ import {
 import { useHistory } from "react-router-dom";
 import { BsGear } from "react-icons/bs";
 import { link, userImage } from "./../../../services/api/index";
+import { TbibyContext } from "./../../../router/context/index";
 
 const UserAvatar = () => {
+  const { user } = useContext(TbibyContext);
   let history = useHistory();
 
-  const image = localStorage.getItem("photo");
+  const image = user.photo;
   return (
     <React.Fragment>
       <Box
@@ -28,7 +30,7 @@ const UserAvatar = () => {
         <HStack
           display="inline-flex"
           onClick={() => {
-            history.push("/dashbord/gestion de compte");
+            history.push("/dashboard/gestion de compte");
           }}
         >
           <Avatar
@@ -39,15 +41,13 @@ const UserAvatar = () => {
             name="Esther Collins"
           />
           <Box lineHeight="1">
-            <Text fontWeight="semibold">
-              {localStorage.getItem("nomPrenom")}
-            </Text>
+            <Text fontWeight="semibold">{user.prenom + " " + user.nom}</Text>
             <Text
               fontSize="xs"
               mt="1"
               color={mode("whiteAlpha.700", "gray.400")}
             >
-              {localStorage.getItem("email")}
+              {user.email}
             </Text>
           </Box>
           <Box position="absolute" size="lg" mr={8} right="0px">
