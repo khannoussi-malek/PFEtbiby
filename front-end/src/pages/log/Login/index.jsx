@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import { Formiz, useForm } from "@formiz/core";
@@ -16,9 +16,12 @@ import { MyField } from "../../../components/formInput/";
 import { MyFieldPassword } from "../../../components/formInput/password";
 import { Link } from "react-router-dom";
 import { useLogin } from "./../../../services/api/auth";
+import { TbibyContext } from "./../../../router/context/index";
 
 const Login = () => {
-  let history = useHistory();
+  const history = useHistory();
+  const { setUser } = useContext(TbibyContext);
+
   const toast = useToast();
   const { mutate, isLoading } = useLogin({
     onError: (error) => {
@@ -31,25 +34,11 @@ const Login = () => {
       });
     },
     onSuccess: (res) => {
-      let data = res.data;
+      let data = { ...res.data };
       if (Object.entries(res.data).length !== 0 && data.status == "Active") {
-        localStorage.setItem("userid", data.id);
-        localStorage.setItem(
-          "nomPrenom",
-          data.nom != null
-            ? `${data.nom}`
-            : `` + " " + (data.prenom != null)
-            ? `${data.prenom}`
-            : ``
-        );
-
-        localStorage.setItem("isAuthenticated", "true");
-        localStorage.setItem("fonctionnalite", data.fonctionnalite);
-        localStorage.setItem("telephone", data.telephone);
-        localStorage.setItem("email", data.email);
-        localStorage.setItem("cin", data.cin);
-        localStorage.setItem("sexes", data.sexes);
-        localStorage.setItem("photo", data.photo);
+        data.isAuthenticated = true;
+        localStorage.setItem("user", JSON.stringify(data));
+        setUser(data);
         toast({
           title:
             "👨‍⚕️ Bienvenue " +
@@ -71,7 +60,7 @@ const Login = () => {
           isClosable: true,
         });
       }
-      history.push("/dashbord");
+      history.push("/dashboard");
     },
   });
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { isNumber, isLength } from "@formiz/validations";
 import {
   useToast,
@@ -20,7 +20,7 @@ import GestiondeCopmtePatient from "./gestion compte patient";
 import GestiondeCopmteMedecin from "./gestion compte medecin";
 
 const Accountmanagement = () => {
-  const fonctionnalite = localStorage.getItem("fonctionnalite");
+  const { user } = useContext();
   const [sexes, setSexes] = React.useState("homme");
   const isLoading = false;
   const MyForm = useForm();
@@ -80,7 +80,7 @@ const Accountmanagement = () => {
               required="password is required"
               type="password"
             />
-            {fonctionnalite == "patient" ? (
+            {user.fonctionnalite == "patient" ? (
               <GestiondeCopmtePatient />
             ) : (
               <GestiondeCopmteMedecin />

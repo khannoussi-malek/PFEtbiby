@@ -3,23 +3,34 @@ import {
   ButtonGroup,
   Flex,
   Text,
+  Box,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
 import * as React from "react";
 
-export const TablePagination = () => {
+export const TablePagination = (props) => {
+  const { total, prev_page_url, next_page_url, setPage, page } = props;
   return (
     <Flex align="center" justify="space-between">
       <Text color={mode("gray.600", "gray.400")} fontSize="sm">
-        10 members
+        {total} Colonne
       </Text>
       <ButtonGroup variant="outline" size="sm">
-        <Button as="a" rel="prev">
-          Previous
-        </Button>
-        <Button as="a" rel="next">
-          Next
-        </Button>
+        {!!prev_page_url ? (
+          <Button as="a" onClick={() => setPage(page - 1)} rel="Précédente">
+            Précédente
+          </Button>
+        ) : (
+          ``
+        )}
+        <Box m={1}> page {page}</Box>
+        {!!next_page_url ? (
+          <Button as="a" onClick={() => setPage(page + 1)} rel="Suivante">
+            Suivante
+          </Button>
+        ) : (
+          ``
+        )}
       </ButtonGroup>
     </Flex>
   );

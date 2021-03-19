@@ -4,6 +4,7 @@ import Accountmanagement from "./../../gestion de compte/";
 import { PrivateRoute } from "./../../../router/_partials/PrivateRoute";
 import { authentication } from "./../../../services/authentication/auth";
 import Rappel from "./../../rappel/index";
+import ListPatents from "./../../Mes patients/index";
 const ActivityArea = () => {
   let auth = authentication();
   return (
@@ -16,14 +17,20 @@ const ActivityArea = () => {
         py={{ base: 2, md: 5 }}
       >
         <PrivateRoute
-          path="/dashbord/Gestion de compte"
+          path="/dashboard/Gestion de compte"
           component={Accountmanagement}
           isAuth={auth}
           exact
         />
         <PrivateRoute
-          path="/dashbord/Rappel"
+          path="/dashboard/Rappel"
           component={Rappel}
+          isAuth={auth}
+          exact
+        />
+        <PrivateRoute
+          path="/dashboard/Mes patients"
+          component={ListPatents}
           isAuth={auth}
           exact
         />

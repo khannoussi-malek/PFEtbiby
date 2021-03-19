@@ -10,42 +10,38 @@ import {
 } from "@chakra-ui/react";
 import * as React from "react";
 
-export const TableContent = (header, content, ...props) => {
+export const TableContent = (props) => {
   return (
     <Table my="8" borderWidth="1px" fontSize="sm">
       <Thead bg={mode("gray.50", "gray.800")}>
         <Tr>
-          {/* map of header
-        {columns.map((column, index) => (
+          {props.header.map((column, index) => (
             <Th whiteSpace="nowrap" scope="col" key={index}>
-              {column.Header}
+              {column}
             </Th>
-          ))} */}
-
-          <Th whiteSpace="nowrap" scope="col" key="s4">
-            h1
-          </Th>
+          ))}
           <Th />
         </Tr>
       </Thead>
       <Tbody>
-        <Tr key="a1">
-          {/* map of content
-        {columns.map((column, index) => (
-            <Th whiteSpace="nowrap" scope="col" key={index}>
-              {column.Header}
-            </Th>
-          ))} */}
-
-          <Td whiteSpace="nowrap" key="q1">
-            h
-          </Td>
-          <Td textAlign="right">
-            <Button variant="link" colorScheme="blue">
-              Edit
-            </Button>
-          </Td>
-        </Tr>
+        {props.content.map((row, index) => (
+          <Tr key={index}>
+            {Object.values(row)
+              .slice(1)
+              .map((column, indexcol) => {
+                return (
+                  <Td whiteSpace="nowrap" key={indexcol}>
+                    {column}
+                  </Td>
+                );
+              })}
+            <Td textAlign="right">
+              {/* <Button variant="link" colorScheme="blue">
+                Edit
+              </Button> */}
+            </Td>
+          </Tr>
+        ))}
       </Tbody>
     </Table>
   );
