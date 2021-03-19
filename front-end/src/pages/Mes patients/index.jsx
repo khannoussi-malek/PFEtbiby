@@ -11,6 +11,9 @@ const ListPatents = () => {
 
   const toast = useToast();
   const medecin_id = user.id;
+  const [total, setTotal] = useState(0);
+  const [next, setNext] = useState("");
+  const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([[""], [""]]);
   const [patientId, setPatientId] = useState("");
@@ -27,6 +30,9 @@ const ListPatents = () => {
       });
     },
     onSuccess: (res) => {
+      setTotal(res.data.total);
+      setNext(res.data.next_page_url);
+      setPrev(res.data.prev_page_url);
       setContent(res.data.data);
     },
   });
@@ -57,9 +63,9 @@ const ListPatents = () => {
 
               <TableContent header={header} content={content} />
               <TablePagination
-                total={data.data.total}
-                next_page_url={data.data.next_page_url}
-                prev_page_url={data.data.prev_page_url}
+                total={total}
+                next_page_url={next}
+                prev_page_url={prev}
                 page={page}
                 setPage={setPage}
               />
