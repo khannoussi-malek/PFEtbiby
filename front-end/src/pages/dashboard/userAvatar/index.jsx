@@ -14,7 +14,6 @@ import { TbibyContext } from "./../../../router/context/index";
 const UserAvatar = () => {
   const { user } = useContext(TbibyContext);
   let history = useHistory();
-
   const image = user.photo;
   return (
     <React.Fragment>
@@ -35,9 +34,7 @@ const UserAvatar = () => {
         >
           <Avatar
             size="sm"
-            src={
-              link + image != null ? `${link}${image}` : `${link}${userImage}`
-            }
+            src={image != null ? `${link}${image}` : `${link}${userImage}`}
             name="Esther Collins"
           />
           <Box lineHeight="1">

@@ -4,19 +4,21 @@ import {
   FormControl,
   FormLabel,
   HStack,
+  Box,
   Input,
   InputGroup,
   InputLeftElement,
-  Select,
   Stack,
 } from "@chakra-ui/react";
 import * as React from "react";
 import { BsSearch } from "react-icons/bs";
-import { RiAddFill, RiArrowRightUpLine } from "react-icons/ri";
 
-export const TableActions = () => {
+export const TableActions = (props) => {
+  const { chercherFn, buttonText, buttonIcon } = props;
+  let inputValue = "";
   return (
     <Stack
+      pt={10}
       spacing="4"
       direction={{ base: "column", md: "row" }}
       justify="space-between"
@@ -24,37 +26,27 @@ export const TableActions = () => {
       <HStack>
         <FormControl minW={{ md: "320px" }} id="search">
           <InputGroup size="sm">
-            <FormLabel srOnly>Filter by name or email</FormLabel>
+            <FormLabel srOnly>Filtrer par nom ou par e-mail</FormLabel>
             <InputLeftElement pointerEvents="none" color="gray.400">
               <BsSearch />
             </InputLeftElement>
             <Input
               rounded="base"
               type="search"
-              placeholder="Filter by name or email..."
+              onChange={(value) => (inputValue = value.target.value)}
+              placeholder="Filtrer par nom ou par e-mail"
             />
           </InputGroup>
         </FormControl>
-        <Select
-          w={{ base: "300px", md: "unset" }}
-          rounded="base"
-          size="sm"
-          placeholder="All roles"
-        >
-          <option>All roles</option>
-          <option>UI Designers</option>
-          <option>Marketing Directors</option>
-        </Select>
+        <Box></Box>
       </HStack>
       <ButtonGroup size="sm" variant="outline">
-        <Button iconSpacing="1" leftIcon={<RiAddFill fontSize="1.25em" />}>
-          New member
-        </Button>
         <Button
+          onClick={() => chercherFn(inputValue)}
           iconSpacing="1"
-          leftIcon={<RiArrowRightUpLine fontSize="1.25em" />}
+          leftIcon={buttonIcon}
         >
-          Export CSV
+          {buttonText}
         </Button>
       </ButtonGroup>
     </Stack>
