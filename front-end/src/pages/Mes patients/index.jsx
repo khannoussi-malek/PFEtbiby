@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
-import { Box, Spinner, Button, Text, useToast } from "@chakra-ui/react";
+import { Box, Spinner, useToast } from "@chakra-ui/react";
 import { TableActions } from "./../../components/table/TableActions";
 import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
 import AjouPatient from "./_partials/AjoutPatient";
 import { useRelationListe } from "./../../services/api/relation/index";
 import { TbibyContext } from "./../../router/context/index";
+import { RiFolderUserLine } from "react-icons/ri";
+
 const ListPatents = () => {
   const { user, cleanUser } = useContext(TbibyContext);
 
@@ -18,7 +20,7 @@ const ListPatents = () => {
   const [content, setContent] = useState([[""], [""]]);
   const [patientId, setPatientId] = useState("");
   const params = { medecin_id, patient_id: patientId, page };
-  const { data, isLoading, refetch } = useRelationListe({
+  const { isLoading, refetch } = useRelationListe({
     params,
     onError: (error) => {
       toast({
@@ -51,25 +53,26 @@ const ListPatents = () => {
         py={{ base: 0, md: "12" }}
         w="100%"
       >
-        <AjouPatient />
         <Box
           maxW={{ base: "xl", md: "7xl" }}
           mx="auto"
           px={{ base: "1", md: "8" }}
         >
           <Box>
-            <Box>
-              {/* <TableActions /> */}
-
-              <TableContent header={header} content={content} />
-              <TablePagination
-                total={total}
-                next_page_url={next}
-                prev_page_url={prev}
-                page={page}
-                setPage={setPage}
-              />
-            </Box>
+            <AjouPatient refetch={refetch} />
+            <TableActions
+              buttonText="Chercher"
+              buttonIcon={<RiFolderUserLine fontSize="1.25em" />}
+              chercherFn={setPatientId}
+            />
+            <TableContent header={header} content={content} />
+            <TablePagination
+              total={total}
+              next_page_url={next}
+              prev_page_url={prev}
+              page={page}
+              setPage={setPage}
+            />
           </Box>
         </Box>
       </Box>

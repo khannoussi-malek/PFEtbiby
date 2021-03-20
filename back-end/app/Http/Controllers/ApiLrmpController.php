@@ -30,7 +30,7 @@
 					->where('relation.medecin_id',$postdata['medecin_id'])
 					->join('cms_users', 'cms_users.id', '=', 'relation.patient_id')
 					->select('cms_users.id','cms_users.nom', 'cms_users.prenom')
-					->paginate(1);
+					->paginate(10);
 
 				}else{
 					$search =$postdata['patient_id'];
@@ -43,7 +43,7 @@
 					->orwhere('cms_users.nom', 'like', "%$search%")
 					->orwhere('cms_users.prenom', 'like', "%$search%")
 					->select('cms_users.id','cms_users.nom', 'cms_users.prenom')
-					->paginate(1);
+					->paginate(10);
 				}
 				$result=$relation;
 
