@@ -20,10 +20,10 @@ class HistoriqueSalleDattente extends Migration
             $table->integer('medecin_id')->unsigned()->nullable();
             $table->foreign('medecin_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('etat')->nullable();
-            $table->date('date_réservation');
-            $table->date('date_acceptation');
-            $table->date('date_dentré');
-            $table->date('date_de_sortie');
+            $table->dateTime('date_réservation');
+            $table->dateTime('date_acceptation');
+            $table->dateTime('date_dentré');
+            $table->dateTime('date_de_sortie');
             $table->timestamps();
         });
     }
