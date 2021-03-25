@@ -16,6 +16,7 @@ import { TbibyContext } from "./../../router/context/index";
 import {
   useReservationMListe,
   useUpdateReservation,
+  useDeleteReservation,
 } from "../../services/api/create reservation";
 
 const CalandreDashboard = () => {
@@ -28,6 +29,19 @@ const CalandreDashboard = () => {
 
   const [task, setTask] = useState([{ start: "2021-03-22T00:00" }]);
   const params = { medecin_id: user.id };
+  const {
+    mutate: DeleteMutate,
+    isLoading: DeleteIsLoading,
+  } = useDeleteReservation({
+    onError: (error) => {
+      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+    },
+    onSuccess: (res) => {
+      refetchTask();
+      console.log("refetch");
+    },
+  });
+
   const { mutate, isLoading: isLoadingUpdate } = useUpdateReservation({
     onError: (error) => {
       // setMessage("Vérifier l'information qui vous inseri ou votre liste");
@@ -105,12 +119,12 @@ const CalandreDashboard = () => {
   return (
     <Box>
       <Spinner
-        display={!isLoadingUpdate ? `none` : ``}
+        display={!isLoadingUpdate && !DeleteIsLoading ? `none` : ``}
         size="xl"
         m="auto"
         color="red.500"
       />
-      <Box display={isLoadingUpdate ? `none` : ``}>
+      <Box display={isLoadingUpdate || DeleteIsLoading ? `none` : ``}>
         <Flex>
           <Button ml={2} onClick={() => addDays(date, daysView * -1)}>
             <ArrowLeftIcon />
@@ -140,6 +154,7 @@ const CalandreDashboard = () => {
         </Flex>
       </Box>
       <Calandre
+        DeleteMutate={DeleteMutate}
         task={task}
         setTask={setTask}
         date={date}

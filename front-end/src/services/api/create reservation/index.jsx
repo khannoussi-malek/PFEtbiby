@@ -17,6 +17,9 @@ export const useUpdateReservation = (config) => {
     config
   );
 };
+export const useDeleteReservation = (config) => {
+  return useMutation(({ id }) => axios.post("/deleter", { id }), config);
+};
 export const useReservationMListe = ({ params, ...config } = {}) => {
   return useQuery(
     ["listrm", params],
