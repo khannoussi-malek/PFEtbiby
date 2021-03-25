@@ -1,5 +1,10 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Dashboard from "./../pages/dashboard";
 import { ReactQueryDevtools as ApiDevtools } from "react-query/devtools";
 import log from "../pages/log";
@@ -20,8 +25,12 @@ function MainRouter() {
     <React.Fragment>
       <Router>
         <Switch>
-          {/* <Route component={log} exact path="/login" />
-          <Route component={log} exact path="/singup" /> */}
+          <Route path="/" exact>
+            {
+              //you need to add dashbord page
+            }
+            <Redirect to="/dashboard" />
+          </Route>
           <PublicRoute
             component={log}
             path="/login"

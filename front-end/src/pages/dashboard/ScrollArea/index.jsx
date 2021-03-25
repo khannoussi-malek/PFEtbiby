@@ -12,7 +12,7 @@ const ScrollArea = (props: BoxProps) => (
         bg: "transparent",
       },
       "&::-webkit-scrollbar": {
-        width: "4px",
+        width: "8px",
       },
       "&::-webkit-scrollbar-thumb": {
         bg: mode("blue.600", "gray.700"),

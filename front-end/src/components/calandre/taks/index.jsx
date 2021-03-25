@@ -49,11 +49,11 @@ const Task = (props) => {
                   provided.draggableProps.style
                 ))
               }
-              _focus="none"
+              // _focus="none"
               border="2px"
               borderRadius="20px"
-              bgColor={snapshot.isDragging ? `cyan.200` : `cyan.400`}
-              borderColor="gray.300"
+              bgColor={snapshot.isDragging ? `#3b8a5b` : `#b3e6c8`}
+              borderColor="green.200"
               mx={3}
               px={2}
               children={
@@ -67,14 +67,14 @@ const Task = (props) => {
                     fontSize="10px"
                     icon={<CloseIcon />}
                   />
-                  {taskvalue.nom} {taskvalue.prenom}
+                  {taskvalue.nomprenom}
                 </Box>
               }
             />
           </PopoverTrigger>
           <PopoverContent bg="gray.50">
             <PopoverHeader fontWeight="semibold">
-              {taskvalue.nom} {taskvalue.prenom}
+              {taskvalue.nomprenom}
             </PopoverHeader>
             <PopoverBody>
               Rendez-vous a {taskvalue.start.slice(0, 10) + " "}
@@ -83,35 +83,6 @@ const Task = (props) => {
             </PopoverBody>
           </PopoverContent>
         </Popover>
-
-        // <Box
-        //   onClick={(event) => detail(event)}
-        //   ref={provided.innerRef}
-        //   {...provided.draggableProps}
-        //   {...provided.dragHandleProps}
-        //   style={
-        //     ("none",
-        //     getItemStyle(snapshot.isDragging, provided.draggableProps.style))
-        //   }
-        //   border="2px"
-        //   borderRadius="20px"
-        //   bgColor={snapshot.isDragging ? `cyan.200` : `cyan.400`}
-        //   borderColor="gray.300"
-        //   mx={3}
-        //   px={2}
-        // >
-        //   <IconButton
-        //     onClick={(event) => remove(event)}
-        //     size="xs"
-        //     m={1}
-        //     bg="red.300"
-        //     colorScheme="teal"
-        //     // variant="outline"
-        //     fontSize="10px"
-        //     icon={<CloseIcon />}
-        //   />
-        //   just test
-        // </Box>
       )}
     </Draggable>
   );

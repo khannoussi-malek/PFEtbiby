@@ -23,15 +23,13 @@ const AjouPatient = (props) => {
     },
     onSuccess: (res) => {
       setMessage("");
+      refetch();
     },
   });
   const myForm = useForm();
   const handleSubmit = (values) => {
     values.medecin_id = user.id;
     mutate(values);
-    setTimeout(function () {
-      refetch();
-    }, 1500);
   };
 
   return (
@@ -47,7 +45,7 @@ const AjouPatient = (props) => {
               <FormControl minW={{ md: "320px" }} id="search">
                 <MyField
                   name="patient_id"
-                  Placeholder="Ajouter patient CIN , Email , Telephone "
+                  Placeholder="Add Patient Cin, Email, Telephone"
                 />
                 <Text color="tomato">{message}</Text>
               </FormControl>

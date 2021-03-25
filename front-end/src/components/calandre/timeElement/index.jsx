@@ -5,10 +5,10 @@ import { Droppable } from "react-beautiful-dnd";
 import Task from "./../taks";
 
 const TimeElement = (props) => {
-  const { HoursValue, value, addtaks, task, setTask } = props;
+  const { HoursValue, key, value, addtask, task, setTask } = props;
 
   return (
-    <Box h="160px" fontSize="20px" border="1px">
+    <Box key={key} h="160px" fontSize="20px" border="1px">
       <Grid
         h="100%"
         templateRows="repeat(4, 1fr)"
@@ -28,10 +28,10 @@ const TimeElement = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={snapshot.isDraggingOver ? "pink.100" : `gray.50`}
+              bgColor={snapshot.isDraggingOver ? "green.100" : `gray.50`}
               maxH="40px"
               onClick={(event) =>
-                addtaks(
+                addtask(
                   event,
                   value.toISOString().slice(0, 10) +
                     "T" +
@@ -88,10 +88,10 @@ const TimeElement = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={snapshot.isDraggingOver ? "pink.100" : `gray.100`}
+              bgColor={snapshot.isDraggingOver ? "green.100" : `gray.100`}
               maxH="40px"
               onClick={(event) =>
-                addtaks(
+                addtask(
                   event,
                   value.toISOString().slice(0, 10) +
                     "T" +
@@ -148,10 +148,10 @@ const TimeElement = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={snapshot.isDraggingOver ? "pink.100" : `gray.200`}
+              bgColor={snapshot.isDraggingOver ? "green.100" : `gray.200`}
               maxH="40px"
               onClick={(event) =>
-                addtaks(
+                addtask(
                   event,
                   value.toISOString().slice(0, 10) +
                     "T" +
@@ -208,10 +208,10 @@ const TimeElement = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={snapshot.isDraggingOver ? "pink.100" : `gray.300`}
+              bgColor={snapshot.isDraggingOver ? "green.100" : `gray.300`}
               maxH="40px"
               onClick={(event) =>
-                addtaks(
+                addtask(
                   event,
                   value.toISOString().slice(0, 10) +
                     "T" +
