@@ -76,7 +76,9 @@ const Dashboard = () => {
               overflow="auto"
               px={{ base: 2, md: 6, lg: 8 }}
             >
-              <ActivityArea />
+              <ScrollArea>
+                <ActivityArea />
+              </ScrollArea>
             </Flex>
           </Flex>
         </Box>

@@ -69,6 +69,7 @@ const Singup = () => {
   const myForm = useForm();
   const { values } = myForm;
   const handleSubmit = (values) => {
+    values.sexes = sexes;
     values.id_cms_privileges = fonctionnalite;
     mutate(values);
   };

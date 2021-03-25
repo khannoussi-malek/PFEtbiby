@@ -23,7 +23,7 @@ export const MyField = (props) => {
       <Input
         id={id}
         type={type || "text"}
-        placeholder={Placeholder || "text"}
+        placeholder={Placeholder || label}
         value={value ?? ""}
         onChange={(e) => setValue(e.target.value)}
         onBlur={() => setIsTouched(true)}
@@ -33,7 +33,7 @@ export const MyField = (props) => {
       />
       {showError && (
         <Text id={`${id}-error`} color="tomato">
-          🕵 {errorMessage}
+          {errorMessage}
         </Text>
       )}
 
