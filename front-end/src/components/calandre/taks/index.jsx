@@ -12,12 +12,11 @@ import {
   PopoverTrigger,
 } from "@chakra-ui/popover";
 const Task = (props) => {
-  const { taskvalue, task, setTask } = props;
+  const { taskvalue, task, setTask, DeleteMutate } = props;
+
   const remove = (event) => {
     event.stopPropagation();
-
-    task.splice(task.indexOf(taskvalue), 1);
-    setTask([...task]);
+    DeleteMutate({ id: taskvalue.id });
   };
   const detail = (event) => {
     event.stopPropagation();

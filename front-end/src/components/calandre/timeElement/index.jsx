@@ -5,7 +5,15 @@ import { Droppable } from "react-beautiful-dnd";
 import Task from "./../taks";
 
 const TimeElement = (props) => {
-  const { HoursValue, key, value, addtask, task, setTask } = props;
+  const {
+    HoursValue,
+    key,
+    value,
+    DeleteMutate,
+    addtask,
+    task,
+    setTask,
+  } = props;
 
   return (
     <Box key={key} h="160px" fontSize="20px" border="1px">
@@ -62,6 +70,7 @@ const TimeElement = (props) => {
                     HoursValue.slice(0, 3) +
                     "00" ? (
                     <Task
+                      DeleteMutate={DeleteMutate}
                       key={taskvalue.id}
                       task={task}
                       setTask={setTask}
@@ -122,6 +131,7 @@ const TimeElement = (props) => {
                     HoursValue.slice(0, 3) +
                     "15" ? (
                     <Task
+                      DeleteMutate={DeleteMutate}
                       key={taskvalue.id}
                       task={task}
                       setTask={setTask}
@@ -182,6 +192,7 @@ const TimeElement = (props) => {
                     HoursValue.slice(0, 3) +
                     "30" ? (
                     <Task
+                      DeleteMutate={DeleteMutate}
                       key={taskvalue.id}
                       task={task}
                       setTask={setTask}
@@ -243,6 +254,7 @@ const TimeElement = (props) => {
                     HoursValue.slice(0, 3) +
                     "45" ? (
                     <Task
+                      DeleteMutate={DeleteMutate}
                       key={taskvalue.id}
                       task={task}
                       setTask={setTask}

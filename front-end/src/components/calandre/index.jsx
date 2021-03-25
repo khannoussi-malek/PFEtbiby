@@ -2,7 +2,15 @@ import { Box, Center, Grid, GridItem } from "@chakra-ui/layout";
 import TimeElement from "./timeElement";
 import { DragDropContext } from "react-beautiful-dnd";
 function Calandre(props) {
-  const { rowNumber, date, task, updateTask, setTask, addtask } = props;
+  const {
+    rowNumber,
+    date,
+    DeleteMutate,
+    task,
+    updateTask,
+    setTask,
+    addtask,
+  } = props;
 
   //const [, setTask] = useState([{ start: "2021-03-22T00:00" }]);
   const Hours = [
@@ -66,6 +74,7 @@ function Calandre(props) {
         </Center>
         {Hours.map((HoursValue) => (
           <TimeElement
+            DeleteMutate={DeleteMutate}
             key={HoursValue.slice(0, 4)}
             HoursValue={HoursValue}
             value={value}
