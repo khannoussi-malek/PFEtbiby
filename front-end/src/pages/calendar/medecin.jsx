@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Spinner } from "@chakra-ui/react";
 
 import { Box, Spacer, Flex } from "@chakra-ui/layout";
-import Calandre from "./../../components/calandre/index";
+import Calendar from "./../../components/calendar/index";
 import { useState } from "react";
 import { Button } from "@chakra-ui/button";
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
@@ -10,16 +10,16 @@ import { useBreakpointValue } from "@chakra-ui/media-query";
 import { useDisclosure } from "@chakra-ui/hooks";
 
 import BookingForm from "./bookingForm";
-import { useListPatientDashboardAPI } from "./../../services/api/listPatientDashboard/inde";
+import { useListPatientDashboardAPI } from "../../services/api/listPatientDashboard/inde";
 import { useToast } from "@chakra-ui/react";
-import { TbibyContext } from "./../../router/context/index";
+import { TbibyContext } from "../../router/context/index";
 import {
   useReservationMListe,
   useUpdateReservation,
   useDeleteReservation,
-} from "../../services/api/create reservation";
+} from "../../services/api/reservation";
 
-const CalandreDashboard = () => {
+const CalendarDashboardMedecin = () => {
   //config
 
   //calander function
@@ -92,6 +92,7 @@ const CalandreDashboard = () => {
       setListPatient(res.data);
     },
   });
+
   const addtask = (event, start, end) => {
     event.stopPropagation();
     setend(end);
@@ -153,7 +154,7 @@ const CalandreDashboard = () => {
           </Button>
         </Flex>
       </Box>
-      <Calandre
+      <Calendar
         DeleteMutate={DeleteMutate}
         task={task}
         setTask={setTask}
@@ -179,4 +180,4 @@ const CalandreDashboard = () => {
   );
 };
 
-export default CalandreDashboard;
+export default CalendarDashboardMedecin;
