@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box } from "@chakra-ui/react";
 import Accountmanagement from "./../../gestion de compte/";
 import { PrivateRoute } from "./../../../router/_partials/PrivateRoute";
-import { authentication } from "./../../../services/authentication/auth";
 import Rappel from "./../../rappel/index";
-import ListPatents from "./../../Mes patients/index";
-import CalendarDashboard from "./../../calendar/index";
+import ListPatents from "./../../Mes patients";
+import CalendarDashboard from "./../../calendar";
+import { TbibyContext } from "./../../../router/context";
+import MonRendezvous from "./../../Mon rendez vous/index";
+import MonMedecin from "./../../Mon medecin/index";
 const ActivityArea = () => {
-  let auth = authentication();
+  const { user } = useContext(TbibyContext);
+
   return (
     <React.Fragment>
       <Box
@@ -20,26 +23,37 @@ const ActivityArea = () => {
         <PrivateRoute
           path="/dashboard"
           component={CalendarDashboard}
-          isAuth={auth}
+          isAuth={user.isAuthenticated}
+          exact
+        />
+        <PrivateRoute
+          path="/dashboard/Mon médecin"
+          component={MonMedecin}
+          isAuth={user.isAuthenticated}
           exact
         />
         <PrivateRoute
           path="/dashboard/Gestion de compte"
           component={Accountmanagement}
-          isAuth={auth}
+          isAuth={user.isAuthenticated}
           exact
         />
-
+        <PrivateRoute
+          path="/dashboard/Mon rendez vous"
+          component={MonRendezvous}
+          isAuth={user.isAuthenticated}
+          exact
+        />
         <PrivateRoute
           path="/dashboard/Rappel"
           component={Rappel}
-          isAuth={auth}
+          isAuth={user.isAuthenticated}
           exact
         />
         <PrivateRoute
           path="/dashboard/Mes patients"
           component={ListPatents}
-          isAuth={auth}
+          isAuth={user.isAuthenticated}
           exact
         />
       </Box>

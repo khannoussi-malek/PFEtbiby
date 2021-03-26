@@ -27,3 +27,6 @@ export const useReservationMListe = ({ params, ...config } = {}) => {
     config
   );
 };
+export const useListReservation = ({ params, ...config } = {}) => {
+  return useQuery(["lrd", params], () => axios.get("/lrd", { params }), config);
+};

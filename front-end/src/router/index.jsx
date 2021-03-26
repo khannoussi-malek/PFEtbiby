@@ -11,7 +11,7 @@ import log from "../pages/log";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import PrivateRoute from "./_partials/PrivateRoute";
-import { authentication } from "./../services/authentication/auth";
+
 import Error404 from "./../pages/404";
 import TheContext, { TbibyContext } from "./context";
 import PublicRoute from "./_partials/PublicRoute";
@@ -19,7 +19,6 @@ function MainRouter() {
   const { user } = useContext(TbibyContext);
   // const { isAuthenticated } = useContext(TbibyContext);
   // const auth = new Auth();
-  const auth = authentication();
   const queryClient = new QueryClient();
   return (
     <React.Fragment>

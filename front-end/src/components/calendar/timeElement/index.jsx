@@ -2,7 +2,7 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Grid } from "@chakra-ui/layout";
 import { GridItem } from "@chakra-ui/layout";
 import { Droppable } from "react-beautiful-dnd";
-import Task from "./../taks";
+import Task from "../taks";
 
 const TimeElement = (props) => {
   const {

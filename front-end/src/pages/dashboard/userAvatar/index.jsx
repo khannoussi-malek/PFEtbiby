@@ -25,13 +25,11 @@ const UserAvatar = () => {
         rounded="xl"
         _hover={{ bg: "whiteAlpha.200" }}
         whiteSpace="nowrap"
+        onClick={() => {
+          history.push("/dashboard/gestion de compte");
+        }}
       >
-        <HStack
-          display="inline-flex"
-          onClick={() => {
-            history.push("/dashboard/gestion de compte");
-          }}
-        >
+        <HStack display="inline-flex">
           <Avatar
             size="sm"
             src={image != null ? `${link}${image}` : `${link}${userImage}`}
