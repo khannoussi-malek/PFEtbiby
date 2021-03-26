@@ -1,7 +1,7 @@
 import { Box, Center, Grid, GridItem } from "@chakra-ui/layout";
 import TimeElement from "./timeElement";
 import { DragDropContext } from "react-beautiful-dnd";
-function Calandre(props) {
+function Calendar(props) {
   const {
     rowNumber,
     date,
@@ -122,4 +122,4 @@ function Calandre(props) {
   );
 }
 
-export default Calandre;
+export default Calendar;

@@ -5,7 +5,7 @@ import { PrivateRoute } from "./../../../router/_partials/PrivateRoute";
 import { authentication } from "./../../../services/authentication/auth";
 import Rappel from "./../../rappel/index";
 import ListPatents from "./../../Mes patients/index";
-import CalandreDashboard from "./../../calandre/index";
+import CalendarDashboard from "./../../calendar/index";
 const ActivityArea = () => {
   let auth = authentication();
   return (
@@ -19,7 +19,7 @@ const ActivityArea = () => {
       >
         <PrivateRoute
           path="/dashboard"
-          component={CalandreDashboard}
+          component={CalendarDashboard}
           isAuth={auth}
           exact
         />

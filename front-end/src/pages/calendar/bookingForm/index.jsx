@@ -11,11 +11,11 @@ import {
   AlertDialogOverlay,
 } from "@chakra-ui/modal";
 import { Button } from "@chakra-ui/button";
-import { Select2 } from "./../../../components/formInput/select";
+import { Select2 } from "../../../components/formInput/select";
 import { useState } from "react";
 import { Text, Spinner } from "@chakra-ui/react";
-import { useCreateReservation } from "./../../../services/api/create reservation/index";
-import { useRelation } from "./../../../services/api/relation/index";
+import { useCreateReservation } from "../../../services/api/create reservation/index";
+import { useRelation } from "../../../services/api/relation/index";
 const BookingForm = (props) => {
   const [NomPrenom, setNomPrenom] = useState("");
   const {
