@@ -111,10 +111,10 @@ const Singup = () => {
                 <RadioGroup onChange={setSexes} value={sexes} name="sexes">
                   <Stack direction="row" size="lg">
                     <Radio value="homme" py={3} mx={5}>
-                      Homme
+                      Homme 👨‍🦰
                     </Radio>
                     <Radio value="femme" py={3} mx={5}>
-                      Femme
+                      Femme 👩‍🦰
                     </Radio>
                   </Stack>
                 </RadioGroup>
@@ -153,7 +153,7 @@ const Singup = () => {
                 },
                 {
                   rule: (val) => !!val || !!values.cin || !!values.telephone,
-                  message: "Le champ email doit respecter la format aa@aaaa.aaa",
+                  message: "Le champ email doit contenir @ et .",
                   deps: [values.cin, values.telephone],
                 },
               ]}

@@ -1,6 +1,5 @@
 import React from "react";
 import { isNumber, isPattern } from "@formiz/validations";
-
 import {
   FormControl,
   Button,
@@ -10,18 +9,10 @@ import {
 import { MyField } from "./../../../components/formInput";
 
 const GestiondeCopmtePatient = () => {
+  
   return (
     <React.Fragment>
-      <MyField
-       name="date_naissance" 
-       label="Date de naissance" 
-       required="Il est requis de compléter le champ correspondant au date_naissance"
-       validations={[
-        {
-          message: "La date naissance doit respecter la forme jj/mm/aaaa",
-        },
-      ]}
-       />
+     
        <MyField
        name="parent" 
        label="Parent" 
@@ -40,19 +31,10 @@ const GestiondeCopmtePatient = () => {
        validations={[
         {
           rule: isNumber(),
-          message: "Le parent ne contient que des lettres",
+          message: "Le code-APCI ne contient que des chiffres",
         },
       ]}
        />
-       <FormControl mt={5} align="center">
-              <Button
-                w="40%"
-                type="submit"
-                borderColor="green.500"
-              >
-                Submit
-              </Button>
-            </FormControl>
     </React.Fragment>
   );
 };

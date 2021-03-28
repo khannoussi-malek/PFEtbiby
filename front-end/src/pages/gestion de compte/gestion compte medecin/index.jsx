@@ -52,8 +52,8 @@ const GestiondeCopmteMedecin = () => {
         required="Il est requis de compléter le champ correspondant au domaine_id"
         validations={[
           {
-            rule: isNumber(),
-            message: "Le domaine_id ne contient que des chiffres",
+            rule: isPattern("^[a-z]*$"),
+            message: "Le domaine_id ne contient que des lettres",
           },
         ]}
          />
@@ -63,20 +63,11 @@ const GestiondeCopmteMedecin = () => {
         required="Il est requis de compléter le champ correspondant au sous_domaine_id"
         validations={[
           {
-            rule: isNumber(),
-            message: "Le sous_domaine_id ne contient que des chiffres",
+            rule: isPattern("^[a-z]*$"),
+            message: "Le sous_domaine_id ne contient que des lettres",
           },
         ]}
          />
-          <FormControl mt={5} align="center">
-              <Button
-                w="40%"
-                type="submit"
-                borderColor="green.500"
-              >
-                Submit
-              </Button>
-            </FormControl>
     </React.Fragment>
   );
 };

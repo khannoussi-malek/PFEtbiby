@@ -42,13 +42,13 @@
 				$users=DB::table('cms_users')->where('cin', $postdata['cin'])->orWhere('email',  $postdata['email'])->orWhere('telephone',  $postdata['telephone'])->get();
 				$result['exists']=false;
 				if(count($users)>1){
-					if( !empty ($users[0]->cin)){
+					if( !empty ($users[0]->cin) and ($users[0]->cin==$postdata['cin']) ){
 						$result['elementExists']="CIN";
 					}
-					if( !empty ($users[0]->email)){
+					elseif( !empty ($users[0]->email) and ($users[0]->email==$postdata['email']) ){
 						$result['elementExists']="Email";
 					}
-					if( !empty ($users[0]->telephone)){
+					elseif( !empty ($users[0]->telephone) and ($users[0]->telephone==$postdata['telephone']) ){
 						$result['elementExists']="Telephone";
 					}
 					DB::table('cms_users')->where('id', $result['id'])->delete();
@@ -56,11 +56,11 @@
 				}
 				$postdata['id_cms_privileges']=Privilege::PrivilegeName($postdata['id_cms_privileges']);
 				if(!$result['exists']){
-					$insetr=['cms_users_id'=> $result['id']];
+					$insert=['cms_users_id'=> $result['id']];
 					if($postdata['id_cms_privileges']=="patient"){
-						DB::table('patient')->insert($insetr);
+						DB::table('patient')->insert($insert);
 					}else if($postdata['id_cms_privileges']=="medecin"){
-						DB::table('medecin')->insert($insetr);
+						DB::table('medecin')->insert($insert);
 					}
 
 				}
