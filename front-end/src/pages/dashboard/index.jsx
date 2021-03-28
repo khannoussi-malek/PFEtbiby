@@ -1,28 +1,21 @@
 import {
   Box,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbProps,
   Flex,
-  Input,
-  InputGroup,
-  InputGroupProps,
-  InputLeftElement,
-  InputProps,
   useBoolean,
   useBreakpointValue,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
+import { NavBreadcrumb } from "./_partials";
 import * as React from "react";
-import { BsSearch } from "react-icons/bs";
-import { HiMenu, HiChevronRight, HiX } from "react-icons/hi";
+import { HiMenu, HiX } from "react-icons/hi";
 import ScrollArea from "./ScrollArea/index";
 import Menu from "./menu";
 import UserAvatar from "./userAvatar/index";
 import ActivityArea from "./activityArea/index";
+import { useLocation } from "react-router-dom";
 
-const Dashbord = () => {
+const Dashboard = () => {
+  const { pathname } = useLocation();
   const { isOpen, toggle } = useMobileMenuState();
   return (
     <Flex
@@ -74,12 +67,18 @@ const Dashbord = () => {
             >
               <Flex align="center" minH="8">
                 <MobileMenuButton onClick={toggle} isOpen={isOpen} />
-                <NavBreadcrumb />
+                <NavBreadcrumb path={pathname} />
               </Flex>
-              <SearchInput />
             </Flex>
-            <Flex direction="column" flex="1" overflow="auto" px="10" pt="8">
-              <ActivityArea />
+            <Flex
+              direction="column"
+              flex="1"
+              overflow="auto"
+              px={{ base: 2, md: 6, lg: 8 }}
+            >
+              <ScrollArea>
+                <ActivityArea />
+              </ScrollArea>
             </Flex>
           </Flex>
         </Box>
@@ -110,52 +109,6 @@ const MobileMenuButton = (props: { onClick: () => void, isOpen: boolean }) => {
   );
 };
 
-const NavBreadcrumb = (props: BreadcrumbProps) => (
-  <Breadcrumb
-    fontSize="lg"
-    {...props}
-    separator={
-      <Box
-        as={HiChevronRight}
-        color="gray.400"
-        fontSize="md"
-        top="2px"
-        pos="relative"
-      />
-    }
-  >
-    <BreadcrumbItem color="inherit">
-      <BreadcrumbLink>Welcome</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbItem color="inherit" isCurrentPage>
-      <BreadcrumbLink>Product Vision</BreadcrumbLink>
-    </BreadcrumbItem>
-  </Breadcrumb>
-);
-
-const SearchInput = (props: InputProps & { rootProps?: InputGroupProps }) => {
-  const { rootProps, ...rest } = props;
-  return (
-    <InputGroup
-      maxW="2xs"
-      size="sm"
-      variant="filled"
-      display={{ base: "none", lg: "block" }}
-      {...rootProps}
-    >
-      <InputLeftElement color="gray.400" pointerEvents="none">
-        <BsSearch />
-      </InputLeftElement>
-      <Input
-        {...rest}
-        placeholder="Search"
-        rounded="md"
-        _placeholder={{ color: "gray.400" }}
-      />
-    </InputGroup>
-  );
-};
-
 const useMobileMenuState = () => {
   const [isOpen, actions] = useBoolean();
   const isMobile = useBreakpointValue({ base: true, lg: false });
@@ -167,4 +120,4 @@ const useMobileMenuState = () => {
   return { isOpen, ...actions };
 };
 
-export default Dashbord;
+export default Dashboard;

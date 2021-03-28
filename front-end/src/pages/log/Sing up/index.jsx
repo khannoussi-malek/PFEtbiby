@@ -1,12 +1,13 @@
 import { Formiz, useForm } from "@formiz/core";
 import {
-  Stack,
-  Button,
   FormControl,
-  Center,
-  RadioGroup,
-  useToast,
   Radio,
+  Stack,
+  RadioGroup,
+  Button,
+  Center,
+  useToast,
+  Spinner,
 } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import {
@@ -27,7 +28,16 @@ const Singup = () => {
   let history = useHistory();
 
   const toast = useToast();
-  const { mutate } = useSingup({
+  const { mutate, isLoading } = useSingup({
+    onError: (error) => {
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
+    },
     onSuccess: (res) => {
       res = res.data;
       if (res.api_status == 1) {
@@ -43,7 +53,7 @@ const Singup = () => {
           toast({
             title: " ✨ ",
             description:
-              "🎉Votre compte est enregistré, vous attend pour vous connecter🎉",
+              "🎉Votre compte est enregistré, vous attend pour vous connecter",
             status: "success",
             duration: `4000`,
             isClosable: true,
@@ -53,44 +63,73 @@ const Singup = () => {
       }
     },
   });
-  const [fonctionnalite, serFonctionnalite] = useState("patient");
+  const [fonctionnalite, setFonctionnalite] = useState("patient");
+  const [sexes, setSexes] = useState("homme");
 
   const myForm = useForm();
   const { values } = myForm;
   const handleSubmit = (values) => {
+    values.sexes = sexes;
     values.id_cms_privileges = fonctionnalite;
     mutate(values);
   };
 
   return (
     <React.Fragment>
-      <Stack maxW={400} margin="auto" spacing={5}>
+      <Spinner
+        display={!isLoading ? `none` : ``}
+        size="xl"
+        m="auto"
+        color="red.500"
+      />
+      <Stack
+        maxW={400}
+        display={isLoading ? `none` : ``}
+        margin="auto"
+        spacing={5}
+      >
         <Formiz connect={myForm} onValidSubmit={handleSubmit}>
           <form noValidate onSubmit={myForm.submit}>
-            <Center>
-              <RadioGroup defaultValue="patient" name="fonctionnalite">
-                <Stack spacing={5} direction="row">
-                  <Radio
-                    colorScheme="purple.500 "
-                    size="lg"
-                    value="patient"
-                    defaultChecked={true}
-                  >
-                    Patient
-                  </Radio>
-                  <Radio colorScheme="blue.300" size="lg" value="medecin">
-                    medecin
-                  </Radio>
-                </Stack>
-              </RadioGroup>
-            </Center>
+            <FormControl>
+              <Center>
+                <RadioGroup
+                  onChange={setFonctionnalite}
+                  value={fonctionnalite}
+                  name="id_cms_privileges"
+                >
+                  <Stack direction="row" size="lg">
+                    <Radio value="patient" py={3} mx={5}>
+                      🙋‍♂ Patient
+                    </Radio>
+                    <Radio value="medecin" py={3} mx={5}>
+                      medecin 🩺
+                    </Radio>
+                  </Stack>
+                </RadioGroup>
+              </Center>
+            </FormControl>
+            <FormControl>
+              <Center>
+                <RadioGroup onChange={setSexes} value={sexes} name="sexes">
+                  <Stack direction="row" size="lg">
+                    <Radio value="homme" py={3} mx={5}>
+                      Homme
+                    </Radio>
+                    <Radio value="famme" py={3} mx={5}>
+                      Famme
+                    </Radio>
+                  </Stack>
+                </RadioGroup>
+              </Center>
+            </FormControl>
+
             <MyField
               name="nom"
               label="Nom"
               required="nom is required"
               validations={[
                 {
-                  rule: isPattern("^[a-z]*$"),
+                  rule: isPattern("^[a-zA-Z ]*$"),
                   message: "nom contien letter selmen",
                 },
               ]}
@@ -101,7 +140,7 @@ const Singup = () => {
               required="Prenom is required"
               validations={[
                 {
-                  rule: isPattern("^[a-z]*$"),
+                  rule: isPattern("^[a-zA-Z ]*$"),
                   message: "Prenom contien letter selmen",
                 },
               ]}
@@ -135,9 +174,9 @@ const Singup = () => {
                 },
 
                 {
-                  rule: (val) => !!val || !!values.cin || !!values.telephone,
+                  rule: (val) => !!val || !!values.email || !!values.telephone,
                   message: "zid wa7ed",
-                  deps: [values.cin, values.telephone],
+                  deps: [values.email, values.telephone],
                 },
               ]}
             />
@@ -154,9 +193,9 @@ const Singup = () => {
                   message: "numero telephone  composé par des chiffre",
                 },
                 {
-                  rule: (val) => !!val || !!values.cin || !!values.telephone,
+                  rule: (val) => !!val || !!values.cin || !!values.email,
                   message: "zid wa7ed",
-                  deps: [values.cin, values.telephone],
+                  deps: [values.cin, values.email],
                 },
               ]}
             />

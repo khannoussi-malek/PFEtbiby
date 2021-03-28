@@ -5,15 +5,22 @@ import {
   Text,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
-import * as React from "react";
+import {} from "react-router-dom";
+
+import { useLocation, useHistory } from "react-router-dom";
 
 export const SidebarLink = (props) => {
-  const { children, icon = <ArrowRight />, avatar, ...rest } = props;
+  const { pathname } = useLocation();
+  let history = useHistory();
+
+  const { children, linkto, icon = <ArrowRight />, avatar, ...rest } = props;
   return (
     <Box
       as="a"
       marginEnd="2"
       fontSize="sm"
+      bgColor={pathname == "/dashboard/" + linkto ? `blue.500` : ``}
+      onClick={() => history.push("/dashboard/" + linkto)}
       display="block"
       px="3"
       py="1"
@@ -25,7 +32,7 @@ export const SidebarLink = (props) => {
       transition="background .1s ease-out"
       {...rest}
     >
-      <HStack>
+      <HStack fontSize="md">
         <Box opacity={avatar ? 1 : 0.5} _groupHover={{ opacity: 1 }}>
           {avatar || icon}
         </Box>
