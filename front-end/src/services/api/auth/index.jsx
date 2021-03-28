@@ -8,7 +8,16 @@ export const useLogin = (config) => {
 };
 export const useSingup = (config) => {
   return useMutation(
-    ({ cin, email, id_cms_privileges, nom, password, prenom, telephone }) =>
+    ({
+      cin,
+      email,
+      id_cms_privileges,
+      nom,
+      password,
+      prenom,
+      telephone,
+      sexes,
+    }) =>
       axios.post("/singup", {
         cin,
         email,
@@ -17,6 +26,7 @@ export const useSingup = (config) => {
         password,
         prenom,
         telephone,
+        sexes,
       }),
     config
   );
