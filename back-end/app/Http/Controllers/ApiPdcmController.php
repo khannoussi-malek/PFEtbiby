@@ -5,11 +5,11 @@
 		use DB;
 		use CRUDBooster;
 
-		class ApiCpController extends \crocodicstudio\crudbooster\controllers\ApiController {
+		class ApiPdcmController extends \crocodicstudio\crudbooster\controllers\ApiController {
 
 		    function __construct() {    
 				$this->table       = "rendez_vous";        
-				$this->permalink   = "cp";    
+				$this->permalink   = "pdcm";    
 				$this->method_type = "get";    
 		    }
 		
@@ -26,14 +26,12 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-				// dd($postdata);
-				$result = DB::table('rendez_vous')					
-				->where('rendez_vous.patient_id',$postdata['patient_id'])
-				->where('etat','en attente')
-				->join('cms_users', 'cms_users.id', '=', 'rendez_vous.medecin_id')
-				->select('cms_users.id','cms_users.nom', 'cms_users.prenom', 'rendez_vous.date_reservation')->orderBy('rendez_vous.date_reservation')
-				->paginate(10);
-				
+				$result=DB::table('rendez_vous')
+				->where('medecin_id',$postdata['medecin_id'])
+				->where('etat','patient avec le médecin')
+				->join('cms_users', 'cms_users.id', '=', 'rendez_vous.patient_id')
+				->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'),"cms_users.id as id","rendez_vous.id as rendez_vous_id")
+				->get();
 		    }
 
 		}

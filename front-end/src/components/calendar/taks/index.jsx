@@ -1,22 +1,43 @@
-import { IconButton } from "@chakra-ui/button";
 import { Box } from "@chakra-ui/layout";
-import { CloseIcon } from "@chakra-ui/icons";
 import { Draggable } from "react-beautiful-dnd";
+import { BsBoxArrowInRight } from "react-icons/bs";
+import Alert from "./alert";
 import {
   Popover,
-  PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
   PopoverHeader,
   PopoverTrigger,
 } from "@chakra-ui/popover";
-const Task = (props) => {
-  const { taskvalue, task, setTask, DeleteMutate } = props;
+import { useState, useRef } from "react";
+import { CloseIcon } from "@chakra-ui/icons";
 
+const Task = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const onClose = () => setIsOpen(false);
+  const cancelRef = useRef();
+  const [isOpenRemove, setIsOpenRemove] = useState(false);
+  const onCloseRemove = () => setIsOpenRemove(false);
+  const cancelRefRemove = useRef();
+
+  const {
+    taskvalue,
+    task,
+    setTask,
+    DeleteMutate,
+    EnteredMutate,
+    usertype,
+  } = props;
+
+  const Entered = (event) => {
+    event.stopPropagation();
+    EnteredMutate({ id: taskvalue.id });
+    onClose();
+  };
   const remove = (event) => {
     event.stopPropagation();
     DeleteMutate({ id: taskvalue.id });
+    onClose();
   };
   const detail = (event) => {
     event.stopPropagation();
@@ -48,7 +69,6 @@ const Task = (props) => {
                   provided.draggableProps.style
                 ))
               }
-              // _focus="none"
               border="2px"
               borderRadius="20px"
               bgColor={snapshot.isDragging ? `#3b8a5b` : `#b3e6c8`}
@@ -57,16 +77,47 @@ const Task = (props) => {
               px={2}
               children={
                 <Box>
-                  <IconButton
-                    onClick={(event) => remove(event)}
-                    size="xs"
-                    m={1}
-                    bg="red.300"
-                    colorScheme="teal"
-                    fontSize="10px"
+                  <Alert
+                    Header="Supprimer la réservation"
+                    Body={`Êtes-vous sûr de vouloir supprimer cette réservation avec ${taskvalue.nomprenom}`}
                     icon={<CloseIcon />}
+                    colorScheme="teal"
+                    bg="red.300"
+                    fnTodo={remove}
+                    btOK="Effacer"
+                    btNon="Annuler"
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    onClose={onClose}
+                    cancelRef={cancelRef}
                   />
                   {taskvalue.nomprenom}
+                  {usertype == "medecin" ? (
+                    <Alert
+                      Header="confirmer"
+                      Body={`Avez-vous confirmé que ${taskvalue.nomprenom} va entrer chez le médecin`}
+                      icon={<BsBoxArrowInRight />}
+                      bg="blue.300"
+                      btOK="oui"
+                      btNon="Non"
+                      fnTodo={Entered}
+                      isOpen={isOpenRemove}
+                      setIsOpen={setIsOpenRemove}
+                      onClose={onCloseRemove}
+                      cancelRef={cancelRefRemove}
+                    />
+                  ) : (
+                    <Alert
+                      Header="Supprimer la réservation"
+                      Body={`Êtes-vous sûr de vouloir supprimer cette réservation avec ${taskvalue.nomprenom}`}
+                      icon={<CloseIcon />}
+                      fnTodo={remove}
+                      isOpen={isOpen}
+                      setIsOpen={setIsOpen}
+                      onClose={onClose}
+                      cancelRef={cancelRef}
+                    />
+                  )}
                 </Box>
               }
             />

@@ -13,6 +13,8 @@ import BookingForm from "./bookingForm";
 import { useListPatientDashboardAPI } from "../../services/api/listPatientDashboard/inde";
 import { useToast } from "@chakra-ui/react";
 import { TbibyContext } from "../../router/context/index";
+import { usePatientEntrer } from "./../../services/api/manageTheRoom/index";
+import { useHistory } from "react-router-dom";
 import {
   useReservationMListe,
   useUpdateReservation,
@@ -20,15 +22,24 @@ import {
 } from "../../services/api/reservation";
 
 const CalendarDashboardMedecin = () => {
-  //config
-
-  //calander function
   const toast = useToast();
-
+  const history = useHistory();
   const { user } = useContext(TbibyContext);
 
   const [task, setTask] = useState([{ start: "2021-03-22T00:00" }]);
   const params = { medecin_id: user.id };
+  const {
+    mutate: EnteredMutate,
+    isLoading: PatientEntrerIsLoading,
+  } = usePatientEntrer({
+    onError: (error) => {
+      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+    },
+    onSuccess: (res) => {
+      refetchTask();
+      history.push("/dashboard/consultation");
+    },
+  });
   const {
     mutate: DeleteMutate,
     isLoading: DeleteIsLoading,
@@ -120,12 +131,22 @@ const CalendarDashboardMedecin = () => {
   return (
     <Box>
       <Spinner
-        display={!isLoadingUpdate && !DeleteIsLoading ? `none` : ``}
+        display={
+          !isLoadingUpdate && !DeleteIsLoading && !PatientEntrerIsLoading
+            ? `none`
+            : ``
+        }
         size="xl"
         m="auto"
         color="red.500"
       />
-      <Box display={isLoadingUpdate || DeleteIsLoading ? `none` : ``}>
+      <Box
+        display={
+          isLoadingUpdate || DeleteIsLoading || PatientEntrerIsLoading
+            ? `none`
+            : ``
+        }
+      >
         <Flex>
           <Button ml={2} onClick={() => addDays(date, daysView * -1)}>
             <ArrowLeftIcon />
@@ -155,6 +176,8 @@ const CalendarDashboardMedecin = () => {
         </Flex>
       </Box>
       <Calendar
+        EnteredMutate={EnteredMutate}
+        usertype={user.fonctionnalite}
         DeleteMutate={DeleteMutate}
         task={task}
         setTask={setTask}
