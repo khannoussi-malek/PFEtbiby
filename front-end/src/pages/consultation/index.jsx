@@ -1,4 +1,4 @@
-import { Box, Center, Flex, SimpleGrid } from "@chakra-ui/layout";
+import { Box, Center, Text, SimpleGrid } from "@chakra-ui/layout";
 import React, { useContext, useState, useRef } from "react";
 import { useListOfThePatientInConsultation } from "../../services/api/consultation";
 import { TbibyContext } from "./../../router/context/index";
@@ -156,7 +156,7 @@ const Consultation = () => {
           w={{ base: "100%", md: "95%" }}
           borderRadius="20px"
         >
-          this is {currentPatient.nomprenom}
+          <Text fontSize="xl"> {currentPatient.nomprenom}</Text>
         </Center>
 
         <Center mx="auto" bg="gray.50" w={{ base: "98%", md: "90%" }}>
