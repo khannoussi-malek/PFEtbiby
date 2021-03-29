@@ -3,6 +3,8 @@ import TimeElement from "./timeElement";
 import { DragDropContext } from "react-beautiful-dnd";
 function Calendar(props) {
   const {
+    usertype,
+    EnteredMutate,
     rowNumber,
     date,
     DeleteMutate,
@@ -74,6 +76,8 @@ function Calendar(props) {
         </Center>
         {Hours.map((HoursValue) => (
           <TimeElement
+            EnteredMutate={EnteredMutate}
+            usertype={usertype}
             DeleteMutate={DeleteMutate}
             key={HoursValue.slice(0, 4)}
             HoursValue={HoursValue}

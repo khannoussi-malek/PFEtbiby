@@ -115,6 +115,7 @@ const CalendarDashboardPatient = () => {
         </Flex>
       </Box>
       <Calendar
+        usertype={user.fonctionnalite}
         DeleteMutate={DeleteMutate}
         task={task}
         setTask={setTask}

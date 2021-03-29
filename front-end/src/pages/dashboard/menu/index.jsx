@@ -9,6 +9,7 @@ import {
   BsBookmarks,
   BsAlarm,
   BsFillPeopleFill,
+  BsHeartFill,
 } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
 import { TbibyContext } from "./../../../router/context";
@@ -31,7 +32,10 @@ const Menu = () => {
   if (user.fonctionnalite == "patient") {
     pages = Pationmenu;
   } else if (user.fonctionnalite == "medecin") {
-    pages = [{ url: "Mes patients", icon: <BsFillPeopleFill /> }];
+    pages = [
+      { url: "Mes patients", icon: <BsFillPeopleFill /> },
+      { url: "consultation", icon: <BsHeartFill /> },
+    ];
   } else if (user.fonctionnalite == "secretaire") {
     pages = Pationmenu;
   }

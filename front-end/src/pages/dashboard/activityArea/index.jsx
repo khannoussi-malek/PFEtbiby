@@ -8,6 +8,7 @@ import CalendarDashboard from "./../../calendar";
 import { TbibyContext } from "./../../../router/context";
 import MonRendezvous from "./../../Mon rendez vous/index";
 import MonMedecin from "./../../Mon medecin/index";
+import Consultation from "../../consultation";
 const ActivityArea = () => {
   const { user } = useContext(TbibyContext);
 
@@ -29,6 +30,12 @@ const ActivityArea = () => {
         <PrivateRoute
           path="/dashboard/Mon médecin"
           component={MonMedecin}
+          isAuth={user.isAuthenticated}
+          exact
+        />
+        <PrivateRoute
+          path="/dashboard/consultation"
+          component={Consultation}
           isAuth={user.isAuthenticated}
           exact
         />

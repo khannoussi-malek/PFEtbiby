@@ -6,12 +6,14 @@ import Task from "../taks";
 
 const TimeElement = (props) => {
   const {
+    usertype,
     HoursValue,
     key,
     value,
     DeleteMutate,
     addtask,
     task,
+    EnteredMutate,
     setTask,
   } = props;
 
@@ -70,6 +72,8 @@ const TimeElement = (props) => {
                     HoursValue.slice(0, 3) +
                     "00" ? (
                     <Task
+                      usertype={usertype}
+                      EnteredMutate={EnteredMutate}
                       DeleteMutate={DeleteMutate}
                       key={taskvalue.id}
                       task={task}
@@ -131,6 +135,8 @@ const TimeElement = (props) => {
                     HoursValue.slice(0, 3) +
                     "15" ? (
                     <Task
+                      usertype={usertype}
+                      EnteredMutate={EnteredMutate}
                       DeleteMutate={DeleteMutate}
                       key={taskvalue.id}
                       task={task}
@@ -192,6 +198,8 @@ const TimeElement = (props) => {
                     HoursValue.slice(0, 3) +
                     "30" ? (
                     <Task
+                      usertype={usertype}
+                      EnteredMutate={EnteredMutate}
                       DeleteMutate={DeleteMutate}
                       key={taskvalue.id}
                       task={task}
@@ -254,6 +262,8 @@ const TimeElement = (props) => {
                     HoursValue.slice(0, 3) +
                     "45" ? (
                     <Task
+                      usertype={usertype}
+                      EnteredMutate={EnteredMutate}
                       DeleteMutate={DeleteMutate}
                       key={taskvalue.id}
                       task={task}
