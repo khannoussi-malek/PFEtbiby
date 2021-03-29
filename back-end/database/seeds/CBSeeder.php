@@ -83,8 +83,7 @@ class cms_apicustom extends seeder {
                 'method_type' => 'post',
                 'parameters' => 'a:4:{i:0;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:2;a:5:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:3;a:5:{s:4:"name";s:17:"date_réservation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:7:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:4;a:4:{s:4:"name";s:17:"date_réservation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:5;a:4:{s:4:"name";s:16:"date_acceptation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:6;a:4:{s:4:"name";s:12:"date_dentré";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
-            ]);
-           
+            ]);  
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'listrm',
                 'tabel' => 'rendez_vous',
@@ -138,6 +137,33 @@ class cms_apicustom extends seeder {
                 'method_type' => 'get',
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:3:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
+            ]);
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'pe',
+                'tabel' => 'rendez_vous',
+                'aksi' => 'save_edit',
+                'nama' => 'patient entrer',
+                'method_type' => 'post',
+                'parameters' => 'a:2:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
+                'responses' => 'a:7:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:4;a:4:{s:4:"name";s:16:"date_reservation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:5;a:4:{s:4:"name";s:16:"date_acceptation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:6;a:4:{s:4:"name";s:12:"date_dentré";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
+            ]);
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'pdcm',
+                'tabel' => 'rendez_vous',
+                'aksi' => 'list',
+                'nama' => 'liste patient donneé consultation de médecine',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'sptwr',
+                'tabel' => 'rendez_vous',
+                'aksi' => 'save_edit',
+                'nama' => 'send patient to waiting room',
+                'method_type' => 'post',
+                'parameters' => 'a:2:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
+                'responses' => 'a:0:{}',
             ]);
         }
         
