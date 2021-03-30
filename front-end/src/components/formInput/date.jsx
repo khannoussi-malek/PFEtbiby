@@ -109,6 +109,7 @@ export const InputDate = (props) => {
           onBlur={() => setIsTouched(true)}
           dateFormat="yyyy-MM-dd"
           selected={startDate}
+          value={value}
           onChange={(date) => setValue(date.toISOString().slice(0, 10))}
         />
 

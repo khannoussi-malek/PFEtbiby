@@ -26,15 +26,23 @@ import { Formiz, useForm } from "@formiz/core";
 import GestiondeCopmtePatient from "./gestion compte patient";
 import GestiondeCopmteMedecin from "./gestion compte medecin";
 import { TbibyContext } from "./../../router/context/index";
+import { useUpdateComptePatient } from "./../../services/api/Update Compte/index";
 
 const Accountmanagement = () => {
   const { user } = useContext(TbibyContext);
-
+  const { mutate, isLoading } = useUpdateComptePatient({
+    onError: (error) => {
+      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+    },
+    onSuccess: (res) => {
+      console.log(res);
+    },
+  });
   const [sexes, setSexes] = React.useState("homme");
-  const isLoading = false;
   const MyForm = useForm();
   const handleSubmit = (values) => {
-    console.log(values);
+    values.id = user.id;
+    mutate(values);
   };
   return (
     <React.Fragment>
