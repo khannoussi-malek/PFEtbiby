@@ -33,7 +33,6 @@ const UserAvatar = () => {
           <Avatar
             size="sm"
             src={image != null ? `${link}${image}` : `${link}${userImage}`}
-            name="Esther Collins"
           />
           <Box lineHeight="1">
             <Text fontWeight="semibold">{user.prenom + " " + user.nom}</Text>
