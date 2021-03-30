@@ -11,6 +11,28 @@ import {
   Input,
 } from "@chakra-ui/react";
 export const InputDate = (props) => {
+  const makerange = (start, end) => {
+    var ans = [];
+    for (let i = start; i <= end; i++) {
+      ans.push(i);
+    }
+    return ans;
+  };
+  const years = makerange(1990, new Date().getFullYear(new Date()));
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   const [startDate, setStartDate] = useState(new Date());
 
   const { errorMessage, id, isValid, isSubmitted, setValue, value } = useField(
@@ -27,13 +49,67 @@ export const InputDate = (props) => {
           {label}
           {!!required && " *"}
         </FormLabel>
+
         <DatePicker
+          renderCustomHeader={({
+            date,
+            changeYear,
+            changeMonth,
+            decreaseMonth,
+            increaseMonth,
+            prevMonthButtonDisabled,
+            nextMonthButtonDisabled,
+          }) => (
+            <div
+              style={{
+                margin: 10,
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <button
+                onClick={decreaseMonth}
+                disabled={prevMonthButtonDisabled}
+              >
+                {"<"}
+              </button>
+              <select
+                value={date.getYear(date)}
+                onChange={({ target: { value } }) => changeYear(value)}
+              >
+                {years.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+
+              <select
+                value={months[date.getMonth(date)]}
+                onChange={({ target: { value } }) =>
+                  changeMonth(months.indexOf(value))
+                }
+              >
+                {months.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+
+              <button
+                onClick={increaseMonth}
+                disabled={nextMonthButtonDisabled}
+              >
+                {">"}
+              </button>
+            </div>
+          )}
+          id={id}
+          onBlur={() => setIsTouched(true)}
+          dateFormat="yyyy-MM-dd"
           selected={startDate}
           onChange={(date) => setValue(date.toISOString().slice(0, 10))}
-          id={id}
-          value={value}
-          dateFormat="yyyy-MM-dd"
-          onBlur={() => setIsTouched(true)}
         />
 
         {showError && (
