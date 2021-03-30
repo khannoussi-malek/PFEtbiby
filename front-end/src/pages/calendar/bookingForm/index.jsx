@@ -29,6 +29,7 @@ const BookingForm = (props) => {
     end,
     listPatient,
   } = props;
+
   const { mutate, isLoading } = useCreateReservation({
     onError: (error) => {
       // setMessage("Vérifier l'information qui vous inseri ou votre liste");
@@ -47,13 +48,13 @@ const BookingForm = (props) => {
     onSuccess: (res) => {
       setErrorMessage("");
       setSearch("old");
+      ListPatientDashboardAPIRefetch();
     },
   });
   const MyForm = useForm();
   const handleSubmit = (values) => {
     if (search == "new") {
       addPatient({ medecin_id, patient_id: values.user });
-      ListPatientDashboardAPIRefetch();
     } else {
       setNomPrenom(values.selectvalue.label);
       restOfConfirmation(currentDateStart, end, values.selectvalue.value);
