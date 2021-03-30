@@ -14,7 +14,7 @@ import UserAvatar from "./userAvatar/index";
 import ActivityArea from "./activityArea/index";
 import { useLocation } from "react-router-dom";
 
-const Dashbord = () => {
+const Dashboard = () => {
   const { pathname } = useLocation();
   const { isOpen, toggle } = useMobileMenuState();
   return (
@@ -76,7 +76,9 @@ const Dashbord = () => {
               overflow="auto"
               px={{ base: 2, md: 6, lg: 8 }}
             >
-              <ActivityArea />
+              <ScrollArea>
+                <ActivityArea />
+              </ScrollArea>
             </Flex>
           </Flex>
         </Box>
@@ -118,4 +120,4 @@ const useMobileMenuState = () => {
   return { isOpen, ...actions };
 };
 
-export default Dashbord;
+export default Dashboard;

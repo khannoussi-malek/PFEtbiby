@@ -1,7 +1,6 @@
-import React, { Components } from "react";
-import { Stack, useColorModeValue as mode, Box } from "@chakra-ui/react";
+import React, { Components, useContext } from "react";
+import { Stack, Box } from "@chakra-ui/react";
 import { SidebarLink } from "./../SidebarLink";
-
 import {
   BsBoxArrowLeft,
   BsSearch,
@@ -9,20 +8,20 @@ import {
   BsFillPersonLinesFill,
   BsBookmarks,
   BsAlarm,
-  BsFillBrightnessHighFill,
+  BsFillPeopleFill,
+  BsHeartFill,
 } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
-// import PatientMenu from "./patient";
-// import Medecinmenu from "./medecin";
-// import Secretairenmenu from "./secretaire";
-import {} from "react-icons/bs";
+import { TbibyContext } from "./../../../router/context";
 const Menu = () => {
+  const { user, cleanUser } = useContext(TbibyContext);
   let history = useHistory();
-  const logout = () => {
-    localStorage.clear();
+  let logout = () => {
+    cleanUser();
     history.push("/login");
   };
-  let pages;
+
+  let pages = [];
   let Pationmenu = [
     { url: "Mon rendez vous", icon: <BsFillCalendarFill /> },
     { url: "Mon médecin", icon: <BsFillPersonLinesFill /> },
@@ -30,12 +29,14 @@ const Menu = () => {
     { url: "Reservi un rendez vous", icon: <BsBookmarks /> },
     { url: "Cherche médecin", icon: <BsSearch /> },
   ];
-  console.log(localStorage.getItem("fonctionnalite"));
-  if (localStorage.getItem("fonctionnalite") == "patient") {
+  if (user.fonctionnalite == "patient") {
     pages = Pationmenu;
-  } else if (localStorage.getItem("fonctionnalite") == "medecin") {
-    pages = [];
-  } else if (localStorage.getItem("fonctionnalite") == "secretaire") {
+  } else if (user.fonctionnalite == "medecin") {
+    pages = [
+      { url: "Mes patients", icon: <BsFillPeopleFill /> },
+      { url: "consultation", icon: <BsHeartFill /> },
+    ];
+  } else if (user.fonctionnalite == "secretaire") {
     pages = Pationmenu;
   }
 

@@ -13,7 +13,7 @@ const Error404 = () => {
         </Box>
         <Box mt={10}>
           <Button
-            onClick={() => history.push("/dashbord")}
+            onClick={() => history.push("/dashboard")}
             variant="outline"
             size="lg"
             colorScheme="blue"

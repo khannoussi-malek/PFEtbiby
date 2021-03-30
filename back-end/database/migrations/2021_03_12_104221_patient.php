@@ -19,7 +19,7 @@ class Patient extends Migration
             $table->foreign('cms_users_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
             $table->date('Date_Naissance')->nullable();
             $table->string('Adresse')->nullable();
-            $table->string('parent')->nullable();
+            $table->integer('parent')->nullable();
             $table->string('Code_APCI')->nullable();
             $table->timestamps();
         });

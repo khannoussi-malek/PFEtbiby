@@ -11,7 +11,7 @@ export const MyField = (props) => {
   const { errorMessage, id, isValid, isSubmitted, setValue, value } = useField(
     props
   );
-  const { label, type, required, note } = props;
+  const { label, type, required, note, Placeholder } = props;
   const [isTouched, setIsTouched] = React.useState(false);
   const showError = !isValid && (isTouched || isSubmitted);
   return (
@@ -23,6 +23,7 @@ export const MyField = (props) => {
       <Input
         id={id}
         type={type || "text"}
+        placeholder={Placeholder || label}
         value={value ?? ""}
         onChange={(e) => setValue(e.target.value)}
         onBlur={() => setIsTouched(true)}
@@ -32,7 +33,7 @@ export const MyField = (props) => {
       />
       {showError && (
         <Text id={`${id}-error`} color="tomato">
-          🕵 {errorMessage}
+          {errorMessage}
         </Text>
       )}
 
