@@ -52,7 +52,7 @@ const Login = () => {
         });
       } else {
         toast({
-          title: "vérifier votre information 🔐",
+          titre: "Vérifiez vos informations🔐",
           description:
             "Entrez votre e-mail, téléphone ou CIN et votre mot de passe",
           status: "success",
@@ -80,11 +80,11 @@ const Login = () => {
       <Box display={isLoading ? `none` : ``}>
         <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
           <form noValidate onSubmit={MyForm.submit}>
-            <MyField name="user" label="User" required="user is required" />
+            <MyField name="user" label="User" required="Il est requis de compléter le champ correspondant au user" />
             <MyFieldPassword
               name="password"
               label="password"
-              required="password is required"
+              required="Il est requis de compléter le champ correspondant au mot de passe"
               type="password"
             />
             <FormControl mt={5} align="center">
