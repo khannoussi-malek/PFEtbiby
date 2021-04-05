@@ -7,6 +7,7 @@ import { useDeleteReservation } from "./../../services/api/reservation";
 import { useSendPatientToWaitingRoom } from "./../../services/api/manageTheRoom";
 import PatientsAtTheDoctor from "../../components/patients at the doctor";
 import GeneralPatientsInformation from "../../components/general patients information";
+import Antecedants from "./../../components/Antecedants/index";
 
 const Consultation = () => {
   const toast = useToast();
@@ -100,6 +101,7 @@ const Consultation = () => {
           w={{ base: "90%", md: "92%" }}
         >
           <GeneralPatientsInformation patient={currentPatient} />
+          <Antecedants patient={currentPatient} />
         </Box>
       </Box>
     </React.Fragment>
