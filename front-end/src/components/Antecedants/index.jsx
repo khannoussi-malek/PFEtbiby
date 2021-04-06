@@ -76,7 +76,7 @@ const Antecedants = (props) => {
           <DrawerBody display={isLoading ? `none` : ``}>
             {patientInfo.map((data) => (
               <Box key={data.id}>
-                <SimpleGrid columns={3} spacing={10}>
+                <SimpleGrid w="100%" columns={3} spacing={1}>
                   <Box>
                     <Text
                       fontSize="23px"
@@ -118,7 +118,19 @@ const Antecedants = (props) => {
                     <Text fontSize="20px" color="gray.700">
                       <Popover>
                         <PopoverTrigger>
-                          <Box>{data.medecin}</Box>
+                          <Text
+                            textAlign="center"
+                            bgColor="gray.100"
+                            _hover={{
+                              background: "blue.100",
+                            }}
+                            style={{ cursor: "pointer" }}
+                            borderRadius="20px"
+                            p={2}
+                            colorScheme="blue"
+                          >
+                            {data.medecin}
+                          </Text>
                         </PopoverTrigger>
                         <PopoverContent>
                           <PopoverArrow />
