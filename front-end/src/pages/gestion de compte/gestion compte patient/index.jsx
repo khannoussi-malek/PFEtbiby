@@ -15,17 +15,10 @@ const GestiondeCopmtePatient = () => {
      
        <MyField
        name="parent" 
-       label="Parent" 
-       required="Il est requis de compléter le champ correspondant au parent"
-       validations={[
-        {
-          rule: isPattern("^[a-z]*$"),
-          message: "Le parent ne contient que des lettres",
-        },
-      ]}
-       />
+       label="parent" 
+      />
        <MyField
-       name="code_APCI" 
+       name="Code_APCI" 
        label="Code_APCI" 
        required="Il est requis de compléter le champ correspondant au code_APCI"
        validations={[

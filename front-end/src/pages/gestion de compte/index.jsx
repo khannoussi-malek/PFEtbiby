@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState}  from "react";
 import {
   isNumber,
   isLength,
@@ -7,7 +7,6 @@ import {
   isMinLength,
 } from "@formiz/validations";
 import {
-  useToast,
   Box,
   Radio,
   Stack,
@@ -38,12 +37,21 @@ const Accountmanagement = () => {
       console.log(res);
     },
   });
+  const [fonctionnalite, setFonctionnalite] = useState("patient");
   const [sexes, setSexes] = React.useState("homme");
-  const MyForm = useForm();
+
+  const myForm = useForm();
+  const { values } = myForm;
   const handleSubmit = (values) => {
-    values.id = user.id;
+    values.id=user.id;
+    values.id_cms_privileges = fonctionnalite;
     mutate(values);
   };
+  // const handleSubmit = (values) => {
+  //   values.id = user.id;
+  //   mutate(values);
+  // };
+ 
   return (
     <React.Fragment>
       <Spinner
@@ -53,15 +61,15 @@ const Accountmanagement = () => {
         color="red.500"
       />
       <Box px={5} display={isLoading ? `none` : ``}>
-        <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
-          <form noValidate onSubmit={MyForm.submit}>
+        <Formiz connect={myForm} onValidSubmit={handleSubmit}>
+          <form noValidate onSubmit={myForm.submit}>
             <MyField
               name="nom"
               label="Nom"
               required="Il est requis de compléter le champ correspondant au nom"
               validations={[
                 {
-                  rule: isPattern("^[a-z]*$"),
+                  rule: isPattern("^[a-zA-Z ]*$"),
                   message: "Le nom ne contient que des lettres",
                 },
               ]}
@@ -99,7 +107,7 @@ const Accountmanagement = () => {
             <MyField
               name="telephone"
               label="Telephone"
-              required="Il est requis de compléter le champ correspondant au telephone"
+              // required="Il est requis de compléter le champ correspondant au telephone"
               validations={[
                 {
                   rule: isNumber(),
@@ -111,17 +119,46 @@ const Accountmanagement = () => {
                   message:
                     "La numéro de téléphone doit être constituée  de 8 chiffres",
                 },
+                {
+                  rule: (val) => !!val || !!values.cin || !!values.email,
+                  message: "La numéro de téléphone doit être constituée  de 8 chiffres",
+                  deps: [values.cin, values.email],
+                },
+              ]}
+            />
+            <MyField
+              name="cin"
+              label="cin"
+              validations={[
+                {
+                  rule: isNumber(),
+                  message: "La carte d'identité ne contient que des chiffres",
+                },
+                {
+                  rule: isLength(8),
+                  message: "La carte d'identité doit être constituée  de 8 chiffres",
+                },
+                {
+                  rule: (val) => !!val || !!values.email || !!values.telephone,
+                  message: "La carte d'identité doit être constituée  de 8 chiffres",
+                  deps: [values.email, values.telephone],
+                },
               ]}
             />
             <MyField
               name="email"
               label="Email"
-              required="Il est requis de compléter le champ correspondant au mail"
+              // required="Il est requis de compléter le champ correspondant au mail"
               validations={[
                 {
                   rule: isEmail(),
                   message:
                     "Veuillez vérifier le format de l'e-mail(doit contenir @ et .)",
+                },
+                {
+                  rule: (val) => !!val || !!values.cin || !!values.telephone,
+                  message: "Le champ email doit contenir @ et .",
+                  deps: [values.cin, values.telephone],
                 },
               ]}
             />
@@ -139,6 +176,9 @@ const Accountmanagement = () => {
                 },
               ]}
             />
+
+            
+
             {user.fonctionnalite == "patient" ? <GestiondeCopmtePatient /> : ``}
             {user.fonctionnalite == "medecin" ? <GestiondeCopmteMedecin /> : ``}
             <FormControl mt={5} align="center">
@@ -146,10 +186,10 @@ const Accountmanagement = () => {
                 w="40%"
                 type="submit"
                 borderColor="green.500"
-                disabled={!MyForm.isValid}
+                disabled={!myForm.isValid}
               >
                 Submit
-                {!MyForm.isValid ? `` : `👌`}
+                {!myForm.isValid ? `` : `👌`}
               </Button>
             </FormControl>
           </form>

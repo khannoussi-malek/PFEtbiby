@@ -19,7 +19,7 @@ const AjouPatient = (props) => {
   const [message, setMessage] = useState("");
   const { mutate, isLoading } = useRelation({
     onError: (error) => {
-      setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      setMessage("Vérifier l'information que vous inserez ou votre liste");
     },
     onSuccess: (res) => {
       setMessage("");
@@ -53,7 +53,7 @@ const AjouPatient = (props) => {
             </HStack>
             <ButtonGroup size="sm" variant="outline">
               <Button position="relative" bottom="0" type="submit" p={5}>
-                Ajoute 🤒
+                Ajouter 🤒
               </Button>
             </ButtonGroup>
           </Stack>

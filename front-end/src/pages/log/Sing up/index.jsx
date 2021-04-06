@@ -17,6 +17,7 @@ import {
   isPattern,
   isMinLength,
 } from "@formiz/validations";
+import { InputDate } from "./../../../components/formInput/date";
 import { MyField } from "../../../components/formInput";
 import { MyFieldPassword } from "../../../components/formInput/password";
 import React, { useState } from "react";
@@ -127,7 +128,7 @@ const Singup = () => {
               required="Il est requis de compléter le champ correspondant au nom"
               validations={[
                 {
-                  rule: isPattern("^[a-z]*$"),
+                  rule: isPattern("^[a-zA-Z ]*$"),
                   message: "Le nom ne contient que des lettres",
                 },
               ]}
@@ -138,10 +139,15 @@ const Singup = () => {
               required="Il est requis de compléter le champ correspondant au prenom"
               validations={[
                 {
-                  rule: isPattern("^[a-z]*$"),
+                  rule: isPattern("^[a-zA-Z ]*$"),
                   message: "Le prenom ne contient que des lettres",
                 },
               ]}
+            />
+            <InputDate
+              name="date_naissance"
+              label="Date de naissance"
+              //required="Il est requis de compléter le champ correspondant au date_naissance"
             />
             <MyField
               name="email"
@@ -163,14 +169,13 @@ const Singup = () => {
               label="cin"
               validations={[
                 {
-                  rule: isLength(8),
-                  message: "La carte d'identité doit être constituée  de 8 chiffres",
-                },
-                {
                   rule: isNumber(),
                   message: "La carte d'identité ne contient que des chiffres",
                 },
-
+                {
+                  rule: isLength(8),
+                  message: "La carte d'identité doit être constituée  de 8 chiffres",
+                },
                 {
                   rule: (val) => !!val || !!values.email || !!values.telephone,
                   message: "La carte d'identité doit être constituée  de 8 chiffres",
@@ -183,12 +188,12 @@ const Singup = () => {
               label="Telephone"
               validations={[
                 {
-                  rule: isLength(8),
-                  message: "La numéro de téléphone doit être constituée  de 8 chiffres",
-                },
-                {
                   rule: isNumber(),
                   message: "La numéro de téléphone  ne contient que des chiffres",
+                },
+                {
+                  rule: isLength(8),
+                  message: "La numéro de téléphone doit être constituée  de 8 chiffres",
                 },
                 {
                   rule: (val) => !!val || !!values.cin || !!values.email,
@@ -230,7 +235,7 @@ const Singup = () => {
                 borderColor="green.500"
                 disabled={!myForm.isValid}
               >
-                Submit
+                Créer mon Compte
                 {!myForm.isValid ? `` : `👌`}
               </Button>
             </FormControl>
@@ -238,7 +243,7 @@ const Singup = () => {
         </Formiz>
         <Center>
           <Link to="login">
-            Tu as un compte
+            Se connecter
             <ExternalLinkIcon mx="2px" />
           </Link>
         </Center>
