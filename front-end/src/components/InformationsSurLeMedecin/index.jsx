@@ -9,7 +9,6 @@ const InformationsSurLeMedecin = (props) => {
   const [medecinInfo, setMedecinInfo] = useState([]);
   const params = { id: medecin };
   const toast = useToast();
-  console.log(medecinInfo);
   const { isLoading, refetch } = useMedecinInfo({
     params,
     onError: (error) => {
@@ -43,9 +42,9 @@ const InformationsSurLeMedecin = (props) => {
       <Text as="a" href={"mailto:" + medecinInfo.email}>
         <Button
           my={1}
-          colorScheme="teal"
+          colorScheme="blue"
           leftIcon={<EmailIcon />}
-          variant="solid"
+          variant="outline"
         >
           Email
         </Button>

@@ -36,6 +36,7 @@ const PatientsAtTheDoctor = (props) => {
     if (target == currentPatient.rendez_vous_id) {
       setCurrentPatient({});
     }
+    console.log("fff");
     onCloseWaiting();
   };
   return (
