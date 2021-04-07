@@ -20,7 +20,6 @@ const GestiondeCopmtePatient = () => {
        <MyField
        name="Code_APCI" 
        label="Code_APCI" 
-       required="Il est requis de compléter le champ correspondant au code_APCI"
        validations={[
         {
           rule: isNumber(),

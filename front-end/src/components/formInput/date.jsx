@@ -18,21 +18,6 @@ export const InputDate = (props) => {
     }
     return ans;
   };
-  const years = makerange(1990, new Date().getFullYear(new Date()));
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
   const [startDate, setStartDate] = useState(new Date());
 
   const { errorMessage, id, isValid, isSubmitted, setValue, value } = useField(
@@ -41,7 +26,7 @@ export const InputDate = (props) => {
 
   const { label, type, required, note } = props;
   const [isTouched, setIsTouched] = React.useState(true);
-  const showError = !isValid && (isTouched || isSubmitted);
+  // const showError = !isValid && (isTouched || isSubmitted);
   return (
     <React.Fragment>
       <FormControl>
@@ -51,75 +36,31 @@ export const InputDate = (props) => {
         </FormLabel>
 
         <DatePicker
-          renderCustomHeader={({
-            date,
-            changeYear,
-            changeMonth,
-            decreaseMonth,
-            increaseMonth,
-            prevMonthButtonDisabled,
-            nextMonthButtonDisabled,
-          }) => (
-            <div
-              style={{
-                margin: 10,
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <button
-                onClick={decreaseMonth}
-                disabled={prevMonthButtonDisabled}
-              >
-                {"<"}
-              </button>
-              <select
-                value={date.getYear(date)}
-                onChange={({ target: { value } }) => changeYear(value)}
-              >
-                {years.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
+         selected={startDate}
+        //  onChange={date => setStartDate(date)}
+         peekNextMonth
+         showMonthDropdown
+         showYearDropdown
+        // dateFormat="yyyy-MM-dd"
+         dropdownMode="select"
 
-              <select
-                value={months[date.getMonth(date)]}
-                onChange={({ target: { value } }) =>
-                  changeMonth(months.indexOf(value))
-                }
-              >
-                {months.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-
-              <button
-                onClick={increaseMonth}
-                disabled={nextMonthButtonDisabled}
-              >
-                {">"}
-              </button>
-            </div>
-          )}
           id={id}
-          onBlur={() => setIsTouched(true)}
-          dateFormat="yyyy-MM-dd"
-          selected={startDate}
-          value={value}
-          onChange={(date) => setValue(date.toISOString().slice(0, 10))}
+           onBlur={() => setIsTouched(true)}
+           dateFormat="yyyy-MM-dd"
+           selected={startDate}
+           value={value}
+           onChange={(date) => setValue(date.toISOString().slice(0, 10), setStartDate(date))}
+
+
         />
 
-        {showError && (
+        {/* {showError && (
           <Text id={`${id}-error`} color="tomato">
             🕵 {errorMessage}
           </Text>
         )}
 
-        {note && <FormHelperText id={`${id}-note`}>{note}</FormHelperText>}
+        {note && <FormHelperText id={`${id}-note`}>{note}</FormHelperText>} */}
       </FormControl>
     </React.Fragment>
   );

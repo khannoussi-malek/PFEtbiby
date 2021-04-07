@@ -66,7 +66,7 @@ const Accountmanagement = () => {
             <MyField
               name="nom"
               label="Nom"
-              required="Il est requis de compléter le champ correspondant au nom"
+              // required="Il est requis de compléter le champ correspondant au nom"
               validations={[
                 {
                   rule: isPattern("^[a-zA-Z ]*$"),
@@ -77,7 +77,7 @@ const Accountmanagement = () => {
             <MyField
               name="prenom"
               label="Prenom"
-              required="Il est requis de compléter le champ correspondant au prenom"
+              // required="Il est requis de compléter le champ correspondant au prenom"
               validations={[
                 {
                   rule: isPattern("^[a-z]*$"),
@@ -166,7 +166,7 @@ const Accountmanagement = () => {
             <MyFieldPassword
               name="password"
               label="password"
-              required="Il est requis de compléter le champ correspondant au mot-de-passe"
+              // required="Il est requis de compléter le champ correspondant au mot-de-passe"
               type="password"
               validations={[
                 {
