@@ -1,4 +1,4 @@
-import React, { useContext, useState}  from "react";
+import React, { useContext, useState } from "react";
 import {
   isNumber,
   isLength,
@@ -43,7 +43,8 @@ const Accountmanagement = () => {
   const myForm = useForm();
   const { values } = myForm;
   const handleSubmit = (values) => {
-    values.id=user.id;
+    values.id = user.id;
+    values.sexes = sexes;
     values.id_cms_privileges = fonctionnalite;
     mutate(values);
   };
@@ -51,7 +52,7 @@ const Accountmanagement = () => {
   //   values.id = user.id;
   //   mutate(values);
   // };
- 
+
   return (
     <React.Fragment>
       <Spinner
@@ -121,7 +122,8 @@ const Accountmanagement = () => {
                 },
                 {
                   rule: (val) => !!val || !!values.cin || !!values.email,
-                  message: "La numéro de téléphone doit être constituée  de 8 chiffres",
+                  message:
+                    "La numéro de téléphone doit être constituée  de 8 chiffres",
                   deps: [values.cin, values.email],
                 },
               ]}
@@ -136,11 +138,13 @@ const Accountmanagement = () => {
                 },
                 {
                   rule: isLength(8),
-                  message: "La carte d'identité doit être constituée  de 8 chiffres",
+                  message:
+                    "La carte d'identité doit être constituée  de 8 chiffres",
                 },
                 {
                   rule: (val) => !!val || !!values.email || !!values.telephone,
-                  message: "La carte d'identité doit être constituée  de 8 chiffres",
+                  message:
+                    "La carte d'identité doit être constituée  de 8 chiffres",
                   deps: [values.email, values.telephone],
                 },
               ]}
@@ -176,8 +180,6 @@ const Accountmanagement = () => {
                 },
               ]}
             />
-
-            
 
             {user.fonctionnalite == "patient" ? <GestiondeCopmtePatient /> : ``}
             {user.fonctionnalite == "medecin" ? <GestiondeCopmteMedecin /> : ``}

@@ -69,6 +69,7 @@ const Singup = () => {
   const myForm = useForm();
   const { values } = myForm;
   const handleSubmit = (values) => {
+    values.sexes = sexes;
     values.id_cms_privileges = fonctionnalite;
     mutate(values);
   };
@@ -174,11 +175,13 @@ const Singup = () => {
                 },
                 {
                   rule: isLength(8),
-                  message: "La carte d'identité doit être constituée  de 8 chiffres",
+                  message:
+                    "La carte d'identité doit être constituée  de 8 chiffres",
                 },
                 {
                   rule: (val) => !!val || !!values.email || !!values.telephone,
-                  message: "La carte d'identité doit être constituée  de 8 chiffres",
+                  message:
+                    "La carte d'identité doit être constituée  de 8 chiffres",
                   deps: [values.email, values.telephone],
                 },
               ]}
@@ -189,15 +192,18 @@ const Singup = () => {
               validations={[
                 {
                   rule: isNumber(),
-                  message: "La numéro de téléphone  ne contient que des chiffres",
+                  message:
+                    "La numéro de téléphone  ne contient que des chiffres",
                 },
                 {
                   rule: isLength(8),
-                  message: "La numéro de téléphone doit être constituée  de 8 chiffres",
+                  message:
+                    "La numéro de téléphone doit être constituée  de 8 chiffres",
                 },
                 {
                   rule: (val) => !!val || !!values.cin || !!values.email,
-                  message: "La numéro de téléphone doit être constituée  de 8 chiffres",
+                  message:
+                    "La numéro de téléphone doit être constituée  de 8 chiffres",
                   deps: [values.cin, values.email],
                 },
               ]}
@@ -211,7 +217,7 @@ const Singup = () => {
                 {
                   rule: isMinLength(6),
                   message:
-                  "Le mot de passe doit contenir au moins 6 caractères",
+                    "Le mot de passe doit contenir au moins 6 caractères",
                 },
               ]}
             />
@@ -223,7 +229,8 @@ const Singup = () => {
               validations={[
                 {
                   rule: (val) => val == values.password,
-                  message: "Le deuxième mot de passe est différent du premier mot de passe",
+                  message:
+                    "Le deuxième mot de passe est différent du premier mot de passe",
                   deps: [values.cin, values.telephone],
                 },
               ]}

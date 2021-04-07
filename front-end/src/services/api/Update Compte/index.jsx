@@ -12,6 +12,8 @@ export const useUpdateComptePatient = (config) => {
       password,
       prenom,
       telephone,
+      sexes,
+      cin,
     }) =>
       axios.post("/ucp", {
         id,
@@ -23,6 +25,8 @@ export const useUpdateComptePatient = (config) => {
         password,
         prenom,
         telephone,
+        sexes,
+        cin,
       }),
     config
   );

@@ -40,12 +40,15 @@
 				if(!empty($postdata['cin'])){
 					$tableupdate['cin']=$postdata['cin'];
 					}
+				if(!empty($postdata['sexes'])){
+					$tableupdate['sexes']=$postdata['sexes'];
+					}
+					
 
                 if(!empty($postdata['password'])){
                     $tableupdate['password']=Hash::make($postdata['password']);
                     }
 				
-
 				
 				DB::table('cms_users')
 				->where('id', $postdata['id'])
