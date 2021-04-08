@@ -9,13 +9,25 @@ import {
   AccordionItem,
   AccordionPanel,
 } from "@chakra-ui/accordion";
+import { Input } from "@chakra-ui/input";
+import { EditIcon } from "@chakra-ui/icons";
 export const Lettre = (props) => {
   const { id, removeComponentsForm } = props;
+  const [title, setTitle] = useState("");
+  const [showEditTitle, setShowEditTitle] = useState(true);
+
   return (
     <AccordionItem boxShadow="lg">
       <AccordionButton>
         <Box flex="1" textAlign="left">
-          Certificat
+          {title != "" ? title : `Lettre`}
+          <EditIcon
+            mx={5}
+            onClick={(event) => {
+              event.stopPropagation();
+              setShowEditTitle(!showEditTitle);
+            }}
+          />
         </Box>
         <AccordionIcon mx={3} />
         <CloseButton
@@ -26,6 +38,12 @@ export const Lettre = (props) => {
         />
       </AccordionButton>
       <AccordionPanel bgColor="gray.50" pb={4}>
+        <Input
+          placeholder="Écrivez le titre de cet élément"
+          display={showEditTitle ? `none` : `inline`}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+
         <Select2
           required={"Sélect le type de certifica."}
           label="type de certifica"

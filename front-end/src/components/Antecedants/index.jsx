@@ -54,7 +54,7 @@ const Antecedants = (props) => {
       <Button m={5} bg="blue.100" onClick={onOpen}>
         Antecedants
       </Button>
-      <Drawer placement="right" size="lg" onClose={onClose} isOpen={isOpen}>
+      <Drawer placement="right" size="xl" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent bg="gray.50">
           <DrawerHeader borderBottomWidth="1px">

@@ -61,7 +61,7 @@ const Form = () => {
           })}
         </Accordion>
         <Box py={3}>
-          <SimpleGrid minChildWidth="70px" spacing="10px">
+          <SimpleGrid minChildWidth="100px" spacing="10px">
             <Button onClick={() => addelement(<Certificat />)}>
               Certificat
             </Button>

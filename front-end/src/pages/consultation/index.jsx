@@ -1,4 +1,4 @@
-import { Box, Center, Text } from "@chakra-ui/layout";
+import { Box, Center, Text, SimpleGrid } from "@chakra-ui/layout";
 import React, { useContext, useState, useRef } from "react";
 import { useListOfThePatientInConsultation } from "../../services/api/consultation";
 import { TbibyContext } from "./../../router/context/index";
@@ -8,7 +8,6 @@ import { useSendPatientToWaitingRoom } from "./../../services/api/manageTheRoom"
 import PatientsAtTheDoctor from "../../components/patients at the doctor";
 import GeneralPatientsInformation from "../../components/general patients information";
 import Antecedants from "./../../components/Antecedants/index";
-import { TextareaForm } from "./../../components/formInput/Textarea";
 import Form from "./_partials/form";
 
 const Consultation = () => {
@@ -103,8 +102,11 @@ const Consultation = () => {
           bg="gray.50"
           w={{ base: "90%", md: "92%" }}
         >
-          <GeneralPatientsInformation patient={currentPatient} />
-          <Antecedants patient={currentPatient} />
+          <SimpleGrid minChildWidth="100px" spacing="10px">
+            <GeneralPatientsInformation patient={currentPatient} />
+            <Antecedants patient={currentPatient} />
+          </SimpleGrid>
+
           <Box p={5}>
             <Form />
           </Box>

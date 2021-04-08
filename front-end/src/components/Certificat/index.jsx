@@ -10,14 +10,24 @@ import {
   AccordionPanel,
 } from "@chakra-ui/accordion";
 import { Input } from "@chakra-ui/input";
+import { EditIcon } from "@chakra-ui/icons";
 export const Certificat = (props) => {
   const { id, removeComponentsForm } = props;
   const [title, setTitle] = useState("");
+  const [showEditTitle, setShowEditTitle] = useState(true);
+
   return (
     <AccordionItem boxShadow="lg">
       <AccordionButton>
         <Box flex="1" textAlign="left">
-          Certificat {title}
+          {title != "" ? title : `Certificat`}
+          <EditIcon
+            mx={5}
+            onClick={(event) => {
+              event.stopPropagation();
+              setShowEditTitle(!showEditTitle);
+            }}
+          />
         </Box>
         <AccordionIcon mx={3} />
         <CloseButton
@@ -28,10 +38,15 @@ export const Certificat = (props) => {
         />
       </AccordionButton>
       <AccordionPanel bgColor="gray.50" pb={4}>
-        <Input onChange={(e) => setTitle(e.target.value)} />
+        <Input
+          placeholder="Écrivez le titre de cet élément"
+          display={showEditTitle ? `none` : `inline`}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+
         <Select2
           required={"Sélect le type de certifica."}
-          label="type de certifica"
+          label="Type de certificat"
           data={[
             {
               label: "Scholeur de certificats",
@@ -48,7 +63,7 @@ export const Certificat = (props) => {
           ]}
           name="selectvalue"
         />
-        <TextareaForm name="certificat" label="contune de certificat" />
+        <TextareaForm name="certificat" label="Contenu de certificat" />
       </AccordionPanel>
     </AccordionItem>
   );
