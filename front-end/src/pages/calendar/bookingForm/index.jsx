@@ -29,7 +29,6 @@ const BookingForm = (props) => {
     end,
     listPatient,
   } = props;
-
   const { mutate, isLoading } = useCreateReservation({
     onError: (error) => {
       // setMessage("Vérifier l'information qui vous inseri ou votre liste");

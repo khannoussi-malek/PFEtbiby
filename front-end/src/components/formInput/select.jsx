@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Select, { components } from "react-select";
-// import { colourOptions } from "../data";
 import { useField } from "@formiz/core";
 import {
   FormControl,

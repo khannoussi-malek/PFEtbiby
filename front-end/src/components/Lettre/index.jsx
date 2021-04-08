@@ -9,15 +9,13 @@ import {
   AccordionItem,
   AccordionPanel,
 } from "@chakra-ui/accordion";
-import { Input } from "@chakra-ui/input";
-export const Certificat = (props) => {
+export const Lettre = (props) => {
   const { id, removeComponentsForm } = props;
-  const [title, setTitle] = useState("");
   return (
     <AccordionItem boxShadow="lg">
       <AccordionButton>
         <Box flex="1" textAlign="left">
-          Certificat {title}
+          Certificat
         </Box>
         <AccordionIcon mx={3} />
         <CloseButton
@@ -28,7 +26,6 @@ export const Certificat = (props) => {
         />
       </AccordionButton>
       <AccordionPanel bgColor="gray.50" pb={4}>
-        <Input onChange={(e) => setTitle(e.target.value)} />
         <Select2
           required={"Sélect le type de certifica."}
           label="type de certifica"
