@@ -2,11 +2,14 @@ import { Box, Center, Text } from "@chakra-ui/layout";
 import React, { useContext, useState, useRef } from "react";
 import { useListOfThePatientInConsultation } from "../../services/api/consultation";
 import { TbibyContext } from "./../../router/context/index";
-import { useToast, Spinner } from "@chakra-ui/react";
+import { useToast, Spinner, Textarea } from "@chakra-ui/react";
 import { useDeleteReservation } from "./../../services/api/reservation";
 import { useSendPatientToWaitingRoom } from "./../../services/api/manageTheRoom";
 import PatientsAtTheDoctor from "../../components/patients at the doctor";
 import GeneralPatientsInformation from "../../components/general patients information";
+import Antecedants from "./../../components/Antecedants/index";
+import { TextareaForm } from "./../../components/formInput/Textarea";
+import Form from "./_partials/form";
 
 const Consultation = () => {
   const toast = useToast();
@@ -87,6 +90,7 @@ const Consultation = () => {
           p={5}
           bg="gray.100"
           mx="auto"
+          boxShadow="xl"
           w={{ base: "100%", md: "95%" }}
           borderRadius="20px"
         >
@@ -100,6 +104,10 @@ const Consultation = () => {
           w={{ base: "90%", md: "92%" }}
         >
           <GeneralPatientsInformation patient={currentPatient} />
+          <Antecedants patient={currentPatient} />
+          <Box p={5}>
+            <Form />
+          </Box>
         </Box>
       </Box>
     </React.Fragment>

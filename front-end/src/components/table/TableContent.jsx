@@ -14,7 +14,7 @@ import {
 import * as React from "react";
 
 export const TableContent = (props) => {
-  const { header, content } = props;
+  const { header, content, fntable } = props;
   return (
     <React.Fragment>
       <Box
@@ -54,18 +54,14 @@ export const TableContent = (props) => {
             <Tr key={index}>
               {Object.values(row)
                 .slice(1)
-                .map((column, indexcol) => {
-                  return (
+                .map((column, indexcol) =>
+                  indexcol < Object.values(header).length ? (
                     <Td whiteSpace="nowrap" key={indexcol}>
                       {column}
                     </Td>
-                  );
-                })}
-              <Td textAlign="right">
-                {/* <Button variant="link" colorScheme="blue">
-                Edit
-              </Button> */}
-              </Td>
+                  ) : null
+                )}
+              <Td textAlign="right">{!!fntable ? fntable.fn(row) : ``}</Td>
             </Tr>
           ))}
         </Tbody>

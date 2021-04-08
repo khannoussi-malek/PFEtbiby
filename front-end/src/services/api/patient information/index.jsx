@@ -8,3 +8,10 @@ export const usePatentInfo = ({ params, ...config } = {}) => {
     config
   );
 };
+export const useAntecedants = ({ params, ...config } = {}) => {
+  return useQuery(
+    ["antecedants", params],
+    () => axios.get("/antecedants", { params }),
+    config
+  );
+};

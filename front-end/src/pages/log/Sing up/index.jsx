@@ -170,6 +170,11 @@ const Singup = () => {
               label="cin"
               validations={[
                 {
+                  rule: isLength(8),
+                  message:
+                    "La carte d'identité doit être constituée  de 8 chiffres",
+                },
+                {
                   rule: isNumber(),
                   message: "La carte d'identité ne contient que des chiffres",
                 },
@@ -191,14 +196,14 @@ const Singup = () => {
               label="Telephone"
               validations={[
                 {
-                  rule: isNumber(),
-                  message:
-                    "La numéro de téléphone  ne contient que des chiffres",
-                },
-                {
                   rule: isLength(8),
                   message:
                     "La numéro de téléphone doit être constituée  de 8 chiffres",
+                },
+                {
+                  rule: isNumber(),
+                  message:
+                    "La numéro de téléphone  ne contient que des chiffres",
                 },
                 {
                   rule: (val) => !!val || !!values.cin || !!values.email,

@@ -174,6 +174,25 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:0:{}',
                 'responses' => 'a:0:{}',
             ]);
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'antecedants',
+                'tabel' => 'antecedants',
+                'aksi' => 'list',
+                'nama' => 'Antecedants',
+                'method_type' => 'get',
+                'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
+                'responses' => 'a:0:{}',
+            ]);
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'medecininfo',
+                'tabel' => 'cms_users',
+                'aksi' => 'detail',
+                'nama' => 'Informations Sur Le Medecin',
+                'method_type' => 'get',
+                'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
+                'responses' => 'a:0:{}',
+            ]);
+            
         }
         
     }
