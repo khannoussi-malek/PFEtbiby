@@ -18,7 +18,6 @@
 
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
-			
 				$postdata['password']=Hash::make($postdata['password']);
 				$postdata['status']="Active";
 				$postdata['id_cms_privileges']= Privilege::PrivilegeID($postdata['id_cms_privileges']);

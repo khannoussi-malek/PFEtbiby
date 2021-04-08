@@ -166,6 +166,15 @@ class cms_apicustom extends seeder {
                 'responses' => 'a:0:{}',
             ]);
             DB::table('cms_apicustom')->insert([
+                'permalink' => 'ucp',
+                'tabel' => 'cms_users',
+                'aksi' => 'save_edit',
+                'nama' => 'update compte patient',
+                'method_type' => 'post',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            DB::table('cms_apicustom')->insert([
                 'permalink' => 'antecedants',
                 'tabel' => 'antecedants',
                 'aksi' => 'list',
