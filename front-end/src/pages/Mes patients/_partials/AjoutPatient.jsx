@@ -52,7 +52,13 @@ const AjouPatient = (props) => {
               <Box></Box>
             </HStack>
             <ButtonGroup size="sm" variant="outline">
-              <Button position="relative" bottom="0" type="submit" p={5}>
+              <Button
+                position="relative"
+                bottom="0"
+                type="submit"
+                fontSize="20px"
+                p={5}
+              >
                 Ajouter 🤒
               </Button>
             </ButtonGroup>

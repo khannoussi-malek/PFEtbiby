@@ -109,7 +109,7 @@ const ListPatents = () => {
                     colorScheme="blue"
                     variant="outline"
                   >
-                    Appelles
+                    Appeller
                   </Button>
                 </Text>
               ) : (

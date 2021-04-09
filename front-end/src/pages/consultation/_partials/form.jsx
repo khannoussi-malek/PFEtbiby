@@ -1,15 +1,36 @@
 import { FormControl } from "@chakra-ui/form-control";
 import { useForm, Formiz } from "@formiz/core";
 import { TextareaForm } from "./../../../components/formInput/Textarea";
-import { Box, Button, Divider, SimpleGrid } from "@chakra-ui/react";
-// import { MyField } from "./../../../components/formInput/index";
+import {
+  Accordion,
+  Box,
+  Button,
+  CloseButton,
+  Divider,
+  SimpleGrid,
+} from "@chakra-ui/react";
 import { PrixFix } from "../../../components/formInput/PrixFix";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Prix } from "./../../../components/formInput/Prix";
+import { Certificat } from "../../../components/Certificat";
+import { Acte } from "../../../components/Acte";
+import { Examen } from "../../../components/Examen";
+import { Ordonnance } from "./../../../components/Ordonnance/index";
+import { Lettre } from "./../../../components/Lettre/index";
+
 const Form = () => {
   const [prixTotale, setPrixTotale] = useState(0);
   const MyForm = useForm();
   const handleSubmit = (values) => {};
+  const [ComponentsForm, setComponentsForm] = useState([]);
+  const addelement = (element) => {
+    setComponentsForm([...ComponentsForm, element]);
+  };
+  const removeComponentsForm = (id) => {
+    ComponentsForm.splice(ComponentsForm.indexOf(id, 1));
+    setComponentsForm([...ComponentsForm]);
+  };
+
   return (
     <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
       <form noValidate onSubmit={MyForm.submit}>
@@ -18,21 +39,44 @@ const Form = () => {
           <Prix name="prix" label="prix consultation" value={0} />
         </Box>
         <Divider my={5} />
-
+        <Box display={ComponentsForm.length > 0 ? `block` : `none`}>
+          Détail
+          <CloseButton
+            onClick={() => setComponentsForm([])}
+            colorScheme="red"
+            bgColor="red.200"
+            float="right"
+            boxShadow="dark-lg"
+          />
+        </Box>
+        <Accordion
+          defaultIndex={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+          allowMultiple
+        >
+          {ComponentsForm.map((element, index) => {
+            return React.cloneElement(element, {
+              id: index,
+              removeComponentsForm: removeComponentsForm,
+            });
+          })}
+        </Accordion>
         <Box py={3}>
-          <SimpleGrid minChildWidth="70px" spacing="10px">
-            <Button>Certificat</Button>
-            <Button>acte</Button>
-            <Button>Examen</Button>
-            <Button>Ordonnance</Button>
-            <Button>Lettre</Button>
+          <SimpleGrid minChildWidth="100px" spacing="10px">
+            <Button onClick={() => addelement(<Certificat />)}>
+              Certificat
+            </Button>
+            <Button onClick={() => addelement(<Acte />)}>Acte</Button>
+            <Button onClick={() => addelement(<Examen />)}>Examen</Button>
+            <Button onClick={() => addelement(<Ordonnance />)}>
+              Ordonnance
+            </Button>
+            <Button onClick={() => addelement(<Lettre />)}>Lettre</Button>
           </SimpleGrid>
         </Box>
         <Divider my={5} />
         <Box right={0} w="200px">
           <PrixFix name="prix_totale" label="prix totale" value={prixTotale} />
         </Box>
-
         <FormControl mt={5} align="center">
           <Button
             w="40%"
