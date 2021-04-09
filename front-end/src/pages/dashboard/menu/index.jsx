@@ -22,22 +22,22 @@ const Menu = () => {
   };
 
   let pages = [];
-  let Pationmenu = [
-    { url: "Mon rendez vous", icon: <BsFillCalendarFill /> },
-    { url: "Mon médecin", icon: <BsFillPersonLinesFill /> },
-    { url: "Rappel", icon: <BsAlarm /> },
-    { url: "Reservi un rendez vous", icon: <BsBookmarks /> },
-    { url: "Cherche médecin", icon: <BsSearch /> },
+  let Patientmenu = [
+    { url: "Mes rendez-vous", icon: <BsFillCalendarFill /> },
+    { url: "Mes médecins", icon: <BsFillPersonLinesFill /> },
+    { url: "Mes Rappels", icon: <BsAlarm /> },
+    { url: "Reserver rendez-vous", icon: <BsBookmarks /> },
+    { url: "Chercher médecin", icon: <BsSearch /> },
   ];
   if (user.fonctionnalite == "patient") {
-    pages = Pationmenu;
+    pages = Patientmenu;
   } else if (user.fonctionnalite == "medecin") {
     pages = [
       { url: "Mes patients", icon: <BsFillPeopleFill /> },
-      { url: "consultation", icon: <BsHeartFill /> },
+      { url: "Consultation", icon: <BsHeartFill /> },
     ];
   } else if (user.fonctionnalite == "secretaire") {
-    pages = Pationmenu;
+    pages = Patientmenu;
   }
 
   return (

@@ -17,6 +17,7 @@ export const useSingup = (config) => {
       prenom,
       telephone,
       sexes,
+      date_naissance,
     }) =>
       axios.post("/singup", {
         cin,
@@ -27,6 +28,7 @@ export const useSingup = (config) => {
         prenom,
         telephone,
         sexes,
+        date_naissance,
       }),
     config
   );
