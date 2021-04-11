@@ -60,7 +60,7 @@ const CalendarDashboardPatient = () => {
   const updateTask = (element) => {
     toast({
       title: "Vous ne pouvez pas changer votre réservation",
-      description: " Appelez votre médecin pour changer la réservation",
+      description: " Vous devez appelez votre médecin pour le faire",
       status: "success",
       duration: `4000`,
       isClosable: true,

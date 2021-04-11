@@ -53,14 +53,6 @@ export const InputDate = (props) => {
 
 
         />
-
-        {/* {showError && (
-          <Text id={`${id}-error`} color="tomato">
-            🕵 {errorMessage}
-          </Text>
-        )}
-
-        {note && <FormHelperText id={`${id}-note`}>{note}</FormHelperText>} */}
       </FormControl>
     </React.Fragment>
   );

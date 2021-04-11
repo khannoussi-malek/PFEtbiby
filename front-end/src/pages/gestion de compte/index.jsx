@@ -26,6 +26,8 @@ import GestiondeCopmtePatient from "./gestion compte patient";
 import GestiondeCopmteMedecin from "./gestion compte medecin";
 import { TbibyContext } from "./../../router/context/index";
 import { useUpdateComptePatient } from "./../../services/api/Update Compte/index";
+//import { useUpdateCompteMedecin } from "./../../services/api/Update Compte/update_compte_medecin";
+
 
 const Accountmanagement = () => {
   const { user } = useContext(TbibyContext);
@@ -37,6 +39,15 @@ const Accountmanagement = () => {
       console.log(res);
     },
   });
+  // //t
+  // const { } = useUpdateCompteMedecin({
+  //   onError: (error) => {
+  //     // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+  //   },
+  //   onSuccess: (res) => {
+  //     console.log(res);
+  //   },
+  // });
   const [fonctionnalite, setFonctionnalite] = useState("patient");
   const [sexes, setSexes] = React.useState("homme");
 
@@ -81,7 +92,7 @@ const Accountmanagement = () => {
               // required="Il est requis de compléter le champ correspondant au prenom"
               validations={[
                 {
-                  rule: isPattern("^[a-z]*$"),
+                  rule: isPattern("^[a-zA-Z ]*$"),
                   message: "Le prenom ne contient que des lettres",
                 },
               ]}

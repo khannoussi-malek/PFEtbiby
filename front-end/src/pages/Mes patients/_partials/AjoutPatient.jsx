@@ -19,7 +19,7 @@ const AjouPatient = (props) => {
   const [message, setMessage] = useState("");
   const { mutate, isLoading } = useRelation({
     onError: (error) => {
-      setMessage("Vérifier l'information que vous inserez ou votre liste");
+      setMessage("Vérifiez les informations de contact ou la liste que vous avez insérées");
     },
     onSuccess: (res) => {
       setMessage("");
@@ -45,7 +45,7 @@ const AjouPatient = (props) => {
               <FormControl minW={{ md: "320px" }} id="search">
                 <MyField
                   name="patient_id"
-                  Placeholder="Add Patient Cin, Email, Telephone"
+                  Placeholder="Entrez le cin, l'email ou le téléphone du patient"
                 />
                 <Text color="tomato">{message}</Text>
               </FormControl>

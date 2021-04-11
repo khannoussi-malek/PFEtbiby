@@ -29,8 +29,7 @@ export const TableContent = (props) => {
           Vous n'avez aucun patient avec ces informations
         </Heading>
         <Text mt="4" fontSize="lg">
-          Si vous ne possédez pas cet client, veuillez l'ajouter par CIN ou
-          E-mail ou Numero telephone donne la bare de "ajouter Patient"
+        Si vous n'avez pas ce patient, veuillez l'ajouter en tapant son CIN, son email ou son numéro de téléphone dans le champ "Ajouter un patient".
         </Text>
       </Box>
       <Table

@@ -235,7 +235,7 @@ const Singup = () => {
                 {
                   rule: (val) => val == values.password,
                   message:
-                    "Le deuxième mot de passe est différent du premier mot de passe",
+                    "Le deuxième mot de passe est différent du premier",
                   deps: [values.cin, values.telephone],
                 },
               ]}
