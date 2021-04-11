@@ -79,7 +79,7 @@ const Task = (props) => {
                 <Box>
                   <Alert
                     Header="Supprimer la réservation"
-                    Body={`Êtes-vous sûr de vouloir supprimer cette réservation avec ${taskvalue.nomprenom}`}
+                    Body={`Voulez-vous vraiment supprimer cette réservation avec ${taskvalue.nomprenom}`}
                     icon={<CloseIcon />}
                     colorScheme="teal"
                     bg="red.300"
@@ -95,7 +95,8 @@ const Task = (props) => {
                   {usertype == "medecin" ? (
                     <Alert
                       Header="confirmer"
-                      Body={`Avez-vous confirmé que ${taskvalue.nomprenom} va entrer chez le médecin`}
+
+                      Body={`Avez-vous confirmé que ${taskvalue.nomprenom} va voir le médecin`}
                       icon={<BsBoxArrowInRight />}
                       bg="blue.300"
                       btOK="oui"
@@ -109,7 +110,7 @@ const Task = (props) => {
                   ) : (
                     <Alert
                       Header="Supprimer la réservation"
-                      Body={`Êtes-vous sûr de vouloir supprimer cette réservation avec ${taskvalue.nomprenom}`}
+                      Body={`Voulez-vous vraiment supprimer cette réservation avec ${taskvalue.nomprenom}`}
                       icon={<CloseIcon />}
                       fnTodo={remove}
                       isOpen={isOpen}
@@ -127,8 +128,8 @@ const Task = (props) => {
               {taskvalue.nomprenom}
             </PopoverHeader>
             <PopoverBody>
-              Rendez-vous a {taskvalue.start.slice(0, 10) + " "}
-              en
+              Votre rendez-vous est le {taskvalue.start.slice(0, 10) + " "}
+              à
               {" " + taskvalue.start.slice(11, 19)}
             </PopoverBody>
           </PopoverContent>

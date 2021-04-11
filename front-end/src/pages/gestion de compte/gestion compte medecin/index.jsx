@@ -4,6 +4,7 @@ import {
   Button,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
+import { Select2 } from "../../../components/formInput/select";
 import {
   isNumber,
   isPattern,
@@ -16,10 +17,10 @@ const GestiondeCopmteMedecin = () => {
       <MyField
         name="adresse_physique"
         label="Adresse"
-        required="Il est requis de compléter le champ correspondant au adresse_physique"
+        // required="Il est requis de compléter le champ correspondant au adresse_physique"
         validations={[
           {
-            rule: isPattern("^[a-z]*$"),
+            rule: isPattern("^[a-zAZ ]*$"),
             message: "L'adresse physique ne contient que des lettres",
           },
         ]}
@@ -27,10 +28,10 @@ const GestiondeCopmteMedecin = () => {
         <MyField
         name="spécialité"
         label="spécialité"
-        required="Il est requis de compléter le champ correspondant au spécialité"
+        // required="Il est requis de compléter le champ correspondant au spécialité"
         validations={[
           {
-            rule: isPattern("^[a-z]*$"),
+            rule: isPattern("^[a-zAZ ]*$"),
             message: "La spécialité ne contient que des lettres",
           },
         ]}
@@ -38,7 +39,7 @@ const GestiondeCopmteMedecin = () => {
          <MyField
         name="temps_de_séance"
         label="Temps_de_séance"
-        required="Il est requis de compléter le champ correspondant au temps_de_séance"
+        // required="Il est requis de compléter le champ correspondant au temps_de_séance"
         validations={[
           {
             rule: isNumber(),
@@ -46,28 +47,22 @@ const GestiondeCopmteMedecin = () => {
           },
         ]}
          />
-         <MyField
-        name="domaine_id"
-        label="Domaine"
-        required="Il est requis de compléter le champ correspondant au domaine_id"
-        validations={[
-          {
-            rule: isPattern("^[a-z]*$"),
-            message: "Le domaine_id ne contient que des lettres",
-          },
-        ]}
-         />
-         <MyField
-        name="sous_domaine_id"
-        label="Sous_domaine"
-        required="Il est requis de compléter le champ correspondant au sous_domaine_id"
-        validations={[
-          {
-            rule: isPattern("^[a-z]*$"),
-            message: "Le sous_domaine_id ne contient que des lettres",
-          },
-        ]}
-         />
+          <Select2
+                    //required={"Choisir un domaine."}
+                    data={['domaine A', 'domaine B', 'domaine C',]}
+                    label="Domaine"
+                    name="selectDomaine"
+                    options={{
+                      placeholder: 'Choisir un domaine',
+                    }}
+          />
+          
+          <Select2
+                    //required={"Choisir un sous_domaine."}
+                    //data={listeSousDomaine}
+                    label="Sous Domaine"
+                    name="selectSousDomaine"
+          />
     </React.Fragment>
   );
 };

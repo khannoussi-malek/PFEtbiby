@@ -17,6 +17,7 @@
              
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
+				
 				if(!empty($postdata['nom'])){
                     $tableupdate['nom']=$postdata['nom'];
                 }
@@ -46,8 +47,10 @@
 					
 
                 if(!empty($postdata['password'])){
-                    $tableupdate['password']=Hash::make($postdata['password']);
+                    $postdata['password']=Hash::make($postdata['password']);
+                    $tableupdate['password']=$postdata['password'];
                     }
+					// dd($tableupdate);
 				
 				
 				DB::table('cms_users')
@@ -58,8 +61,9 @@
 					$user = DB::table('cms_users')->select('id')->where('email',$postdata['user'] )->orWhere('telephone',$postdata['user'])
 					->orWhere('cin',$postdata['user'])
 					->first();
-					dd($user);
+					// dd($user);
 				}
+
 				
 		    }
 

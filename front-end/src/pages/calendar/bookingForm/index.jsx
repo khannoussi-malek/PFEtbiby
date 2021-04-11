@@ -107,7 +107,7 @@ const BookingForm = (props) => {
                       marginLeft={5}
                       onClick={() => setSearch("old")}
                     >
-                      Nouvelle patient
+                      Nouveau patient
                     </Button>
                   ) : (
                     <Button
@@ -116,7 +116,7 @@ const BookingForm = (props) => {
                       marginLeft={5}
                       onClick={() => setSearch("new")}
                     >
-                      Notre patient
+                      Votre patient
                     </Button>
                   )}
                 </Text>
