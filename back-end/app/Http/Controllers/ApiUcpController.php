@@ -21,45 +21,49 @@
                     $tableupdate['nom']=$postdata['nom'];
                 }
 
-				if(!empty($postdata['prenom'])){
+                if(!empty($postdata['prenom'])){
                     $tableupdate['prenom']=$postdata['prenom'];
                     }
 
-				if(!empty($postdata['telephone'])){
-					$tableupdate['telephone']=$postdata['telephone'];
-					}
+                if(!empty($postdata['telephone'])){
+                    $tableupdate['telephone']=$postdata['telephone'];
+                    }
 
                 if(!empty($postdata['email'])){
                     $tableupdate['email']=$postdata['email'];
                     }
 
-				if(!empty($postdata['date_naissance'])){
-					$tableupdate['date_naissance']=$postdata['date_naissance'];
-					}
+                if(!empty($postdata['date_naissance'])){
+                    $tableupdate['date_naissance']=$postdata['date_naissance'];
+                    }
 
-				if(!empty($postdata['cin'])){
-					$tableupdate['cin']=$postdata['cin'];
-					}
-				if(!empty($postdata['sexes'])){
-					$tableupdate['sexes']=$postdata['sexes'];
-					}
-					
+                if(!empty($postdata['cin'])){
+                    $tableupdate['cin']=$postdata['cin'];
+                    }
+                if(!empty($postdata['sexes'])){
+                    $tableupdate['sexes']=$postdata['sexes'];
+                    }
+
 
                 if(!empty($postdata['password'])){
-                    $tableupdate['password']=Hash::make($postdata['password']);
+                    $postdata['password']=Hash::make($postdata['password']);
+                    $tableupdate['password']=$postdata['password'];
                     }
-				
-				
-				DB::table('cms_users')
-				->where('id', $postdata['id'])
-				->update($tableupdate);
+					// dd($tableupdate);
+				$update=DB::table('cms_users')
+                ->where('id', $postdata['id'])
+                ->update($tableupdate);
+					// dd($tableupdate);
+				// DB::table('cms_users')
+                // ->where('id', $postdata['id'])
+                // ->update(["nom"=>"malek"]);
 
-				if(!empty($postdata['parent'])){
-					$user = DB::table('cms_users')->select('id')->where('email',$postdata['user'] )->orWhere('telephone',$postdata['user'])
-					->orWhere('cin',$postdata['user'])
-					->first();
-					dd($user);
-				}
+                // if(!empty($postdata['parent'])){
+                //     $user = DB::table('cms_users')->select('id')->where('email',$postdata['user'] )->orWhere('telephone',$postdata['user'])
+                //     ->orWhere('cin',$postdata['user'])
+                //     ->first();
+                //     // dd($user);
+                // }
 				
 		    }
 
@@ -70,7 +74,7 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-			
+				
 			}
 
 		}
