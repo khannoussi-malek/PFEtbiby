@@ -1,0 +1,14 @@
+.sun-editor-editable {
+  background-color: #f7fafc !important;
+}
+.sun-editor .se-btn {
+  float: left;
+  width: auto !important;
+  padding: 10px;
+  height: 34px;
+  border: 0;
+  border-radius: 4px;
+  margin: 1px !important;
+  font-size: 12px;
+  line-height: 27px;
+}

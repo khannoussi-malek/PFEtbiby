@@ -15,10 +15,8 @@ class CertificatType extends Migration
     {
         Schema::create('Certificat_type', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('certificat_id')->unsigned()->nullable();
-            $table->foreign('certificat_id')->references('id')->on('certificat')->onDelete('cascade')->onUpdate('cascade');;
             $table->string('type')->nullable();
-            $table->string('Description')->nullable();
+            $table->longText('structure')->nullable();
             $table->timestamps();
         });
     }
