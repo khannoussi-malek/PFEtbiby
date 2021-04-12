@@ -28,8 +28,11 @@ import GestiondeCopmteMedecin from "./gestion compte medecin";
 import { TbibyContext } from "./../../router/context/index";
 import { useUpdateComptePatient } from "./../../services/api/Update Compte/index";
 //import { useUpdateCompteMedecin } from "./../../services/api/Update Compte/update_compte_medecin";
+import { ImageFile } from "./../../components/formInput/image";
 
 const Accountmanagement = () => {
+  const [pictures, setPictures] = useState({});
+
   const { user } = useContext(TbibyContext);
   const { mutate, isLoading } = useUpdateComptePatient({
     onError: (error) => {
@@ -39,7 +42,7 @@ const Accountmanagement = () => {
       console.log(res);
     },
   });
-  
+
   // //t
   // const { } = useUpdateCompteMedecin({
   //   onError: (error) => {
@@ -58,7 +61,9 @@ const Accountmanagement = () => {
     values.id = user.id;
     values.sexes = sexes;
     values.id_cms_privileges = fonctionnalite;
+    values.image = pictures;
     console.log(values);
+    mutate(values);
   };
   // const handleSubmit = (values) => {
   //   values.id = user.id;
@@ -75,7 +80,18 @@ const Accountmanagement = () => {
       />
       <Box px={5} display={isLoading ? `none` : ``}>
         <Formiz connect={myForm} onValidSubmit={handleSubmit}>
-          <form noValidate onSubmit={myForm.submit} encType="multipart/form-data">
+          <form
+            noValidate
+            onSubmit={myForm.submit}
+            multiple
+            // encType="multipart/form-data"
+          >
+            <ImageFile
+              pictures={pictures}
+              setPictures={setPictures}
+              name="image"
+              label="image"
+            />
             <MyField
               name="nom"
               label="Nom"
@@ -112,7 +128,7 @@ const Accountmanagement = () => {
                 </RadioGroup>
               </Center>
             </FormControl>
-           
+
             <InputDate
               name="date_naissance"
               label="Date de naissance"

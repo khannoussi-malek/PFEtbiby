@@ -1,60 +1,60 @@
-// import React,{Component} from 'react';
+import React, { useState } from "react";
+import { useField } from "@formiz/core";
+import {
+  FormControl,
+  FormLabel,
+  FormHelperText,
+  Text,
+  Input,
+} from "@chakra-ui/react";
+export const ImageFile = (props) => {
+  const { errorMessage, id, isValid, isSubmitted } = useField(props);
+  const {
+    label,
+    type,
+    required,
+    note,
+    Placeholder,
+    pictures,
+    setPictures,
+  } = props;
+  const onchange = (e) => {
+    let files = Array.from(e.target.files);
 
-// import './App.css';
+    let formData = new FormData();
 
-// class App extends Component{
-//   state = {
-//     file: '',
-//     error: '',
-//     msg: ''
-// }
-// //input
-// onFileChange = (event) => {
-//   this.setState({
-//     file: event.target.files[0]
-//   });
-// }
+    files.forEach((file, i) => {
+      formData.append("image", file);
+      formData.append("name", file.name);
+    });
+    setPictures(formData);
+  };
+  console.log({ pictures });
+  const [isTouched, setIsTouched] = React.useState(false);
+  const showError = !isValid && (isTouched || isSubmitted);
+  return (
+    <FormControl>
+      <FormLabel htmlFor={id}>
+        {label}
+        {!!required && " *"}
+      </FormLabel>
+      <input
+        id={id}
+        type="file"
+        placeholder={Placeholder || label}
+        onChange={(e) => onchange(e)}
+        onBlur={() => setIsTouched(true)}
+        aria-invalid={showError}
+        aria-required={!!required}
+        aria-describedby={showError ? `${id}-error` : null}
+      />
+      {showError && (
+        <Text id={`${id}-error`} color="tomato">
+          {errorMessage}
+        </Text>
+      )}
 
-// //bouton upload
-
-// uploadFile = (event) => {
-//   event.preventDefault();
-//   this.setState({error: '', msg: ''});
-//   if(!this.state.file) {
-//     this.setState({error: 'Please upload a file.'})
-//     return;
-//   }
-//   if(this.state.file.size >= 2000000) {
-//     this.setState({error: 'File size exceeds limit of 2MB.'})
-//     return;
-//   }
-//   let data = new FormData();
-//   data.append('file', this.state.file);
-//   data.append('name', this.state.file.name);
-//   fetch('http://localhost/files_react/', {
-//     method: 'POST',
-//     body: data
-//   }).then(response => {
-//     this.setState({error: '', msg: 'Sucessfully uploaded file'});
-//   }).catch(err => {
-//     this.setState({error: err});
-//   });
-// }
-
-// render() {
-//   return (
-//     //fonction principale pour chercher le fichier dans l'ordinateur afin d'uploader
-
-//     <FormControl>
-//     <FormLabel htmlFor={id}>{label}</FormLabel>
-//     <Input
-//           id={id}
-//           type={'file'}
-//           value={value ?? ""}
-//         />
-//     </FormControl>
-//   );
-// }
-// }
-
-// export default App;
+      {note && <FormHelperText id={`${id}-note`}>{note}</FormHelperText>}
+    </FormControl>
+  );
+};
