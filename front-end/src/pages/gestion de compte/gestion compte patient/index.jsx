@@ -13,10 +13,15 @@ const GestiondeCopmtePatient = () => {
   return (
     <React.Fragment>
      
-       <MyField
+     <MyField
        name="parent" 
        label="parent" 
-      />
+      /> 
+      <MyField
+      name="image" 
+      label="image"
+      type="file" 
+     />
        <MyField
        name="Code_APCI" 
        label="Code_APCI" 

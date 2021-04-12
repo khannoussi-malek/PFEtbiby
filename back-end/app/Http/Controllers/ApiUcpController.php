@@ -54,6 +54,7 @@
 				$update=DB::table('cms_users')
                 ->where('id', $postdata['id'])
                 ->update($tableupdate);
+
 					// dd($tableupdate);
 				// DB::table('cms_users')
                 // ->where('id', $postdata['id'])
@@ -65,7 +66,7 @@
                 //     ->first();
                 //     // dd($user);
                 // }
-				
+				$postdata=[];
 		    }
 
 		    public function hook_query(&$query) {

@@ -15,6 +15,7 @@ import {
   Button,
   Spinner,
   Center,
+  Image,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
 import { InputDate } from "./../../components/formInput/date";
@@ -28,7 +29,6 @@ import { TbibyContext } from "./../../router/context/index";
 import { useUpdateComptePatient } from "./../../services/api/Update Compte/index";
 //import { useUpdateCompteMedecin } from "./../../services/api/Update Compte/update_compte_medecin";
 
-
 const Accountmanagement = () => {
   const { user } = useContext(TbibyContext);
   const { mutate, isLoading } = useUpdateComptePatient({
@@ -39,6 +39,7 @@ const Accountmanagement = () => {
       console.log(res);
     },
   });
+  
   // //t
   // const { } = useUpdateCompteMedecin({
   //   onError: (error) => {
@@ -57,7 +58,7 @@ const Accountmanagement = () => {
     values.id = user.id;
     values.sexes = sexes;
     values.id_cms_privileges = fonctionnalite;
-    mutate(values);
+    console.log(values);
   };
   // const handleSubmit = (values) => {
   //   values.id = user.id;
@@ -74,7 +75,7 @@ const Accountmanagement = () => {
       />
       <Box px={5} display={isLoading ? `none` : ``}>
         <Formiz connect={myForm} onValidSubmit={handleSubmit}>
-          <form noValidate onSubmit={myForm.submit}>
+          <form noValidate onSubmit={myForm.submit} encType="multipart/form-data">
             <MyField
               name="nom"
               label="Nom"
@@ -111,6 +112,7 @@ const Accountmanagement = () => {
                 </RadioGroup>
               </Center>
             </FormControl>
+           
             <InputDate
               name="date_naissance"
               label="Date de naissance"
