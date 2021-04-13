@@ -69,11 +69,7 @@ const AddElement = {
                                     Nom et prenom du medecin
                                     </button>
                                 </li>
-                                <li>
-                                    <button type="button" class="se-btn-list" value="{medecinNomPrenom}">
-                                    Nom et prenom du medecin
-                                    </button>
-                                </li>
+                              
                                 <li>
                                     <button type="button" class="se-btn-list" value="{thisDate}">
                                     date de cette journée

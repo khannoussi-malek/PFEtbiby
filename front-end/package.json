@@ -26,6 +26,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "react-select": "^4.3.0",
+    "react-to-print": "^2.12.4",
     "suneditor-react": "^2.16.2",
     "ts-md5": "^1.2.7",
     "web-vitals": "^1.1.0"

@@ -1,7 +1,8 @@
 import { CloseButton } from "@chakra-ui/close-button";
 import { Box, Divider } from "@chakra-ui/layout";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { Select2 } from "./../formInput/select";
+import ReactToPrint from "react-to-print";
 import { TextareaForm } from "./../formInput/Textarea";
 import {
   AccordionButton,
@@ -13,19 +14,90 @@ import { Input } from "@chakra-ui/input";
 import { EditIcon } from "@chakra-ui/icons";
 import EditerCertificat from "./editer";
 import { useGetCertificat } from "../../services/api/certificat";
-import { useToast } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import SunEditor from "suneditor-react";
+import { TbibyContext } from "./../../router/context/index";
+import { usePatentInfo } from "./../../services/api/patient information/index";
 
 export const Certificat = (props) => {
+  const { user } = useContext(TbibyContext);
   const [editerValue, setEditerValue] = useState("");
   const editorRef = useRef();
+  // editorRef.current.editor.setContents(editerValue);
 
-  const { id, removeComponentsForm } = props;
+  const { id, removeComponentsForm, Patient } = props;
   const [title, setTitle] = useState("");
   const [showEditTitle, setShowEditTitle] = useState(true);
   const toast = useToast();
   const [selectValues, setSelectValues] = useState([]);
   const params = {};
+  const replaceAll = (string, search, replace) => {
+    return string.split(search).join(replace);
+  };
+  const [patientInfo, setPatientInfo] = useState({});
+  const paramsPatentInfo = { cms_users_id: Patient.id };
+  const {
+    isLoading: isLodingForPatentInfo,
+    refetch: refetchPatentInfo,
+  } = usePatentInfo({
+    params: paramsPatentInfo,
+    onError: (error) => {
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
+    },
+    onSuccess: (res) => {
+      console.log(res);
+      setPatientInfo(res.data);
+    },
+  });
+  // console.log(patientInfo);
+
+  const decodeMessage = (text) => {
+    var sexesM = user.sexes == "homme" ? `Mr.` : `Mrs.`;
+    var sexesP = Patient.sexes == "homme" ? `Mr.` : `Mrs.`;
+    text = replaceAll(text, "{sexesPatient}", sexesP);
+    text = replaceAll(text, "{medecinNomPrenom}", user.nom + " " + user.prenom);
+    text = replaceAll(
+      text,
+      "{patientNomPrenom}",
+      patientInfo.nom + " " + patientInfo.prenom
+    );
+    text = replaceAll(text, "{addresPatient}", Patient.Adresse);
+    text = replaceAll(text, "{sexesmedecin}", Patient.sexesM);
+    text = replaceAll(text, "{specialiteMedecin}", "");
+    text = replaceAll(text, "{domaineMedecin}", "");
+    text = replaceAll(
+      text,
+      "{datePatient}",
+      !!patientInfo.date_naissance
+        ? new Date(patientInfo.date_naissance).toISOString().slice(0, 10)
+        : ``
+    );
+    text = replaceAll(
+      text,
+      "{thisDate}",
+      new Date().toISOString().slice(0, 10)
+    );
+
+    text = replaceAll(
+      text,
+      "{agePatient}",
+      !!patientInfo.date_naissance
+        ? Math.abs(
+            new Date(
+              Date.now() - new Date(patientInfo.date_naissance).getTime()
+            ).getUTCFullYear() - 1970
+          )
+        : ``
+    );
+
+    return text;
+  };
   const { isLoading, refetch } = useGetCertificat({
     params,
     onError: (error) => {
@@ -42,9 +114,9 @@ export const Certificat = (props) => {
     },
   });
   const changeValueOfEditer = (e) => {
+    refetch();
     setEditerValue(e.value);
-    console.log(e.value);
-    // console.log(editorRef.current.editor.core);
+    editorRef.current.editor.setContents(decodeMessage(e.value));
   };
   const handleChange = (content) => {
     setEditerValue(content); //Get Content Inside Editor
@@ -89,24 +161,35 @@ export const Certificat = (props) => {
             values={editerValue}
             onChange={handleChange}
             setOptions={{
+              height: 200,
               buttonList: [
+                ["undo", "redo"],
                 [
                   "font",
                   "fontSize",
-                  "align",
-                  "fontColor",
-                  "hiliteColor",
-                  "paragraphStyle",
-                  "list",
-                  "blockquote",
-                  "lineHeight",
-                  "horizontalRule",
                   "formatBlock",
+                  ":p-More Paragraph-default.more_paragraph",
                 ],
+                ["paragraphStyle", "blockquote"],
+                [
+                  "bold",
+                  "underline",
+                  "italic",
+                  "strike",
+                  "subscript",
+                  "superscript",
+                ],
+                ["fontColor", "hiliteColor", "textStyle"],
+                ["removeFormat"],
               ],
             }}
           />
         </Box>
+        {/* <ReactToPrint
+          trigger={() => <Button>print</Button>}
+          content={() => editorRef.current.editor.getContents()}
+        /> */}
+
         <Box py={2}>
           <Select2
             required={"Sélect le type de certifica."}
