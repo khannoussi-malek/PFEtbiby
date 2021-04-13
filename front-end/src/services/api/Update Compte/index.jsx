@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "react-query";
-import axios from "..";
+import axiosImage from "..";
 export const useUpdateComptePatient = (config) => {
   return useMutation(
     ({
@@ -12,10 +12,11 @@ export const useUpdateComptePatient = (config) => {
       cin,
       email,
       password,
+      image,
       // code_APCI,
       // parent,
     }) =>
-      axios.post("/ucp", {
+      axiosImage.post("/ucp", {
         id,
         nom,
         prenom,
@@ -25,6 +26,7 @@ export const useUpdateComptePatient = (config) => {
         cin,
         email,
         password,
+        image,
         // code_APCI,
         // parent,
       }),

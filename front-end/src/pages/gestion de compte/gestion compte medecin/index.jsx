@@ -47,21 +47,47 @@ const GestiondeCopmteMedecin = () => {
           },
         ]}
          />
-          <Select2
-                    //required={"Choisir un domaine."}
-                    data={['domaine A', 'domaine B', 'domaine C',]}
-                    label="Domaine"
-                    name="selectDomaine"
-                    options={{
-                      placeholder: 'Choisir un domaine',
-                    }}
-          />
+         
+         <Select2
+          required={"Choisir un domaine."}
           
+          data={[
+            {
+              label: "domaine A",
+              value: "domaine A",
+            },
+            {
+              label: "domaine B",
+              value: "domaine B",
+            },
+            {
+              label: "domaine C",
+              value: "domaine C",
+            },
+          ]}
+          
+          label="Domaine"
+          name="SelectDomaine"
+          
+        />   
           <Select2
-                    //required={"Choisir un sous_domaine."}
-                    //data={listeSousDomaine}
-                    label="Sous Domaine"
-                    name="selectSousDomaine"
+            required={"Choisir un sous_domaine."}
+            data={[
+              {
+                label: "domaine A1",
+                value: "domaine A1",
+              },
+              {
+                label: "domaine B1",
+                value: "domaine B1",
+              },
+              {
+                label: "domaine C1",
+                value: "domaine C1",
+              },
+            ]}
+            label="Sous Domaine"
+            name="selectSousDomaine"
           />
     </React.Fragment>
   );

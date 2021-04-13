@@ -17,7 +17,7 @@
              
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
-				
+				dd($postdata);
 				if(!empty($postdata['nom'])){
                     $tableupdate['nom']=$postdata['nom'];
                 }
@@ -54,6 +54,7 @@
 				$update=DB::table('cms_users')
                 ->where('id', $postdata['id'])
                 ->update($tableupdate);
+
 					// dd($tableupdate);
 				// DB::table('cms_users')
                 // ->where('id', $postdata['id'])
@@ -65,7 +66,7 @@
                 //     ->first();
                 //     // dd($user);
                 // }
-				
+				$postdata=[];
 		    }
 
 		    public function hook_query(&$query) {
