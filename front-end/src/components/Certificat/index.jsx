@@ -152,12 +152,14 @@ export const Certificat = (props) => {
 
         <Box py={2}>
           <SunEditor
-            width="100%"
-            placeholder="Vamos iniciar o BG..."
-            autoFocus
-            lang="pt_br"
-            height="500"
+            ref={editorRef}
+            lang="fr"
             name="my-editor"
+            height="auto"
+            placeholder="S'il vous plaît écrivez votre structure de certificat ici..."
+            showToolbar={true}
+            values={editerValue}
+            onChange={handleChange}
             setOptions={{
               height: 200,
               buttonList: [
