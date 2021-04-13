@@ -18,7 +18,8 @@ import { Examen } from "../../../components/Examen";
 import { Ordonnance } from "./../../../components/Ordonnance/index";
 import { Lettre } from "./../../../components/Lettre/index";
 
-const Form = () => {
+const Form = (props) => {
+  const { Patient } = props;
   const [prixTotale, setPrixTotale] = useState(0);
   const MyForm = useForm();
   const handleSubmit = (values) => {};
@@ -57,6 +58,7 @@ const Form = () => {
             return React.cloneElement(element, {
               id: index,
               removeComponentsForm: removeComponentsForm,
+              Patient: Patient,
             });
           })}
         </Accordion>

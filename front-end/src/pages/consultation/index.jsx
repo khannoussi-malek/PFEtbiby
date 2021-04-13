@@ -17,7 +17,6 @@ const Consultation = () => {
   const { user } = useContext(TbibyContext);
 
   const params = { medecin_id: user.id };
-
   const {
     mutate: SPTWRMutate,
     isLoading: SPTWRIsLoading,
@@ -108,7 +107,7 @@ const Consultation = () => {
           </SimpleGrid>
 
           <Box p={5}>
-            <Form />
+            <Form Patient={currentPatient} />
           </Box>
         </Box>
       </Box>
