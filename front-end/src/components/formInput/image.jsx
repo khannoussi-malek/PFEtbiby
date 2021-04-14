@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { useField } from "@formiz/core";
-import {
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  Text,
-  Input,
-} from "@chakra-ui/react";
+import { FormControl, FormLabel, FormHelperText, Text } from "@chakra-ui/react";
 export const ImageFile = (props) => {
   const { errorMessage, id, isValid, isSubmitted } = useField(props);
   const {
@@ -19,17 +13,8 @@ export const ImageFile = (props) => {
     setPictures,
   } = props;
   const onchange = (e) => {
-    let files = Array.from(e.target.files);
-
-    let formData = new FormData();
-
-    files.forEach((file, i) => {
-      formData.append("image", file);
-      formData.append("name", file.name);
-    });
-    setPictures(formData);
+    setPictures(e.target.files[0]);
   };
-  console.log({ pictures });
   const [isTouched, setIsTouched] = React.useState(false);
   const showError = !isValid && (isTouched || isSubmitted);
   return (

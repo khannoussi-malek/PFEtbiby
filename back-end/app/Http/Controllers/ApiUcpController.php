@@ -4,6 +4,7 @@
 		use Request;
 		use DB;
 		use CRUDBooster;
+        use Storage;
 		use Illuminate\Support\Facades\Hash;
 
 		class ApiUcpController extends \crocodicstudio\crudbooster\controllers\ApiController {
@@ -17,40 +18,52 @@
              
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
-				dd($postdata);
-				if(!empty($postdata['nom'])){
+                // dd($postdata);
+				if($postdata['nom']!="null"){
                     $tableupdate['nom']=$postdata['nom'];
                 }
+                if($postdata['photo']!="null"){
+                    // dd($postdata['photo']);
 
-                if(!empty($postdata['prenom'])){
+                        // $completeFileName = $postdata['photo']->getClientOriginalName();
+                        // $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
+                        // $extension = $postdata['photo']->getClientOriginalExtension();
+                        // $comPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
+                        // $path = $postdata['photo']->storeAs('uploads/1/2021-04', $comPic);
+                        $tableupdate['photo']=Storage::url(Storage::put('public/images', $postdata['photo']));
+                }
+
+                if($postdata['prenom']!="null"){
                     $tableupdate['prenom']=$postdata['prenom'];
                     }
 
-                if(!empty($postdata['telephone'])){
+                if($postdata['telephone']!="null"){
                     $tableupdate['telephone']=$postdata['telephone'];
                     }
 
-                if(!empty($postdata['email'])){
+                if($postdata['email']!="null"){
                     $tableupdate['email']=$postdata['email'];
                     }
 
-                if(!empty($postdata['date_naissance'])){
+                if($postdata['date_naissance']!="null"){
                     $tableupdate['date_naissance']=$postdata['date_naissance'];
                     }
 
-                if(!empty($postdata['cin'])){
+                if($postdata['cin']!="null"){
                     $tableupdate['cin']=$postdata['cin'];
                     }
-                if(!empty($postdata['sexes'])){
+                if($postdata['sexes']!="null"){
                     $tableupdate['sexes']=$postdata['sexes'];
                     }
 
 
-                if(!empty($postdata['password'])){
+                if($postdata['password']!="null"){
                     $postdata['password']=Hash::make($postdata['password']);
                     $tableupdate['password']=$postdata['password'];
                     }
+
 					// dd($tableupdate);
+                    // dd($tableupdate);
 				$update=DB::table('cms_users')
                 ->where('id', $postdata['id'])
                 ->update($tableupdate);
@@ -66,6 +79,7 @@
                 //     ->first();
                 //     // dd($user);
                 // }
+
 				$postdata=[];
 		    }
 
@@ -76,7 +90,6 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-				
 			}
 
 		}

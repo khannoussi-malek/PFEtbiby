@@ -1,35 +1,20 @@
 import { useMutation, useQuery } from "react-query";
-import axiosImage from "..";
+import axios from "..";
+import { link } from "./../index";
+const headers = {
+  // "Content-type": "multipart/form-data",
+};
 export const useUpdateComptePatient = (config) => {
   return useMutation(
-    ({
-      id,
-      nom,
-      prenom,
-      sexes,
-      date_naissance,
-      telephone,
-      cin,
-      email,
-      password,
-      image,
-      // code_APCI,
-      // parent,
-    }) =>
-      axiosImage.post("/ucp", {
-        id,
-        nom,
-        prenom,
-        sexes,
-        date_naissance,
-        telephone,
-        cin,
-        email,
-        password,
-        image,
-        // code_APCI,
-        // parent,
-      }),
+    (params) => {
+      return axios({
+        method: "POST",
+        url: link + "api/ucp",
+        data: params,
+        // headers: { ...params.photo.getHeaders() },
+      });
+    },
+
     config
   );
 };
