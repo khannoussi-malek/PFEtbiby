@@ -39,7 +39,7 @@ const Accountmanagement = () => {
       // setMessage("Vérifier l'information qui vous inseri ou votre liste");
     },
     onSuccess: (res) => {
-      console.log(res);
+      // console.log(res);
     },
   });
 
@@ -61,9 +61,21 @@ const Accountmanagement = () => {
     values.id = user.id;
     values.sexes = sexes;
     values.id_cms_privileges = fonctionnalite;
-    values.image = pictures;
-    console.log(values);
-    mutate(values);
+    values.photo = pictures;
+    const data = new FormData();
+    // data.append("photo", pictures);
+
+    // values.photo = Array.from(data)[0];
+    Object.keys(values).map((value, index) => {
+      data.append(value, values[value]);
+      console.log(values[value]);
+    });
+
+    // console.log(Array.from(data));
+
+    // Object.keys(values).forEach((key) => fd.append(key, values[key]));
+    // console.log(fd);
+    mutate(data);
   };
   // const handleSubmit = (values) => {
   //   values.id = user.id;
@@ -89,8 +101,8 @@ const Accountmanagement = () => {
             <ImageFile
               pictures={pictures}
               setPictures={setPictures}
-              name="image"
-              label="image"
+              name="photo"
+              label="photo"
             />
             <MyField
               name="nom"

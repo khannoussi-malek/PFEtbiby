@@ -15,6 +15,7 @@
     "axios": "^0.21.1",
     "config": "^3.3.6",
     "framer-motion": "^3.10.0",
+    "fs": "^0.0.1-security",
     "heroicons": "github:tailwindlabs/heroicons",
     "md5": "^2.3.0",
     "react": "^17.0.1",

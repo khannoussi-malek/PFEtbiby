@@ -12,15 +12,7 @@ const generatedToken = Md5.hashStr(
 const axios = realAxios.create({
   baseURL: link + "api/",
   headers: {
-    "Content-Type": "application/json",
-    "X-Authorization-Time": timeStamps,
-    "X-Authorization-Token": generatedToken,
-  },
-});
-const axiosImage = realAxios.create({
-  baseURL: link + "api/",
-  headers: {
-    "content-type": "multipart/form-data",
+    // "Content-Type": "multipart/form-data",
     "X-Authorization-Time": timeStamps,
     "X-Authorization-Token": generatedToken,
   },
