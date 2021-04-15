@@ -102,18 +102,26 @@ const EditerCertificat = (props) => {
                       setOptions={{
                         plugins: [AddElement],
                         buttonList: [
+                          ["undo", "redo"],
                           [
                             "font",
                             "fontSize",
-                            "align",
-                            "fontColor",
-                            "hiliteColor",
-                            "paragraphStyle",
-                            "list",
-                            "blockquote",
-                            "lineHeight",
-                            "horizontalRule",
                             "formatBlock",
+                            ":p-More Paragraph-default.more_paragraph",
+                          ],
+                          ["paragraphStyle", "blockquote"],
+                          [
+                            "bold",
+                            "underline",
+                            "italic",
+                            "strike",
+                            "subscript",
+                            "superscript",
+                          ],
+                          ["fontColor", "hiliteColor", "textStyle"],
+                          ["removeFormat"],
+                          ["image"],
+                          [
                             {
                               name: "Element",
                               dataCommand: "Element",

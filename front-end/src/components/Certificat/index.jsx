@@ -181,6 +181,7 @@ export const Certificat = (props) => {
                 ],
                 ["fontColor", "hiliteColor", "textStyle"],
                 ["removeFormat"],
+                ["print"],
               ],
             }}
           />
