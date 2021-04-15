@@ -27,6 +27,14 @@ const GestiondeCopmteMedecin = () => {
       setDomaine(res.data);
     },
   });
+  const { mutate } = useDomaine({
+    onError: (error) => {
+      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+    },
+    onSuccess: (res) => {
+      // console.log(res);
+    },
+  });
   return (
     <React.Fragment>
       <MyField
@@ -68,6 +76,7 @@ const GestiondeCopmteMedecin = () => {
         data={domaine}
         label="Domaine"
         name="SelectDomaine"
+        onChange={mutate()}
       />
       <Select2
         required={"Choisir un sous_domaine."}
