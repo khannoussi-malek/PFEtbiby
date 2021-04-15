@@ -16,7 +16,6 @@
     "config": "^3.3.6",
     "framer-motion": "^3.10.0",
     "heroicons": "github:tailwindlabs/heroicons",
-    "jspdf": "^2.3.1",
     "md5": "^2.3.0",
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.1.0",

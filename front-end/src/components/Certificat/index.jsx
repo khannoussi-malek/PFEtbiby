@@ -1,8 +1,7 @@
 import { CloseButton } from "@chakra-ui/close-button";
-import { Box, Divider } from "@chakra-ui/layout";
+import { Box } from "@chakra-ui/layout";
 import { useState, useRef, useContext } from "react";
 import { Select2 } from "./../formInput/select";
-import { TextareaForm } from "./../formInput/Textarea";
 import {
   AccordionButton,
   AccordionIcon,
@@ -17,7 +16,8 @@ import { Button, useToast } from "@chakra-ui/react";
 import SunEditor from "suneditor-react";
 import { TbibyContext } from "./../../router/context/index";
 import { usePatentInfo } from "./../../services/api/patient information/index";
-import jsPDF from "jspdf";
+import { RiPrinterFill } from "react-icons/ri";
+import { IconButton } from "@chakra-ui/button";
 export const Certificat = (props) => {
   const { user } = useContext(TbibyContext);
   const [editerValue, setEditerValue] = useState("");
@@ -121,19 +121,17 @@ export const Certificat = (props) => {
   };
 
   const print = () => {
-    let doc = new jsPDF("p", "mm");
-    doc.html(editerValue, {
-      callback: (pdf) => {
-        console.log("Callback");
-        pdf.save();
-      },
-      x: 10,
-      y: 10,
-      // jsPDF: doc,
-    });
-    console.log(doc);
+    const mywindow = window.open("", "PRINT");
 
-    doc.output("dataurlnewwindow");
+    mywindow.document.write(editerValue);
+
+    mywindow.document.close(); // necessary for IE >= 10
+
+    mywindow.focus(); // necessary for IE >= 10*/
+    mywindow.addEventListener("afterprint", function (event) {
+      mywindow.close();
+    });
+    mywindow.print();
   };
   return (
     <AccordionItem boxShadow="lg">
@@ -158,6 +156,7 @@ export const Certificat = (props) => {
       </AccordionButton>
       <AccordionPanel bgColor="gray.50" pb={4}>
         <EditerCertificat />
+
         <Input
           placeholder="Écrivez le titre de cet élément"
           display={showEditTitle ? `none` : `inline`}
@@ -199,10 +198,6 @@ export const Certificat = (props) => {
             }}
           />
         </Box>
-        {/* <ReactToPrint
-          trigger={() => <Button>print</Button>}
-          content={() => editorRef.current.editor.getContents()}
-        /> */}
 
         <Box py={2}>
           <Select2
@@ -213,7 +208,14 @@ export const Certificat = (props) => {
             name="selectvalue"
           />
         </Box>
-        <Button onClick={() => print()}>print</Button>
+        <IconButton
+          onClick={() => print()}
+          variant="outline"
+          colorScheme="teal"
+          aria-label="Send email"
+          icon={<RiPrinterFill />}
+          size="lg"
+        />
       </AccordionPanel>
     </AccordionItem>
   );
