@@ -26,9 +26,9 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-				$result= DB::table('domaime')
-				->where('domaine.id',$postdata['id'])
-				->first();
+				$result= DB::table('domaine')
+				->Select( 'nom as label', 'id AS value')
+				->get();
 		    }
 
 		}
