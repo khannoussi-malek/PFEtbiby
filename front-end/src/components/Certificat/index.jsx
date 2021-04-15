@@ -1,8 +1,7 @@
 import { CloseButton } from "@chakra-ui/close-button";
-import { Box, Divider } from "@chakra-ui/layout";
+import { Box } from "@chakra-ui/layout";
 import { useState, useRef, useContext } from "react";
 import { Select2 } from "./../formInput/select";
-import { TextareaForm } from "./../formInput/Textarea";
 import {
   AccordionButton,
   AccordionIcon,
@@ -17,7 +16,8 @@ import { Button, useToast } from "@chakra-ui/react";
 import SunEditor from "suneditor-react";
 import { TbibyContext } from "./../../router/context/index";
 import { usePatentInfo } from "./../../services/api/patient information/index";
-
+import { RiPrinterFill } from "react-icons/ri";
+import { IconButton } from "@chakra-ui/button";
 export const Certificat = (props) => {
   const { user } = useContext(TbibyContext);
   const [editerValue, setEditerValue] = useState("");
@@ -50,7 +50,6 @@ export const Certificat = (props) => {
       });
     },
     onSuccess: (res) => {
-      console.log(res);
       setPatientInfo(res.data);
     },
   });
@@ -120,6 +119,20 @@ export const Certificat = (props) => {
   const handleChange = (content) => {
     setEditerValue(content); //Get Content Inside Editor
   };
+
+  const print = () => {
+    const mywindow = window.open("", "PRINT");
+
+    mywindow.document.write(editerValue);
+
+    mywindow.document.close(); // necessary for IE >= 10
+
+    mywindow.focus(); // necessary for IE >= 10*/
+    mywindow.addEventListener("afterprint", function (event) {
+      mywindow.close();
+    });
+    mywindow.print();
+  };
   return (
     <AccordionItem boxShadow="lg">
       <AccordionButton>
@@ -143,12 +156,12 @@ export const Certificat = (props) => {
       </AccordionButton>
       <AccordionPanel bgColor="gray.50" pb={4}>
         <EditerCertificat />
+
         <Input
           placeholder="Écrivez le titre de cet élément"
           display={showEditTitle ? `none` : `inline`}
           onChange={(e) => setTitle(e.target.value)}
         />
-
         <Box py={2}>
           <SunEditor
             ref={editorRef}
@@ -180,6 +193,7 @@ export const Certificat = (props) => {
                 ],
                 ["fontColor", "hiliteColor", "textStyle"],
                 ["removeFormat"],
+                ["print"],
               ],
             }}
           />
@@ -194,6 +208,14 @@ export const Certificat = (props) => {
             name="selectvalue"
           />
         </Box>
+        <IconButton
+          onClick={() => print()}
+          variant="outline"
+          colorScheme="teal"
+          aria-label="Send email"
+          icon={<RiPrinterFill />}
+          size="lg"
+        />
       </AccordionPanel>
     </AccordionItem>
   );
