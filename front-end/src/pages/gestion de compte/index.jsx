@@ -68,7 +68,6 @@ const Accountmanagement = () => {
     // values.photo = Array.from(data)[0];
     Object.keys(values).map((value, index) => {
       data.append(value, values[value]);
-      console.log(values[value]);
     });
 
     // console.log(Array.from(data));
