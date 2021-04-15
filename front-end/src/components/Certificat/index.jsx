@@ -2,7 +2,6 @@ import { CloseButton } from "@chakra-ui/close-button";
 import { Box, Divider } from "@chakra-ui/layout";
 import { useState, useRef, useContext } from "react";
 import { Select2 } from "./../formInput/select";
-import ReactToPrint from "react-to-print";
 import { TextareaForm } from "./../formInput/Textarea";
 import {
   AccordionButton,
@@ -18,7 +17,7 @@ import { Button, useToast } from "@chakra-ui/react";
 import SunEditor from "suneditor-react";
 import { TbibyContext } from "./../../router/context/index";
 import { usePatentInfo } from "./../../services/api/patient information/index";
-
+import jsPDF from "jspdf";
 export const Certificat = (props) => {
   const { user } = useContext(TbibyContext);
   const [editerValue, setEditerValue] = useState("");
@@ -51,7 +50,6 @@ export const Certificat = (props) => {
       });
     },
     onSuccess: (res) => {
-      console.log(res);
       setPatientInfo(res.data);
     },
   });
@@ -121,6 +119,22 @@ export const Certificat = (props) => {
   const handleChange = (content) => {
     setEditerValue(content); //Get Content Inside Editor
   };
+
+  const print = () => {
+    let doc = new jsPDF("p", "mm");
+    doc.html(editerValue, {
+      callback: (pdf) => {
+        console.log("Callback");
+        pdf.save();
+      },
+      x: 10,
+      y: 10,
+      // jsPDF: doc,
+    });
+    console.log(doc);
+
+    doc.output("dataurlnewwindow");
+  };
   return (
     <AccordionItem boxShadow="lg">
       <AccordionButton>
@@ -149,7 +163,6 @@ export const Certificat = (props) => {
           display={showEditTitle ? `none` : `inline`}
           onChange={(e) => setTitle(e.target.value)}
         />
-
         <Box py={2}>
           <SunEditor
             ref={editorRef}
@@ -200,6 +213,7 @@ export const Certificat = (props) => {
             name="selectvalue"
           />
         </Box>
+        <Button onClick={() => print()}>print</Button>
       </AccordionPanel>
     </AccordionItem>
   );
