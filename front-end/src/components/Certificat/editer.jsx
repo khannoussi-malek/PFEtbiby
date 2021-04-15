@@ -20,6 +20,7 @@ import { MyField } from "../formInput";
 import { useAddCertificatType } from "./../../services/api/certificat/index";
 import { useToast, Spinner } from "@chakra-ui/react";
 const EditerCertificat = (props) => {
+  const { user } = props;
   const toast = useToast();
   const { mutate, isLoading } = useAddCertificatType({
     onError: (error) => {
@@ -52,6 +53,7 @@ const EditerCertificat = (props) => {
   const MyForm = useForm();
   const handleSubmit = (values) => {
     values.structure = editerValue;
+    values.cms_users_id = user.id;
     mutate(values);
   };
   const [editerValue, setEditerValue] = useState("");
@@ -121,6 +123,7 @@ const EditerCertificat = (props) => {
                           ["fontColor", "hiliteColor", "textStyle"],
                           ["removeFormat"],
                           ["image"],
+                          ["align", "horizontalRule", "list", "lineHeight"],
                           [
                             {
                               name: "Element",
@@ -132,6 +135,7 @@ const EditerCertificat = (props) => {
                                 '<div style="width: 70px;">Element</div>',
                             },
                           ],
+                          ["fullScreen"],
                         ],
                       }}
                     />

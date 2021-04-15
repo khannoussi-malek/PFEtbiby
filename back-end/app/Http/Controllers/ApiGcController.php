@@ -26,7 +26,10 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-				$result= DB::table('certificat_type')->select('type as label','structure as value')->get();
+				$result= DB::table('certificat_type')
+				->where('cms_users_id',$postdata['cms_users_id'])
+				->select('type as label','structure as value')
+				->get();
 		    }
 
 		}

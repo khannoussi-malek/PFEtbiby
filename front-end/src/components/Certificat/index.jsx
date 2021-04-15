@@ -29,10 +29,24 @@ export const Certificat = (props) => {
   const [showEditTitle, setShowEditTitle] = useState(true);
   const toast = useToast();
   const [selectValues, setSelectValues] = useState([]);
-  const params = {};
-  const replaceAll = (string, search, replace) => {
-    return string.split(search).join(replace);
-  };
+  const params = { cms_users_id: user.id };
+  console.log(params);
+  const { isLoading, refetch } = useGetCertificat({
+    params,
+    onError: (error) => {
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
+    },
+    onSuccess: (res) => {
+      console.log(res);
+      setSelectValues(res.data);
+    },
+  });
   const [patientInfo, setPatientInfo] = useState({});
   const paramsPatentInfo = { cms_users_id: Patient.id };
   const {
@@ -55,9 +69,14 @@ export const Certificat = (props) => {
   });
   // console.log(patientInfo);
 
+  const replaceAll = (string, search, replace) => {
+    return string.split(search).join(replace);
+  };
+
   const decodeMessage = (text) => {
-    var sexesM = user.sexes == "homme" ? `Mr.` : `Mrs.`;
-    var sexesP = Patient.sexes == "homme" ? `Mr.` : `Mrs.`;
+    console.log(Patient);
+    let sexesM = user.sexes == "homme" ? `Mr.` : `Mrs.`;
+    let sexesP = Patient.sexes == "homme" ? `Mr.` : `Mrs.`;
     text = replaceAll(text, "{sexesPatient}", sexesP);
     text = replaceAll(text, "{medecinNomPrenom}", user.nom + " " + user.prenom);
     text = replaceAll(
@@ -66,7 +85,7 @@ export const Certificat = (props) => {
       patientInfo.nom + " " + patientInfo.prenom
     );
     text = replaceAll(text, "{addresPatient}", Patient.Adresse);
-    text = replaceAll(text, "{sexesmedecin}", Patient.sexesM);
+    text = replaceAll(text, "{sexesmedecin}", sexesM);
     text = replaceAll(text, "{specialiteMedecin}", "");
     text = replaceAll(text, "{domaineMedecin}", "");
     text = replaceAll(
@@ -96,21 +115,7 @@ export const Certificat = (props) => {
 
     return text;
   };
-  const { isLoading, refetch } = useGetCertificat({
-    params,
-    onError: (error) => {
-      toast({
-        title: "🌐 Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: `4000`,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setSelectValues(res.data);
-    },
-  });
+
   const changeValueOfEditer = (e) => {
     refetch();
     setEditerValue(e.value);
@@ -123,7 +128,7 @@ export const Certificat = (props) => {
   const print = () => {
     const mywindow = window.open("", "PRINT");
 
-    mywindow.document.write(editerValue);
+    mywindow.document.write(decodeMessage(editerValue));
 
     mywindow.document.close(); // necessary for IE >= 10
 
@@ -155,7 +160,7 @@ export const Certificat = (props) => {
         />
       </AccordionButton>
       <AccordionPanel bgColor="gray.50" pb={4}>
-        <EditerCertificat />
+        <EditerCertificat user={user} />
 
         <Input
           placeholder="Écrivez le titre de cet élément"
@@ -192,8 +197,8 @@ export const Certificat = (props) => {
                   "superscript",
                 ],
                 ["fontColor", "hiliteColor", "textStyle"],
+                ["align", "horizontalRule", "list", "lineHeight"],
                 ["removeFormat"],
-                ["print"],
               ],
             }}
           />
