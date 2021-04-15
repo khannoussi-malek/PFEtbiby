@@ -76,7 +76,7 @@ const GestiondeCopmteMedecin = () => {
         data={domaine}
         label="Domaine"
         name="SelectDomaine"
-        onChange={mutate()}
+        onChange={() => mutate()}
       />
       <Select2
         required={"Choisir un sous_domaine."}
