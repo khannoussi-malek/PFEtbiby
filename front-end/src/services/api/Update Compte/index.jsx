@@ -9,7 +9,7 @@ export const useUpdateComptePatient = (config) => {
     (params) => {
       return axios({
         method: "POST",
-        url: link + "api/ucp",
+        url: link + "/api/ucp",
         data: params,
         // headers: { ...params.photo.getHeaders() },
       });

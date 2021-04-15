@@ -2,7 +2,6 @@ import { CloseButton } from "@chakra-ui/close-button";
 import { Box, Divider } from "@chakra-ui/layout";
 import { useState, useRef, useContext } from "react";
 import { Select2 } from "./../formInput/select";
-import ReactToPrint from "react-to-print";
 import { TextareaForm } from "./../formInput/Textarea";
 import {
   AccordionButton,
@@ -185,10 +184,6 @@ export const Certificat = (props) => {
             }}
           />
         </Box>
-        {/* <ReactToPrint
-          trigger={() => <Button>print</Button>}
-          content={() => editorRef.current.editor.getContents()}
-        /> */}
 
         <Box py={2}>
           <Select2
