@@ -36,7 +36,7 @@
                         if($extention=="jpg"||$extention=="png"||$extention=="gif"){
                         $tableupdate['photo']=Storage::url(Storage::put('public/images', $postdata['photo']));
                         }else{
-                            $errer['photo']='errer';
+                            $errer['errer']="errrrrer";
                         }
                 }
 
@@ -92,13 +92,14 @@
 
 		    public function hook_query(&$query) {
 		        //This method is to customize the sql query
-                // $query->where('id',-1);
+                $query->where('id',-1);
 
 		    }
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-                // dd($postdata);
+                dd($postdata);
+
 			}
 
 		}
