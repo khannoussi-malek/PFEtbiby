@@ -47,7 +47,7 @@ import { link, userImage } from "./../../services/api/index";
 const Accountmanagement = () => {
   const [pictures, setPictures] = useState({});
 
-  const { user } = useContext(TbibyContext);
+  const { user, setUser } = useContext(TbibyContext);
   const { mutate, isLoading } = useUpdateComptePatient({
     onError: (error) => {
       toast({
@@ -78,6 +78,10 @@ const Accountmanagement = () => {
       });
     },
     onSuccess: (res) => {
+      let newUser = { ...res.data };
+      newUser.isAuthenticated = true;
+      newUser.fonctionnalite = user.fonctionnalite;
+      setUser(newUser);
       setGcInfo(res.data);
     },
   });
@@ -113,6 +117,15 @@ const Accountmanagement = () => {
 
   const myForm = useForm();
   const { values } = myForm;
+  const age = () => {
+    return Math.abs(
+      new Date(
+        Date.now() -
+          new Date(values.date_naissance || gcInfo.date_naissance).getTime()
+      ).getUTCFullYear() - 1970
+    );
+  };
+
   return (
     <React.Fragment>
       <Spinner
@@ -147,13 +160,13 @@ const Accountmanagement = () => {
                       message: "Le nom ne contient que des lettres",
                     },
                   ]}
-                  dtValue={gcInfo.nom}
+                  Placeholder={gcInfo.nom}
                 />
 
                 <MyField
                   name="prenom"
                   label="Prenom"
-                  dtValue={gcInfo.prenom}
+                  Placeholder={gcInfo.prenom}
                   // required="Il est requis de compléter le champ correspondant au prenom"
                   validations={[
                     {
@@ -166,7 +179,7 @@ const Accountmanagement = () => {
                 <MyField
                   name="telephone"
                   label="Telephone"
-                  dtValue={gcInfo.telephone}
+                  Placeholder={gcInfo.telephone}
                   // required="Il est requis de compléter le champ correspondant au telephone"
                   validations={[
                     {
@@ -213,7 +226,7 @@ const Accountmanagement = () => {
                 <MyField
                   name="cin"
                   label="C.I.N"
-                  dtValue={gcInfo.cin}
+                  Placeholder={gcInfo.cin}
                   validations={[
                     {
                       rule: isNumber(),
@@ -237,7 +250,7 @@ const Accountmanagement = () => {
                 <MyField
                   name="email"
                   label="Email"
-                  dtValue={gcInfo.email}
+                  Placeholder={gcInfo.email}
                   // required="Il est requis de compléter le champ correspondant au mail"
                   validations={[
                     {
@@ -313,11 +326,15 @@ const Accountmanagement = () => {
             <Divider />
 
             {user.fonctionnalite == "patient" ? (
-              <GestiondeCopmtePatient gcInfo={gcInfo} />
+              <GestiondeCopmtePatient gcInfo={gcInfo} age={age} />
             ) : (
               ``
             )}
-            {user.fonctionnalite == "medecin" ? <GestiondeCopmteMedecin /> : ``}
+            {user.fonctionnalite == "medecin" ? (
+              <GestiondeCopmteMedecin gcInfo={gcInfo} />
+            ) : (
+              ``
+            )}
             <FormControl mt={5} align="center">
               <Button
                 w="40%"
