@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { useField } from "@formiz/core";
-import { FormControl, FormLabel, FormHelperText, Text } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  FormHelperText,
+  Text,
+  Button,
+} from "@chakra-ui/react";
+import { HiCloudUpload } from "react-icons/hi";
 export const ImageFile = (props) => {
   const { errorMessage, id, isValid, isSubmitted } = useField(props);
   const {
@@ -20,8 +27,14 @@ export const ImageFile = (props) => {
   return (
     <FormControl>
       <FormLabel htmlFor={id}>
-        {label}
-        {!!required && " *"}
+        <Button
+          leftIcon={<HiCloudUpload />}
+          onClick={() => {
+            document.getElementById(id).click();
+          }}
+        >
+          Changer la photo {!!required && " *"}
+        </Button>
       </FormLabel>
       <input
         id={id}
@@ -32,6 +45,7 @@ export const ImageFile = (props) => {
         aria-invalid={showError}
         aria-required={!!required}
         aria-describedby={showError ? `${id}-error` : null}
+        style={{ display: "none" }}
       />
       {showError && (
         <Text id={`${id}-error`} color="tomato">

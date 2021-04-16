@@ -24,7 +24,7 @@ export const MyField = (props) => {
         id={id}
         type={type || "text"}
         placeholder={Placeholder || label}
-        value={value ?? ""}
+        value={value || ""}
         onChange={(e) => setValue(e.target.value)}
         onBlur={() => setIsTouched(true)}
         aria-invalid={showError}
