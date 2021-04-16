@@ -19,18 +19,16 @@
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
                 // dd($postdata);
+                $errer=[];
 				if($postdata['nom']!="null"){
                     $tableupdate['nom']=$postdata['nom'];
                 }
                 if($postdata['photo']!="null"){
-                    // dd($postdata['photo']);
-
-                        // $completeFileName = $postdata['photo']->getClientOriginalName();
-                        // $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
-                        // $extension = $postdata['photo']->getClientOriginalExtension();
-                        // $comPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
-                        // $path = $postdata['photo']->storeAs('uploads/1/2021-04', $comPic);
-                        $tableupdate['photo']=Storage::url(Storage::put('public/images', $postdata['photo']));
+                
+                        $extention=$postdata['photo']->getClientOriginalExtension();
+                        if($extention=="jpg"||$extention=="png"||$extention=="gif"){}else{
+                            $errer['errer']="errrrrer";
+                        }
                 }
 
                 if($postdata['prenom']!="null"){
@@ -52,7 +50,7 @@
                 if($postdata['cin']!="null"){
                     $tableupdate['cin']=$postdata['cin'];
                     }
-                if($postdata['sexes']!="null"){
+                if($postdata['sexes']!="undefined"){
                     $tableupdate['sexes']=$postdata['sexes'];
                     }
 
@@ -64,9 +62,7 @@
 
 					// dd($tableupdate);
                     // dd($tableupdate);
-				$update=DB::table('cms_users')
-                ->where('id', $postdata['id'])
-                ->update($tableupdate);
+			
 
 					// dd($tableupdate);
 				// DB::table('cms_users')
@@ -80,16 +76,48 @@
                 //     // dd($user);
                 // }
 
-				$postdata=[];
+
+                if($errer==[]){
+
+                    if($postdata['photo']!="null"){
+                        $users = DB::table('cms_users')->select('photo')->where('id',$postdata['id'])->first();
+                        if($users->phtot!=null){
+                            unlink(storage_path('app\public\images'.substr($users->photo,15,strlen($users->photo))));
+                        }
+                        $tableupdate['photo']=Storage::url(Storage::put('public/images', $postdata['photo']));
+                    }
+                    $update=DB::table('cms_users')
+                    ->where('id', $postdata['id'])
+                    ->update($tableupdate);
+                            //test if pation
+                                //update pation
+                            //test if medecin
+                                //update medecin
+
+		// use App\Http\Controllers\Privilege as Privilege;
+
+                                // if($postdata['id_cms_privileges']=="patient"){
+                                //     DB::table('patient')->insert($insert);
+                                // }else if($postdata['id_cms_privileges']=="medecin"){
+                                //     DB::table('medecin')->insert($insert);
+                                // }
+                }
+
+				$postdata=$errer;
 		    }
 
 		    public function hook_query(&$query) {
 		        //This method is to customize the sql query
+                // $query->where('id',1);
 
 		    }
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
+                $result=$postdata;
+                
+              
+
 			}
 
 		}

@@ -18,3 +18,6 @@ export const useUpdateComptePatient = (config) => {
     config
   );
 };
+export const useRemovePhoto = (params, ...config) => {
+  return useMutation((params) => axios.post("rmpp", params), config);
+};
