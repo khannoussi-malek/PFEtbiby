@@ -33,6 +33,10 @@
 				if($data['id_cms_privileges']=="patient"){
 					$users = DB::table('patient')->select('*')->where('cms_users_id',$postdata['id'])->first();
 					$data= array_merge ((array) $users,$data);
+					if(!empty($data['parent'])){
+						$users = DB::table('cms_users')->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS parent'))->where('id',$data['parent'])->first();
+						$data['parent']=$users->parent;
+					}
 
 				}else if($data['id_cms_privileges']=="medecin"){
 					$users = DB::table('medecin')->select('*')->where('cms_users_id',$postdata['id'])->first();

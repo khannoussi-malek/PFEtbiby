@@ -18,14 +18,14 @@ const GestiondeCopmtePatient = (props) => {
         <VStack width="full" spacing="6">
           <MyField
             name="parent"
-            // dtValue={gcInfo.parent}
-            label="parent"
+            label="Représentant légal"
+            Placeholder={gcInfo.parent}
           />
 
           <MyField
             name="Code_APCI"
-            label="Code_APCI"
-            // dtValue={gcInfo.Code_APCI}
+            label="Code APCI"
+            dtValue={gcInfo.Code_APCI}
             validations={[
               {
                 rule: isNumber(),

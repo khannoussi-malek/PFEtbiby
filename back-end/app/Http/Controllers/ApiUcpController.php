@@ -19,6 +19,7 @@
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
                 // dd($postdata);
+                $errer=[];
 				if($postdata['nom']!="null"){
                     $tableupdate['nom']=$postdata['nom'];
                 }
@@ -30,7 +31,13 @@
                         // $extension = $postdata['photo']->getClientOriginalExtension();
                         // $comPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
                         // $path = $postdata['photo']->storeAs('uploads/1/2021-04', $comPic);
+                       
+                        $extention=$postdata['photo']->getClientOriginalExtension();
+                        if($extention=="jpg"||$extention=="png"||$extention=="gif"){
                         $tableupdate['photo']=Storage::url(Storage::put('public/images', $postdata['photo']));
+                        }else{
+                            $errer['photo']='errer';
+                        }
                 }
 
                 if($postdata['prenom']!="null"){
@@ -80,16 +87,18 @@
                 //     // dd($user);
                 // }
 
-				$postdata=[];
+				$postdata=$errer;
 		    }
 
 		    public function hook_query(&$query) {
 		        //This method is to customize the sql query
+                // $query->where('id',-1);
 
 		    }
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
+                // dd($postdata);
 			}
 
 		}

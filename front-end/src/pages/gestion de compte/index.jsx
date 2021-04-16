@@ -34,11 +34,15 @@ import { Formiz, useForm } from "@formiz/core";
 import GestiondeCopmtePatient from "./gestion compte patient";
 import GestiondeCopmteMedecin from "./gestion compte medecin";
 import { TbibyContext } from "./../../router/context/index";
-import { useUpdateComptePatient } from "./../../services/api/Update Compte/index";
+import {
+  useRemovePhoto,
+  useUpdateComptePatient,
+} from "./../../services/api/Update Compte/index";
 //import { useUpdateCompteMedecin } from "./../../services/api/Update Compte/update_compte_medecin";
 import { ImageFile } from "./../../components/formInput/image";
 import { FieldGroup } from "./../../components/FieldGroup/index";
 import { useGestionDeCompte } from "./../../services/api/gestion de compte/index";
+import { link, userImage } from "./../../services/api/index";
 
 const Accountmanagement = () => {
   const [pictures, setPictures] = useState({});
@@ -46,12 +50,19 @@ const Accountmanagement = () => {
   const { user } = useContext(TbibyContext);
   const { mutate, isLoading } = useUpdateComptePatient({
     onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
     },
     onSuccess: (res) => {
-      // console.log(res);
+      gcRefetch();
     },
   });
+
   const [gcInfo, setGcInfo] = useState({});
   const toast = useToast();
   const params = { id: user.id };
@@ -70,46 +81,38 @@ const Accountmanagement = () => {
       setGcInfo(res.data);
     },
   });
-
-  // //t
-  // const { } = useUpdateCompteMedecin({
-  //   onError: (error) => {
-  //     // setMessage("Vérifier l'information qui vous inseri ou votre liste");
-  //   },
-  //   onSuccess: (res) => {
-  //     console.log(res);
-  //   },
-  // });
+  const { mutate: RMmutate, isLoading: RMisLoading } = useRemovePhoto({
+    onError: (error) => {
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
+    },
+    onSuccess: (res) => {
+      gcRefetch();
+    },
+  });
   const [fonctionnalite, setFonctionnalite] = useState("patient");
   const [sexes, setSexes] = React.useState();
-
   const handleSubmit = (values) => {
     values.id = user.id;
     values.sexes = sexes;
     values.id_cms_privileges = fonctionnalite;
     values.photo = pictures;
     const data = new FormData();
-    // data.append("photo", pictures);
 
-    // values.photo = Array.from(data)[0];
     Object.keys(values).map((value, index) => {
       data.append(value, values[value]);
     });
 
-    // console.log(Array.from(data));
-
-    // Object.keys(values).forEach((key) => fd.append(key, values[key]));
-    // console.log(fd);
     mutate(data);
   };
-  // const handleSubmit = (values) => {
-  //   values.id = user.id;
-  //   mutate(values);
-  // };
 
   const myForm = useForm();
   const { values } = myForm;
-  console.log(gcInfo.nom);
   return (
     <React.Fragment>
       <Spinner
@@ -203,12 +206,13 @@ const Accountmanagement = () => {
                 <InputDate
                   name="date_naissance"
                   label="Date de naissance"
+                  dValue={gcInfo.date_naissance}
                   //required="Il est requis de compléter le champ correspondant au date_naissance"
                 />
 
                 <MyField
                   name="cin"
-                  label="cin"
+                  label="C.I.N"
                   dtValue={gcInfo.cin}
                   validations={[
                     {
@@ -252,7 +256,7 @@ const Accountmanagement = () => {
 
                 <MyFieldPassword
                   name="password"
-                  label="password"
+                  label="Mot de passe"
                   // required="Il est requis de compléter le champ correspondant au mot-de-passe"
                   type="password"
                   validations={[
@@ -270,8 +274,12 @@ const Accountmanagement = () => {
               <Stack direction="row" spacing="6" align="center" width="full">
                 <Avatar
                   size="xl"
-                  name="Alyssa Mall"
-                  src="https://images.unsplash.com/photo-1488282396544-0212eea56a21?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+                  name={gcInfo.nom + " " + gcInfo.prenom}
+                  src={
+                    !!gcInfo.photo
+                      ? `${link}${gcInfo.photo}`
+                      : `${link}${userImage}`
+                  }
                 />
                 <Box>
                   <HStack spacing="5">
@@ -281,8 +289,15 @@ const Accountmanagement = () => {
                       name="photo"
                       label="photo"
                     />
-                    <Button variant="ghost" colorScheme="red">
-                      Delete
+                    <Button
+                      display={!!gcInfo.photo ? `block` : `none`}
+                      variant="ghost"
+                      colorScheme="red"
+                      onClick={() => {
+                        RMmutate({ id: user.id });
+                      }}
+                    >
+                      Effacer
                     </Button>
                   </HStack>
                   <Text
@@ -297,7 +312,11 @@ const Accountmanagement = () => {
             </FieldGroup>
             <Divider />
 
-            {user.fonctionnalite == "patient" ? <GestiondeCopmtePatient /> : ``}
+            {user.fonctionnalite == "patient" ? (
+              <GestiondeCopmtePatient gcInfo={gcInfo} />
+            ) : (
+              ``
+            )}
             {user.fonctionnalite == "medecin" ? <GestiondeCopmteMedecin /> : ``}
             <FormControl mt={5} align="center">
               <Button
