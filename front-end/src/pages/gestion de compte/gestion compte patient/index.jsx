@@ -16,11 +16,16 @@ const GestiondeCopmtePatient = (props) => {
     <React.Fragment>
       <FieldGroup title="information spécifique">
         <VStack width="full" spacing="6">
-          <MyField name="parent" label="parent" />
+          <MyField
+            name="parent"
+            // dtValue={gcInfo.parent}
+            label="parent"
+          />
 
           <MyField
             name="Code_APCI"
             label="Code_APCI"
+            // dtValue={gcInfo.Code_APCI}
             validations={[
               {
                 rule: isNumber(),

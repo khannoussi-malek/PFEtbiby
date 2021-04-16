@@ -81,10 +81,8 @@ const Accountmanagement = () => {
   //   },
   // });
   const [fonctionnalite, setFonctionnalite] = useState("patient");
-  const [sexes, setSexes] = React.useState("homme");
+  const [sexes, setSexes] = React.useState();
 
-  const myForm = useForm();
-  const { values } = myForm;
   const handleSubmit = (values) => {
     values.id = user.id;
     values.sexes = sexes;
@@ -108,6 +106,9 @@ const Accountmanagement = () => {
   //   values.id = user.id;
   //   mutate(values);
   // };
+
+  const myForm = useForm();
+  const { values } = myForm;
   console.log(gcInfo.nom);
   return (
     <React.Fragment>
@@ -136,7 +137,6 @@ const Accountmanagement = () => {
                 <MyField
                   name="nom"
                   label="Nom"
-                  defaultValue={gcInfo.nom}
                   // required="Il est requis de compléter le champ correspondant au nom"
                   validations={[
                     {
@@ -144,11 +144,13 @@ const Accountmanagement = () => {
                       message: "Le nom ne contient que des lettres",
                     },
                   ]}
+                  dtValue={gcInfo.nom}
                 />
 
                 <MyField
                   name="prenom"
                   label="Prenom"
+                  dtValue={gcInfo.prenom}
                   // required="Il est requis de compléter le champ correspondant au prenom"
                   validations={[
                     {
@@ -161,6 +163,7 @@ const Accountmanagement = () => {
                 <MyField
                   name="telephone"
                   label="Telephone"
+                  dtValue={gcInfo.telephone}
                   // required="Il est requis de compléter le champ correspondant au telephone"
                   validations={[
                     {
@@ -206,6 +209,7 @@ const Accountmanagement = () => {
                 <MyField
                   name="cin"
                   label="cin"
+                  dtValue={gcInfo.cin}
                   validations={[
                     {
                       rule: isNumber(),
@@ -229,6 +233,7 @@ const Accountmanagement = () => {
                 <MyField
                   name="email"
                   label="Email"
+                  dtValue={gcInfo.email}
                   // required="Il est requis de compléter le champ correspondant au mail"
                   validations={[
                     {
