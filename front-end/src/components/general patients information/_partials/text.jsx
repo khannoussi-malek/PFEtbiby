@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, useColorModeValue as mode } from "@chakra-ui/react";
 const TextInfo = (props) => {
   const { data, type } = props;
   if (data == null) {
@@ -9,10 +9,10 @@ const TextInfo = (props) => {
       <Text
         fontSize="xl"
         borderBottom="1px"
-        borderColor="gray.500"
+        borderColor={mode("gray.300", "gray.500")}
         px={2}
         display="inline"
-        color="gray.700"
+        color={mode("gray.700", "gray.50")}
       >
         {type}:
       </Text>

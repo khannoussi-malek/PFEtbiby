@@ -59,8 +59,7 @@ const GestiondeCopmteMedecin = (props) => {
           <MyField
             name="spécialité"
             label="spécialité"
-            dtValue={gcInfo.spécialité}
-
+            Placeholder={gcInfo.spécialité}
             // required="Il est requis de compléter le champ correspondant au spécialité"
             validations={[
               {
@@ -72,6 +71,7 @@ const GestiondeCopmteMedecin = (props) => {
           <MyField
             name="temps_de_séance"
             label="Temps_de_séance"
+            Placeholder={gcInfo.temps_de_séance}
             // required="Il est requis de compléter le champ correspondant au temps_de_séance"
             validations={[
               {

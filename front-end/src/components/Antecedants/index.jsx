@@ -19,7 +19,9 @@ import {
   Text,
   Box,
   SimpleGrid,
+  useColorModeValue as mode,
 } from "@chakra-ui/react";
+
 import { CloseIcon } from "@chakra-ui/icons";
 import React, { useState } from "react";
 import { useDisclosure } from "@chakra-ui/hooks";
@@ -51,12 +53,12 @@ const Antecedants = (props) => {
 
   return (
     <React.Fragment>
-      <Button m={5} bg="blue.100" onClick={onOpen}>
+      <Button m={5} bg={mode("blue.100", "blue.800")} onClick={onOpen}>
         Antecedants
       </Button>
       <Drawer placement="right" size="xl" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent bg="gray.50">
+        <DrawerContent bg={mode("gray.50", "gray.700")}>
           <DrawerHeader borderBottomWidth="1px">
             Antecedants
             <IconButton
@@ -83,11 +85,11 @@ const Antecedants = (props) => {
                       borderBottom="1px"
                       borderColor="green.400"
                       display="inline"
-                      color="gray.700"
+                      color={mode("gray.700", "gray.50")}
                     >
                       Type:
                     </Text>
-                    <Text fontSize="20px" color="gray.700">
+                    <Text fontSize="20px" color={mode("gray.700", "gray.50")}>
                       {data.type}
                     </Text>
                   </Box>
@@ -97,11 +99,11 @@ const Antecedants = (props) => {
                       borderBottom="1px"
                       borderColor="green.400"
                       display="inline"
-                      color="gray.700"
+                      color={mode("gray.700", "gray.50")}
                     >
                       Description:
                     </Text>
-                    <Text fontSize="20px" color="gray.700">
+                    <Text fontSize="20px" color={mode("gray.700", "gray.50")}>
                       {data.description}
                     </Text>
                   </Box>
@@ -111,18 +113,18 @@ const Antecedants = (props) => {
                       borderBottom="1px"
                       borderColor="green.400"
                       display="inline"
-                      color="gray.700"
+                      color={mode("gray.700", "gray.50")}
                     >
                       Ecrit par:
                     </Text>
-                    <Text fontSize="20px" color="gray.700">
+                    <Text fontSize="20px" color={mode("gray.700", "gray.50")}>
                       <Popover>
                         <PopoverTrigger>
                           <Text
                             textAlign="center"
-                            bgColor="gray.100"
+                            bgColor={mode("gray.100", "gray.500")}
                             _hover={{
-                              background: "blue.100",
+                              background: mode("blue.100", "gray.600"),
                             }}
                             style={{ cursor: "pointer" }}
                             borderRadius="20px"

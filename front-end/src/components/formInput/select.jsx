@@ -25,6 +25,17 @@ export const Select2 = (props) => {
   const changeValue = (e) => {
     setValue(e);
   };
+  const colourStyles = {
+    control: (styles) => ({ ...styles, backgroundColor: "white" }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      return {
+        ...styles,
+        backgroundColor: isDisabled ? "red" : "blue",
+        color: "#FFF",
+        cursor: isDisabled ? "not-allowed" : "default",
+      };
+    },
+  };
   return (
     <FormControl>
       <FormLabel htmlFor={id}>{label}</FormLabel>
@@ -38,6 +49,7 @@ export const Select2 = (props) => {
         onChange={(e) => changeValue(e)}
         options={data}
         onBlur={() => setIsTouched(true)}
+        styles={colourStyles}
       />
       {showError && (
         <Text id={`${id}-error`} color="tomato">

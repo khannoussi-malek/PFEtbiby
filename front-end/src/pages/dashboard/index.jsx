@@ -1,8 +1,10 @@
 import {
   Box,
+  Button,
   Flex,
   useBoolean,
   useBreakpointValue,
+  useColorMode,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
 import { NavBreadcrumb } from "./_partials";
@@ -15,12 +17,13 @@ import ActivityArea from "./activityArea/index";
 import { useLocation } from "react-router-dom";
 
 const Dashboard = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
   const { pathname } = useLocation();
   const { isOpen, toggle } = useMobileMenuState();
   return (
     <Flex
       height="100vh"
-      bg={mode("gray.600", "inherit")}
+      bg={mode("cyan.600", "inherit")}
       overflow="hidden"
       sx={{ "--sidebar-width": "256px" }}
     >
@@ -68,6 +71,11 @@ const Dashboard = () => {
               <Flex align="center" minH="8">
                 <MobileMenuButton onClick={toggle} isOpen={isOpen} />
                 <NavBreadcrumb path={pathname} />
+              </Flex>
+              <Flex align="center" minH="8">
+                <Button onClick={toggleColorMode}>
+                  {colorMode === "light" ? "☀️" : "🌙"}
+                </Button>
               </Flex>
             </Flex>
             <Flex

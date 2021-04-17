@@ -1,8 +1,7 @@
 import { CloseButton } from "@chakra-ui/close-button";
-import { Box, Divider } from "@chakra-ui/layout";
+import { Box } from "@chakra-ui/layout";
 import { useState, useRef, useContext } from "react";
 import { Select2 } from "./../formInput/select";
-import { TextareaForm } from "./../formInput/Textarea";
 import {
   AccordionButton,
   AccordionIcon,
@@ -13,11 +12,12 @@ import { Input } from "@chakra-ui/input";
 import { EditIcon } from "@chakra-ui/icons";
 import EditerCertificat from "./editer";
 import { useGetCertificat } from "../../services/api/certificat";
-import { Button, useToast } from "@chakra-ui/react";
+import { Button, useToast, useColorModeValue as mode } from "@chakra-ui/react";
 import SunEditor from "suneditor-react";
 import { TbibyContext } from "./../../router/context/index";
 import { usePatentInfo } from "./../../services/api/patient information/index";
-
+import { RiPrinterFill } from "react-icons/ri";
+import { IconButton } from "@chakra-ui/button";
 export const Certificat = (props) => {
   const { user } = useContext(TbibyContext);
   const [editerValue, setEditerValue] = useState("");
@@ -29,10 +29,24 @@ export const Certificat = (props) => {
   const [showEditTitle, setShowEditTitle] = useState(true);
   const toast = useToast();
   const [selectValues, setSelectValues] = useState([]);
-  const params = {};
-  const replaceAll = (string, search, replace) => {
-    return string.split(search).join(replace);
-  };
+  const params = { cms_users_id: user.id };
+  console.log(params);
+  const { isLoading, refetch } = useGetCertificat({
+    params,
+    onError: (error) => {
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
+    },
+    onSuccess: (res) => {
+      console.log(res);
+      setSelectValues(res.data);
+    },
+  });
   const [patientInfo, setPatientInfo] = useState({});
   const paramsPatentInfo = { cms_users_id: Patient.id };
   const {
@@ -50,15 +64,19 @@ export const Certificat = (props) => {
       });
     },
     onSuccess: (res) => {
-      console.log(res);
       setPatientInfo(res.data);
     },
   });
   // console.log(patientInfo);
 
+  const replaceAll = (string, search, replace) => {
+    return string.split(search).join(replace);
+  };
+
   const decodeMessage = (text) => {
-    var sexesM = user.sexes == "homme" ? `Mr.` : `Mrs.`;
-    var sexesP = Patient.sexes == "homme" ? `Mr.` : `Mrs.`;
+    console.log(Patient);
+    let sexesM = user.sexes == "homme" ? `Mr.` : `Mrs.`;
+    let sexesP = Patient.sexes == "homme" ? `Mr.` : `Mrs.`;
     text = replaceAll(text, "{sexesPatient}", sexesP);
     text = replaceAll(text, "{medecinNomPrenom}", user.nom + " " + user.prenom);
     text = replaceAll(
@@ -67,7 +85,7 @@ export const Certificat = (props) => {
       patientInfo.nom + " " + patientInfo.prenom
     );
     text = replaceAll(text, "{addresPatient}", Patient.Adresse);
-    text = replaceAll(text, "{sexesmedecin}", Patient.sexesM);
+    text = replaceAll(text, "{sexesmedecin}", sexesM);
     text = replaceAll(text, "{specialiteMedecin}", "");
     text = replaceAll(text, "{domaineMedecin}", "");
     text = replaceAll(
@@ -97,21 +115,7 @@ export const Certificat = (props) => {
 
     return text;
   };
-  const { isLoading, refetch } = useGetCertificat({
-    params,
-    onError: (error) => {
-      toast({
-        title: "🌐 Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: `4000`,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setSelectValues(res.data);
-    },
-  });
+
   const changeValueOfEditer = (e) => {
     refetch();
     setEditerValue(e.value);
@@ -119,6 +123,20 @@ export const Certificat = (props) => {
   };
   const handleChange = (content) => {
     setEditerValue(content); //Get Content Inside Editor
+  };
+
+  const print = () => {
+    const mywindow = window.open("", "PRINT");
+
+    mywindow.document.write(decodeMessage(editerValue));
+
+    mywindow.document.close(); // necessary for IE >= 10
+
+    mywindow.focus(); // necessary for IE >= 10*/
+    mywindow.addEventListener("afterprint", function (event) {
+      mywindow.close();
+    });
+    mywindow.print();
   };
   return (
     <AccordionItem boxShadow="lg">
@@ -141,14 +159,14 @@ export const Certificat = (props) => {
           float="right"
         />
       </AccordionButton>
-      <AccordionPanel bgColor="gray.50" pb={4}>
-        <EditerCertificat />
+      <AccordionPanel bgColor={mode("gray.50", "gray.700")} pb={4}>
+        <EditerCertificat user={user} />
+
         <Input
           placeholder="Écrivez le titre de cet élément"
           display={showEditTitle ? `none` : `inline`}
           onChange={(e) => setTitle(e.target.value)}
         />
-
         <Box py={2}>
           <SunEditor
             ref={editorRef}
@@ -179,6 +197,7 @@ export const Certificat = (props) => {
                   "superscript",
                 ],
                 ["fontColor", "hiliteColor", "textStyle"],
+                ["align", "horizontalRule", "list", "lineHeight"],
                 ["removeFormat"],
               ],
             }}
@@ -194,6 +213,14 @@ export const Certificat = (props) => {
             name="selectvalue"
           />
         </Box>
+        <IconButton
+          onClick={() => print()}
+          variant="outline"
+          colorScheme="teal"
+          aria-label="Send email"
+          icon={<RiPrinterFill />}
+          size="lg"
+        />
       </AccordionPanel>
     </AccordionItem>
   );

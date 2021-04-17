@@ -1,4 +1,5 @@
 import { Box, Center, Grid, GridItem } from "@chakra-ui/layout";
+import { useColorModeValue as mode } from "@chakra-ui/react";
 import TimeElement from "./timeElement";
 import { DragDropContext } from "react-beautiful-dnd";
 function Calendar(props) {
@@ -67,8 +68,9 @@ function Calendar(props) {
           w="100%"
           key={index}
           border="1px"
-          borderColor="gray.200"
-          bgColor="gray.300"
+          borderColor={mode("gray.200", "gray.800")}
+          bgColor={mode("gray.300", "gray.600")}
+          color={mode("gray.800", "gray.50")}
           h={10}
           align="center"
         >
@@ -94,13 +96,19 @@ function Calendar(props) {
     <Box>
       <Grid templateColumns="repeat(10, 1fr)" gap={0}>
         <GridItem colSpan={1}>
-          <Box w="100%" bgColor="gray.500">
+          <Box
+            w="100%"
+            border="1px"
+            bgColor={mode("gray.300", "gray.600")}
+            borderColor={mode("gray.200", "gray.800")}
+          >
             <Center h={10} align="center"></Center>
             {Hours.map((value) => (
               <Center
                 border="1px"
-                borderColor="gray.400"
-                bgColor="gray.500"
+                borderColor={mode("gray.200", "gray.800")}
+                bgColor={mode("gray.300", "gray.600")}
+                color={mode("gray.800", "gray.50")}
                 h="160px"
                 key={value}
                 fontSize="20px"

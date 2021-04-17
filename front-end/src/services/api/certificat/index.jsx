@@ -2,7 +2,8 @@ import { useMutation, useQuery } from "react-query";
 import axios from "./../";
 export const useAddCertificatType = (config) => {
   return useMutation(
-    ({ type, structure }) => axios.post("/addct", { type, structure }),
+    ({ type, structure, cms_users_id }) =>
+      axios.post("/addct", { type, structure, cms_users_id }),
     config
   );
 };

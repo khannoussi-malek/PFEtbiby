@@ -55,7 +55,7 @@ const Menu = () => {
         bottom="24px"
         left={{ base: "120px", md: "160px" }}
       >
-        <Stack bgColor="red.400" rounded={8}>
+        <Stack bgColor="red.300" rounded={8}>
           <SidebarLink
             onClick={logout}
             icon={<BsBoxArrowLeft />}

@@ -2,6 +2,8 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Grid } from "@chakra-ui/layout";
 import { GridItem } from "@chakra-ui/layout";
 import { Droppable } from "react-beautiful-dnd";
+import { useColorModeValue as mode } from "@chakra-ui/react";
+
 import Task from "../taks";
 
 const TimeElement = (props) => {
@@ -18,7 +20,13 @@ const TimeElement = (props) => {
   } = props;
 
   return (
-    <Box key={key} h="160px" fontSize="20px" border="1px">
+    <Box
+      key={key}
+      h="160px"
+      fontSize="20px"
+      border="1px"
+      borderColor={mode("gray.200", "gray.800")}
+    >
       <Grid
         h="100%"
         templateRows="repeat(4, 1fr)"
@@ -38,7 +46,9 @@ const TimeElement = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={snapshot.isDraggingOver ? "green.100" : `gray.50`}
+              bgColor={mode("gray.50", "gray.600")}
+              // bgColor={snapshot.isDraggingOver ? "green.100" : `gray.50`}
+              color={mode("gray.800", "gray.300")}
               maxH="40px"
               onClick={(event) =>
                 addtask(
@@ -101,8 +111,9 @@ const TimeElement = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={snapshot.isDraggingOver ? "green.100" : `gray.100`}
+              bgColor={mode("gray.100", "gray.700")}
               maxH="40px"
+              color={mode("gray.800", "gray.300")}
               onClick={(event) =>
                 addtask(
                   event,
@@ -164,8 +175,9 @@ const TimeElement = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={snapshot.isDraggingOver ? "green.100" : `gray.200`}
+              bgColor={mode("gray.200", "gray.800")}
               maxH="40px"
+              color={mode("gray.800", "gray.300")}
               onClick={(event) =>
                 addtask(
                   event,
@@ -227,7 +239,8 @@ const TimeElement = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={snapshot.isDraggingOver ? "green.100" : `gray.300`}
+              bgColor={mode("gray.300", "gray.900")}
+              color={mode("gray.800", "gray.300")}
               maxH="40px"
               onClick={(event) =>
                 addtask(

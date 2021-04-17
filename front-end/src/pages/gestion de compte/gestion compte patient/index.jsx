@@ -11,21 +11,26 @@ import { MyField } from "./../../../components/formInput";
 import { FieldGroup } from "./../../../components/FieldGroup/index";
 
 const GestiondeCopmtePatient = (props) => {
-  const { gcInfo } = props;
+  const { gcInfo, age } = props;
+  console.log();
   return (
     <React.Fragment>
       <FieldGroup title="information spécifique">
         <VStack width="full" spacing="6">
-          <MyField
-            name="parent"
-            label="Représentant légal"
-            Placeholder={gcInfo.parent}
-          />
+          {age() > 18 ? (
+            ``
+          ) : (
+            <MyField
+              name="parent"
+              label="Représentant légal"
+              Placeholder={gcInfo.parent}
+            />
+          )}
 
           <MyField
             name="Code_APCI"
             label="Code APCI"
-            dtValue={gcInfo.Code_APCI}
+            Placeholder={gcInfo.Code_APCI}
             validations={[
               {
                 rule: isNumber(),

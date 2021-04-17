@@ -77,11 +77,13 @@
                 // }
 
 
-
                 if($errer==[]){
+
                     if($postdata['photo']!="null"){
                         $users = DB::table('cms_users')->select('photo')->where('id',$postdata['id'])->first();
-                        unlink(storage_path('app\public'.substr($users->photo,8,strlen($users->photo))));
+                        if($users->phtot!=null){
+                            unlink(storage_path('app\public\images'.substr($users->photo,15,strlen($users->photo))));
+                        }
                         $tableupdate['photo']=Storage::url(Storage::put('public/images', $postdata['photo']));
                     }
                     $update=DB::table('cms_users')

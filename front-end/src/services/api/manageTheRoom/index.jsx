@@ -3,13 +3,13 @@ import axios from "./../";
 export const usePatientEntrer = (config) => {
   return useMutation(
     ({ id, etat }) =>
-      axios.post("/pe", { id, etat: "Le patient consulte un médecin " }),
+      axios.post("/pe", { id, etat: "patient avec le médecin" }),
     config
   );
 };
 export const useSendPatientToWaitingRoom = (config) => {
   return useMutation(
-    ({ id, etat }) => axios.post("/sptwr", { id, etat: "Le patient attend son rendez-vous" }),
+    ({ id, etat }) => axios.post("/sptwr", { id, etat: "en attente" }),
     config
   );
 };

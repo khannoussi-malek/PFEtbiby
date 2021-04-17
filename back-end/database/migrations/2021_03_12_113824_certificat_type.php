@@ -17,6 +17,8 @@ class CertificatType extends Migration
             $table->increments('id');
             $table->string('type')->nullable();
             $table->longText('structure')->nullable();
+            $table->integer('cms_users_id')->unsigned()->nullable();
+            $table->foreign('cms_users_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

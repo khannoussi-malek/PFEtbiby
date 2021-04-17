@@ -18,8 +18,9 @@ import { useForm, Formiz } from "@formiz/core";
 import { Box } from "@chakra-ui/layout";
 import { MyField } from "../formInput";
 import { useAddCertificatType } from "./../../services/api/certificat/index";
-import { useToast, Spinner } from "@chakra-ui/react";
+import { useToast, Spinner, useColorModeValue as mode } from "@chakra-ui/react";
 const EditerCertificat = (props) => {
+  const { user } = props;
   const toast = useToast();
   const { mutate, isLoading } = useAddCertificatType({
     onError: (error) => {
@@ -52,12 +53,18 @@ const EditerCertificat = (props) => {
   const MyForm = useForm();
   const handleSubmit = (values) => {
     values.structure = editerValue;
+    values.cms_users_id = user.id;
     mutate(values);
   };
   const [editerValue, setEditerValue] = useState("");
   return (
     <React.Fragment>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+      <Button
+        ref={btnRef}
+        colorScheme={mode("teal", "gray.50")}
+        bgColor={mode("teal", "gray.50")}
+        onClick={onOpen}
+      >
         Ajouter un certificat
       </Button>
 
@@ -69,7 +76,7 @@ const EditerCertificat = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
-          <DrawerContent bgColor="gray.50">
+          <DrawerContent bgColor={mode("gray.50", "gray.700")}>
             <DrawerCloseButton />
             <DrawerHeader>Créez votre type de certificat</DrawerHeader>
             <DrawerBody>
@@ -102,18 +109,27 @@ const EditerCertificat = (props) => {
                       setOptions={{
                         plugins: [AddElement],
                         buttonList: [
+                          ["undo", "redo"],
                           [
                             "font",
                             "fontSize",
-                            "align",
-                            "fontColor",
-                            "hiliteColor",
-                            "paragraphStyle",
-                            "list",
-                            "blockquote",
-                            "lineHeight",
-                            "horizontalRule",
                             "formatBlock",
+                            ":p-More Paragraph-default.more_paragraph",
+                          ],
+                          ["paragraphStyle", "blockquote"],
+                          [
+                            "bold",
+                            "underline",
+                            "italic",
+                            "strike",
+                            "subscript",
+                            "superscript",
+                          ],
+                          ["fontColor", "hiliteColor", "textStyle"],
+                          ["removeFormat"],
+                          ["image"],
+                          ["align", "horizontalRule", "list", "lineHeight"],
+                          [
                             {
                               name: "Element",
                               dataCommand: "Element",
@@ -124,6 +140,7 @@ const EditerCertificat = (props) => {
                                 '<div style="width: 70px;">Element</div>',
                             },
                           ],
+                          ["fullScreen"],
                         ],
                       }}
                     />

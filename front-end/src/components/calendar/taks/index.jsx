@@ -9,6 +9,8 @@ import {
   PopoverHeader,
   PopoverTrigger,
 } from "@chakra-ui/popover";
+import { useColorModeValue as mode } from "@chakra-ui/react";
+
 import { useState, useRef } from "react";
 import { CloseIcon } from "@chakra-ui/icons";
 
@@ -76,7 +78,7 @@ const Task = (props) => {
               mx={3}
               px={2}
               children={
-                <Box>
+                <Box color="gray.800">
                   <Alert
                     Header="Supprimer la réservation"
                     Body={`Voulez-vous vraiment supprimer cette réservation avec ${taskvalue.nomprenom}`}
@@ -95,7 +97,6 @@ const Task = (props) => {
                   {usertype == "medecin" ? (
                     <Alert
                       Header="confirmer"
-
                       Body={`Avez-vous confirmé que ${taskvalue.nomprenom} va voir le médecin`}
                       icon={<BsBoxArrowInRight />}
                       bg="blue.300"
@@ -123,13 +124,12 @@ const Task = (props) => {
               }
             />
           </PopoverTrigger>
-          <PopoverContent bg="gray.50">
+          <PopoverContent bg={mode("gray.50", "gray.800")}>
             <PopoverHeader fontWeight="semibold">
               {taskvalue.nomprenom}
             </PopoverHeader>
             <PopoverBody>
-              Votre rendez-vous est le {taskvalue.start.slice(0, 10) + " "}
-              à
+              Votre rendez-vous est le {taskvalue.start.slice(0, 10) + " "}à
               {" " + taskvalue.start.slice(11, 19)}
             </PopoverBody>
           </PopoverContent>

@@ -147,7 +147,7 @@ const CalendarDashboardMedecin = () => {
             : ``
         }
       >
-        <Flex>
+        <Flex py={2}>
           <Button ml={2} onClick={() => addDays(date, daysView * -1)}>
             <ArrowLeftIcon />
           </Button>
