@@ -3,10 +3,10 @@ import axios from "./../";
 export const useAddCertificatType = (config) => {
   return useMutation(
     ({ type, structure, cms_users_id }) =>
-      axios.post("/addct", { type, structure, cms_users_id }),
+      axios.post("addct", { type, structure, cms_users_id }),
     config
   );
 };
 export const useGetCertificat = ({ params, ...config } = {}) => {
-  return useQuery(["gc", params], () => axios.get("/gc", { params }), config);
+  return useQuery(["gc", params], () => axios.get("gc", { params }), config);
 };
