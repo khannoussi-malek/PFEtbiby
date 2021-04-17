@@ -45,7 +45,7 @@ import { useGestionDeCompte } from "./../../services/api/gestion de compte/index
 import { link, userImage } from "./../../services/api/index";
 
 const Accountmanagement = () => {
-  const [pictures, setPictures] = useState({});
+  const [pictures, setPictures] = useState(null);
 
   const { user, setUser } = useContext(TbibyContext);
   const { mutate, isLoading } = useUpdateComptePatient({

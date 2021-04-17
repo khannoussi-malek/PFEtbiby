@@ -56,18 +56,7 @@ const GestiondeCopmteMedecin = (props) => {
               },
             ]}
           />
-          <MyField
-            name="spécialité"
-            label="spécialité"
-            Placeholder={gcInfo.spécialité}
-            // required="Il est requis de compléter le champ correspondant au spécialité"
-            validations={[
-              {
-                rule: isPattern("^[a-zAZ ]*$"),
-                message: "La spécialité ne contient que des lettres",
-              },
-            ]}
-          />
+  
           <MyField
             name="temps_de_séance"
             label="Temps_de_séance"
@@ -82,14 +71,14 @@ const GestiondeCopmteMedecin = (props) => {
           />
 
           <Select2
-            required={"Choisir un domaine."}
+            //={"Choisir un domaine."}
             data={domaine}
             label="Domaine"
             name="SelectDomaine"
             onChange={() => mutate()}
           />
           <Select2
-            required={"Choisir un sous_domaine."}
+            // required={"Choisir un sous_domaine."}
             data={[
               {
                 label: "domaine A1",

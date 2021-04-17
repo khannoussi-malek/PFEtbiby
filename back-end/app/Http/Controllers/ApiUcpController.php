@@ -35,20 +35,41 @@
                     $tableupdate['prenom']=$postdata['prenom'];
                     }
 
-                if($postdata['telephone']!="null"){
+                if(!empty($postdata['telephone'])&&$postdata['telephone']!="null"){
+                    
+                    $users = DB::table('cms_users')->select('telephone')->where('id','!=',$postdata['id'])->first();
+                    if($users->telephone!=null){
                     $tableupdate['telephone']=$postdata['telephone'];
+                        
+                    }
+                    else{
+                        $errer['etelephone']="telephone existe deja";
+                    }
                     }
 
-                if($postdata['email']!="null"){
+                if(!empty($postdata['email'])&&$postdata['email']!="null"){
+                    $users = DB::table('cms_users')->select('email')->where('id','!=',$postdata['id'])->first();
+                    if($users->email!=null){
                     $tableupdate['email']=$postdata['email'];
+                        
+                    }
+                    else{
+                        $errer['eemail']="email existe deja";
+                    }
                     }
 
                 if($postdata['date_naissance']!="null"){
                     $tableupdate['date_naissance']=$postdata['date_naissance'];
                     }
-
-                if($postdata['cin']!="null"){
+                if(!empty($postdata['cin'])&&$postdata['cin']!="null"){
+                    $users = DB::table('cms_users')->select('cin')->where('id','!=',$postdata['id'])->first();
+                    if($users->cin!=null){
                     $tableupdate['cin']=$postdata['cin'];
+                        
+                    }
+                    else{
+                        $errer['ecin']="cin existe deja";
+                    }
                     }
                 if($postdata['sexes']!="undefined"){
                     $tableupdate['sexes']=$postdata['sexes'];
@@ -76,10 +97,56 @@
                 //     // dd($user);
                 // }
 
+  
+                if($postdata['id_cms_privileges']=="patient"){
+                  $patient= [];
+                    if($postdata['parent']!="null"){
+                    $users = DB::table('cms_users')->select('id')->where('email',$postdata['parent'] )->orWhere('telephone',$postdata['parent'])
+                    ->orWhere('cin',$postdata['parent'])
+                    ->first();
+                    if($users->id!=null){
+                        $patient["parent"]=$users->id;
+                    }else{
+                        $errer["parent"]="idantifiant parent introvables";
+                    }
+                    
+                        }
+                    if($postdata['Code_APCI']!="null"){
 
+                            $patient["Code_APCI"]=$postdata['Code_APCI'];
+                        
+                            }
+
+                    if($postdata['adresse']!="null"){
+
+                        $patient["adresse"]=$postdata['adresse'];
+                    
+                        }
+                    
+                }
+                if($postdata['id_cms_privileges']=="medecin"){
+                    $medecin=[];
+                    if($postdata['temps_de_séance']!="null"){
+
+                        $medecin["temps_de_séance"]=$postdata['temps_de_séance'];
+                    
+                        }
+                    if($postdata['SelectDomaine']!="null"){
+
+                        $medecin["domaine_id"]=$postdata['SelectDomaine'];
+                    
+                    }
+                    if($postdata['selectSousDomaine']!="null"){
+
+                        $medecin["sous_domaine_id"]=$postdata['selectSousDomaine'];
+                    
+                    }
+
+                }
                 if($errer==[]){
 
                     if($postdata['photo']!="null"){
+                    
                         $users = DB::table('cms_users')->select('photo')->where('id',$postdata['id'])->first();
                         if($users->phtot!=null){
                             unlink(storage_path('app\public\images'.substr($users->photo,15,strlen($users->photo))));
@@ -89,18 +156,17 @@
                     $update=DB::table('cms_users')
                     ->where('id', $postdata['id'])
                     ->update($tableupdate);
-                            //test if pation
-                                //update pation
-                            //test if medecin
-                                //update medecin
-
-		// use App\Http\Controllers\Privilege as Privilege;
-
-                                // if($postdata['id_cms_privileges']=="patient"){
-                                //     DB::table('patient')->insert($insert);
-                                // }else if($postdata['id_cms_privileges']=="medecin"){
-                                //     DB::table('medecin')->insert($insert);
-                                // }
+                    if($postdata['id_cms_privileges']=="patient"){
+                        $update=DB::table('patient')
+                    ->where('cms_users_id', $postdata['id'])
+                    ->update($patient);
+                    }
+                        
+                    if($postdata['id_cms_privileges']=="medecin"){
+                        $update=DB::table('medecin')
+                        ->where('cms_users_id', $postdata['id'])
+                        ->update($medecin);
+                    }
                 }
 
 				$postdata=$errer;
