@@ -39,6 +39,7 @@ const TimeElement = (props) => {
               {...provided.droppableProps}
               ref={provided.innerRef}
               bgColor={snapshot.isDraggingOver ? "green.100" : `gray.50`}
+              color="gray.800"
               maxH="40px"
               onClick={(event) =>
                 addtask(
@@ -103,6 +104,7 @@ const TimeElement = (props) => {
               ref={provided.innerRef}
               bgColor={snapshot.isDraggingOver ? "green.100" : `gray.100`}
               maxH="40px"
+              color="gray.800"
               onClick={(event) =>
                 addtask(
                   event,
@@ -166,6 +168,7 @@ const TimeElement = (props) => {
               ref={provided.innerRef}
               bgColor={snapshot.isDraggingOver ? "green.100" : `gray.200`}
               maxH="40px"
+              color="gray.800"
               onClick={(event) =>
                 addtask(
                   event,
@@ -228,6 +231,7 @@ const TimeElement = (props) => {
               {...provided.droppableProps}
               ref={provided.innerRef}
               bgColor={snapshot.isDraggingOver ? "green.100" : `gray.300`}
+              color="gray.800"
               maxH="40px"
               onClick={(event) =>
                 addtask(

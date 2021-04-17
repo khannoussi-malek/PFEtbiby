@@ -69,6 +69,7 @@ function Calendar(props) {
           border="1px"
           borderColor="gray.200"
           bgColor="gray.300"
+          color="gray.800"
           h={10}
           align="center"
         >
@@ -99,6 +100,7 @@ function Calendar(props) {
             {Hours.map((value) => (
               <Center
                 border="1px"
+                color="gray.50"
                 borderColor="gray.400"
                 bgColor="gray.500"
                 h="160px"
