@@ -11,6 +11,7 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerBody,
+  useColorModeValue as mode,
   IconButton,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
@@ -41,12 +42,12 @@ const GeneralPatientsInformation = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <React.Fragment>
-      <Button m={5} bg="blue.100" onClick={onOpen}>
+      <Button m={5} bg={mode("blue.100", "blue.800")} onClick={onOpen}>
         Informations
       </Button>
       <Drawer placement="right" size="md" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent bg="gray.50">
+        <DrawerContent bg={mode("gray.50", "gray.700")}>
           <DrawerHeader borderBottomWidth="1px">
             Information de patient
             <IconButton

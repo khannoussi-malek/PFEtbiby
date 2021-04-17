@@ -2,7 +2,12 @@ import { Box, Center, Text, SimpleGrid } from "@chakra-ui/layout";
 import React, { useContext, useState, useRef } from "react";
 import { useListOfThePatientInConsultation } from "../../services/api/consultation";
 import { TbibyContext } from "./../../router/context/index";
-import { useToast, Spinner, Textarea } from "@chakra-ui/react";
+import {
+  useToast,
+  Spinner,
+  Textarea,
+  useColorModeValue as mode,
+} from "@chakra-ui/react";
 import { useDeleteReservation } from "./../../services/api/reservation";
 import { useSendPatientToWaitingRoom } from "./../../services/api/manageTheRoom";
 import PatientsAtTheDoctor from "../../components/patients at the doctor";
@@ -86,7 +91,7 @@ const Consultation = () => {
       <Box pb={5} display={!!currentPatient.nomprenom == "" ? `none` : `block`}>
         <Center
           p={5}
-          bg="gray.100"
+          bg={mode("gray.100", "gray.800")}
           mx="auto"
           boxShadow="xl"
           w={{ base: "100%", md: "95%" }}
@@ -98,7 +103,7 @@ const Consultation = () => {
         <Box
           mx="auto"
           boxShadow="lg"
-          bg="gray.50"
+          bg={mode("gray.50", "gray.800")}
           w={{ base: "90%", md: "92%" }}
         >
           <SimpleGrid minChildWidth="100px" spacing="10px">

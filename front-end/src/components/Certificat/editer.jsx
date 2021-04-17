@@ -18,7 +18,7 @@ import { useForm, Formiz } from "@formiz/core";
 import { Box } from "@chakra-ui/layout";
 import { MyField } from "../formInput";
 import { useAddCertificatType } from "./../../services/api/certificat/index";
-import { useToast, Spinner } from "@chakra-ui/react";
+import { useToast, Spinner, useColorModeValue as mode } from "@chakra-ui/react";
 const EditerCertificat = (props) => {
   const { user } = props;
   const toast = useToast();
@@ -59,7 +59,12 @@ const EditerCertificat = (props) => {
   const [editerValue, setEditerValue] = useState("");
   return (
     <React.Fragment>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+      <Button
+        ref={btnRef}
+        colorScheme={mode("teal", "gray.50")}
+        bgColor={mode("teal", "gray.50")}
+        onClick={onOpen}
+      >
         Ajouter un certificat
       </Button>
 
@@ -71,7 +76,7 @@ const EditerCertificat = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
-          <DrawerContent bgColor="gray.50">
+          <DrawerContent bgColor={mode("gray.50", "gray.700")}>
             <DrawerCloseButton />
             <DrawerHeader>Créez votre type de certificat</DrawerHeader>
             <DrawerBody>

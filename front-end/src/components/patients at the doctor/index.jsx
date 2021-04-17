@@ -4,6 +4,8 @@ import { CloseIcon } from "@chakra-ui/icons";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { useState, useRef } from "react";
 
+import { useColorModeValue as mode } from "@chakra-ui/react";
+
 const PatientsAtTheDoctor = (props) => {
   const {
     patientsWaiting,
@@ -43,7 +45,7 @@ const PatientsAtTheDoctor = (props) => {
     <SimpleGrid columns={{ base: 1, md: 3, lg: 5 }} spacing={2}>
       {patientsWaiting.map((data) => (
         <Box
-          bg="gray.100"
+          bg={mode("gray.100", "gray.800")}
           key={`${data.id}`}
           borderRadius="20px"
           textAlign="center"

@@ -12,7 +12,7 @@ import { Input } from "@chakra-ui/input";
 import { EditIcon } from "@chakra-ui/icons";
 import EditerCertificat from "./editer";
 import { useGetCertificat } from "../../services/api/certificat";
-import { Button, useToast } from "@chakra-ui/react";
+import { Button, useToast, useColorModeValue as mode } from "@chakra-ui/react";
 import SunEditor from "suneditor-react";
 import { TbibyContext } from "./../../router/context/index";
 import { usePatentInfo } from "./../../services/api/patient information/index";
@@ -159,7 +159,7 @@ export const Certificat = (props) => {
           float="right"
         />
       </AccordionButton>
-      <AccordionPanel bgColor="gray.50" pb={4}>
+      <AccordionPanel bgColor={mode("gray.50", "gray.700")} pb={4}>
         <EditerCertificat user={user} />
 
         <Input
