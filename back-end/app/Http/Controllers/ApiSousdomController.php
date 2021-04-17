@@ -29,6 +29,6 @@
 				$result= DB::table('domaine')
 				->Select( 'nom as label', 'id AS value')
 				->get();
-		    }
+		    } 
 
 		}

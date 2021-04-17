@@ -46,7 +46,8 @@ const GestiondeCopmteMedecin = (props) => {
           <MyField
             name="adresse_physique"
             label="Adresse"
-            defaultValue={gcInfo.adresse_physique}
+            // // dtValue={gcInfo.adresse_physique}
+            // Placeholder={gcInfo.adresse_physique}
             // required="Il est requis de compléter le champ correspondant au adresse_physique"
             validations={[
               {
@@ -58,6 +59,8 @@ const GestiondeCopmteMedecin = (props) => {
           <MyField
             name="spécialité"
             label="spécialité"
+            dtValue={gcInfo.spécialité}
+
             // required="Il est requis de compléter le champ correspondant au spécialité"
             validations={[
               {

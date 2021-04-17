@@ -33,6 +33,14 @@ const GestiondeCopmtePatient = (props) => {
               },
             ]}
           />
+
+          <MyField
+            name="Adresse"
+            label="Adresse"
+            dtValue={gcInfo.Adresse}
+            Placeholder={gcInfo.Adresse}
+          />
+          
         </VStack>
       </FieldGroup>
     </React.Fragment>
