@@ -16,6 +16,13 @@
 
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
+				$medecin_id= DB::table('cms_users')->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'))
+				->where('id',$postdata['medecin_id'])->first();
+				$ch="Vous avez un rendez-vous avec le Dr ".$medecin_id->nomprenom;
+				$config['id_cms_users'] = [$postdata['patient_id']];
+				$config['content'] = $ch;
+				$config['to'] = "/dashboard/Mes%20rendez-vous";
+				CRUDBooster::sendNotification($config);
 		    }
 
 		    public function hook_query(&$query) {
@@ -25,7 +32,6 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-				// dd($postdata);
 				
 		    }
 

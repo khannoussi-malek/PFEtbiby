@@ -11,3 +11,9 @@ export const useNotification = ({ params, ...config } = {}) => {
 export const useRemoveNotification = ({ ...config } = {}) => {
   return useMutation(({ id }) => axios.post("rmnot", { id }), config);
 };
+export const useRemoveAllNotification = ({ ...config } = {}) => {
+  return useMutation(({ id }) => axios.post("rmanotif", { id }), config);
+};
+export const useSeeNotification = ({ ...config } = {}) => {
+  return useMutation(({ id }) => axios.post("vnotif", { id }), config);
+};

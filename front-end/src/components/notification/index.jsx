@@ -15,8 +15,10 @@ import {
   TagLabel,
   Divider,
   useToast,
+  Button,
 } from "@chakra-ui/react";
 import OneNotification from "./_partials/One notification";
+import { useRemoveAllNotification } from "./../../services/api/notification/index";
 const Notification = (props) => {
   const { user } = useContext(TbibyContext);
   const toast = useToast();
@@ -37,7 +39,22 @@ const Notification = (props) => {
       setNotification(res.data);
     },
   });
-  return (
+  const { mutate: removeAllNotificationMutate } = useRemoveAllNotification({
+    onError: (error) => {
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
+    },
+  });
+  const removeElement = (element) => {
+    let array = notification.splice(notification.indexOf(element), 1);
+    setNotification(array);
+  };
+  return notification.length ? (
     <Popover>
       <PopoverTrigger>
         <Tag
@@ -48,7 +65,9 @@ const Notification = (props) => {
           _hover={{ cursor: "pointer" }}
         >
           🔔
-          <TagLabel></TagLabel>
+          <TagLabel>
+            {notification.length != 0 ? notification.length : ``}
+          </TagLabel>
         </Tag>
         {/* <Button mx={2}>🔔</Button> */}
       </PopoverTrigger>
@@ -57,10 +76,26 @@ const Notification = (props) => {
         <PopoverCloseButton />
         <PopoverHeader>
           <Text fontSize="2xl"> Notification</Text>
+          {notification.length != 0 ? (
+            <Button
+              fontSize="13px"
+              onClick={() => {
+                removeAllNotificationMutate({ id: user.id });
+                setNotification([]);
+              }}
+              float="right"
+              mr={2}
+            >
+              Effacer tout
+            </Button>
+          ) : (
+            ``
+          )}
         </PopoverHeader>
         <PopoverBody>
           {notification.map((element) => (
             <OneNotification
+              removeElement={removeElement}
               refetch={refetch}
               notif={element}
             ></OneNotification>
@@ -69,6 +104,6 @@ const Notification = (props) => {
         <Divider />
       </PopoverContent>
     </Popover>
-  );
+  ) : null;
 };
 export default Notification;

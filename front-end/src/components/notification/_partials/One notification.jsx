@@ -1,15 +1,18 @@
-import { Box, useToast } from "@chakra-ui/react";
+import { Box, Divider, useToast } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
 import { useRemoveNotification } from "./../../../services/api/notification";
 import { Button } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
+import React from "react";
+import { IconButton } from "@chakra-ui/button";
+import { useSeeNotification } from "./../../../services/api/notification/index";
 
 const OneNotification = (props) => {
   let history = useHistory();
-  const { notif, refetch } = props;
+  const { notif, refetch, removeElement } = props;
   const toast = useToast();
   const handleClick = () => {
-    history.push(notif.url);
+    history.push(notif.url || "/dashboard");
   };
 
   const { isLoading, mutate } = useRemoveNotification({
@@ -28,17 +31,45 @@ const OneNotification = (props) => {
       //   setNotification(res.data);
     },
   });
+  const { mutate: seeNotifMutate } = useSeeNotification({
+    onSuccess: (res) => {
+      refetch();
+
+      //   setNotification(res.data);
+    },
+  });
   return (
-    <Box onClick={() => handleClick()}>
-      <Box float="right" fontSize="10px" colorScheme="red">
-        <CloseIcon
-          onClick={() => {
-            mutate({ id: notif.id });
-          }}
-        />
+    <React.Fragment>
+      <Box
+        p={2}
+        onClick={() => handleClick()}
+        onMouseEnter={() => {
+          if (notif.is_read == 0) {
+            seeNotifMutate({ id: notif.id });
+            notif.is_read = 1;
+          }
+        }}
+        bgColor={notif.is_read == 1 ? `` : `gray.50`}
+      >
+        <Box float="right" fontSize="10px" colorScheme="red">
+          <IconButton
+            size="xs"
+            m={1}
+            bg="red.300"
+            colorScheme="teal"
+            fontSize="10px"
+            icon={<CloseIcon />}
+            onClick={(event) => {
+              removeElement(notif);
+              event.stopPropagation();
+              mutate({ id: notif.id });
+            }}
+          />
+        </Box>
+        {notif.content}
       </Box>
-      {notif.content}
-    </Box>
+      <Divider />
+    </React.Fragment>
   );
 };
 export default OneNotification;
