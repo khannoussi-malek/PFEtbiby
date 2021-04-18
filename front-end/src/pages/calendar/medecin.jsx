@@ -152,16 +152,17 @@ const CalendarDashboardMedecin = () => {
             <ArrowLeftIcon />
           </Button>
           <Spacer />
-          <Button mx={2} onClick={() => setDaysView(1)}>
-            Par jour
-          </Button>
           {!isMobile ? (
-            <Button mx={2} onClick={() => setDate(new Date())}>
-              Ajourdhui
+            <Button mx={2} onClick={() => setDaysView(1)}>
+              Par jour
             </Button>
           ) : (
             ``
           )}
+
+          <Button mx={2} onClick={() => setDate(new Date())}>
+            Ajourdhui
+          </Button>
           {!isMobile ? (
             <Button mx={2} onClick={() => setDaysView(7)}>
               Par semaine

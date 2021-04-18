@@ -15,6 +15,7 @@ import Menu from "./menu";
 import UserAvatar from "./userAvatar/index";
 import ActivityArea from "./activityArea/index";
 import { useLocation } from "react-router-dom";
+import Notification from "./../../components/notification/index";
 
 const Dashboard = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -73,9 +74,14 @@ const Dashboard = () => {
                 <NavBreadcrumb path={pathname} />
               </Flex>
               <Flex align="center" minH="8">
-                <Button onClick={toggleColorMode}>
+                <Notification />
+                <Box
+                  display="inline"
+                  _hover={{ cursor: "pointer" }}
+                  onClick={toggleColorMode}
+                >
                   {colorMode === "light" ? "☀️" : "🌙"}
-                </Button>
+                </Box>
               </Flex>
             </Flex>
             <Flex

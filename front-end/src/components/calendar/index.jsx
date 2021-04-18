@@ -111,6 +111,7 @@ function Calendar(props) {
                 color={mode("gray.800", "gray.50")}
                 h="160px"
                 key={value}
+                px={2}
                 fontSize="20px"
               >
                 {value}
