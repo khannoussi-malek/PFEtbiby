@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
 import axios from "./../";
 
 export const useNotification = ({ params, ...config } = {}) => {
@@ -7,4 +7,7 @@ export const useNotification = ({ params, ...config } = {}) => {
     () => axios.get("notification", { params }),
     config
   );
+};
+export const useRemoveNotification = ({ ...config } = {}) => {
+  return useMutation(({ id }) => axios.post("rmnot", { id }), config);
 };

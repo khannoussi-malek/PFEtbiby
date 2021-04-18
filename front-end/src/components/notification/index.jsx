@@ -1,4 +1,4 @@
-import { useNotification } from "./../../services/api/notification/index";
+import { useNotification } from "./../../services/api/notification";
 import { TbibyContext } from "./../../router/context/index";
 import { useContext, useState } from "react";
 import {
@@ -10,13 +10,13 @@ import {
   PopoverContent,
   PopoverHeader,
   PopoverTrigger,
-  Button,
   Tag,
   Text,
   TagLabel,
   Divider,
   useToast,
 } from "@chakra-ui/react";
+import OneNotification from "./_partials/One notification";
 const Notification = (props) => {
   const { user } = useContext(TbibyContext);
   const toast = useToast();
@@ -37,7 +37,6 @@ const Notification = (props) => {
       setNotification(res.data);
     },
   });
-  console.log(notification);
   return (
     <Popover>
       <PopoverTrigger>
@@ -53,7 +52,7 @@ const Notification = (props) => {
         </Tag>
         {/* <Button mx={2}>🔔</Button> */}
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent mx={2}>
         <PopoverArrow />
         <PopoverCloseButton />
         <PopoverHeader>
@@ -61,7 +60,10 @@ const Notification = (props) => {
         </PopoverHeader>
         <PopoverBody>
           {notification.map((element) => (
-            <Box>{element.content}</Box>
+            <OneNotification
+              refetch={refetch}
+              notif={element}
+            ></OneNotification>
           ))}
         </PopoverBody>
         <Divider />
