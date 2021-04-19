@@ -10,3 +10,7 @@ export const useAddCertificatType = (config) => {
 export const useGetCertificat = ({ params, ...config } = {}) => {
   return useQuery(["gc", params], () => axios.get("gc", { params }), config);
 };
+
+export const useGetListCertificat = ({ params, ...config } = {}) => {
+  return useQuery(["ltc", params], () => axios.get("ltc", { params }), config);
+};

@@ -19,8 +19,8 @@ import { Box } from "@chakra-ui/layout";
 import { MyField } from "../formInput";
 import { useAddCertificatType } from "./../../services/api/certificat/index";
 import { useToast, Spinner, useColorModeValue as mode } from "@chakra-ui/react";
-const EditerCertificat = (props) => {
-  const { user, refetch } = props;
+const CertificatUpdate = (props) => {
+  const { refetch, data } = props;
   const toast = useToast();
   const { mutate, isLoading } = useAddCertificatType({
     onError: (error) => {
@@ -42,6 +42,8 @@ const EditerCertificat = (props) => {
     },
   });
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [editerValue, setEditerValue] = useState("qqqqqqqqqqqqq");
+
   const btnRef = React.useRef();
   const editorRef = useRef();
   const handleChange = (content) => {
@@ -51,10 +53,10 @@ const EditerCertificat = (props) => {
   const MyForm = useForm();
   const handleSubmit = (values) => {
     values.structure = editerValue;
-    values.cms_users_id = user.id;
+    values.id = data.id;
     mutate(values);
   };
-  const [editerValue, setEditerValue] = useState("");
+
   return (
     <React.Fragment>
       <Button
@@ -87,14 +89,6 @@ const EditerCertificat = (props) => {
               <Box display={isLoading ? `none` : `block`}>
                 <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
                   <form noValidate onSubmit={MyForm.submit}>
-                    <Box mb={5}>
-                      <MyField
-                        name="type"
-                        label="nom de certif"
-                        required="walah"
-                      />
-                    </Box>
-
                     <SunEditor
                       ref={editorRef}
                       lang="fr"
@@ -102,7 +96,7 @@ const EditerCertificat = (props) => {
                       height="auto"
                       placeholder="S'il vous plaît écrivez votre structure de certificat ici..."
                       showToolbar={true}
-                      values={editerValue}
+                      values={data.structure}
                       onChange={handleChange}
                       setOptions={{
                         plugins: [AddElement],
@@ -169,4 +163,4 @@ const EditerCertificat = (props) => {
     </React.Fragment>
   );
 };
-export default EditerCertificat;
+export default CertificatUpdate;

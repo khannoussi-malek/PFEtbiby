@@ -12,7 +12,7 @@ import { Input } from "@chakra-ui/input";
 import { EditIcon } from "@chakra-ui/icons";
 import EditerCertificat from "./editer";
 import { useGetCertificat } from "../../services/api/certificat";
-import { Button, useToast, useColorModeValue as mode } from "@chakra-ui/react";
+import { useToast, useColorModeValue as mode } from "@chakra-ui/react";
 import SunEditor from "suneditor-react";
 import { TbibyContext } from "./../../router/context/index";
 import { usePatentInfo } from "./../../services/api/patient information/index";
@@ -30,7 +30,6 @@ export const Certificat = (props) => {
   const toast = useToast();
   const [selectValues, setSelectValues] = useState([]);
   const params = { cms_users_id: user.id };
-  console.log(params);
   const { isLoading, refetch } = useGetCertificat({
     params,
     onError: (error) => {
@@ -43,7 +42,6 @@ export const Certificat = (props) => {
       });
     },
     onSuccess: (res) => {
-      console.log(res);
       setSelectValues(res.data);
     },
   });
