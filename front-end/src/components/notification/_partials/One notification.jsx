@@ -34,8 +34,6 @@ const OneNotification = (props) => {
   const { mutate: seeNotifMutate } = useSeeNotification({
     onSuccess: (res) => {
       refetch();
-
-      //   setNotification(res.data);
     },
   });
   return (

@@ -14,8 +14,8 @@ const MonMedecin = () => {
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([[""], [""]]);
-  const params = { patient_id: user.id, page };
-  console.log(params);
+
+  const params = { patient_id: user.id, page: page };
   const { isLoading, refetch } = useRelationPM({
     params,
     onError: (error) => {

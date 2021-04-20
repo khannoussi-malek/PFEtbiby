@@ -8,7 +8,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
 } from "@chakra-ui/modal";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css"; // Import Sun Editor's CSS File
 import AddElement from "./AddElement";
@@ -17,12 +17,12 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import { useForm, Formiz } from "@formiz/core";
 import { Box } from "@chakra-ui/layout";
 import { MyField } from "../formInput";
-import { useAddCertificatType } from "./../../services/api/certificat/index";
+import { useUpdateCertificatType } from "./../../services/api/certificat/index";
 import { useToast, Spinner, useColorModeValue as mode } from "@chakra-ui/react";
-const EditerCertificat = (props) => {
-  const { user, refetch } = props;
+const CertificatUpdate = (props) => {
+  const { refetch, data, type, id, cms_users_id } = props;
   const toast = useToast();
-  const { mutate, isLoading } = useAddCertificatType({
+  const { mutate, isLoading } = useUpdateCertificatType({
     onError: (error) => {
       // setMessage("Vérifier l'information qui vous inseri ou votre liste");
     },
@@ -42,6 +42,10 @@ const EditerCertificat = (props) => {
     },
   });
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [editerValue, setEditerValue] = useState(data);
+  useEffect(() => {
+    setEditerValue(data);
+  }, [data]);
   const btnRef = React.useRef();
   const editorRef = useRef();
   const handleChange = (content) => {
@@ -51,10 +55,11 @@ const EditerCertificat = (props) => {
   const MyForm = useForm();
   const handleSubmit = (values) => {
     values.structure = editerValue;
-    values.cms_users_id = user.id;
+    values.id = id;
+    values.type = type;
+    values.cms_users_id = cms_users_id;
     mutate(values);
   };
-  const [editerValue, setEditerValue] = useState("");
   return (
     <React.Fragment>
       <Button
@@ -63,7 +68,7 @@ const EditerCertificat = (props) => {
         bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >
-        Ajouter un certificat
+        Mettre à jour un certificat
       </Button>
 
       <Drawer
@@ -87,14 +92,6 @@ const EditerCertificat = (props) => {
               <Box display={isLoading ? `none` : `block`}>
                 <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
                   <form noValidate onSubmit={MyForm.submit}>
-                    <Box mb={5}>
-                      <MyField
-                        name="type"
-                        label="nom de certif"
-                        required="walah"
-                      />
-                    </Box>
-
                     <SunEditor
                       ref={editorRef}
                       lang="fr"
@@ -102,6 +99,7 @@ const EditerCertificat = (props) => {
                       height="auto"
                       placeholder="S'il vous plaît écrivez votre structure de certificat ici..."
                       showToolbar={true}
+                      setContents={editerValue}
                       values={editerValue}
                       onChange={handleChange}
                       setOptions={{
@@ -169,4 +167,4 @@ const EditerCertificat = (props) => {
     </React.Fragment>
   );
 };
-export default EditerCertificat;
+export default CertificatUpdate;

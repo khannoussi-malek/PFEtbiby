@@ -7,6 +7,17 @@ export const useAddCertificatType = (config) => {
     config
   );
 };
+export const useUpdateCertificatType = (config) => {
+  return useMutation(
+    ({ type, structure, cms_users_id, id }) =>
+      axios.post("uct", { type, structure, cms_users_id, id }),
+    config
+  );
+};
 export const useGetCertificat = ({ params, ...config } = {}) => {
   return useQuery(["gc", params], () => axios.get("gc", { params }), config);
+};
+
+export const useGetListCertificat = ({ params, ...config } = {}) => {
+  return useQuery(["ltc", params], () => axios.get("ltc", { params }), config);
 };

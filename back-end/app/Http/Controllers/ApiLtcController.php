@@ -5,20 +5,17 @@
 		use DB;
 		use CRUDBooster;
 
-		class ApiRmnotController extends \crocodicstudio\crudbooster\controllers\ApiController {
+		class ApiLtcController extends \crocodicstudio\crudbooster\controllers\ApiController {
 
 		    function __construct() {    
-				$this->table       = "cms_notifications";        
-				$this->permalink   = "rmnot";    
-				$this->method_type = "post";    
+				$this->table       = "certificat_type";        
+				$this->permalink   = "ltc";    
+				$this->method_type = "get";    
 		    }
 		
 
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
-				// dd($postdata);
-				DB::table('cms_notifications')->where('id', $postdata['id'])->delete();
-				$postdata=[];
 
 		    }
 
@@ -29,6 +26,11 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
+				$result = DB::table('certificat_type')
+					->where('cms_users_id',$postdata['id'])
+					->select('*')
+					->paginate(7);
+
 		    }
 
 		}

@@ -11,6 +11,8 @@ import {
   BsFillPeopleFill,
   BsHeartFill,
 } from "react-icons/bs";
+
+import { BiClipboard } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import { TbibyContext } from "./../../../router/context";
 const Menu = () => {
@@ -35,6 +37,7 @@ const Menu = () => {
     pages = [
       { url: "Mes patients", icon: <BsFillPeopleFill /> },
       { url: "Consultation", icon: <BsHeartFill /> },
+      { url: "Modèle de certificat", icon: <BiClipboard /> },
     ];
   } else if (user.fonctionnalite == "secretaire") {
     pages = Patientmenu;

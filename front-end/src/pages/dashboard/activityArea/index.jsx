@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import { Box } from "@chakra-ui/react";
 import Accountmanagement from "./../../gestion de compte/";
 import { PrivateRoute } from "./../../../router/_partials/PrivateRoute";
-import Rappel from "./../../rappel/index";
+import Rappel from "./../../rappel";
 import ListPatents from "./../../Mes patients";
 import CalendarDashboard from "./../../calendar";
 import { TbibyContext } from "./../../../router/context";
-import MonRendezvous from "./../../Mon rendez vous/index";
-import MonMedecin from "./../../Mon medecin/index";
+import MonRendezvous from "./../../Mon rendez vous";
+import MonMedecin from "./../../Mon medecin";
 import Consultation from "../../consultation";
+import CertificatPage from "../../Certificat";
 const ActivityArea = () => {
   const { user } = useContext(TbibyContext);
 
@@ -36,6 +37,12 @@ const ActivityArea = () => {
         <PrivateRoute
           path="/dashboard/consultation"
           component={Consultation}
+          isAuth={user.isAuthenticated}
+          exact
+        />
+        <PrivateRoute
+          path="/dashboard/Modèle de certificat"
+          component={CertificatPage}
           isAuth={user.isAuthenticated}
           exact
         />
