@@ -8,7 +8,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
 } from "@chakra-ui/modal";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css"; // Import Sun Editor's CSS File
 import AddElement from "./AddElement";
@@ -17,12 +17,12 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import { useForm, Formiz } from "@formiz/core";
 import { Box } from "@chakra-ui/layout";
 import { MyField } from "../formInput";
-import { useAddCertificatType } from "./../../services/api/certificat/index";
+import { useUpdateCertificatType } from "./../../services/api/certificat/index";
 import { useToast, Spinner, useColorModeValue as mode } from "@chakra-ui/react";
 const CertificatUpdate = (props) => {
-  const { refetch, data } = props;
+  const { refetch, data, type, id, cms_users_id } = props;
   const toast = useToast();
-  const { mutate, isLoading } = useAddCertificatType({
+  const { mutate, isLoading } = useUpdateCertificatType({
     onError: (error) => {
       // setMessage("Vérifier l'information qui vous inseri ou votre liste");
     },
@@ -42,8 +42,10 @@ const CertificatUpdate = (props) => {
     },
   });
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [editerValue, setEditerValue] = useState("qqqqqqqqqqqqq");
-
+  const [editerValue, setEditerValue] = useState(data);
+  useEffect(() => {
+    setEditerValue(data);
+  }, [data]);
   const btnRef = React.useRef();
   const editorRef = useRef();
   const handleChange = (content) => {
@@ -53,10 +55,11 @@ const CertificatUpdate = (props) => {
   const MyForm = useForm();
   const handleSubmit = (values) => {
     values.structure = editerValue;
-    values.id = data.id;
+    values.id = id;
+    values.type = type;
+    values.cms_users_id = cms_users_id;
     mutate(values);
   };
-
   return (
     <React.Fragment>
       <Button
@@ -65,7 +68,7 @@ const CertificatUpdate = (props) => {
         bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >
-        Ajouter un certificat
+        Mettre à jour un certificat
       </Button>
 
       <Drawer
@@ -96,7 +99,8 @@ const CertificatUpdate = (props) => {
                       height="auto"
                       placeholder="S'il vous plaît écrivez votre structure de certificat ici..."
                       showToolbar={true}
-                      values={data.structure}
+                      setContents={editerValue}
+                      values={editerValue}
                       onChange={handleChange}
                       setOptions={{
                         plugins: [AddElement],

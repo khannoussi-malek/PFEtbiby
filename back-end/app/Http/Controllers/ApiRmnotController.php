@@ -18,6 +18,7 @@
 		        //This method will be execute before run the main process
 				// dd($postdata);
 				DB::table('cms_notifications')->where('id', $postdata['id'])->delete();
+				$postdata=[];
 
 		    }
 

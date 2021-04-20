@@ -51,7 +51,9 @@ const Notification = (props) => {
     },
   });
   const removeElement = (element) => {
-    let array = notification.splice(notification.indexOf(element), 1);
+    let array = [...notification];
+    array.splice(array.indexOf(element), 1);
+    // console.log(array);
     setNotification(array);
   };
   return notification.length ? (

@@ -6,23 +6,7 @@ import { useGetListCertificat } from "./../../services/api/certificat/index";
 import { TablePagination } from "./../../components/table/TablePagination";
 import CertificatUpdate from "./../../components/Certificat/CertificatUpdate";
 
-import {
-  Box,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-  Spinner,
-  useToast,
-  Button,
-  Portal,
-  PopoverFooter,
-  Text,
-  Avatar,
-} from "@chakra-ui/react";
+import { useToast, Center } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
 
 const CertificatPage = () => {
@@ -33,8 +17,6 @@ const CertificatPage = () => {
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
   const toast = useToast();
-  const btnRef = useRef();
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const params = { id: user.id, page };
   const { isLoading, refetch } = useGetListCertificat({
@@ -56,13 +38,22 @@ const CertificatPage = () => {
     },
   });
   const [fntable, setFntable] = useState({
-    fn: (data) => <CertificatUpdate data={data} />,
+    fn: (data) => (
+      <CertificatUpdate
+        data={data.structure}
+        type={data.type}
+        id={data.id}
+        cms_users_id={data.cms_users_id}
+      />
+    ),
   });
   let header = ["Nom"];
 
   return (
     <React.Fragment>
-      <EditerCertificat user={user} />
+      <Center>
+        <EditerCertificat user={user} />
+      </Center>
       <TableContent header={header} content={content} fntable={fntable} />
       <TablePagination
         total={total}

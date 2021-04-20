@@ -5,12 +5,12 @@
 		use DB;
 		use CRUDBooster;
 
-		class ApiLtcController extends \crocodicstudio\crudbooster\controllers\ApiController {
+		class ApiUctController extends \crocodicstudio\crudbooster\controllers\ApiController {
 
 		    function __construct() {    
 				$this->table       = "certificat_type";        
-				$this->permalink   = "ltc";    
-				$this->method_type = "get";    
+				$this->permalink   = "uct";    
+				$this->method_type = "post";    
 		    }
 		
 
@@ -26,10 +26,6 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-				$result = DB::table('certificat_type')
-					->where('cms_users_id',$postdata['id'])
-					->select('*')
-					->paginate(7);
 
 		    }
 

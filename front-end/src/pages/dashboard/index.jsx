@@ -101,7 +101,7 @@ const Dashboard = () => {
   );
 };
 
-const MobileMenuButton = (props: { onClick: () => void, isOpen: boolean }) => {
+const MobileMenuButton = (props) => {
   const { onClick, isOpen } = props;
   return (
     <Box
