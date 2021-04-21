@@ -5,12 +5,12 @@
 		use DB;
 		use CRUDBooster;
 
-		class ApiSousdomController extends \crocodicstudio\crudbooster\controllers\ApiController {
+		class ApiAsdController extends \crocodicstudio\crudbooster\controllers\ApiController {
 
 		    function __construct() {    
 				$this->table       = "sous_domaine";        
-				$this->permalink   = "sousdom";    
-				$this->method_type = "get";    
+				$this->permalink   = "asd";    
+				$this->method_type = "post";    
 		    }
 		
 
@@ -26,10 +26,7 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-				$result= DB::table('sous_domaine')
-				->where('domaine_id',$postdata['domaine_id'])
-				->Select( 'nom as label', 'id AS value')
-				->get();
-		    } 
+
+		    }
 
 		}

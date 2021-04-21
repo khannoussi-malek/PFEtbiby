@@ -14,7 +14,10 @@ export const FieldGroup = (props) => {
       py="4"
       {...flexProps}
     >
-      <Box minW={{ base: "3xs", md: "10px", lg: "xs" }}>
+      <Box
+      // w={{ base: "100%", md: "200px", lg: "200px" }}
+      // minW={{ base: "3xs", md: "10px", lg: "xs" }}
+      >
         {title && (
           <Heading as="h2" fontWeight="semibold" fontSize="lg" flexShrink={0}>
             {title}

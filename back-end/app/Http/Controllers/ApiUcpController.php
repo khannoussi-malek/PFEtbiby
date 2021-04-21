@@ -18,7 +18,6 @@
              
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
-                // dd($postdata);
                 $errer=[];
 				if($postdata['nom']!="null"){
                     $tableupdate['nom']=$postdata['nom'];
@@ -37,8 +36,9 @@
 
                 if(!empty($postdata['telephone'])&&$postdata['telephone']!="null"){
                     
-                    $users = DB::table('cms_users')->select('telephone')->where('id','!=',$postdata['id'])->first();
-                    if($users->telephone!=null){
+                    $users = DB::table('cms_users')->select('telephone')->where('id','!=',$postdata['id'])
+                    ->where('telephone',$postdata['telephone'])->first();
+                    if($users==null){
                     $tableupdate['telephone']=$postdata['telephone'];
                         
                     }
@@ -48,22 +48,25 @@
                     }
 
                 if(!empty($postdata['email'])&&$postdata['email']!="null"){
-                    $users = DB::table('cms_users')->select('email')->where('id','!=',$postdata['id'])->first();
-                    if($users->email!=null){
-                    $tableupdate['email']=$postdata['email'];
-                        
-                    }
-                    else{
-                        $errer['eemail']="email existe deja";
-                    }
+                    $users = DB::table('cms_users')->select('email')->where('id','!=',$postdata['id'])
+                    ->where('email',$postdata['email'])->first();
+                        if($users==null){
+                           $tableupdate['email']=$postdata['email'];
+                        }
+                        else{
+                            $errer['eemail']="email existe deja";
+                        }
                     }
 
                 if($postdata['date_naissance']!="null"){
                     $tableupdate['date_naissance']=$postdata['date_naissance'];
                     }
                 if(!empty($postdata['cin'])&&$postdata['cin']!="null"){
-                    $users = DB::table('cms_users')->select('cin')->where('id','!=',$postdata['id'])->first();
-                    if($users->cin!=null){
+
+                    $users = DB::table('cms_users')->select('cin')
+                    ->where('id','!=',$postdata['id'])
+                    ->where('cin',$postdata['cin'])->first();
+                    if($users!=null){
                     $tableupdate['cin']=$postdata['cin'];
                         
                     }
@@ -143,12 +146,13 @@
                     }
 
                 }
+
                 if($errer==[]){
 
                     if($postdata['photo']!="null"){
                     
                         $users = DB::table('cms_users')->select('photo')->where('id',$postdata['id'])->first();
-                        if($users->phtot!=null){
+                        if($users->photo!=null){
                             unlink(storage_path('app\public\images'.substr($users->photo,15,strlen($users->photo))));
                         }
                         $tableupdate['photo']=Storage::url(Storage::put('public/images', $postdata['photo']));

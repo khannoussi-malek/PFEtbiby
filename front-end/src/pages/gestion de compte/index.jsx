@@ -175,31 +175,6 @@ const Accountmanagement = () => {
                   ]}
                 />
 
-                <MyField
-                  name="telephone"
-                  label="Telephone"
-                  Placeholder={gcInfo.telephone}
-                  // required="Il est requis de compléter le champ correspondant au telephone"
-                  validations={[
-                    {
-                      rule: isNumber(),
-                      message:
-                        "La numéro de téléphone  ne contient que des chiffres",
-                    },
-                    {
-                      rule: isLength(8),
-                      message:
-                        "La numéro de téléphone doit être constituée  de 8 chiffres",
-                    },
-                    {
-                      rule: (val) => !!val || !!values.cin || !!values.email,
-                      message:
-                        "La numéro de téléphone doit être constituée  de 8 chiffres",
-                      deps: [values.cin, values.email],
-                    },
-                  ]}
-                />
-
                 <FormControl>
                   <Center>
                     <RadioGroup onChange={setSexes} value={sexes} name="sexes">
@@ -247,6 +222,30 @@ const Accountmanagement = () => {
                   ]}
                 />
                 <MyField
+                  name="telephone"
+                  label="Telephone"
+                  Placeholder={gcInfo.telephone}
+                  // required="Il est requis de compléter le champ correspondant au telephone"
+                  validations={[
+                    {
+                      rule: isNumber(),
+                      message:
+                        "La numéro de téléphone  ne contient que des chiffres",
+                    },
+                    {
+                      rule: isLength(8),
+                      message:
+                        "La numéro de téléphone doit être constituée  de 8 chiffres",
+                    },
+                    {
+                      rule: (val) => !!val || !!values.cin || !!values.email,
+                      message:
+                        "La numéro de téléphone doit être constituée  de 8 chiffres",
+                      deps: [values.cin, values.email],
+                    },
+                  ]}
+                />
+                <MyField
                   name="email"
                   label="Email"
                   Placeholder={gcInfo.email}
@@ -283,7 +282,7 @@ const Accountmanagement = () => {
             </FieldGroup>
             <Divider />
             <FieldGroup title="Profile Photo">
-              <Stack direction="row" spacing="6" align="center" width="full">
+              <Stack direction="row" spacing="10" align="center" width="full">
                 <Avatar
                   size="xl"
                   name={gcInfo.nom + " " + gcInfo.prenom}
@@ -330,7 +329,7 @@ const Accountmanagement = () => {
               ``
             )}
             {user.fonctionnalite == "medecin" ? (
-              <GestiondeCopmteMedecin gcInfo={gcInfo} />
+              <GestiondeCopmteMedecin valueForm={values} gcInfo={gcInfo} />
             ) : (
               ``
             )}

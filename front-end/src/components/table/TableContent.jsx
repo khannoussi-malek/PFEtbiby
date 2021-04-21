@@ -29,10 +29,13 @@ export const TableContent = (props) => {
           Vous n'avez aucun patient avec ces informations
         </Heading>
         <Text mt="4" fontSize="lg">
-        Si vous n'avez pas ce patient, veuillez l'ajouter en tapant son CIN, son email ou son numéro de téléphone dans le champ "Ajouter un patient".
+          Si vous n'avez pas ce patient, veuillez l'ajouter en tapant son CIN,
+          son email ou son numéro de téléphone dans le champ "Ajouter un
+          patient".
         </Text>
       </Box>
       <Table
+        overflowX="scroll"
         display={content.length == 0 ? `none` : ``}
         my="8"
         borderWidth="1px"

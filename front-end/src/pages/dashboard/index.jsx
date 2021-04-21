@@ -24,9 +24,10 @@ const Dashboard = () => {
   return (
     <Flex
       height="100vh"
+      w="100vw"
       bg={mode("cyan.600", "inherit")}
       overflow="hidden"
-      sx={{ "--sidebar-width": "256px" }}
+      sx={{ "--sidebar-width": "230px" }}
     >
       <Box
         as="nav"
