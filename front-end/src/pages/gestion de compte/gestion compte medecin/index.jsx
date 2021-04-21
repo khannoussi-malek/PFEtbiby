@@ -1,21 +1,29 @@
 import React, { useState } from "react";
 import {
-  FormControl,
   Button,
   useToast,
   useColorModeValue as mode,
   VStack,
+  Flex,
 } from "@chakra-ui/react";
 import { Select2 } from "../../../components/formInput/select";
 import { isNumber, isPattern } from "@formiz/validations";
 import { MyField } from "./../../../components/formInput";
-import { useDomaine } from "./../../../services/api/domaine/index";
+import {
+  useDomaine,
+  useSousDomaine,
+} from "./../../../services/api/domaine/index";
 import { FieldGroup } from "./../../../components/FieldGroup/index";
+import AddDomaine from "./_partials/Domaine";
+import SousDomaine from "./_partials/SousDomaine";
 
 const GestiondeCopmteMedecin = (props) => {
-  const { gcInfo } = props;
+  const { gcInfo, valueForm } = props;
 
   const [domaine, setDomaine] = useState([]);
+  const [sousDomaine, setSousDomaine] = useState([]);
+  const [DomaineSelected, setDomaineSelected] = useState(0);
+
   const toast = useToast();
   const { isLoading, refetch } = useDomaine({
     onError: (error) => {
@@ -31,12 +39,20 @@ const GestiondeCopmteMedecin = (props) => {
       setDomaine(res.data);
     },
   });
-  const { mutate } = useDomaine({
+  const param = { id: valueForm.SelectDomaine };
+  const { isLoading: isLoadingSousD, mutate: mutateSousD } = useSousDomaine({
+    param,
     onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
     },
     onSuccess: (res) => {
-      // console.log(res);
+      setSousDomaine(res.data);
     },
   });
   return (
@@ -70,32 +86,27 @@ const GestiondeCopmteMedecin = (props) => {
             ]}
           />
 
-          <Select2
-            //={"Choisir un domaine."}
-            data={domaine}
-            label="Domaine"
-            name="SelectDomaine"
-            onChange={() => mutate()}
-          />
-          <Select2
-            // required={"Choisir un sous_domaine."}
-            data={[
-              {
-                label: "domaine A1",
-                value: "domaine A1",
-              },
-              {
-                label: "domaine B1",
-                value: "domaine B1",
-              },
-              {
-                label: "domaine C1",
-                value: "domaine C1",
-              },
-            ]}
-            label="Sous Domaine"
-            name="selectSousDomaine"
-          />
+          <Flex w="100%">
+            <Select2
+              data={domaine}
+              label="Domaine"
+              onChange={(event) => {
+                setDomaineSelected(event.value);
+                mutateSousD({ domaine_id: event.value });
+              }}
+              name="SelectDomaine"
+            />
+            <AddDomaine />
+          </Flex>
+          <Flex w="100%">
+            <Select2
+              onChange={() => refetch()}
+              data={sousDomaine}
+              label="Sous Domaine"
+              name="selectSousDomaine"
+            />
+            <SousDomaine mutateSousD={mutateSousD} domaine={DomaineSelected} />
+          </Flex>
         </VStack>
       </FieldGroup>
     </React.Fragment>

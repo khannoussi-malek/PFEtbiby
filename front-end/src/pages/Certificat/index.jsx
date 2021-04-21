@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState } from "react";
 import { TbibyContext } from "./../../router/context/index";
 import EditerCertificat from "./../../components/Certificat/editer";
 import { TableContent } from "./../../components/table/TableContent";
@@ -6,7 +6,7 @@ import { useGetListCertificat } from "./../../services/api/certificat/index";
 import { TablePagination } from "./../../components/table/TablePagination";
 import CertificatUpdate from "./../../components/Certificat/CertificatUpdate";
 
-import { useToast, Center } from "@chakra-ui/react";
+import { useToast, Center, Box } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
 
 const CertificatPage = () => {
@@ -51,17 +51,19 @@ const CertificatPage = () => {
 
   return (
     <React.Fragment>
-      <Center>
-        <EditerCertificat user={user} />
-      </Center>
-      <TableContent header={header} content={content} fntable={fntable} />
-      <TablePagination
-        total={total}
-        next_page_url={next}
-        prev_page_url={prev}
-        page={page}
-        setPage={setPage}
-      />
+      <Box>
+        <Center>
+          <EditerCertificat user={user} />
+        </Center>
+        <TableContent header={header} content={content} fntable={fntable} />
+        <TablePagination
+          total={total}
+          next_page_url={next}
+          prev_page_url={prev}
+          page={page}
+          setPage={setPage}
+        />
+      </Box>
     </React.Fragment>
   );
 };

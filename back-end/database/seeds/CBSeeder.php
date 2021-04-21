@@ -221,7 +221,7 @@ class cms_apicustom extends seeder {
             ]);
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'sousdom',
-                'tabel' => 'sous domaine',
+                'tabel' => 'sous_domaine',
                 'aksi' => 'list',
                 'nama' => 'domaine',
                 'method_type' => 'get',
