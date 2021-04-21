@@ -17,6 +17,7 @@ import { Acte } from "../../../components/Acte";
 import { Examen } from "../../../components/Examen";
 import { Ordonnance } from "./../../../components/Ordonnance/index";
 import { Lettre } from "./../../../components/Lettre/index";
+import { AntecedantsForm } from "./../../../components/Antecedants/AntecedantsForm";
 
 const Form = (props) => {
   const { Patient } = props;
@@ -69,6 +70,9 @@ const Form = (props) => {
             </Button>
             <Button onClick={() => addelement(<Acte />)}>Acte</Button>
             <Button onClick={() => addelement(<Examen />)}>Examen</Button>
+            <Button onClick={() => addelement(<AntecedantsForm />)}>
+              Antecedants
+            </Button>
             <Button onClick={() => addelement(<Ordonnance />)}>
               Ordonnance
             </Button>
