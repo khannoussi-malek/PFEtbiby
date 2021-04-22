@@ -9,6 +9,8 @@ import {
   Divider,
   SimpleGrid,
 } from "@chakra-ui/react";
+import { FormizStep } from "@formiz/core";
+
 import { PrixFix } from "../../../components/formInput/PrixFix";
 import React, { useState } from "react";
 import { Prix } from "./../../../components/formInput/Prix";
@@ -22,7 +24,9 @@ const Form = (props) => {
   const { Patient } = props;
   const [prixTotale, setPrixTotale] = useState(0);
   const MyForm = useForm();
-  const handleSubmit = (values) => {};
+  const handleSubmit = (values) => {
+    console.log(values);
+  };
   const [ComponentsForm, setComponentsForm] = useState([]);
   const addelement = (element) => {
     setComponentsForm([...ComponentsForm, element]);
@@ -55,11 +59,18 @@ const Form = (props) => {
           allowMultiple
         >
           {ComponentsForm.map((element, index) => {
-            return React.cloneElement(element, {
-              id: index,
-              removeComponentsForm: removeComponentsForm,
-              Patient: Patient,
-            });
+            return (
+              <Box key={index}>
+                <FormizStep name={"form" + index}>
+                  {React.cloneElement(element, {
+                    id: index,
+                    removeComponentsForm: removeComponentsForm,
+                    Patient: Patient,
+                    name: "form" + index,
+                  })}
+                </FormizStep>
+              </Box>
+            );
           })}
         </Accordion>
         <Box py={3}>

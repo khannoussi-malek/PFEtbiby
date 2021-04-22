@@ -56,7 +56,7 @@ const Menu = () => {
         pos="fixed"
         w={{ base: "100%", md: "50%" }}
         bottom="24px"
-        left={{ base: "120px", md: "160px" }}
+        left={{ base: "120px", md: "140px" }}
       >
         <Stack bgColor="red.300" rounded={8}>
           <SidebarLink

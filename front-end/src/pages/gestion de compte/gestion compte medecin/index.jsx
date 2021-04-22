@@ -92,6 +92,7 @@ const GestiondeCopmteMedecin = (props) => {
               label="Domaine"
               onChange={(event) => {
                 setDomaineSelected(event.value);
+                setSousDomaine([]);
                 mutateSousD({ domaine_id: event.value });
               }}
               name="SelectDomaine"

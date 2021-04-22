@@ -69,7 +69,7 @@ const SousDomaine = (props) => {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>Create your account</DrawerHeader>
+            <DrawerHeader>Ajoutez votre Sousdomaine</DrawerHeader>
             <DrawerBody>
               <Formiz connect={myForm} onValidSubmit={SubmitAPI}>
                 <form
@@ -80,7 +80,7 @@ const SousDomaine = (props) => {
                 >
                   <MyField
                     name="nom"
-                    label="Domaine"
+                    label="Sous Domaine"
                     required="Il est requis de compléter le champ correspondant au domaine"
                     validations={[
                       {

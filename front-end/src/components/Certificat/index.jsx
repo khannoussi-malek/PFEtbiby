@@ -24,7 +24,7 @@ export const Certificat = (props) => {
   const editorRef = useRef();
   // editorRef.current.editor.setContents(editerValue);
 
-  const { id, removeComponentsForm, Patient } = props;
+  const { id, removeComponentsForm, Patient, name } = props;
   const [title, setTitle] = useState("");
   const [showEditTitle, setShowEditTitle] = useState(true);
   const toast = useToast();
@@ -159,7 +159,6 @@ export const Certificat = (props) => {
       </AccordionButton>
       <AccordionPanel bgColor={mode("gray.50", "gray.700")} pb={4}>
         <EditerCertificat user={user} />
-
         <Input
           placeholder="Écrivez le titre de cet élément"
           display={showEditTitle ? `none` : `inline`}
