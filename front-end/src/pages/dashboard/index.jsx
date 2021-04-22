@@ -72,6 +72,7 @@ const Dashboard = () => {
                 <MobileMenuButton onClick={toggle} isOpen={isOpen} />
                 <NavBreadcrumb path={pathname} />
               </Flex>
+
               <Flex align="center" minH="8">
                 <Button onClick={toggleColorMode}>
                   {colorMode === "light" ? "☀️" : "🌙"}
@@ -95,7 +96,7 @@ const Dashboard = () => {
   );
 };
 
-const MobileMenuButton = (props: { onClick: () => void, isOpen: boolean }) => {
+const MobileMenuButton = (props) => {
   const { onClick, isOpen } = props;
   return (
     <Box

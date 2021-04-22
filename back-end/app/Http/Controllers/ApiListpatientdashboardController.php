@@ -5,7 +5,7 @@
 		use DB;
 		use CRUDBooster;
 
-		class ApiListpatientdashboardController extends \crocodicstudio\crudbooster\controllers\ApiController {
+		class ApiListpatientController extends \crocodicstudio\crudbooster\controllers\ApiController {
 
 		    function __construct() {    
 				$this->table       = "relation";        
