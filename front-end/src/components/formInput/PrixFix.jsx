@@ -24,7 +24,7 @@ export const PrixFix = (props) => {
         type={type || "text"}
         placeholder={Placeholder || label}
         value={value || ""}
-        onChange={(e) => setValue(value)}
+        onChange={(e) => setValue(e.target.value)}
         onBlur={() => setIsTouched(true)}
         aria-invalid={showError}
         aria-required={!!required}

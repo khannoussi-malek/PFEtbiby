@@ -78,7 +78,7 @@ const Task = (props) => {
               mx={3}
               px={2}
               children={
-                <Box color="gray.800">
+                <Box color="gray.800" fontSize="17px">
                   <Alert
                     Header="Supprimer la réservation"
                     Body={`Voulez-vous vraiment supprimer cette réservation avec ${taskvalue.nomprenom}`}
