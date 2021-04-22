@@ -43,6 +43,7 @@ import { ImageFile } from "./../../components/formInput/image";
 import { FieldGroup } from "./../../components/FieldGroup/index";
 import { useGestionDeCompte } from "./../../services/api/gestion de compte/index";
 import { link, userImage } from "./../../services/api/index";
+import { RiContactsBookLine } from "react-icons/ri";
 
 const Accountmanagement = () => {
   const [pictures, setPictures] = useState(null);
@@ -60,6 +61,20 @@ const Accountmanagement = () => {
     },
     onSuccess: (res) => {
       gcRefetch();
+
+      if (res.data != []) {
+        let ch = "";
+        for (const [key, value] of Object.entries(res.data)) {
+          ch = ch + `|  ${value} |  `;
+        }
+        toast({
+          title: "Erreur sous la forme",
+          description: ch,
+          status: "success",
+          duration: `4000`,
+          isClosable: true,
+        });
+      }
     },
   });
 
@@ -99,18 +114,22 @@ const Accountmanagement = () => {
       gcRefetch();
     },
   });
-  const [fonctionnalite, setFonctionnalite] = useState("patient");
   const [sexes, setSexes] = React.useState();
   const handleSubmit = (values) => {
     values.id = user.id;
     values.sexes = sexes;
-    values.id_cms_privileges = fonctionnalite;
+    values.id_cms_privileges = user.fonctionnalite;
     values.photo = pictures;
+    if (!!values.SelectDomaine) {
+      values.SelectDomaine = values.SelectDomaine.value;
+    }
+    if (!!values.selectSousDomaine) {
+      values.selectSousDomaine = values.selectSousDomaine.value;
+    }
     const data = new FormData();
     Object.keys(values).map((value, index) => {
       data.append(value, values[value]);
     });
-
     mutate(data);
   };
 
@@ -306,6 +325,7 @@ const Accountmanagement = () => {
                       colorScheme="red"
                       onClick={() => {
                         RMmutate({ id: user.id });
+                        gcRefetch();
                       }}
                     >
                       Effacer

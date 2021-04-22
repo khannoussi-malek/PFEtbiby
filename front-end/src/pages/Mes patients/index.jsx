@@ -60,7 +60,74 @@ const ListPatents = () => {
     fn: (data) => (
       <Popover>
         <PopoverTrigger>
-          <Button>Info</Button>
+          <Button mx={1}>Info</Button>
+        </PopoverTrigger>
+        <Portal>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverHeader>{data.nom + " " + data.prenom} </PopoverHeader>
+            <PopoverCloseButton />
+            <PopoverBody>
+              {!!data.photo ? (
+                <Avatar
+                  name={data.nom + " " + data.prenom}
+                  src={
+                    data.photo != null
+                      ? `${link}${data.photo}`
+                      : `${link}${userImage}`
+                  }
+                />
+              ) : (
+                ``
+              )}
+
+              {!!data.Adresse ? <Text>Adresse : {data.Adresse} </Text> : ``}
+              {!!data.Code_APCI ? (
+                <Text>Code_APCI : {data.Code_APCI} </Text>
+              ) : (
+                ``
+              )}
+              {!!data.email ? (
+                <Text as="a" href={"mailto:" + data.email}>
+                  <Button
+                    my={1}
+                    colorScheme="blue"
+                    leftIcon={<EmailIcon />}
+                    variant="outline"
+                  >
+                    Email
+                  </Button>
+                </Text>
+              ) : (
+                ``
+              )}
+              {!!data.telephone ? (
+                <Text display="block" as="a" href={"tel:" + data.telephone}>
+                  <Button
+                    my={1}
+                    leftIcon={<MdCall />}
+                    colorScheme="blue"
+                    variant="outline"
+                  >
+                    Appeller
+                  </Button>
+                </Text>
+              ) : (
+                ``
+              )}
+              {!!data.cin ? <Text>cin : {data.cin} </Text> : ``}
+            </PopoverBody>
+            <PopoverFooter>
+              Ce sont des informations personnelles sur votre patient
+            </PopoverFooter>
+          </PopoverContent>
+        </Portal>
+      </Popover>
+    ),
+    fn2: (data) => (
+      <Popover>
+        <PopoverTrigger>
+          <Button mx={1}>Info</Button>
         </PopoverTrigger>
         <Portal>
           <PopoverContent>

@@ -5,6 +5,7 @@ import {
   useColorModeValue as mode,
   VStack,
   Flex,
+  Box,
 } from "@chakra-ui/react";
 import { Select2 } from "../../../components/formInput/select";
 import { isNumber, isPattern } from "@formiz/validations";
@@ -74,14 +75,14 @@ const GestiondeCopmteMedecin = (props) => {
           />
 
           <MyField
-            name="temps_de_séance"
-            label="Temps_de_séance"
-            Placeholder={gcInfo.temps_de_séance}
-            // required="Il est requis de compléter le champ correspondant au temps_de_séance"
+            name="temps_de_seance"
+            label="temps_de_seance"
+            Placeholder={gcInfo.temps_de_seance}
+            // required="Il est requis de compléter le champ correspondant au temps_de_seance"
             validations={[
               {
                 rule: isNumber(),
-                message: "Le temps_de_séance ne contient que des chiffres",
+                message: "Le temps_de_seance ne contient que des chiffres",
               },
             ]}
           />
@@ -96,7 +97,9 @@ const GestiondeCopmteMedecin = (props) => {
               }}
               name="SelectDomaine"
             />
-            <AddDomaine />
+            <Box>
+              <AddDomaine refetch={refetch} />
+            </Box>
           </Flex>
           <Flex w="100%">
             <Select2
@@ -105,7 +108,12 @@ const GestiondeCopmteMedecin = (props) => {
               label="Sous Domaine"
               name="selectSousDomaine"
             />
-            <SousDomaine mutateSousD={mutateSousD} domaine={DomaineSelected} />
+            <Box display={DomaineSelected != 0 ? `` : `none`}>
+              <SousDomaine
+                mutateSousD={mutateSousD}
+                domaine={DomaineSelected}
+              />
+            </Box>
           </Flex>
         </VStack>
       </FieldGroup>

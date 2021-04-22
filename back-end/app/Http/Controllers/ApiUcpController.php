@@ -19,6 +19,7 @@
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
                 $errer=[];
+
 				if($postdata['nom']!="null"){
                     $tableupdate['nom']=$postdata['nom'];
                 }
@@ -66,7 +67,7 @@
                     $users = DB::table('cms_users')->select('cin')
                     ->where('id','!=',$postdata['id'])
                     ->where('cin',$postdata['cin'])->first();
-                    if($users!=null){
+                    if($users==null){
                     $tableupdate['cin']=$postdata['cin'];
                         
                     }
@@ -125,25 +126,34 @@
                         $patient["adresse"]=$postdata['adresse'];
                     
                         }
+                    $postdata["updated_at"]= date('Y-m-d H:i:s');
+
                     
                 }
                 if($postdata['id_cms_privileges']=="medecin"){
                     $medecin=[];
-                    if($postdata['temps_de_séance']!="null"){
+                    if($postdata['temps_de_seance']!="null"){
 
-                        $medecin["temps_de_séance"]=$postdata['temps_de_séance'];
+                        $medecin["temps_de_seance"]=$postdata['temps_de_seance'];
                     
                         }
-                    if($postdata['SelectDomaine']!="null"){
+                        if($postdata['SelectDomaine']!="null"){
 
-                        $medecin["domaine_id"]=$postdata['SelectDomaine'];
-                    
-                    }
+                            $medecin["domaine_id"]=$postdata['SelectDomaine'];
+                        
+                        }
+                        if($postdata['adresse_physique']!="null"){
+
+                            $medecin["adresse_physique"]=$postdata['adresse_physique'];
+                        
+                        }
                     if($postdata['selectSousDomaine']!="null"){
 
                         $medecin["sous_domaine_id"]=$postdata['selectSousDomaine'];
                     
                     }
+                    $medecin["updated_at"]= date('Y-m-d H:i:s');
+
 
                 }
 
@@ -157,6 +167,7 @@
                         }
                         $tableupdate['photo']=Storage::url(Storage::put('public/images', $postdata['photo']));
                     }
+                    $tableupdate["updated_at"]= date('Y-m-d H:i:s');
                     $update=DB::table('cms_users')
                     ->where('id', $postdata['id'])
                     ->update($tableupdate);

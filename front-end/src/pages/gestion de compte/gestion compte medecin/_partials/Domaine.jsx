@@ -37,9 +37,7 @@ const AddDomaine = (props) => {
         duration: `4000`,
         isClosable: true,
       });
-      if (refetch != undefined) {
-        refetch();
-      }
+      refetch();
     },
   });
   const { isOpen, onOpen, onClose } = useDisclosure();
