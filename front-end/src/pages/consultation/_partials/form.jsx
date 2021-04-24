@@ -40,71 +40,76 @@ const Form = (props) => {
   return (
     <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
       <form noValidate onSubmit={MyForm.submit}>
-        <TextareaForm name="Diagnostic" label="Diagnostic" />
-        <Box right={0} w="200px">
-          <Prix name="prix" label="prix consultation" value={0} />
-        </Box>
-        <Divider my={5} />
-        <Box display={ComponentsForm.length > 0 ? `block` : `none`}>
-          Détail
-          <CloseButton
-            onClick={() => setComponentsForm([])}
-            colorScheme="red"
-            bgColor="red.200"
-            float="right"
-            boxShadow="dark-lg"
-          />
-        </Box>
-        <Accordion
-          defaultIndex={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-          allowMultiple
-        >
-          {ComponentsForm.map((element, index) => {
-            return (
-              <Box key={index}>
-                <FormizStep name={"form" + index}>
-                  {React.cloneElement(element, {
-                    id: index,
-                    removeComponentsForm: removeComponentsForm,
-                    Patient: Patient,
-                    name: "form" + index,
-                  })}
-                </FormizStep>
-              </Box>
-            );
-          })}
-        </Accordion>
-        <Box py={3}>
-          <SimpleGrid minChildWidth="100px" spacing="10px">
-            <Button onClick={() => addelement(<Certificat />)}>
-              Certificat
-            </Button>
-            <Button onClick={() => addelement(<Acte />)}>Acte</Button>
-            <Button onClick={() => addelement(<Examen />)}>Examen</Button>
-            <Button onClick={() => addelement(<AntecedantsForm />)}>
-              Antecedants
-            </Button>
-            <Button onClick={() => addelement(<Ordonnance />)}>
-              Ordonnance
-            </Button>
-            <Button onClick={() => addelement(<Lettre />)}>Lettre</Button>
-          </SimpleGrid>
-        </Box>
-        <Divider my={5} />
-        <Box right={0} w="200px">
-          <PrixFix name="prix_totale" label="prix totale" value={prixTotale} />
-        </Box>
-        <FormControl mt={5} align="center">
-          <Button
-            w="40%"
-            type="submit"
-            borderColor="green.500"
-            disabled={!MyForm.isValid}
+        <div className="demo-form__content">
+          <TextareaForm name="Diagnostic" label="Diagnostic" />
+          <Box right={0} w="200px">
+            <Prix name="prix" label="prix consultation" value={0} />
+          </Box>
+          <Divider my={5} />
+          <Box display={ComponentsForm.length > 0 ? `block` : `none`}>
+            Détail
+            <CloseButton
+              onClick={() => setComponentsForm([])}
+              colorScheme="red"
+              bgColor="red.200"
+              float="right"
+              boxShadow="dark-lg"
+            />
+          </Box>
+          <Accordion
+            defaultIndex={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+            allowMultiple
           >
-            Submit
-            {!MyForm.isValid ? `` : `👌`}
-          </Button>
-        </FormControl>
+            {ComponentsForm.map((element, index) => {
+              return React.cloneElement(element, {
+                id: index,
+                removeComponentsForm: removeComponentsForm,
+                Patient: Patient,
+                name: "form" + index,
+              });
+            })}
+            {
+              [..Certificat,...Act,...].sort((a,b)=>a-b).map(({id,type},index)=>{
+                type === "certificat" && <Certificat name={`certificats[${index}]`} age={`certificats`} />
+              })
+            }
+          </Accordion>
+          <Box py={3}>
+            <SimpleGrid minChildWidth="100px" spacing="10px">
+              <Button onClick={() => addelement(<Certificat />)}>
+                Certificat
+              </Button>
+              <Button onClick={() => addelement(<Acte />)}>Acte</Button>
+              <Button onClick={() => addelement(<Examen />)}>Examen</Button>
+              <Button onClick={() => addelement(<AntecedantsForm />)}>
+                Antecedants
+              </Button>
+              <Button onClick={() => addelement(<Ordonnance />)}>
+                Ordonnance
+              </Button>
+              <Button onClick={() => addelement(<Lettre />)}>Lettre</Button>
+            </SimpleGrid>
+          </Box>
+          <Divider my={5} />
+          <Box right={0} w="200px">
+            <PrixFix
+              name="prix_totale"
+              label="prix totale"
+              value={prixTotale}
+            />
+          </Box>
+          <FormControl mt={5} align="center">
+            <Button
+              w="40%"
+              type="submit"
+              borderColor="green.500"
+              disabled={!MyForm.isValid}
+            >
+              Submit
+              {!MyForm.isValid ? `` : `👌`}
+            </Button>
+          </FormControl>
+        </div>
       </form>
     </Formiz>
   );

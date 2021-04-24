@@ -18,6 +18,7 @@ import { TbibyContext } from "./../../router/context/index";
 import { usePatentInfo } from "./../../services/api/patient information/index";
 import { RiPrinterFill } from "react-icons/ri";
 import { IconButton } from "@chakra-ui/button";
+import InputSunEditor from "../formInput/SunEditorInput";
 export const Certificat = (props) => {
   const { user } = useContext(TbibyContext);
   const [editerValue, setEditerValue] = useState("");
@@ -165,39 +166,15 @@ export const Certificat = (props) => {
           onChange={(e) => setTitle(e.target.value)}
         />
         <Box py={2}>
-          <SunEditor
-            ref={editorRef}
-            lang="fr"
-            name="my-editor"
-            height="auto"
-            placeholder="S'il vous plaît écrivez votre structure de certificat ici..."
-            showToolbar={true}
-            values={editerValue}
-            onChange={handleChange}
-            setOptions={{
-              height: 200,
-              buttonList: [
-                ["undo", "redo"],
-                [
-                  "font",
-                  "fontSize",
-                  "formatBlock",
-                  ":p-More Paragraph-default.more_paragraph",
-                ],
-                ["paragraphStyle", "blockquote"],
-                [
-                  "bold",
-                  "underline",
-                  "italic",
-                  "strike",
-                  "subscript",
-                  "superscript",
-                ],
-                ["fontColor", "hiliteColor", "textStyle"],
-                ["align", "horizontalRule", "list", "lineHeight"],
-                ["removeFormat"],
-              ],
-            }}
+          <InputSunEditor
+            name={`${name}.nom`}
+            editorRef={editorRef}
+            Patient={Patient}
+          />
+          <InputSunEditor
+            name={`${name}.prenom`}
+            editorRef={editorRef}
+            Patient={Patient}
           />
         </Box>
 
@@ -210,14 +187,6 @@ export const Certificat = (props) => {
             name="selectvalue"
           />
         </Box>
-        <IconButton
-          onClick={() => print()}
-          variant="outline"
-          colorScheme="teal"
-          aria-label="Send email"
-          icon={<RiPrinterFill />}
-          size="lg"
-        />
       </AccordionPanel>
     </AccordionItem>
   );
