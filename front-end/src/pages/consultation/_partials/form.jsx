@@ -68,7 +68,8 @@ const Form = (props) => {
                 name: "form" + index,
               });
             })}
-            {
+            {3
+            //you need to work with this .
               [..Certificat,...Act,...].sort((a,b)=>a-b).map(({id,type},index)=>{
                 type === "certificat" && <Certificat name={`certificats[${index}]`} age={`certificats`} />
               })
