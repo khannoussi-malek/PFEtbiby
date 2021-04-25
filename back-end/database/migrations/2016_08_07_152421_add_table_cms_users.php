@@ -13,7 +13,7 @@ class AddTableCmsUsers extends Migration
     public function up()
     {
         Schema::create('cms_users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
 
             $table->string('nom')->nullable();
             $table->string('prenom')->nullable();

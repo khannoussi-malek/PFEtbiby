@@ -14,14 +14,13 @@ class Consultation extends Migration
     public function up()
     {
         Schema::create('consultation', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
             $table->integer('patient_id')->unsigned()->nullable();
             $table->foreign('patient_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('medecin_id')->unsigned()->nullable();
             $table->foreign('medecin_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('prix')->nullable();
-            $table->string('prix_totale')->nullable();
-            $table->string('Diagnostic')->nullable();
+            $table->longText('Diagnostic')->nullable();
             $table->timestamps();
         });
     }

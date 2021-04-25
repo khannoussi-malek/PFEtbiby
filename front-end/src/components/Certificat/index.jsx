@@ -18,6 +18,7 @@ import { TbibyContext } from "./../../router/context/index";
 import { usePatentInfo } from "./../../services/api/patient information/index";
 import { RiPrinterFill } from "react-icons/ri";
 import { IconButton } from "@chakra-ui/button";
+import InputSunEditor from "../formInput/SunEditorInput";
 export const Certificat = (props) => {
   const { user } = useContext(TbibyContext);
   const [editerValue, setEditerValue] = useState("");
@@ -141,12 +142,18 @@ export const Certificat = (props) => {
       <AccordionButton>
         <Box flex="1" textAlign="left">
           {title != "" ? title : `Certificat`}
+
           <EditIcon
             mx={5}
             onClick={(event) => {
               event.stopPropagation();
               setShowEditTitle(!showEditTitle);
             }}
+          />
+          <Input
+            placeholder="Écrivez le titre de cet élément"
+            display={showEditTitle ? `none` : `inline`}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </Box>
         <AccordionIcon mx={3} />
@@ -159,65 +166,26 @@ export const Certificat = (props) => {
       </AccordionButton>
       <AccordionPanel bgColor={mode("gray.50", "gray.700")} pb={4}>
         <EditerCertificat user={user} />
-        <Input
-          placeholder="Écrivez le titre de cet élément"
-          display={showEditTitle ? `none` : `inline`}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+
         <Box py={2}>
-          <SunEditor
-            ref={editorRef}
-            lang="fr"
-            name="my-editor"
-            height="auto"
-            placeholder="S'il vous plaît écrivez votre structure de certificat ici..."
-            showToolbar={true}
-            values={editerValue}
-            onChange={handleChange}
-            setOptions={{
-              height: 200,
-              buttonList: [
-                ["undo", "redo"],
-                [
-                  "font",
-                  "fontSize",
-                  "formatBlock",
-                  ":p-More Paragraph-default.more_paragraph",
-                ],
-                ["paragraphStyle", "blockquote"],
-                [
-                  "bold",
-                  "underline",
-                  "italic",
-                  "strike",
-                  "subscript",
-                  "superscript",
-                ],
-                ["fontColor", "hiliteColor", "textStyle"],
-                ["align", "horizontalRule", "list", "lineHeight"],
-                ["removeFormat"],
-              ],
-            }}
+          <InputSunEditor
+            required={
+              "Vous devez écrire un certificat ou simplement le supprimer"
+            }
+            name={name}
+            editorRef={editorRef}
+            Patient={Patient}
           />
         </Box>
 
         <Box py={2}>
           <Select2
-            required={"Sélect le type de certifica."}
             label="Type de certificat"
             data={selectValues}
             onChange={(e) => changeValueOfEditer(e)}
             name="selectvalue"
           />
         </Box>
-        <IconButton
-          onClick={() => print()}
-          variant="outline"
-          colorScheme="teal"
-          aria-label="Send email"
-          icon={<RiPrinterFill />}
-          size="lg"
-        />
       </AccordionPanel>
     </AccordionItem>
   );

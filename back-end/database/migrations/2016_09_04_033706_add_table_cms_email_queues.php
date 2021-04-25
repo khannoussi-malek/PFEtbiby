@@ -13,7 +13,7 @@ class AddTableCmsEmailQueues extends Migration
     public function up()
     {
         Schema::create('cms_email_queues', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
 
             $table->dateTime('send_at')->nullable();
             $table->string('email_recipient')->nullable();

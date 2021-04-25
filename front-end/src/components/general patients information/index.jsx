@@ -13,11 +13,15 @@ import {
   DrawerBody,
   useColorModeValue as mode,
   IconButton,
+  Text,
 } from "@chakra-ui/react";
+import { EmailIcon } from "@chakra-ui/icons";
 import React, { useState } from "react";
 import TextInfo from "./_partials/text";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { CloseIcon } from "@chakra-ui/icons";
+import { link, userImage } from "./../../services/api/index";
+import { MdCall } from "react-icons/md";
 
 const GeneralPatientsInformation = (props) => {
   const [patientInfo, setPatientInfo] = useState({});
@@ -68,8 +72,12 @@ const GeneralPatientsInformation = (props) => {
           <DrawerBody display={isLoading ? `none` : ``}>
             <Avatar
               my={3}
-              size="md"
-              src={patientInfo.photo}
+              size="xl"
+              src={
+                !!patientInfo.photo
+                  ? `${link}${patientInfo.photo}`
+                  : `${link}${userImage}`
+              }
               name={patient.nomprenom}
             />
             <TextInfo data={patientInfo.nom} type="Nom" />
@@ -77,8 +85,41 @@ const GeneralPatientsInformation = (props) => {
             <TextInfo data={patientInfo.cin} type="C.I.N" />
             <TextInfo data={patientInfo.Date_Naissance} type="Date naissance" />
             <TextInfo data={patientInfo.email} type="E-mail" />
+            {!!patientInfo.email ? (
+              <Text as="a" href={"mailto:" + patientInfo.email}>
+                <Button
+                  my={1}
+                  colorScheme="blue"
+                  leftIcon={<EmailIcon />}
+                  variant="outline"
+                >
+                  Email
+                </Button>
+              </Text>
+            ) : (
+              ``
+            )}
             <TextInfo data={patientInfo.sexes} type="Sexes" />
             <TextInfo data={patientInfo.telephone} type="Telephone" />
+
+            {!!patientInfo.telephone ? (
+              <Text
+                display="block"
+                as="a"
+                href={"tel:" + patientInfo.telephone}
+              >
+                <Button
+                  my={1}
+                  leftIcon={<MdCall />}
+                  colorScheme="blue"
+                  variant="outline"
+                >
+                  Appeller
+                </Button>
+              </Text>
+            ) : (
+              ``
+            )}
           </DrawerBody>
         </DrawerContent>
       </Drawer>

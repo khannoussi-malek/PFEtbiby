@@ -14,7 +14,7 @@ class Secretaire extends Migration
     public function up()
     {
         Schema::create('secretaire', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
             $table->integer('medecin_id')->unsigned()->nullable();
             $table->integer('cms_users_id')->unsigned()->nullable();
             $table->foreign('medecin_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');

@@ -36,14 +36,13 @@ export const Ordonnance = (props) => {
           bgColor="red.300"
           float="right"
         />
-      </AccordionButton>
-      <AccordionPanel bgColor="gray.50" pb={4}>
         <Input
           placeholder="Écrivez le titre de cet élément"
           display={showEditTitle ? `none` : `inline`}
           onChange={(e) => setTitle(e.target.value)}
         />
-
+      </AccordionButton>
+      <AccordionPanel bgColor="gray.50" pb={4}>
         <Select2
           required={"Sélect le type de certifica."}
           label="type de certifica"

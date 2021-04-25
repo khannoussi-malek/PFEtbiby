@@ -13,7 +13,7 @@ class AddTableCmsPrivilegesRoles extends Migration
     public function up()
     {
         Schema::create('cms_privileges_roles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
 
             $table->boolean('is_visible')->nullable();
             $table->boolean('is_create')->nullable();

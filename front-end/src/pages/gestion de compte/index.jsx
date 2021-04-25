@@ -61,15 +61,21 @@ const Accountmanagement = () => {
     },
     onSuccess: (res) => {
       gcRefetch();
-
-      if (res.data != []) {
-        let ch = "";
-        for (const [key, value] of Object.entries(res.data)) {
-          ch = ch + `|  ${value} |  `;
-        }
+      let ch = "";
+      for (const [key, value] of Object.entries(res.data)) {
+        ch = ch + `|  ${value} |  `;
+      }
+      if (ch != "") {
         toast({
           title: "Erreur sous la forme",
           description: ch,
+          status: "success",
+          duration: `4000`,
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: "Mise à jour réussie",
           status: "success",
           duration: `4000`,
           isClosable: true,

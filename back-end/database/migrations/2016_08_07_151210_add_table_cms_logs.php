@@ -13,7 +13,7 @@ class AddTableCmsLogs extends Migration
     public function up()
     {
         Schema::create('cms_logs', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
 
             $table->string('ipaddress', 50)->nullable();
             $table->string('useragent')->nullable();

@@ -14,7 +14,7 @@ class Lettre extends Migration
     public function up()
     {
         Schema::create('lettre', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
             $table->integer('medecin_destiantaire_id')->unsigned()->nullable();
             $table->foreign('medecin_destiantaire_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('medecin_distinateur_id')->unsigned()->nullable();

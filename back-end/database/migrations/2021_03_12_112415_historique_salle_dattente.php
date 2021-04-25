@@ -14,7 +14,7 @@ class HistoriqueSalleDattente extends Migration
     public function up()
     {
         Schema::create('historique_salle_dattente', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
             $table->integer('patient_id')->unsigned()->nullable();
             $table->foreign('patient_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('medecin_id')->unsigned()->nullable();

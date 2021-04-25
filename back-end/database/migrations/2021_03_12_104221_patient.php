@@ -14,7 +14,7 @@ class Patient extends Migration
     public function up()
     {
         Schema::create('patient', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
             $table->integer('cms_users_id')->unsigned()->nullable();
             $table->foreign('cms_users_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('Adresse')->nullable();
