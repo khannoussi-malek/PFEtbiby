@@ -13,7 +13,7 @@ class AddTableCmsSettings extends Migration
     public function up()
     {
         Schema::create('cms_settings', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
 
             $table->string('name')->nullable();
             $table->text('content')->nullable();

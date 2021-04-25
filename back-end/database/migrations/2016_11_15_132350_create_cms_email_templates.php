@@ -13,7 +13,7 @@ class CreateCmsEmailTemplates extends Migration
     public function up()
     {
         Schema::create('cms_email_templates', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->string('subject')->nullable();

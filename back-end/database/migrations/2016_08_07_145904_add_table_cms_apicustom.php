@@ -13,7 +13,7 @@ class AddTableCmsApicustom extends Migration
     public function up()
     {
         Schema::create('cms_apicustom', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
 
             $table->string('permalink')->nullable();
             $table->string('tabel')->nullable();

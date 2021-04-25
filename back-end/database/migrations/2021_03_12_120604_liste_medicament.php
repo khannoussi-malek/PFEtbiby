@@ -14,7 +14,7 @@ class ListeMedicament extends Migration
     public function up()
     {
         Schema::create('liste_medicament', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
             // $table->integer('consultation_id')->unsigned()->nullable();
             // $table->foreign('consultation_id')->references('id')->on('consultation')->onDelete('cascade')->onUpdate('cascade');
             // $table->integer('medecin_id')->unsigned()->nullable();

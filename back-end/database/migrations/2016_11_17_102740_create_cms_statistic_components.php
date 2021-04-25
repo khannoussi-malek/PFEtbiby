@@ -13,7 +13,7 @@ class CreateCmsStatisticComponents extends Migration
     public function up()
     {
         Schema::create('cms_statistic_components', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
             $table->integer('id_cms_statistics')->nullable();
             $table->string('componentID')->nullable();
             $table->string('component_name')->nullable();

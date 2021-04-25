@@ -13,7 +13,7 @@ class AddTableCmsNotifications extends Migration
     public function up()
     {
         Schema::create('cms_notifications', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
 
             $table->integer('id_cms_users')->nullable();
             $table->string('content')->nullable();

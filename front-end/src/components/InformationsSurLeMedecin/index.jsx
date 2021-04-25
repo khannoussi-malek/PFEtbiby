@@ -1,9 +1,10 @@
 import { useMedecinInfo } from "./../../services/api/Medecin information/index";
-import { useToast, Text, Button } from "@chakra-ui/react";
+import { useToast, Text, Button, Avatar } from "@chakra-ui/react";
 import { useState } from "react";
 import { MdCall } from "react-icons/md";
 import React from "react";
 import { EmailIcon } from "@chakra-ui/icons";
+import { link, userImage } from "../../services/api";
 const InformationsSurLeMedecin = (props) => {
   const { medecin } = props;
   const [medecinInfo, setMedecinInfo] = useState([]);
@@ -28,6 +29,14 @@ const InformationsSurLeMedecin = (props) => {
   return (
     <React.Fragment>
       <Text>{medecinInfo.nom}</Text>
+      <Avatar
+        size="xl"
+        src={
+          medecinInfo.photo != null
+            ? `${link}${medecinInfo.photo}`
+            : `${link}${userImage}`
+        }
+      />
       <Text display="block" as="a" href={"tel:" + medecinInfo.telephone}>
         <Button
           my={1}
@@ -50,7 +59,6 @@ const InformationsSurLeMedecin = (props) => {
         </Button>
       </Text>
       <Text>{medecinInfo.sexes}</Text>
-      <Text>{medecinInfo.photo}</Text>
     </React.Fragment>
   );
 };

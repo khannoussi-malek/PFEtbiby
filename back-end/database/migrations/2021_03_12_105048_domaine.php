@@ -14,7 +14,7 @@ class Domaine extends Migration
     public function up()
     {
         Schema::create('domaine', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
             $table->string('nom')->nullable();
             $table->timestamps();
         });  

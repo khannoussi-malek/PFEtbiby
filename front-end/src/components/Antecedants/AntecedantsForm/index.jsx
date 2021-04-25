@@ -1,7 +1,6 @@
 import { CloseButton } from "@chakra-ui/close-button";
-import { Box, Divider } from "@chakra-ui/layout";
+import { Box } from "@chakra-ui/layout";
 import { useState } from "react";
-import { Select2 } from "./../../formInput/select";
 import { TextareaForm } from "./../../formInput/Textarea";
 import {
   AccordionButton,
@@ -11,8 +10,9 @@ import {
 } from "@chakra-ui/accordion";
 import { Input, useColorModeValue as mode } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
+import { MyField } from "../../formInput";
 export const AntecedantsForm = (props) => {
-  const { id, removeComponentsForm } = props;
+  const { id, removeComponentsForm, name } = props;
   const [title, setTitle] = useState("");
   const [showEditTitle, setShowEditTitle] = useState(true);
 
@@ -20,13 +20,18 @@ export const AntecedantsForm = (props) => {
     <AccordionItem boxShadow="lg">
       <AccordionButton>
         <Box flex="1" textAlign="left">
-          {title != "" ? title : `Acte`}
+          {title != "" ? title : `AntecedantsForms`}
           <EditIcon
             mx={5}
             onClick={(event) => {
               event.stopPropagation();
               setShowEditTitle(!showEditTitle);
             }}
+          />
+          <Input
+            placeholder="Écrivez le titre de cet élément"
+            display={showEditTitle ? `none` : `inline`}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </Box>
         <AccordionIcon mx={3} />
@@ -38,12 +43,11 @@ export const AntecedantsForm = (props) => {
         />
       </AccordionButton>
       <AccordionPanel bgColor={mode("gray.50", "gray.700")} pb={4}>
-        <Input
-          placeholder="Écrivez le titre de cet élément"
-          display={showEditTitle ? `none` : `inline`}
-          onChange={(e) => setTitle(e.target.value)}
+        <MyField name={`${name}.type`} label="type de antecedant" />
+        <TextareaForm
+          name={`${name}.description`}
+          label="description de antecedant"
         />
-        <TextareaForm name="certificat" label="contune de certificat" />
       </AccordionPanel>
     </AccordionItem>
   );

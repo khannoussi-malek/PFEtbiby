@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
 import axios from "./../";
 
 export const useConsultationPatient = ({ params, ...config } = {}) => {
@@ -14,4 +14,8 @@ export const useListOfThePatientInConsultation = ({
     () => axios.get("pdcm", { params }),
     config
   );
+};
+
+export const useCreateConsultation = (props, config) => {
+  return useMutation((props) => axios.post("consultation", props), config);
 };

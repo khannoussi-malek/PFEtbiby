@@ -14,7 +14,7 @@ class SousDomaine extends Migration
     public function up()
     {
         Schema::create('sous_domaine', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
             $table->integer('domaine_id')->unsigned()->nullable();
             $table->foreign('domaine_id')->references('id')->on('domaine')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nom')->nullable();

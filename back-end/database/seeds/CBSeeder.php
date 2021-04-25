@@ -301,6 +301,33 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:4:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:4:"type";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:2;a:5:{s:4:"name";s:9:"structure";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:3;a:5:{s:4:"name";s:12:"cms_users_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:0:{}',
             ]);
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'ad',
+                'tabel' => 'domaine',
+                'aksi' => 'save_add',
+                'nama' => 'add domine',
+                'method_type' => 'post',
+                'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:3:"nom";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
+                'responses' => 'a:0:{}',
+            ]);
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'asd',
+                'tabel' => 'sous_domaine',
+                'aksi' => 'save_add',
+                'nama' => 'add sous domaine',
+                'method_type' => 'post',
+                'parameters' => 'a:2:{i:0;a:5:{s:4:"name";s:10:"domaine_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:3:"nom";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
+                'responses' => 'a:0:{}',
+            ]);
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'consultation',
+                'tabel' => 'consultation',
+                'aksi' => 'list',
+                'nama' => 'add consultation',
+                'method_type' => 'post',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
             
         }
         

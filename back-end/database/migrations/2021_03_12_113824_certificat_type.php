@@ -14,7 +14,7 @@ class CertificatType extends Migration
     public function up()
     {
         Schema::create('Certificat_type', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
             $table->string('type')->nullable();
             $table->longText('structure')->nullable();
             $table->integer('cms_users_id')->unsigned()->nullable();

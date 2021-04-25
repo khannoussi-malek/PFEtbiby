@@ -118,10 +118,7 @@ const InputSunEditor = (props) => {
   };
   return (
     <FormControl>
-      <FormLabel htmlFor={id}>
-        {label}
-        {!!required && " *"}
-      </FormLabel>
+      <FormLabel htmlFor={id}>{label}</FormLabel>
       <SunEditor
         ref={editorRef}
         id={id}
@@ -130,7 +127,6 @@ const InputSunEditor = (props) => {
           "S'il vous plaît écrivez votre structure de certificat ici..."
         }
         value={value || dtValue || ""}
-        // onChange={(e) => setValue(e.target.value)}
         onBlur={() => setIsTouched(true)}
         aria-invalid={showError}
         aria-required={!!required}
@@ -166,7 +162,13 @@ const InputSunEditor = (props) => {
           ],
         }}
       />
+      {showError && (
+        <Text id={`${id}-error`} color="tomato">
+          {errorMessage}
+        </Text>
+      )}
       <IconButton
+        m={2}
         onClick={() => print()}
         variant="outline"
         colorScheme="teal"
@@ -174,12 +176,6 @@ const InputSunEditor = (props) => {
         icon={<RiPrinterFill />}
         size="lg"
       />
-
-      {showError && (
-        <Text id={`${id}-error`} color="tomato">
-          {errorMessage}
-        </Text>
-      )}
 
       {note && <FormHelperText id={`${id}-note`}>{note}</FormHelperText>}
     </FormControl>

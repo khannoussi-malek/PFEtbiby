@@ -14,7 +14,7 @@ class DomSousDom extends Migration
     public function up()
     {
         Schema::create('dom_sous_dom', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
             $table->string('domaine')->nullable();
             $table->string('sous_domaine_')->nullable();
             $table->timestamps();

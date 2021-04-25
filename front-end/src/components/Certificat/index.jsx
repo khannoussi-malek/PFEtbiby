@@ -142,12 +142,18 @@ export const Certificat = (props) => {
       <AccordionButton>
         <Box flex="1" textAlign="left">
           {title != "" ? title : `Certificat`}
+
           <EditIcon
             mx={5}
             onClick={(event) => {
               event.stopPropagation();
               setShowEditTitle(!showEditTitle);
             }}
+          />
+          <Input
+            placeholder="Écrivez le titre de cet élément"
+            display={showEditTitle ? `none` : `inline`}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </Box>
         <AccordionIcon mx={3} />
@@ -160,19 +166,13 @@ export const Certificat = (props) => {
       </AccordionButton>
       <AccordionPanel bgColor={mode("gray.50", "gray.700")} pb={4}>
         <EditerCertificat user={user} />
-        <Input
-          placeholder="Écrivez le titre de cet élément"
-          display={showEditTitle ? `none` : `inline`}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+
         <Box py={2}>
           <InputSunEditor
-            name={`${name}.nom`}
-            editorRef={editorRef}
-            Patient={Patient}
-          />
-          <InputSunEditor
-            name={`${name}.prenom`}
+            required={
+              "Vous devez écrire un certificat ou simplement le supprimer"
+            }
+            name={name}
             editorRef={editorRef}
             Patient={Patient}
           />
@@ -180,7 +180,6 @@ export const Certificat = (props) => {
 
         <Box py={2}>
           <Select2
-            required={"Sélect le type de certifica."}
             label="Type de certificat"
             data={selectValues}
             onChange={(e) => changeValueOfEditer(e)}
