@@ -25,7 +25,7 @@ const Menu = () => {
 
   let pages = [];
   let Patientmenu = [
-    { url: "Mes rendez-vous", icon: <BsFillCalendarFill /> },
+    { url: "Mon rendez vous", icon: <BsFillCalendarFill /> },
     { url: "Mes médecins", icon: <BsFillPersonLinesFill /> },
     { url: "Mes Rappels", icon: <BsAlarm /> },
     { url: "Reserver rendez-vous", icon: <BsBookmarks /> },

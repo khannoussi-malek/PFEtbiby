@@ -13,9 +13,8 @@ const MonRendezvous = () => {
   const [next, setNext] = useState("");
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
-  const [content, setContent] = useState([[""], [""]]);
+  const [content, setContent] = useState([[""], [""], [""]]);
   const params = { patient_id: user.id, page };
-  console.log(params);
   const { isLoading, refetch } = useConsultationPatient({
     params,
     onError: (error) => {
@@ -32,6 +31,8 @@ const MonRendezvous = () => {
       setNext(res.data.next_page_url);
       setPrev(res.data.prev_page_url);
       setContent(res.data.data);
+      console.log(res);
+      console.log("res");
     },
   });
   let header = ["Nom", "Prenom", "Date reservation"];

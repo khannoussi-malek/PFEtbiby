@@ -21,7 +21,7 @@
 				$ch="Vous avez un rendez-vous avec le Dr ".$medecin_id->nomprenom;
 				$config['id_cms_users'] = [$postdata['patient_id']];
 				$config['content'] = $ch;
-				$config['to'] = "/dashboard/Mes%20rendez-vous";
+				$config['to'] = "/dashboard/Mon%20rendez%20vous";
 				CRUDBooster::sendNotification($config);
 		    }
 

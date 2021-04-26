@@ -19,7 +19,8 @@ const ActivityArea = () => {
         flex="1"
         borderWidth="2px"
         rounded="xl"
-        // px={{ base: 0, md: 1 }}
+        // overflowX="scroll"
+        px={{ base: 0, md: 1 }}
         py={{ base: 2, md: 1 }}
       >
         <PrivateRoute
@@ -28,12 +29,7 @@ const ActivityArea = () => {
           isAuth={user.isAuthenticated}
           exact
         />
-        <PrivateRoute
-          path="/dashboard/Mon médecin"
-          component={MonMedecin}
-          isAuth={user.isAuthenticated}
-          exact
-        />
+
         <PrivateRoute
           path="/dashboard/consultation"
           component={Consultation}
@@ -67,6 +63,12 @@ const ActivityArea = () => {
         <PrivateRoute
           path="/dashboard/Mes patients"
           component={ListPatients}
+          isAuth={user.isAuthenticated}
+          exact
+        />
+        <PrivateRoute
+          path="/dashboard/Mes médecins"
+          component={MonMedecin}
           isAuth={user.isAuthenticated}
           exact
         />
