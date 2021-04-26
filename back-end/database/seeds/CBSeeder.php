@@ -328,6 +328,7 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:0:{}',
                 'responses' => 'a:0:{}',
             ]);
+            DB::table('cms_apicustom')->insert([
             
                 'permalink' => 'hc',
                 'tabel' => 'consultation',
