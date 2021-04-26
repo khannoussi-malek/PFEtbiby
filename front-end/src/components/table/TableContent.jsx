@@ -65,7 +65,7 @@ export const TableContent = (props) => {
                 )}
               <Td textAlign="right">
                 {!!fntable ? fntable.fn(row) : ``}
-                {!!fntable.fn2 ? fntable.fn(row) : ``}
+                {!!fntable.fn2 ? fntable.fn2(row) : ``}
               </Td>
             </Tr>
           ))}
