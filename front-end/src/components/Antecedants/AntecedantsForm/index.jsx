@@ -43,7 +43,7 @@ export const AntecedantsForm = (props) => {
           display={showEditTitle ? `none` : `inline`}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <TextareaForm name="certificat" label="contune de certificat" />
+        <TextareaForm name="certificat" label="contenu de certificat" />
       </AccordionPanel>
     </AccordionItem>
   );

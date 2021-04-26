@@ -301,7 +301,15 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:4:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:4:"type";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:2;a:5:{s:4:"name";s:9:"structure";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:3;a:5:{s:4:"name";s:12:"cms_users_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:0:{}',
             ]);
-            
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'hc',
+                'tabel' => 'consultation',
+                'aksi' => 'list',
+                'nama' => 'historique consultaion',
+                'method_type' => 'post',
+                'parameters' => 'a:2:{i:0;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}i:1;a:5:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
+                'responses' => 'a:4:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:10:"Diagnostic";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
+            ]);
         }
         
     }
@@ -509,6 +517,7 @@ class Cms_settingsSeeder extends Seeder
                 'dataenum' => null,
                 'helper' => null,
             ],
+            
         ];
 
         foreach ($data as $row) {

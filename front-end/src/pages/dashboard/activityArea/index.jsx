@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 import Accountmanagement from "./../../gestion de compte/";
 import { PrivateRoute } from "./../../../router/_partials/PrivateRoute";
 import Rappel from "./../../rappel";
-import ListPatents from "./../../Mes patients";
+import ListPatients from "./../../Mes patients";
 import CalendarDashboard from "./../../calendar";
 import { TbibyContext } from "./../../../router/context";
 import MonRendezvous from "./../../Mon rendez vous";
@@ -66,7 +66,7 @@ const ActivityArea = () => {
         />
         <PrivateRoute
           path="/dashboard/Mes patients"
-          component={ListPatents}
+          component={ListPatients}
           isAuth={user.isAuthenticated}
           exact
         />

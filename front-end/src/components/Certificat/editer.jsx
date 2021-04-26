@@ -91,7 +91,7 @@ const EditerCertificat = (props) => {
                       <MyField
                         name="type"
                         label="nom de certif"
-                        required="walah"
+                        required="vous devez saisir le nom de la certification"
                       />
                     </Box>
 
