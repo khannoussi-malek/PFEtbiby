@@ -35,11 +35,10 @@ export const TableContent = (props) => {
         </Text>
       </Box>
       <Table
-        overflowX="scroll"
         display={content.length == 0 ? `none` : ``}
         my="8"
         borderWidth="1px"
-        fontSize="sm"
+        fontSize="xs"
       >
         <Thead bg={mode("gray.50", "gray.800")}>
           <Tr>
@@ -65,7 +64,7 @@ export const TableContent = (props) => {
                 )}
               <Td textAlign="right">
                 {!!fntable ? fntable.fn(row) : ``}
-                {!!fntable.fn2 ? fntable.fn2(row) : ``}
+                {!!fntable ? !!fntable.fn2 && fntable.fn2(row) : ``}
               </Td>
             </Tr>
           ))}

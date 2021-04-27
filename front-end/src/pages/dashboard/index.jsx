@@ -89,7 +89,7 @@ const Dashboard = () => {
               direction="column"
               flex="1"
               overflow="auto"
-              px={{ base: 2, md: 6, lg: 8 }}
+              px={{ base: 1, md: 6, lg: 8 }}
             >
               <ScrollArea>
                 <ActivityArea />
