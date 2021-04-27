@@ -1,14 +1,13 @@
 import React, { useState, useContext } from "react";
-import { Box, useToast, Spinner, Button } from "@chakra-ui/react";
+import { Box, useToast, Spinner, Heading, Text, Link } from "@chakra-ui/react";
 import { useConsultationPatient } from "./../../services/api/consultation/index";
 import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
 import { TbibyContext } from "./../../router/context/index";
 import { useDeleteReservation } from "./../../services/api/reservation/index";
-import Alert from "./../../components/calendar/taks/alert";
 import G_Alert from "../../components/general alert";
 import { CloseIcon } from "@chakra-ui/icons";
-
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 const MonRendezvous = () => {
   const { user, cleanUser } = useContext(TbibyContext);
 
@@ -48,15 +47,23 @@ const MonRendezvous = () => {
       refetch();
     },
   });
+  const message = () => {
+    return (
+      <>
+        <Heading as="h2" size="lg" fontWeight="extrabold" letterSpacing="tight">
+          Vous n'avez aucun rendez vous
+        </Heading>
+        <Text mt="4" fontSize="lg">
+          si vous voulez réserver une rendez-vous voir
+        </Text>
+        <Link>
+          Reserver rendez-vous <ExternalLinkIcon mx="2px" />
+        </Link>
+      </>
+    );
+  };
   const [fntable, setFntable] = useState({
     fn: (data) => (
-      // <Button
-      //   onClick={() => {
-      //     console.log(data.id);
-      //   }}
-      // >
-      //   hi
-      // </Button>
       <G_Alert
         Header="Supprimer la réservation"
         Body={`Voulez-vous vraiment supprimer cette réservation avec ${data.nom} ${data.prenom}`}
@@ -91,7 +98,12 @@ const MonRendezvous = () => {
           px={{ base: "1", md: "8" }}
         >
           <Box>
-            <TableContent header={header} content={content} fntable={fntable} />
+            <TableContent
+              header={header}
+              content={content}
+              fntable={fntable}
+              message={message}
+            />
             <TablePagination
               total={total}
               next_page_url={next}

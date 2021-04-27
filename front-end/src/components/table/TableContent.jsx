@@ -1,5 +1,4 @@
 import {
-  Button,
   Table,
   Tbody,
   Td,
@@ -14,7 +13,7 @@ import {
 import * as React from "react";
 
 export const TableContent = (props) => {
-  const { header, content, fntable } = props;
+  const { header, content, fntable, message } = props;
   return (
     <React.Fragment>
       <Box
@@ -25,14 +24,25 @@ export const TableContent = (props) => {
         py={{ base: "16", sm: "20" }}
         textAlign="center"
       >
-        <Heading as="h2" size="lg" fontWeight="extrabold" letterSpacing="tight">
-          Vous n'avez aucun patient avec ces informations
-        </Heading>
-        <Text mt="4" fontSize="lg">
-          Si vous n'avez pas ce patient, veuillez l'ajouter en tapant son CIN,
-          son email ou son numéro de téléphone dans le champ "Ajouter un
-          patient".
-        </Text>
+        {!!message ? (
+          message()
+        ) : (
+          <>
+            <Heading
+              as="h2"
+              size="lg"
+              fontWeight="extrabold"
+              letterSpacing="tight"
+            >
+              Vous n'avez aucun patient avec ces informations
+            </Heading>
+            <Text mt="4" fontSize="lg">
+              Si vous n'avez pas ce patient, veuillez l'ajouter en tapant son
+              CIN, son email ou son numéro de téléphone dans le champ "Ajouter
+              un patient".
+            </Text>
+          </>
+        )}
       </Box>
       <Table
         display={content.length == 0 ? `none` : ``}

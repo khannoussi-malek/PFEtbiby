@@ -15,7 +15,10 @@ import {
   Avatar,
   Text,
   PopoverFooter,
+  Heading,
+  Link as LinkChakra,
 } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { TableContent } from "../../components/table/TableContent";
 import { TablePagination } from "../../components/table/TablePagination";
 import { TbibyContext } from "../../router/context/index";
@@ -26,7 +29,6 @@ import { link, userImage } from "./../../services/api/index";
 
 const MonMedecin = () => {
   const { user } = useContext(TbibyContext);
-
   const toast = useToast();
   const [total, setTotal] = useState(0);
   const [next, setNext] = useState("");
@@ -119,6 +121,21 @@ const MonMedecin = () => {
       </Popover>
     ),
   });
+  const message = () => {
+    return (
+      <>
+        <Heading as="h2" size="lg" fontWeight="extrabold" letterSpacing="tight">
+          Vous n'avez aucun relation avec aucun médecin
+        </Heading>
+        <Text mt="4" fontSize="lg">
+          si vous voulez réserver une relation avec médecin voir
+        </Text>
+        <LinkChakra>
+          Reserver rendez-vous <ExternalLinkIcon mx="2px" />
+        </LinkChakra>
+      </>
+    );
+  };
   let header = ["Nom", "Prenom"];
   return (
     <React.Fragment>
@@ -140,7 +157,12 @@ const MonMedecin = () => {
           px={{ base: "1", md: "8" }}
         >
           <Box>
-            <TableContent header={header} content={content} fntable={fntable} />
+            <TableContent
+              header={header}
+              content={content}
+              fntable={fntable}
+              message={message}
+            />
             <TablePagination
               total={total}
               next_page_url={next}
