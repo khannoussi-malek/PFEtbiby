@@ -100,7 +100,7 @@ const CalendarDashboardPatient = () => {
           )}
 
           <Button mx={2} onClick={() => setDate(new Date())}>
-            Ajourdhui
+            Aujourd'hui
           </Button>
           {!isMobile ? (
             <Button mx={2} onClick={() => setDaysView(7)}>

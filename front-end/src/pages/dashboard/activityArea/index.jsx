@@ -6,10 +6,10 @@ import Rappel from "./../../rappel";
 import ListPatients from "./../../Mes patients";
 import CalendarDashboard from "./../../calendar";
 import { TbibyContext } from "./../../../router/context";
-import MonRendezvous from "./../../Mon rendez vous";
 import MonMedecin from "./../../Mon medecin";
 import Consultation from "../../consultation";
 import CertificatPage from "../../Certificat";
+import MonRendezvous from "./../../Mon rendez vous/index";
 const ActivityArea = () => {
   const { user } = useContext(TbibyContext);
 
@@ -49,7 +49,7 @@ const ActivityArea = () => {
           exact
         />
         <PrivateRoute
-          path="/dashboard/Mon rendez vous"
+          path="/dashboard/Mes rendez vous"
           component={MonRendezvous}
           isAuth={user.isAuthenticated}
           exact
