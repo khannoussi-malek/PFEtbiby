@@ -131,7 +131,7 @@ const MonMedecin = () => {
           si vous voulez réserver une relation avec médecin voir
         </Text>
         <LinkChakra>
-          Reserver rendez-vous <ExternalLinkIcon mx="2px" />
+          Reserver un rendez-vous <ExternalLinkIcon mx="2px" />
         </LinkChakra>
       </>
     );

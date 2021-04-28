@@ -54,10 +54,10 @@ const MonRendezvous = () => {
           Vous n'avez aucun rendez vous
         </Heading>
         <Text mt="4" fontSize="lg">
-          si vous voulez réserver une rendez-vous voir
+          si vous voulez réserver un rendez-vous , consulter le lien suivant :
         </Text>
         <Link>
-          Reserver rendez-vous <ExternalLinkIcon mx="2px" />
+          Reserver un rendez-vous <ExternalLinkIcon mx="2px" />
         </Link>
       </>
     );

@@ -18,10 +18,10 @@
 		        //This method will be execute before run the main process
 				$medecin_id= DB::table('cms_users')->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'))
 				->where('id',$postdata['medecin_id'])->first();
-				$ch="Vous avez un rendez-vous avec le Dr ".$medecin_id->nomprenom;
+				$ch="Vous avez un rendez-vous avec ".$medecin_id->nomprenom;
 				$config['id_cms_users'] = [$postdata['patient_id']];
 				$config['content'] = $ch;
-				$config['to'] = "/dashboard/Mon%20rendez%20vous";
+				$config['to'] = "/dashboard/Mes%20rendez%20vous";
 				CRUDBooster::sendNotification($config);
 		    }
 

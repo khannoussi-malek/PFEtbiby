@@ -25,11 +25,11 @@ const Menu = () => {
 
   let pages = [];
   let Patientmenu = [
-    { url: "Mon rendez vous", icon: <BsFillCalendarFill /> },
+    { url: "Mes rendez vous", icon: <BsFillCalendarFill /> },
     { url: "Mes médecins", icon: <BsFillPersonLinesFill /> },
     { url: "Mes Rappels", icon: <BsAlarm /> },
-    { url: "Reserver rendez-vous", icon: <BsBookmarks /> },
-    { url: "Chercher médecin", icon: <BsSearch /> },
+    { url: "Reserver un rendez-vous", icon: <BsBookmarks /> },
+    { url: "Trouver un médecin", icon: <BsSearch /> },
   ];
   if (user.fonctionnalite == "patient") {
     pages = Patientmenu;
