@@ -27,17 +27,6 @@ import { EmailIcon } from "@chakra-ui/icons";
 import { MdCall } from "react-icons/md";
 import { link, userImage } from "./../../services/api/index";
 import { useDisclosure } from "@chakra-ui/hooks";
-
-import {useColorModeValue as mode } from "@chakra-ui/react";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-} from "@chakra-ui/modal";
 import HistoriquePatient from "../../components/historique patient";
 const ListPatients = () => {
   const { user, cleanUser } = useContext(TbibyContext);
@@ -139,10 +128,7 @@ const ListPatients = () => {
         </Portal>
       </Popover>
     ),
-    fn2: (data) => (
-      <HistoriquePatient patient={data}/>
-
-    ),
+    fn2: (data) => <HistoriquePatient patient={data} />,
   });
   let header = ["Nom", "Prenom"];
   return (

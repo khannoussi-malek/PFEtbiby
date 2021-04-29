@@ -20,6 +20,7 @@ import {
   Box,
   SimpleGrid,
   useColorModeValue as mode,
+  DrawerFooter,
 } from "@chakra-ui/react";
 
 import { CloseIcon } from "@chakra-ui/icons";
@@ -151,6 +152,11 @@ const Antecedants = (props) => {
               </Box>
             ))}
           </DrawerBody>
+          <DrawerFooter>
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Annuler
+            </Button>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </React.Fragment>

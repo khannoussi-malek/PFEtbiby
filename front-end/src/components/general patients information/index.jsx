@@ -14,6 +14,7 @@ import {
   useColorModeValue as mode,
   IconButton,
   Text,
+  DrawerFooter,
 } from "@chakra-ui/react";
 import { EmailIcon } from "@chakra-ui/icons";
 import React, { useState } from "react";
@@ -121,6 +122,11 @@ const GeneralPatientsInformation = (props) => {
               ``
             )}
           </DrawerBody>
+          <DrawerFooter>
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Annuler
+            </Button>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </React.Fragment>

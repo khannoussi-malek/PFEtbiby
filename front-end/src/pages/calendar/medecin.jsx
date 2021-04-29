@@ -49,7 +49,6 @@ const CalendarDashboardMedecin = () => {
     },
     onSuccess: (res) => {
       refetchTask();
-      console.log("refetch");
     },
   });
 

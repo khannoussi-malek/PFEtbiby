@@ -22,11 +22,15 @@ export const useDeleteReservation = (config) => {
 };
 export const useReservationMListe = ({ params, ...config } = {}) => {
   return useQuery(
-    ["listrm", params],
+    ["list de rendeves des parents en dashboard", params],
     () => axios.get("listrm", { params }),
     config
   );
 };
 export const useListReservation = ({ params, ...config } = {}) => {
-  return useQuery(["lrd", params], () => axios.get("lrd", { params }), config);
+  return useQuery(
+    ["list de réservation on dashboard", params],
+    () => axios.get("lrd", { params }),
+    config
+  );
 };
