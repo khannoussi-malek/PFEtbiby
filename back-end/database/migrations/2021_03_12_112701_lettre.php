@@ -15,10 +15,10 @@ class Lettre extends Migration
     {
         Schema::create('lettre', function (Blueprint $table) {
             $table->Increments('id');
+            $table->integer('medecin_id')->unsigned()->nullable();
+            $table->foreign('medecin_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('medecin_destiantaire_id')->unsigned()->nullable();
             $table->foreign('medecin_destiantaire_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('medecin_distinateur_id')->unsigned()->nullable();
-            $table->foreign('medecin_distinateur_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('description')->nullable();
             $table->timestamps();
         });

@@ -5,18 +5,18 @@
 		use DB;
 		use CRUDBooster;
 
-		class ApiHcController extends \crocodicstudio\crudbooster\controllers\ApiController {
+		class ApiHexController extends \crocodicstudio\crudbooster\controllers\ApiController {
 
 		    function __construct() {    
-				$this->table       = "consultation";        
-				$this->permalink   = "hc";    
+				$this->table       = "examen";        
+				$this->permalink   = "hex";    
 				$this->method_type = "get";    
 		    }
 		
 
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
-               
+
 		    }
 
 		    public function hook_query(&$query) {
@@ -26,12 +26,11 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-				$result = DB::table('consultation')
+				$result = DB::table('examen')
                 ->where('patient_id',$postdata['patient_id'])
                 ->where('medecin_id',$postdata['medecin_id'])
-                ->select('id','Diagnostic')->orderBy('consultation.created_at')
+                ->select('id','nom')->orderBy('examen.created_at')
                 ->paginate(10);
-
 		    }
 
 		}

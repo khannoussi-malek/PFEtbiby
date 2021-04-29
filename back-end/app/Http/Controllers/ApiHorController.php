@@ -5,18 +5,18 @@
 		use DB;
 		use CRUDBooster;
 
-		class ApiHcController extends \crocodicstudio\crudbooster\controllers\ApiController {
+		class ApiHorController extends \crocodicstudio\crudbooster\controllers\ApiController {
 
 		    function __construct() {    
-				$this->table       = "consultation";        
-				$this->permalink   = "hc";    
+				$this->table       = "ordonnance";        
+				$this->permalink   = "hor";    
 				$this->method_type = "get";    
 		    }
 		
 
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
-               
+
 		    }
 
 		    public function hook_query(&$query) {
@@ -26,12 +26,10 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-				$result = DB::table('consultation')
-                ->where('patient_id',$postdata['patient_id'])
+				$result = DB::table('ordonnance')
                 ->where('medecin_id',$postdata['medecin_id'])
-                ->select('id','Diagnostic')->orderBy('consultation.created_at')
+                ->select('id','description')->orderBy('ordonnance.created_at')
                 ->paginate(10);
-
 		    }
 
 		}

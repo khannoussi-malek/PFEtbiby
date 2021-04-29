@@ -44,7 +44,7 @@ export const Lettre = (props) => {
           onChange={(e) => setTitle(e.target.value)}
         />
 
-        <Select2
+        {/* <Select2
           required={"Sélect le type de certifica."}
           label="type de certifica"
           data={[
@@ -62,8 +62,8 @@ export const Lettre = (props) => {
             },
           ]}
           name="selectvalue"
-        />
-        <TextareaForm name="certificat" label="contenu de certificat" />
+        /> */}
+        <TextareaForm name="Lettre" label="contenu de lettre" />
       </AccordionPanel>
     </AccordionItem>
   );

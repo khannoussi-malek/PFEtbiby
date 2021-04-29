@@ -19,6 +19,7 @@ class Ordonnance extends Migration
             $table->foreign('consultation_id')->references('id')->on('consultation')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('medecin_id')->unsigned()->nullable();
             $table->foreign('medecin_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

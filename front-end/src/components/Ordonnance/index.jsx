@@ -43,7 +43,7 @@ export const Ordonnance = (props) => {
         />
       </AccordionButton>
       <AccordionPanel bgColor="gray.50" pb={4}>
-        <Select2
+        {/* <Select2
           required={"Sélect le type de certifica."}
           label="type de certifica"
           data={[
@@ -61,8 +61,9 @@ export const Ordonnance = (props) => {
             },
           ]}
           name="selectvalue"
-        />
-        <TextareaForm name="certificat" label="contenu de certificat" />
+        /> */}
+
+        <TextareaForm name="ordonnance" label="contenu d'ordonnance" />
       </AccordionPanel>
     </AccordionItem>
   );
