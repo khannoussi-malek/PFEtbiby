@@ -34,3 +34,10 @@ export const useListReservation = ({ params, ...config } = {}) => {
     config
   );
 };
+export const useListReservationEnLigne = ({ params, ...config } = {}) => {
+  return useQuery(
+    ["list de réservation En Ligne on dashboard", params],
+    () => axios.get("lrde", { params }),
+    config
+  );
+};

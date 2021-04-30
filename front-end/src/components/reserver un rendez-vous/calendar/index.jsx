@@ -1,22 +1,23 @@
-import {
-  useReservationMListe,
-  useUpdateReservation,
-} from "../../../services/api/reservation";
+import { useUpdateReservation } from "../../../services/api/reservation";
 import { useToast, Button } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Box, Spacer, Flex } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/react";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
-import { useDeleteReservation } from "./../../../services/api/reservation/index";
+import {
+  useDeleteReservation,
+  useListReservationEnLigne,
+} from "./../../../services/api/reservation";
 import { useDisclosure } from "@chakra-ui/hooks";
-import { useListPatientDashboardAPI } from "./../../../services/api/listPatientDashboard/inde";
 import BookingFormReserve from "./bookingForm/index";
 import CalendarReservePara from "./../calendar";
-
+import { TbibyContext } from "./../../../router/context/index";
 const CalendarReserve = (props) => {
+  const { user } = useContext(TbibyContext);
+
   const { data } = props;
-  const params = { medecin_id: data.id };
+  const params = { medecin_id: data.id, patient_id: user.id };
   const toast = useToast();
   const [task, setTask] = useState([{ start: "2021-03-22T00:00" }]);
   const [date, setDate] = useState(new Date());
@@ -25,27 +26,9 @@ const CalendarReserve = (props) => {
   const [end, setend] = useState("");
   const [currentDateStart, setCurrentDateStart] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [listPatient, setListPatient] = useState([]);
   const cancelRef = React.useRef();
-  const {
-    isLoading: ListPatientDashboardAPIIsLoading,
-    refetch: ListPatientDashboardAPIRefetch,
-  } = useListPatientDashboardAPI({
-    params,
-    onError: (error) => {
-      toast({
-        title: "🌐 Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: `4000`,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setListPatient(res.data);
-    },
-  });
-  const { isLoading, refetch: refetchTask } = useReservationMListe({
+
+  const { isLoading, refetch: refetchTask } = useListReservationEnLigne({
     params,
     onError: (error) => {
       toast({
@@ -106,24 +89,12 @@ const CalendarReserve = (props) => {
   return (
     <Box>
       <Spinner
-        display={
-          !isLoadingUpdate &&
-          !DeleteIsLoading &&
-          !ListPatientDashboardAPIIsLoading
-            ? `none`
-            : ``
-        }
+        display={!isLoadingUpdate && !DeleteIsLoading ? `none` : ``}
         size="xl"
         m="auto"
         color="red.500"
       />
-      <Box
-        display={
-          isLoadingUpdate || DeleteIsLoading || ListPatientDashboardAPIIsLoading
-            ? `none`
-            : ``
-        }
-      >
+      <Box display={isLoadingUpdate || DeleteIsLoading ? `none` : ``}>
         <Flex py={2}>
           <Button ml={2} onClick={() => addDays(date, daysView * -1)}>
             <ArrowLeftIcon />

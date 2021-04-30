@@ -50,7 +50,7 @@ const BookingFormReserve = (props) => {
     mutate({
       medecin_id: data.id,
       patient_id,
-      etat: "en attente",
+      etat: "en ligne",
       date_reservation: start,
     });
   };

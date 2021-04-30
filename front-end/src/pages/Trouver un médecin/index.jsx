@@ -89,7 +89,7 @@ const TrouverUnMedecin = (props) => {
     return (
       <>
         <Heading as="h2" size="lg" fontWeight="extrabold" letterSpacing="tight">
-          ils ñ'a pas médecin avec cette criter
+          Aucun medecin n'existe sous cette spécialité
         </Heading>
       </>
     );
@@ -99,7 +99,7 @@ const TrouverUnMedecin = (props) => {
       <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
         <form noValidate onSubmit={MyForm.submit}>
           <Grid
-            templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
+            templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
             gap={3}
           >
             <Select2
@@ -122,17 +122,6 @@ const TrouverUnMedecin = (props) => {
               label="Sous Domaine"
               name="selectSousDomaine"
             />
-            <FormControl mt={5} align="center">
-              <Button
-                w="40%"
-                type="submit"
-                borderColor="green.500"
-                disabled={!MyForm.isValid}
-              >
-                Submit
-                {!MyForm.isValid ? `` : `👌`}
-              </Button>
-            </FormControl>
           </Grid>
           <TableContent
             header={header}
