@@ -16,13 +16,20 @@ import UserAvatar from "./userAvatar/index";
 import ActivityArea from "./activityArea/index";
 import { useLocation } from "react-router-dom";
 import Notification from "./../../components/notification/index";
-
+import { useSwipeable } from "react-swipeable";
 const Dashboard = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { pathname } = useLocation();
-  const { isOpen, toggle } = useMobileMenuState();
+  const { isOpen, toggle,actions } = useMobileMenuState();
+  const handlers = useSwipeable({
+    onSwipedLeft: () => toggle(),
+    onSwipedRight: () => toggle(),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+});
   return (
     <Flex
+    {...handlers}
       height="100vh"
       w="100vw"
       bg={mode("cyan.600", "inherit")}

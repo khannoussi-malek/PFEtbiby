@@ -12,8 +12,8 @@ import {
 import { Button } from "@chakra-ui/button";
 import { useState, useContext } from "react";
 import { Text, Spinner } from "@chakra-ui/react";
-import { useCreateReservation } from "./../../../../services/api/reservation/index";
-import { TbibyContext } from "./../../../../router/context/index";
+import { usePatientCreateReservation } from "./../../../../services/api/reservation";
+import { TbibyContext } from "./../../../../router/context";
 const BookingFormReserve = (props) => {
   const [NomPrenom, setNomPrenom] = useState("");
   const {
@@ -28,7 +28,7 @@ const BookingFormReserve = (props) => {
   } = props;
   const { user } = useContext(TbibyContext);
 
-  const { mutate, isLoading } = useCreateReservation({
+  const { mutate, isLoading } = usePatientCreateReservation({
     onError: (error) => {
       // setMessage("Vérifier l'information qui vous inseri ou votre liste");
     },

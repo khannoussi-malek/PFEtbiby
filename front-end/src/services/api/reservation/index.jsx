@@ -7,6 +7,13 @@ export const useCreateReservation = (config) => {
     config
   );
 };
+export const usePatientCreateReservation = (config) => {
+  return useMutation(
+    ({ medecin_id, patient_id, etat, date_reservation }) =>
+      axios.post("pcr", { medecin_id, patient_id, etat, date_reservation }),
+    config
+  );
+};
 export const useUpdateReservation = (config) => {
   return useMutation(
     ({ id, date_reservation }) =>

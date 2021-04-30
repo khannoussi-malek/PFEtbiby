@@ -2,10 +2,11 @@ import { Select2 } from "./../../components/formInput/select";
 import { useState } from "react";
 import { useForm, Formiz } from "@formiz/core";
 import { useSousDomaine } from "../../services/api/domaine";
-import { Button, Grid, useToast, Heading, Text, Link } from "@chakra-ui/react";
+import { Button, Grid,Box, useToast, Heading, Text, Link ,Spinner} from "@chakra-ui/react";
 import { useDomaine } from "./../../services/api/domaine/index";
 import { FormControl } from "@chakra-ui/form-control";
 import { TableContent } from "./../../components/table/TableContent";
+import { TablePagination } from "./../../components/table/TablePagination";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { useFindeDoctor } from "./../../services/api/Trouver un medecin/index";
 import ReserverUnRendezVous from "../../components/reserver un rendez-vous";
@@ -64,6 +65,7 @@ const TrouverUnMedecin = (props) => {
     },
     onSuccess: (res) => {
       setDomaine(res.data);
+      refetchFindeDoctor();
     },
   });
   const param = { id: values.SelectDomaine };
@@ -80,10 +82,11 @@ const TrouverUnMedecin = (props) => {
     },
     onSuccess: (res) => {
       setSousDomaine(res.data);
+      refetchFindeDoctor();
     },
   });
   const handleSubmit = (values) => {
-    console.log(values);
+    // console.log(values);
   };
   const message = () => {
     return (
@@ -94,12 +97,15 @@ const TrouverUnMedecin = (props) => {
       </>
     );
   };
+  console.log(isLoadingFindeDoctor);
   return (
     <>
       <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
         <form noValidate onSubmit={MyForm.submit}>
+       
           <Grid
-            templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
+
+            templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
             gap={3}
           >
             <Select2
@@ -122,13 +128,37 @@ const TrouverUnMedecin = (props) => {
               label="Sous Domaine"
               name="selectSousDomaine"
             />
+          <Button top="45%" onClick={()=>{
+            setSousDomaineSelected(-1);
+            setDomaineSelected(-1);
+          }}>Tous les médecins</Button>
+
           </Grid>
+           <Spinner
+        display={!isLoadingFindeDoctor ? `none` : ``}
+        size="xl"
+        p={5}
+        m="auto"
+        color="red.500"
+      />
+<Box 
+        display={isLoadingFindeDoctor ? `none` : ``}
+>
           <TableContent
+          
             header={header}
             content={content}
             fntable={fntable}
             message={message}
           />
+          <TablePagination
+        total={total}
+        next_page_url={next}
+        prev_page_url={prev}
+        page={page}
+        setPage={setPage}
+      />
+          </Box>
         </form>
       </Formiz>
     </>

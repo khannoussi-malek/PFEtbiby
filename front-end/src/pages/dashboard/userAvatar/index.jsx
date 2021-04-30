@@ -31,7 +31,7 @@ const UserAvatar = () => {
       >
         <HStack display="inline-flex">
           <Avatar
-            size="sm"
+            size="md"
             src={image != null ? `${link}${image}` : `${link}${userImage}`}
           />
           <Box lineHeight="1">
@@ -41,10 +41,10 @@ const UserAvatar = () => {
               mt="1"
               color={mode("whiteAlpha.700", "gray.400")}
             >
-              {user.email}
+              {/* {user.email} */}
             </Text>
           </Box>
-          <Box position="absolute" size="lg" mr={8} right="0px">
+          <Box size="lg" mr={8} right="0px">
             <BsGear />
           </Box>
         </HStack>
