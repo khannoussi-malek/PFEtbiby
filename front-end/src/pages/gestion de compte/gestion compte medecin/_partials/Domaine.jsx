@@ -106,6 +106,11 @@ const AddDomaine = (props) => {
                 </form>
               </Formiz>
             </DrawerBody>
+            <DrawerFooter>
+              <Button variant="outline" mr={3} onClick={onClose}>
+                Annuler
+              </Button>
+            </DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>

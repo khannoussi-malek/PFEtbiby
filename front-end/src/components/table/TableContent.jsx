@@ -1,5 +1,4 @@
 import {
-  Button,
   Table,
   Tbody,
   Td,
@@ -10,45 +9,57 @@ import {
   Text,
   Heading,
   useColorModeValue as mode,
+  Center,
 } from "@chakra-ui/react";
 import * as React from "react";
 
 export const TableContent = (props) => {
-  const { header, content, fntable } = props;
+  const { header, content, fntable, message } = props;
   return (
     <React.Fragment>
       <Box
         display={!!content && content.length != 0 ? `none` : ``}
         maxW="2xl"
-        mx="auto"
+        // mx="auto"
         px={{ base: "6", lg: "8" }}
         py={{ base: "16", sm: "20" }}
         textAlign="center"
       >
-        <Heading as="h2" size="lg" fontWeight="extrabold" letterSpacing="tight">
-          Aucun élement ajouté.
-        </Heading>
-        {/* <Text mt="4" fontSize="lg">
-          Si vous n'avez pas ce patient, veuillez l'ajouter en tapant son CIN,
-          son email ou son numéro de téléphone dans le champ "Ajouter un
-          patient".
-        </Text> */}
+        {!!message ? (
+          message()
+        ) : (
+          <>
+            <Heading
+              as="h2"
+              size="lg"
+              fontWeight="extrabold"
+              letterSpacing="tight"
+            >
+              Vous n'avez aucun patient avec ces informations
+            </Heading>
+            <Text mt="4" fontSize="lg">
+              Si vous n'avez pas ce patient, veuillez l'ajouter en tapant son
+              CIN, son email ou son numéro de téléphone dans le champ "Ajouter
+              un patient".
+            </Text>
+          </>
+        )}
       </Box>
       <Table
-        overflowX="scroll"
+        w="100%"
         display={content.length == 0 ? `none` : ``}
         my="8"
         borderWidth="1px"
         fontSize="sm"
       >
         <Thead bg={mode("gray.50", "gray.800")}>
-          <Tr>
+          <Tr textAlign="center">
             {header.map((column, index) => (
               <Th whiteSpace="nowrap" scope="col" key={index}>
                 {column}
               </Th>
             ))}
-            <Th />
+            {!!fntable ? <Th textAlign="center">acte</Th> : ``}
           </Tr>
         </Thead>
         <Tbody>
@@ -63,10 +74,15 @@ export const TableContent = (props) => {
                     </Td>
                   ) : null
                 )}
-              <Td textAlign="right">
-                {!!fntable ? fntable.fn(row) : ``}
-                {!!fntable ? !!fntable.fn2 && fntable.fn2(row) : ``}
-              </Td>
+              <Tr textAlign="right">
+                <Box textAlign="center">
+                  {!!fntable ? fntable.fn(row) : ``}
+                  {!!fntable ? !!fntable.fn2 && fntable.fn2(row) : ``}
+                </Box>
+                <Box textAlign="center">
+                  {!!fntable ? !!fntable.fn3 && fntable.fn3(row) : ``}
+                </Box>
+              </Tr>
             </Tr>
           ))}
         </Tbody>

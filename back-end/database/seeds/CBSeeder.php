@@ -331,16 +331,6 @@ class cms_apicustom extends seeder {
             DB::table('cms_apicustom')->insert([
             
                 'permalink' => 'hc',
-                'tabel' => 'consultation',
-                'aksi' => 'list',
-                'nama' => 'historique consultaion',
-                'method_type' => 'get',
-                'parameters' => 'a:2:{i:0;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}i:1;a:5:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
-                'responses' => 'a:4:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:10:"Diagnostic";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
-            ]);
-            DB::table('cms_apicustom')->insert([
-            
-                'permalink' => 'hc',
                 'tabel' => 'certificat',
                 'aksi' => 'list',
                 'nama' => 'historique certificat',
@@ -397,6 +387,43 @@ class cms_apicustom extends seeder {
                 'method_type' => 'get',
                 'parameters' => 'a:6:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}i:1;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}i:2;a:5:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}i:3;a:5:{s:4:"name";s:23:"medecin_destiantaire_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}i:4;a:5:{s:4:"name";s:11:"description";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}i:5;a:5:{s:4:"name";s:15:"consultation_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:6:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:23:"medecin_destiantaire_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:4;a:4:{s:4:"name";s:11:"description";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:5;a:4:{s:4:"name";s:15:"consultation_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
+            
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'tm',
+                'tabel' => 'cms_users',
+                'aksi' => 'list',
+                'nama' => 'Trouver un médecin',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'lrde',
+                'tabel' => 'rendez_vous',
+                'aksi' => 'list',
+                'nama' => 'liste rendez_vous en ligne',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'pcr',
+                'tabel' => 'rendez_vous',
+                'aksi' => 'save_add',
+                'nama' => 'Patient Create Reservation',
+                'method_type' => 'post',
+                'parameters' => 'a:4:{i:0;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:2;a:5:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:3;a:5:{s:4:"name";s:16:"date_reservation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
+                'responses' => 'a:0:{}',
+            ]);
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'vr',
+                'tabel' => 'rendez_vous',
+                'aksi' => 'list',
+                'nama' => 'valider un rendez vous',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
             ]);
         }
         
@@ -589,7 +616,7 @@ class Cms_settingsSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'google_api_key',
                 'label' => 'Google API Key',
-                'content' => '',
+                'content' => 'AIzaSyAmCyYFfDHqzxYQuU7nVvZSOLu3hywZvEQ',
                 'content_input_type' => 'text',
                 'group_setting' => trans('crudbooster.application_setting'),
                 'dataenum' => null,

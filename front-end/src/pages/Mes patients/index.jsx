@@ -29,15 +29,7 @@ import { link, userImage } from "./../../services/api/index";
 import { useDisclosure } from "@chakra-ui/hooks";
 
 import { useColorModeValue as mode } from "@chakra-ui/react";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-} from "@chakra-ui/modal";
+
 import HistoriquePatient from "../../components/historique patient";
 const ListPatients = () => {
   const { user, cleanUser } = useContext(TbibyContext);
@@ -68,7 +60,7 @@ const ListPatients = () => {
       setTotal(res.data.total);
       setNext(res.data.next_page_url);
       setPrev(res.data.prev_page_url);
-      setContent(res.data.data);
+      setContent((!!res.data.data && res.data.data) || []);
     },
   });
   const [fntable, setFntable] = useState({
