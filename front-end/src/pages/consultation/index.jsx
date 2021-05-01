@@ -107,8 +107,12 @@ const Consultation = () => {
           w={{ base: "90%", md: "92%" }}
         >
           <SimpleGrid minChildWidth="100px" spacing="10px">
-            <GeneralPatientsInformation patient={currentPatient} />
-            <Antecedants patient={currentPatient} />
+            <Box m={5} textAlign="center">
+              <GeneralPatientsInformation patient={currentPatient} />
+            </Box>
+            <Box m={5} textAlign="center">
+              <Antecedants patient={currentPatient} />
+            </Box>
           </SimpleGrid>
 
           <Box p={5}>

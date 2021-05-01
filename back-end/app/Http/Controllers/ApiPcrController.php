@@ -5,18 +5,24 @@
 		use DB;
 		use CRUDBooster;
 
-		class ApiLrdController extends \crocodicstudio\crudbooster\controllers\ApiController {
+		class ApiPcrController extends \crocodicstudio\crudbooster\controllers\ApiController {
 
 		    function __construct() {    
 				$this->table       = "rendez_vous";        
-				$this->permalink   = "lrd";    
-				$this->method_type = "get";    
+				$this->permalink   = "pcr";    
+				$this->method_type = "post";    
 		    }
 		
 
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
-
+				$patient_id= DB::table('cms_users')->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'))
+				->where('id',$postdata['patient_id'])->first();
+				$ch=$patient_id->nomprenom." veut une réservation";
+				$config['id_cms_users'] = [$postdata['medecin_id']];
+				$config['content'] = $ch;
+				$config['to'] = "/dashboard";
+				CRUDBooster::sendNotification($config);
 		    }
 
 		    public function hook_query(&$query) {
@@ -26,12 +32,7 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-				$result=DB::table('rendez_vous')
-				->where('patient_id',$postdata['patient_id'])
-				->where('etat','en attente')
-				->join('cms_users', 'cms_users.id', '=', 'rendez_vous.medecin_id')
-				->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'), 'rendez_vous.id','rendez_vous.date_reservation as start')
-				->get();
+
 		    }
 
 		}

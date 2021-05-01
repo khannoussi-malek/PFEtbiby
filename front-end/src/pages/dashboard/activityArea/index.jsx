@@ -10,6 +10,7 @@ import MonMedecin from "./../../Mon medecin";
 import Consultation from "../../consultation";
 import CertificatPage from "../../Certificat";
 import MonRendezvous from "./../../Mon rendez vous/index";
+import TrouverUnMedecin from "../../Trouver un médecin";
 const ActivityArea = () => {
   const { user } = useContext(TbibyContext);
 
@@ -69,6 +70,12 @@ const ActivityArea = () => {
         <PrivateRoute
           path="/dashboard/Mes médecins"
           component={MonMedecin}
+          isAuth={user.isAuthenticated}
+          exact
+        />
+        <PrivateRoute
+          path="/dashboard/Trouver un médecin"
+          component={TrouverUnMedecin}
           isAuth={user.isAuthenticated}
           exact
         />

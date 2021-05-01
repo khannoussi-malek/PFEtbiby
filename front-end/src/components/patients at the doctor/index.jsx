@@ -45,6 +45,7 @@ const PatientsAtTheDoctor = (props) => {
     <SimpleGrid columns={{ base: 1, md: 3, lg: 5 }} spacing={2}>
       {patientsWaiting.map((data) => (
         <Box
+          _hover={{ cursor: "pointer" }}
           bg={mode("gray.100", "gray.800")}
           key={`${data.id}`}
           borderRadius="20px"

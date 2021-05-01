@@ -19,6 +19,7 @@ const G_Alert = (props) => {
     bg,
     btOK,
     btNon,
+    submitcolor,
   } = props;
   const [isOpen, setIsOpen] = useState(false);
   const onClose = () => setIsOpen(false);
@@ -54,7 +55,7 @@ const G_Alert = (props) => {
               </Button>
 
               <Button
-                colorScheme="red"
+                colorScheme={colorScheme}
                 onClick={() => {
                   fnTodo(target);
                   onClose();

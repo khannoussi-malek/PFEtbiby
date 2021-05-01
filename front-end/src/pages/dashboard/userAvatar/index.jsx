@@ -29,22 +29,15 @@ const UserAvatar = () => {
           history.push("/dashboard/gestion de compte");
         }}
       >
-        <HStack display="inline-flex">
+        <HStack>
           <Avatar
-            size="sm"
+            size="md"
             src={image != null ? `${link}${image}` : `${link}${userImage}`}
           />
           <Box lineHeight="1">
             <Text fontWeight="semibold">{user.prenom + " " + user.nom}</Text>
-            <Text
-              fontSize="xs"
-              mt="1"
-              color={mode("whiteAlpha.700", "gray.400")}
-            >
-              {user.email}
-            </Text>
           </Box>
-          <Box position="absolute" size="lg" mr={8} right="0px">
+          <Box size="lg" mr={8} right="0px">
             <BsGear />
           </Box>
         </HStack>
