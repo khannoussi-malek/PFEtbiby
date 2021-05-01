@@ -20,14 +20,18 @@
 					$patient_id= DB::table('rendez_vous')
 				->where('rendez_vous.id',$postdata['id'])
 				->join('cms_users', 'cms_users.id', '=', 'rendez_vous.patient_id')
-				->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'),'cms_users.id')
+				->select('cms_users.id')
+				->first();
+				$medecin_id= DB::table('rendez_vous')
+				->where('rendez_vous.id',$postdata['id'])
+				->join('cms_users', 'cms_users.id', '=', 'rendez_vous.medecin_id')
+				->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'))
 				->first();
 
-				$ch="Your mother fucker ".$patient_id->nomprenom;
+				$ch="Votre rendez-vous chez Dr.".$medecin_id->nomprenom." est confirmé ";
 				$config['id_cms_users'] = [$patient_id->id];
 				$config['content'] = $ch;
 				$config['to'] = "/dashboard/Mes%20rendez%20vous";
-
 				CRUDBooster::sendNotification($config);
 				unset($postdata['state']);
 				}
