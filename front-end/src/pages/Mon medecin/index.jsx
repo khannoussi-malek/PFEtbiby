@@ -26,6 +26,7 @@ import { useRelationPM } from "./../../services/api/relation/index";
 import { MdCall } from "react-icons/md";
 import { EmailIcon } from "@chakra-ui/icons";
 import { link, userImage } from "./../../services/api/index";
+import ReserverUnRendezVous from "../../components/reserver un rendez-vous";
 
 const MonMedecin = () => {
   const { user } = useContext(TbibyContext);
@@ -120,6 +121,7 @@ const MonMedecin = () => {
         </Portal>
       </Popover>
     ),
+    fn2: (data) => <ReserverUnRendezVous data={data} />,
   });
   const message = () => {
     return (

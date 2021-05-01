@@ -9,6 +9,7 @@ import {
   Text,
   Heading,
   useColorModeValue as mode,
+  Center,
 } from "@chakra-ui/react";
 import * as React from "react";
 
@@ -19,7 +20,7 @@ export const TableContent = (props) => {
       <Box
         display={content.length != 0 ? `none` : ``}
         maxW="2xl"
-        mx="auto"
+        // mx="auto"
         px={{ base: "6", lg: "8" }}
         py={{ base: "16", sm: "20" }}
         textAlign="center"
@@ -45,19 +46,20 @@ export const TableContent = (props) => {
         )}
       </Box>
       <Table
+        w="100%"
         display={content.length == 0 ? `none` : ``}
         my="8"
         borderWidth="1px"
-        fontSize="xs"
+        fontSize="sm"
       >
         <Thead bg={mode("gray.50", "gray.800")}>
-          <Tr>
+          <Tr textAlign="center">
             {header.map((column, index) => (
               <Th whiteSpace="nowrap" scope="col" key={index}>
                 {column}
               </Th>
             ))}
-            <Th />
+            {!!fntable ? <Th textAlign="center">acte</Th> : ``}
           </Tr>
         </Thead>
         <Tbody>
@@ -72,10 +74,15 @@ export const TableContent = (props) => {
                     </Td>
                   ) : null
                 )}
-              <Td textAlign="right">
-                {!!fntable ? fntable.fn(row) : ``}
-                {!!fntable ? !!fntable.fn2 && fntable.fn2(row) : ``}
-              </Td>
+              <Tr textAlign="right">
+                <Box textAlign="center">
+                  {!!fntable ? fntable.fn(row) : ``}
+                  {!!fntable ? !!fntable.fn2 && fntable.fn2(row) : ``}
+                </Box>
+                <Box textAlign="center">
+                  {!!fntable ? !!fntable.fn3 && fntable.fn3(row) : ``}
+                </Box>
+              </Tr>
             </Tr>
           ))}
         </Tbody>

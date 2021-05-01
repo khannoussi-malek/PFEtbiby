@@ -32,7 +32,7 @@
 					['rendez_vous.etat','=','en ligne']
 					])
 				->join('cms_users', 'cms_users.id', '=', 'rendez_vous.patient_id')
-				->select('rendez_vous.id',DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'))
+				->select('rendez_vous.id as idR',DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'),'rendez_vous.date_reservation','cms_users.id')
 				->paginate(10);
 
 		    }

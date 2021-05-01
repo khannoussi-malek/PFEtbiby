@@ -47,7 +47,7 @@ const GeneralPatientsInformation = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <React.Fragment>
-      <Button m={5} bg={mode("blue.100", "blue.800")} onClick={onOpen}>
+      <Button bg={mode("blue.100", "blue.800")} onClick={onOpen}>
         Informations
       </Button>
       <Drawer placement="right" size="md" onClose={onClose} isOpen={isOpen}>

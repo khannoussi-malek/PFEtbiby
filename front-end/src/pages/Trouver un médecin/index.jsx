@@ -2,7 +2,17 @@ import { Select2 } from "./../../components/formInput/select";
 import { useState } from "react";
 import { useForm, Formiz } from "@formiz/core";
 import { useSousDomaine } from "../../services/api/domaine";
-import { Button, Grid,Box, useToast, Heading, Text, Link ,Spinner} from "@chakra-ui/react";
+import {
+  Button,
+  Grid,
+  Box,
+  useToast,
+  Heading,
+  Text,
+  Link,
+  Spinner,
+  Center,
+} from "@chakra-ui/react";
 import { useDomaine } from "./../../services/api/domaine/index";
 import { FormControl } from "@chakra-ui/form-control";
 import { TableContent } from "./../../components/table/TableContent";
@@ -97,14 +107,11 @@ const TrouverUnMedecin = (props) => {
       </>
     );
   };
-  console.log(isLoadingFindeDoctor);
   return (
     <>
       <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
         <form noValidate onSubmit={MyForm.submit}>
-       
           <Grid
-
             templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
             gap={3}
           >
@@ -128,36 +135,44 @@ const TrouverUnMedecin = (props) => {
               label="Sous Domaine"
               name="selectSousDomaine"
             />
-          <Button top="45%" onClick={()=>{
-            setSousDomaineSelected(-1);
-            setDomaineSelected(-1);
-          }}>Tous les médecins</Button>
-
+            <Button
+              top="45%"
+              onClick={() => {
+                setSousDomaineSelected(-1);
+                setDomaineSelected(-1);
+              }}
+            >
+              Tous les médecins
+            </Button>
           </Grid>
-           <Spinner
-        display={!isLoadingFindeDoctor ? `none` : ``}
-        size="xl"
-        p={5}
-        m="auto"
-        color="red.500"
-      />
-<Box 
-        display={isLoadingFindeDoctor ? `none` : ``}
->
-          <TableContent
-          
-            header={header}
-            content={content}
-            fntable={fntable}
-            message={message}
-          />
-          <TablePagination
-        total={total}
-        next_page_url={next}
-        prev_page_url={prev}
-        page={page}
-        setPage={setPage}
-      />
+          <Box>
+            {!isLoadingFindeDoctor ? (
+              <Box>
+                <TableContent
+                  header={header}
+                  content={content}
+                  fntable={fntable}
+                  message={message}
+                />
+                <TablePagination
+                  total={total}
+                  next_page_url={next}
+                  prev_page_url={prev}
+                  page={page}
+                  setPage={setPage}
+                />
+              </Box>
+            ) : (
+              <Center>
+                <Spinner
+                  textAlign="center"
+                  size="xl"
+                  p={5}
+                  m="auto"
+                  color="red.500"
+                />
+              </Center>
+            )}
           </Box>
         </form>
       </Formiz>

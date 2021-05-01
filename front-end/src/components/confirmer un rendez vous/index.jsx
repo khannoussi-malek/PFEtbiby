@@ -21,6 +21,7 @@ import { TablePagination } from "./../table/TablePagination";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import G_Alert from "./../general alert/index";
 import { useSendPatientToWaitingRoomEnligne } from "../../services/api/manageTheRoom";
+import GeneralPatientsInformation from "./../general patients information/index";
 
 const ConfirmerUnRendezVous = (props) => {
   const { refetchDashboard } = props;
@@ -33,7 +34,7 @@ const ConfirmerUnRendezVous = (props) => {
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([]);
-  const [header, setHeader] = useState(["nom prenom"]);
+  const [header, setHeader] = useState(["nom prenom", "Date"]);
   const {
     mutate: SPTWRMutate,
     isLoading: SPTWRIsLoading,
@@ -67,7 +68,7 @@ const ConfirmerUnRendezVous = (props) => {
         icon={<CloseIcon />}
         colorScheme="teal"
         bg="red.300"
-        target={{ id: data.id }}
+        target={{ id: data.idR }}
         fnTodo={DeleteMutate}
         btOK="Effacer"
         btNon="Annuler"
@@ -83,13 +84,14 @@ const ConfirmerUnRendezVous = (props) => {
         icon={<CheckIcon />}
         colorScheme="teal"
         bg="blue.300"
-        target={{ id: data.id, etat: "en attente", state: "valide" }}
+        target={{ id: data.idR, etat: "en attente", state: "valide" }}
         fnTodo={SPTWRMutate}
         btOK="Valide"
         submitcolor="gray.50"
         btNon="Annuler"
       />
     ),
+    fn3: (data) => <GeneralPatientsInformation patient={data} />,
   });
   const { isLoading, refetch: refetchlist } = useValideReservation({
     params,

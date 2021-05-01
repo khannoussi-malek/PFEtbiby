@@ -54,7 +54,7 @@ const Antecedants = (props) => {
 
   return (
     <React.Fragment>
-      <Button m={5} bg={mode("blue.100", "blue.800")} onClick={onOpen}>
+      <Button bg={mode("blue.100", "blue.800")} onClick={onOpen}>
         Antecedants
       </Button>
       <Drawer placement="right" size="xl" onClose={onClose} isOpen={isOpen}>
