@@ -48,3 +48,10 @@ export const useListReservationEnLigne = ({ params, ...config } = {}) => {
     config
   );
 };
+export const useValideReservation = ({ params, ...config } = {}) => {
+  return useQuery(
+    ["valider un rendez vous ", params],
+    () => axios.get("vr", { params }),
+    config
+  );
+};

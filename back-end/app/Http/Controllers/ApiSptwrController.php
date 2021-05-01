@@ -16,6 +16,21 @@
 
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
+				if(!empty($postdata['state'])){
+					$patient_id= DB::table('rendez_vous')
+				->where('rendez_vous.id',$postdata['id'])
+				->join('cms_users', 'cms_users.id', '=', 'rendez_vous.patient_id')
+				->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'),'cms_users.id')
+				->first();
+
+				$ch="Your mother fucker ".$patient_id->nomprenom;
+				$config['id_cms_users'] = [$patient_id->id];
+				$config['content'] = $ch;
+				$config['to'] = "/dashboard/Mes%20rendez%20vous";
+
+				CRUDBooster::sendNotification($config);
+				unset($postdata['state']);
+				}
 
 		    }
 

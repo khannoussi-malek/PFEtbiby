@@ -529,7 +529,7 @@ class Cms_settingsSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'google_api_key',
                 'label' => 'Google API Key',
-                'content' => '',
+                'content' => 'AIzaSyAmCyYFfDHqzxYQuU7nVvZSOLu3hywZvEQ',
                 'content_input_type' => 'text',
                 'group_setting' => trans('crudbooster.application_setting'),
                 'dataenum' => null,

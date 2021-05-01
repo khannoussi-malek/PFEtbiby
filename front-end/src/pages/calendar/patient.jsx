@@ -46,8 +46,6 @@ const CalendarDashboardPatient = () => {
       });
     },
     onSuccess: (res) => {
-      //   console.log(res.data.data);
-
       for (let i in res.data) {
         res.data[i].start = res.data[i].start.replace(" ", "T").slice(0, -3);
       }

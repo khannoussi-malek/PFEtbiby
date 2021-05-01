@@ -15,6 +15,7 @@ import { useToast } from "@chakra-ui/react";
 import { TbibyContext } from "../../router/context/index";
 import { usePatientEntrer } from "./../../services/api/manageTheRoom/index";
 import { useHistory } from "react-router-dom";
+import ConfirmerUnRendezVous from "./../../components/confirmer un rendez vous/index";
 import {
   useReservationMListe,
   useUpdateReservation,
@@ -72,7 +73,6 @@ const CalendarDashboardMedecin = () => {
       });
     },
     onSuccess: (res) => {
-      // console.log(res.data.data);
       for (let i in res.data) {
         res.data[i].start = res.data[i].start.replace(" ", "T").slice(0, -3);
       }
@@ -162,6 +162,9 @@ const CalendarDashboardMedecin = () => {
           <Button mx={2} onClick={() => setDate(new Date())}>
             Aujourd'hui
           </Button>
+          <ConfirmerUnRendezVous
+            refetchDashboard={ListPatientDashboardAPIRefetch}
+          />
           {!isMobile ? (
             <Button mx={2} onClick={() => setDaysView(7)}>
               Par semaine

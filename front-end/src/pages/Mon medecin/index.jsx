@@ -52,7 +52,7 @@ const MonMedecin = () => {
       setTotal(res.data.total);
       setNext(res.data.next_page_url);
       setPrev(res.data.prev_page_url);
-      setContent(res.data.data);
+      setContent((!!res.data.data && res.data.data) || []);
     },
   });
   const [fntable, setFntable] = useState({
