@@ -19,6 +19,8 @@ class Acte extends Migration
             $table->foreign('consultation_id')->references('id')->on('consultation')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('medecin_id')->unsigned()->nullable();
             $table->foreign('medecin_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('patient_id')->unsigned()->nullable();
+            $table->foreign('patient_id')->references('id')->on('cms_users')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('ordonnance_id')->unsigned()->nullable();
             $table->foreign('ordonnance_id')->references('id')->on('ordonnance')->onDelete('cascade')->onUpdate('cascade');
             $table->string('tarif')->nullable();

@@ -27,6 +27,7 @@
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
 				$result = DB::table('ordonnance')
+                ->where('patient_id',$postdata['patient_id'])
                 ->where('medecin_id',$postdata['medecin_id'])
                 ->select('id','description')->orderBy('ordonnance.created_at')
                 ->paginate(10);

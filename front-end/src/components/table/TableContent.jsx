@@ -36,7 +36,7 @@ export const TableContent = (props) => {
       </Box>
       <Table
         overflowX="scroll"
-        display={!!!content || content.length == 0 ? `none` : ``}
+        display={content.length == 0 ? `none` : ``}
         my="8"
         borderWidth="1px"
         fontSize="sm"
@@ -52,25 +52,23 @@ export const TableContent = (props) => {
           </Tr>
         </Thead>
         <Tbody>
-          {content !== [] &&
-            content.map((row, index) => (
-              <Tr key={index}>
-                {Object.values(row)
-                  .slice(1)
-                  .map((column, indexcol) =>
-                    indexcol < Object.values(header).length ? (
-                      <Td whiteSpace="nowrap" key={indexcol}>
-                        {column}
-                      </Td>
-                    ) : null
-                  )}
-                <Td textAlign="right">
-                  {!!fntable ? fntable.fn(row) : ``}
-                  {/* {!!fntable ? !!fntable && fntable.fn2(row) : ``} */}
-                  {!!fntable ? fntable.fn2(row) : ``}
-                </Td>
-              </Tr>
-            ))}
+          {content.map((row, index) => (
+            <Tr key={index}>
+              {Object.values(row)
+                .slice(1)
+                .map((column, indexcol) =>
+                  indexcol < Object.values(header).length ? (
+                    <Td whiteSpace="nowrap" key={indexcol}>
+                      {column}
+                    </Td>
+                  ) : null
+                )}
+              <Td textAlign="right">
+                {!!fntable ? fntable.fn(row) : ``}
+                {!!fntable ? !!fntable.fn2 && fntable.fn2(row) : ``}
+              </Td>
+            </Tr>
+          ))}
         </Tbody>
       </Table>
     </React.Fragment>

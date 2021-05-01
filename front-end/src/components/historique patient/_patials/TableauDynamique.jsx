@@ -12,6 +12,7 @@ import {
   useHistoriqueListOrdonnance,
   useHistoriqueListLettre,
 } from "../../../services/api/Historique patient";
+import Antecedants from "../../Antecedants";
 import { TableContent } from "../../table/TableContent";
 import { TablePagination } from "../../table/TablePagination";
 
@@ -38,7 +39,7 @@ const TableauDynamique = (props) => {
     params,
     onError: (error) => {
       toast({
-        title: ":globe_with_meridians: Problème de connexion",
+        title: "Problème de connexion",
         description: " Il y a un problème de connexion",
         status: "success",
         duration: 4000,
@@ -49,7 +50,7 @@ const TableauDynamique = (props) => {
       setTotal(res.data.total);
       setNext(res.data.next_page_url);
       setPrev(res.data.prev_page_url);
-      res.data.data !== [] && setContent(res.data.data);
+      setContent((!!res.data.data && res.data.data) || []);
       res.data.data !== [] && setHeader(["Diagnostic"]);
     },
   });
@@ -215,13 +216,8 @@ const TableauDynamique = (props) => {
         >
           Acte
         </Button>
-        <Button
-          onClick={() => {
-            refetchAntecedants();
-          }}
-        >
-          Antecedants
-        </Button>
+        <Antecedants patient={patient} />
+
         <Button
           onClick={() => {
             refetch: refetchExamen();
