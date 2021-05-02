@@ -2,26 +2,37 @@ import { Select2 } from "./../../components/formInput/select";
 import { useState } from "react";
 import { useForm, Formiz } from "@formiz/core";
 import { useSousDomaine } from "../../services/api/domaine";
+import { MdCall } from "react-icons/md";
+import { EmailIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   Button,
   Grid,
   Box,
   useToast,
   Heading,
-  Text,
-  Link,
   Spinner,
   Center,
+  Popover,
+  PopoverTrigger,
+  Portal,
+  PopoverContent,
+  PopoverArrow,
+  PopoverHeader,
+  PopoverCloseButton,
+  PopoverBody,
+  Avatar,
+  Text,
+  PopoverFooter,
 } from "@chakra-ui/react";
 import { useDomaine } from "./../../services/api/domaine/index";
-import { FormControl } from "@chakra-ui/form-control";
 import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { useFindeDoctor } from "./../../services/api/Trouver un medecin/index";
 import ReserverUnRendezVous from "../../components/reserver un rendez-vous";
+import { link, userImage } from "./../../services/api/index";
+import { TableActions } from "./../../components/table/TableActions";
 const TrouverUnMedecin = (props) => {
-  let header = ["Nom", "Prenom"];
+  let header = ["Nom", "Prenom", "domain"];
   const [content, setContent] = useState([]);
   const [total, setTotal] = useState(0);
   const [next, setNext] = useState("");
@@ -31,16 +42,74 @@ const TrouverUnMedecin = (props) => {
   const [DomaineSelected, setDomaineSelected] = useState(-1);
   const [sousDomaineSelected, setSousDomaineSelected] = useState(-1);
   const [sousDomaine, setSousDomaine] = useState([]);
+  const [search, setSearch] = useState("");
   const toast = useToast();
   const MyForm = useForm();
   const { values } = MyForm;
   const params = {
+    search,
     DomaineSelected,
     sousDomaineSelected,
     page,
   };
   const [fntable, setFntable] = useState({
     fn: (data) => <ReserverUnRendezVous data={data} />,
+    fn2: (data) => (
+      <Popover>
+        <PopoverTrigger>
+          <Button mx={1}>Info</Button>
+        </PopoverTrigger>
+        <Portal>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverHeader>{data.nom + " " + data.prenom}</PopoverHeader>
+            <PopoverCloseButton />
+            <PopoverBody>
+              {data.photo && (
+                <Avatar
+                  name={data.nom + " " + data.prenom}
+                  size="xl"
+                  src={`${link}${data.photo}`}
+                />
+              )}
+              {data.domaineName && <Text>Domain : {data.domaineName} </Text>}
+
+              {data.adresse_physique && (
+                <Text>Adresse : {data.adresse_physique} </Text>
+              )}
+
+              {data.email && (
+                <Text as="a" href={"mailto:" + data.email}>
+                  <Button
+                    my={1}
+                    colorScheme="blue"
+                    leftIcon={<EmailIcon />}
+                    variant="outline"
+                  >
+                    Email
+                  </Button>
+                </Text>
+              )}
+              {data.telephone && (
+                <Text display="block" as="a" href={"tel:" + data.telephone}>
+                  <Button
+                    my={1}
+                    leftIcon={<MdCall />}
+                    colorScheme="blue"
+                    variant="outline"
+                  >
+                    Appeller
+                  </Button>
+                </Text>
+              )}
+            </PopoverBody>
+            <PopoverFooter>
+              Ce sont des informations personnelles sur votre médecin
+            </PopoverFooter>
+          </PopoverContent>
+        </Portal>
+      </Popover>
+    ),
   });
   const {
     isLoading: isLoadingFindeDoctor,
@@ -148,6 +217,11 @@ const TrouverUnMedecin = (props) => {
           <Box>
             {!isLoadingFindeDoctor ? (
               <Box>
+                <TableActions
+                  buttonText="Chercher"
+                  buttonIcon={<SearchIcon />}
+                  chercherFn={setSearch}
+                />
                 <TableContent
                   header={header}
                   content={content}

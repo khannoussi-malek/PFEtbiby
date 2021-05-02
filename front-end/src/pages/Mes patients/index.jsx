@@ -29,7 +29,15 @@ import { link, userImage } from "./../../services/api/index";
 import { useDisclosure } from "@chakra-ui/hooks";
 
 import { useColorModeValue as mode } from "@chakra-ui/react";
-
+import {
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+} from "@chakra-ui/modal";
 import HistoriquePatient from "../../components/historique patient";
 const ListPatients = () => {
   const { user, cleanUser } = useContext(TbibyContext);
@@ -75,26 +83,19 @@ const ListPatients = () => {
             <PopoverHeader>{data.nom + " " + data.prenom} </PopoverHeader>
             <PopoverCloseButton />
             <PopoverBody>
-              {!!data.photo ? (
-                <Avatar
-                  name={data.nom + " " + data.prenom}
-                  src={
-                    data.photo != null
-                      ? `${link}${data.photo}`
-                      : `${link}${userImage}`
-                  }
-                />
-              ) : (
-                ``
+              {data.photo && (
+                <Box>
+                  <Avatar
+                    size="xl"
+                    name={data.nom + " " + data.prenom}
+                    src={`${link}${data.photo}`}
+                  />
+                </Box>
               )}
 
-              {!!data.Adresse ? <Text>Adresse : {data.Adresse} </Text> : ``}
-              {!!data.Code_APCI ? (
-                <Text>Code_APCI : {data.Code_APCI} </Text>
-              ) : (
-                ``
-              )}
-              {!!data.email ? (
+              {data.Adresse && <Text>Adresse : {data.Adresse} </Text>}
+              {data.Code_APCI && <Text>Code_APCI : {data.Code_APCI} </Text>}
+              {data.email && (
                 <Text as="a" href={"mailto:" + data.email}>
                   <Button
                     my={1}
@@ -105,10 +106,8 @@ const ListPatients = () => {
                     Email
                   </Button>
                 </Text>
-              ) : (
-                ``
               )}
-              {!!data.telephone ? (
+              {data.telephone && (
                 <Text display="block" as="a" href={"tel:" + data.telephone}>
                   <Button
                     my={1}
@@ -119,10 +118,8 @@ const ListPatients = () => {
                     Appeller
                   </Button>
                 </Text>
-              ) : (
-                ``
               )}
-              {!!data.cin ? <Text>cin : {data.cin} </Text> : ``}
+              {data.cin && <Text>cin : {data.cin} </Text>}
             </PopoverBody>
             <PopoverFooter>
               Ce sont des informations personnelles sur votre patient
