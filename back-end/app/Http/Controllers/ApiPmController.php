@@ -30,7 +30,8 @@
 					->where('relation.patient_id',$postdata['patient_id'])
 					->join('cms_users', 'cms_users.id', '=', 'relation.medecin_id')
 					->join('medecin', 'medecin.cms_users_id', '=', 'cms_users.id')
-					->select('cms_users.*','medecin.adresse_physique','medecin.adresse_physique','medecin.adresse_physique')
+					->leftJoin('domaine', 'medecin.domaine_id', '=', 'domaine.id')
+					->select('cms_users.id','cms_users.nom','cms_users.prenom','domaine.nom as domaineName','medecin.adresse_physique','medecin.adresse_physique','medecin.adresse_physique')
 					->paginate(10);
 		    }
 

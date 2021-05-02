@@ -138,7 +138,7 @@ const MonMedecin = () => {
       </>
     );
   };
-  let header = ["Nom", "Prenom"];
+  let header = ["Nom", "Prenom", "domain"];
   return (
     <React.Fragment>
       <Spinner
