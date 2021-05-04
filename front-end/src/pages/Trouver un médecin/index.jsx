@@ -32,7 +32,7 @@ import ReserverUnRendezVous from "../../components/reserver un rendez-vous";
 import { link, userImage } from "./../../services/api/index";
 import { TableActions } from "./../../components/table/TableActions";
 const TrouverUnMedecin = (props) => {
-  let header = ["Nom", "Prenom", "domain"];
+  let header = ["Nom Prenom", "domain"];
   const [content, setContent] = useState([]);
   const [total, setTotal] = useState(0);
   const [next, setNext] = useState("");
@@ -57,17 +57,19 @@ const TrouverUnMedecin = (props) => {
     fn2: (data) => (
       <Popover>
         <PopoverTrigger>
-          <Button mx={1}>Info</Button>
+          <Button mx={1} my={3}>
+            Info
+          </Button>
         </PopoverTrigger>
         <Portal>
           <PopoverContent>
             <PopoverArrow />
-            <PopoverHeader>{data.nom + " " + data.prenom}</PopoverHeader>
+            <PopoverHeader>{data.nomprenom}</PopoverHeader>
             <PopoverCloseButton />
             <PopoverBody>
               {data.photo && (
                 <Avatar
-                  name={data.nom + " " + data.prenom}
+                  name={data.nomprenom}
                   size="xl"
                   src={`${link}${data.photo}`}
                 />
@@ -181,6 +183,7 @@ const TrouverUnMedecin = (props) => {
       <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
         <form noValidate onSubmit={MyForm.submit}>
           <Grid
+            p={3}
             templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
             gap={3}
           >

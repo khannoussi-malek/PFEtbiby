@@ -65,12 +65,12 @@ const MonMedecin = () => {
         <Portal>
           <PopoverContent>
             <PopoverArrow />
-            <PopoverHeader>{data.nom + " " + data.prenom} </PopoverHeader>
+            <PopoverHeader>{data.nomprenom} </PopoverHeader>
             <PopoverCloseButton />
             <PopoverBody>
               {!!data.photo ? (
                 <Avatar
-                  name={data.nom + " " + data.prenom}
+                  name={data.nomprenom}
                   size="xl"
                   src={
                     data.photo != null
@@ -112,7 +112,6 @@ const MonMedecin = () => {
               ) : (
                 ``
               )}
-              {!!data.cin ? <Text>cin : {data.cin} </Text> : ``}
             </PopoverBody>
             <PopoverFooter>
               Ce sont des informations personnelles sur votre médecin
@@ -138,7 +137,7 @@ const MonMedecin = () => {
       </>
     );
   };
-  let header = ["Nom", "Prenom", "domain"];
+  let header = ["Nom Prenom", "domain"];
   return (
     <React.Fragment>
       <Spinner

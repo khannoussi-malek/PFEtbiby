@@ -46,6 +46,7 @@ export const TableContent = (props) => {
         )}
       </Box>
       <Table
+        overflowX="scroll"
         w="100%"
         display={content.length == 0 ? `none` : ``}
         my="8"

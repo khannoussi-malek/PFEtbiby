@@ -30,8 +30,8 @@ export const Select2 = (props) => {
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
       return {
         ...styles,
-        backgroundColor: isFocused ? "cyan" : "white",
-        color: !isFocused ? "cyan.600" : "#FFF",
+        backgroundColor: isFocused ? "purple" : "white",
+        color: !isFocused ? "#000" : "#FFF",
         cursor: isDisabled ? "not-allowed" : "default",
       };
     },

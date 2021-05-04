@@ -17,7 +17,7 @@ const ReserverUnRendezVous = (props) => {
   const btnRef = useRef();
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" size="sm" onClick={onOpen}>
+      <Button ref={btnRef} colorScheme="teal" size="sm" my={3} onClick={onOpen}>
         Rendez-vous
       </Button>
       <Drawer
@@ -30,7 +30,9 @@ const ReserverUnRendezVous = (props) => {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>Salle d'attente {data.nom} {data.prenom} 🪑 </DrawerHeader>
+            <DrawerHeader>
+              Salle d'attente {data.nom} {data.prenom} 🪑{" "}
+            </DrawerHeader>
 
             <DrawerBody>
               <CalendarReserve data={data} />

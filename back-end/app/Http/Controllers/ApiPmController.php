@@ -31,7 +31,7 @@
 					->join('cms_users', 'cms_users.id', '=', 'relation.medecin_id')
 					->join('medecin', 'medecin.cms_users_id', '=', 'cms_users.id')
 					->leftJoin('domaine', 'medecin.domaine_id', '=', 'domaine.id')
-					->select('cms_users.id','cms_users.nom','cms_users.prenom','domaine.nom as domaineName','medecin.adresse_physique','medecin.adresse_physique','medecin.adresse_physique')
+					->select('cms_users.id',DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'),'domaine.nom as domaineName','medecin.adresse_physique','cms_users.cin','cms_users.email','cms_users.telephone','cms_users.photo')
 					->paginate(10);
 		    }
 

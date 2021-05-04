@@ -27,7 +27,7 @@ const G_Alert = (props) => {
   return (
     <>
       <IconButton
-        size="xs"
+        size="md"
         m={1}
         bg={bg}
         colorScheme={colorScheme}
