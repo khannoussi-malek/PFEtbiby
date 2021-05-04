@@ -27,7 +27,7 @@
                 
                         $extention=$postdata['photo']->getClientOriginalExtension();
                         if($extention=="jpg"||$extention=="png"||$extention=="gif"){}else{
-                            $errer['errer']="errrrrer";
+                            $errer['errer']="Veuillez saisir une image (jpg , ng ,gif)";
                         }
                 }
 

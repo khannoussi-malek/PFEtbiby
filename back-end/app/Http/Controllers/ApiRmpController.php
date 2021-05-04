@@ -20,7 +20,7 @@
 				if($postdata['patient_id']=="" or $postdata['patient_id']==null) 
 				{}
 				else{
-					$user = DB::table('cms_users')->select('*')->where('email',$postdata['patient_id'] )->orWhere('telephone',$postdata['patient_id'])
+					$user = DB::table('cms_users')->select('*')->where('email',$postdata['patient_id'] )->orWhere('telephone',$postdata['patient_id'])->orWhere('id',$postdata['patient_id'])
 					->orWhere('cin',$postdata['patient_id'])
 					->get();
 
@@ -32,8 +32,7 @@
 					if($user[0]==null){
 
 						DB::table('relation')->insert(
-							['patient_id' => $postdata['patient_id'], 'medecin_id' =>$postdata['medecin_id'],"created_at" =>  date('Y-m-d H:i:s'), 
-							"updated_at" => date('Y-m-d H:i:s')]
+							['patient_id' => $postdata['patient_id'], 'medecin_id' =>$postdata['medecin_id'],"created_at" =>  date('Y-m-d H:i:s'),]
 						);
 
 					}

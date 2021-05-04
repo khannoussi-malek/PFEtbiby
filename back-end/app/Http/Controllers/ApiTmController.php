@@ -39,7 +39,7 @@
 						->orwhere('cms_users.email', 'LIKE', '%'.$postdata['search'].'%')
 						->orwhere('cms_users.cin', 'LIKE', '%'.$postdata['search'].'%')
 						->leftJoin('domaine', 'medecin.domaine_id', '=', 'domaine.id')
-						->select('cms_users.id','cms_users.nom','cms_users.prenom','domaine.nom as domaineName','medecin.adresse_physique','cms_users.sexes','cms_users.telephone','cms_users.photo','cms_users.email','cms_users.date_naissance')
+						->select('cms_users.id',DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'),'domaine.nom as domaineName','medecin.adresse_physique','cms_users.sexes','cms_users.telephone','cms_users.photo','cms_users.email','cms_users.date_naissance')
 						->paginate(10);
 						}else{
 							$result = DB::table('cms_users')					
@@ -48,7 +48,7 @@
 						->where('medecin.sous_domaine_id',$postdata['sousDomaineSelected'])
 						->where('medecin.domaine_id',$postdata['DomaineSelected'])
 						->leftJoin('domaine', 'medecin.domaine_id', '=', 'domaine.id')
-						->select('cms_users.id','cms_users.nom','cms_users.prenom','domaine.nom as domaineName','medecin.adresse_physique','cms_users.sexes','cms_users.telephone','cms_users.photo','cms_users.email','cms_users.date_naissance')
+						->select('cms_users.id',DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'),'domaine.nom as domaineName','medecin.adresse_physique','cms_users.sexes','cms_users.telephone','cms_users.photo','cms_users.email','cms_users.date_naissance')
 						->paginate(10);
 						}
 
@@ -64,7 +64,7 @@
 							->orwhere('cms_users.telephone', 'LIKE', '%'.$postdata['search'].'%')
 							->orwhere('cms_users.email', 'LIKE', '%'.$postdata['search'].'%')
 							->orwhere('cms_users.cin', 'LIKE', '%'.$postdata['search'].'%')
-							->select('cms_users.id','cms_users.nom','cms_users.prenom','domaine.nom as domaineName','medecin.adresse_physique','cms_users.sexes','cms_users.telephone','cms_users.photo','cms_users.email','cms_users.date_naissance')
+							->select('cms_users.id',DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'),'domaine.nom as domaineName','medecin.adresse_physique','cms_users.sexes','cms_users.telephone','cms_users.photo','cms_users.email','cms_users.date_naissance')
 							->paginate(10);
 						}else{
 							$result = DB::table('cms_users')					
@@ -88,7 +88,7 @@
 						->orwhere('cms_users.telephone', 'LIKE', '%'.$postdata['search'].'%')
 						->orwhere('cms_users.email', 'LIKE', '%'.$postdata['search'].'%')
 						->orwhere('cms_users.cin', 'LIKE', '%'.$postdata['search'].'%')
-						->select('cms_users.id','cms_users.nom','cms_users.prenom','domaine.nom as domaineName','medecin.adresse_physique','cms_users.sexes','cms_users.telephone','cms_users.photo','cms_users.email','cms_users.date_naissance')
+						->select('cms_users.id',DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'),'domaine.nom as domaineName','medecin.adresse_physique','cms_users.sexes','cms_users.telephone','cms_users.photo','cms_users.email','cms_users.date_naissance')
 						->paginate(10);
 					}else{
 					$result = DB::table('cms_users')					
@@ -100,7 +100,7 @@
 					->orwhere('cms_users.telephone', 'LIKE', '%'.$postdata['search'].'%')
 					->orwhere('cms_users.email', 'LIKE', '%'.$postdata['search'].'%')
 					->orwhere('cms_users.cin', 'LIKE', '%'.$postdata['search'].'%')
-					->select('cms_users.id','cms_users.nom','cms_users.prenom','domaine.nom as domaineName','medecin.adresse_physique','cms_users.sexes','cms_users.telephone','cms_users.photo','cms_users.email','cms_users.date_naissance')
+					->select('cms_users.id',DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'),'domaine.nom as domaineName','medecin.adresse_physique','cms_users.sexes','cms_users.telephone','cms_users.photo','cms_users.email','cms_users.date_naissance')
 					->paginate(10);}
 				}
 				

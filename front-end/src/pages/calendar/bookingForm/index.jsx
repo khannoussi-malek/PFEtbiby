@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/layout";
+import { Box, Center } from "@chakra-ui/layout";
 import { Formiz, useForm } from "@formiz/core";
 import { MyField } from "../../../components/formInput";
 import {
@@ -13,9 +13,10 @@ import {
 import { Button } from "@chakra-ui/button";
 import { Select2 } from "../../../components/formInput/select";
 import { useState } from "react";
-import { Text, Spinner } from "@chakra-ui/react";
+import { Text, Spinner, RadioGroup, Radio, Stack } from "@chakra-ui/react";
 import { useCreateReservation } from "../../../services/api/reservation";
 import { useRelation } from "../../../services/api/relation";
+import AddNewPatient from "./AddNewPatient";
 const BookingForm = (props) => {
   const [NomPrenom, setNomPrenom] = useState("");
   const {
@@ -81,82 +82,89 @@ const BookingForm = (props) => {
       >
         <AlertDialogOverlay />
 
-        <AlertDialogContent>
-          <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
-            <form noValidate onSubmit={MyForm.submit}>
-              <AlertDialogHeader>Confirmer la réservation</AlertDialogHeader>
-              <AlertDialogCloseButton />
-              <Spinner
-                display={!isLoading && !LodingaAddPatient ? `none` : ``}
-                size="xl"
-                m="auto"
-                color="red.500"
-              />
-              <AlertDialogBody
-                display={isLoading || LodingaAddPatient ? `none` : ``}
-              >
+        <AlertDialogContent minW={{ md: "700px" }}>
+          <AlertDialogHeader>Confirmer la réservation</AlertDialogHeader>
+          <AlertDialogCloseButton />
+          <Spinner
+            display={!isLoading && !LodingaAddPatient ? `none` : ``}
+            size="xl"
+            m="auto"
+            color="red.500"
+          />
+          <AlertDialogBody
+            display={isLoading || LodingaAddPatient ? `none` : ``}
+          >
+            <Center>
+              <RadioGroup onChange={setSearch} value={search}>
+                <Stack direction="row">
+                  <Radio value="old">Mon patient</Radio>
+                  <Radio value="new">Le patient a un compte</Radio>
+                  <Radio value="create">✨ Créer un copte </Radio>
+                </Stack>
+              </RadioGroup>
+            </Center>
+            <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
+              <form noValidate onSubmit={MyForm.submit}>
                 <Text pb={2} px={5}>
-                  Réservation d'un rendez-vous le{" "}
-                  {currentDateStart.slice(0, 10) + " "}à
-                  {" " + currentDateStart.slice(11, 19)} pour
+                  {search != "create"
+                    ? `Réservation d'un rendez-vous le ${
+                        currentDateStart.slice(0, 10) + " "
+                      } à ${currentDateStart.slice(11, 19)} pour `
+                    : ``}
                   {search == "new" ? (
-                    <Button
-                      bgColor="#b3e6c8"
-                      _hover={{ bgColor: "#caf0d9" }}
-                      marginLeft={5}
-                      onClick={() => setSearch("old")}
-                    >
-                      Nouveau patient
-                    </Button>
+                    <Box>
+                      <MyField
+                        name="user"
+                        label="Email ou CIN ou Telephone"
+                        required="email ou CIN or Telephone"
+                      />
+                      <Text color="tomato">{errorMessage}</Text>
+                    </Box>
+                  ) : search == "old" ? (
+                    <Select2
+                      required={"Sélect un patient."}
+                      data={listPatient}
+                      // label="Notre patient"
+                      name="selectvalue"
+                    />
                   ) : (
-                    <Button
-                      _hover={{ bgColor: "#caf0d9" }}
-                      bgColor="#b3e6c8"
-                      marginLeft={5}
-                      onClick={() => setSearch("new")}
-                    >
-                      Votre patient
-                    </Button>
+                    ``
                   )}
                 </Text>
-
-                {search == "new" ? (
-                  <Box>
-                    <MyField
-                      name="user"
-                      label="Email ou CIN ou Telephone"
-                      required="email ou ci"
-                    />
-                    <Text color="tomato">{errorMessage}</Text>
-                  </Box>
+                {search != "create" ? (
+                  <AlertDialogFooter>
+                    <Button
+                      display={isLoading ? `none` : ``}
+                      ref={cancelRef}
+                      onClick={onClose}
+                    >
+                      Non
+                    </Button>
+                    <Button
+                      display={isLoading ? `none` : ``}
+                      disabled={!MyForm.isValid}
+                      type="submit"
+                      ml={3}
+                    >
+                      Oui
+                    </Button>
+                  </AlertDialogFooter>
                 ) : (
-                  <Select2
-                    required={"Sélect un patient."}
-                    data={listPatient}
-                    // label="Notre patient"
-                    name="selectvalue"
-                  />
+                  ``
                 )}
-              </AlertDialogBody>
-              <AlertDialogFooter>
-                <Button
-                  display={isLoading ? `none` : ``}
-                  ref={cancelRef}
-                  onClick={onClose}
-                >
-                  Non
-                </Button>
-                <Button
-                  display={isLoading ? `none` : ``}
-                  disabled={!MyForm.isValid}
-                  type="submit"
-                  ml={3}
-                >
-                  Oui
-                </Button>
-              </AlertDialogFooter>
-            </form>
-          </Formiz>
+              </form>
+            </Formiz>
+            {search == "create" ? (
+              <Box maxH="60vh" w="100%" overflowY="scroll">
+                <AddNewPatient
+                  addPatient={addPatient}
+                  medecin_id={medecin_id}
+                />
+              </Box>
+            ) : (
+              ``
+            )}
+          </AlertDialogBody>
         </AlertDialogContent>
       </AlertDialog>
     </Box>

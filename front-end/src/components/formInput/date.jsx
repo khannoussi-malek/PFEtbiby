@@ -24,7 +24,7 @@ export const InputDate = (props) => {
     props
   );
 
-  const { label, type, required, note, dValue } = props;
+  const { label, type, required, note, dValue, SyncWithVariable } = props;
   const [isTouched, setIsTouched] = React.useState(true);
   // const showError = !isValid && (isTouched || isSubmitted);
   return (
@@ -37,20 +37,19 @@ export const InputDate = (props) => {
 
         <DatePicker
           selected={startDate}
-          //  onChange={date => setStartDate(date)}
           peekNextMonth
           showMonthDropdown
           showYearDropdown
-          // dateFormat="yyyy-MM-dd"
           dropdownMode="select"
           id={id}
           onBlur={() => setIsTouched(true)}
           dateFormat="yyyy-MM-dd"
           selected={startDate}
           value={value || dValue}
-          onChange={(date) =>
-            setValue(date.toISOString().slice(0, 10), setStartDate(date))
-          }
+          onChange={(date) => {
+            !!SyncWithVariable && SyncWithVariable(date);
+            setValue(date.toISOString().slice(0, 10), setStartDate(date));
+          }}
         />
       </FormControl>
     </React.Fragment>

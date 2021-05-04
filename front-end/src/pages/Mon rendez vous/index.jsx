@@ -1,5 +1,23 @@
 import React, { useState, useContext } from "react";
-import { Box, useToast, Spinner, Heading, Text, Link } from "@chakra-ui/react";
+import {
+  Box,
+  useToast,
+  Spinner,
+  Heading,
+  Text,
+  Link as Linkurl,
+  Button,
+  Popover,
+  PopoverTrigger,
+  Portal,
+  PopoverContent,
+  PopoverArrow,
+  PopoverHeader,
+  PopoverCloseButton,
+  PopoverBody,
+  Avatar,
+  PopoverFooter,
+} from "@chakra-ui/react";
 import { useConsultationPatient } from "./../../services/api/consultation/index";
 import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
@@ -8,6 +26,10 @@ import { useDeleteReservation } from "./../../services/api/reservation/index";
 import G_Alert from "../../components/general alert";
 import { CloseIcon } from "@chakra-ui/icons";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { link } from "./../../services/api/index";
+import { EmailIcon } from "@chakra-ui/icons";
+import { MdCall } from "react-icons/md";
+
 const MonRendezvous = () => {
   const { user, cleanUser } = useContext(TbibyContext);
 
@@ -54,14 +76,14 @@ const MonRendezvous = () => {
         <Text mt="4" fontSize="lg">
           si vous voulez réserver un rendez-vous , consulter le lien suivant :
         </Text>
-        <Link>
+        <Linkurl>
           Reserver un rendez-vous <ExternalLinkIcon mx="2px" />
-        </Link>
+        </Linkurl>
       </>
     );
   };
   const [fntable, setFntable] = useState({
-    fn: (data) => (
+    fn2: (data) => (
       <G_Alert
         Header="Supprimer la réservation"
         Body={`Voulez-vous vraiment supprimer cette réservation avec ${data.nom} ${data.prenom}`}
@@ -74,8 +96,66 @@ const MonRendezvous = () => {
         btNon="Annuler"
       />
     ),
+    fn: (data) => (
+      <Popover>
+        <PopoverTrigger>
+          <Button mx={1} my={3}>
+            Info
+          </Button>
+        </PopoverTrigger>
+        <Portal>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverHeader>{data.nomprenom}</PopoverHeader>
+            <PopoverCloseButton />
+            <PopoverBody>
+              {data.photo && (
+                <Avatar
+                  name={data.nomprenom}
+                  size="xl"
+                  src={`${link}${data.photo}`}
+                />
+              )}
+              {data.domaineName && <Text>Domain : {data.domaineName} </Text>}
+
+              {data.adresse_physique && (
+                <Text>Adresse : {data.adresse_physique} </Text>
+              )}
+
+              {data.email && (
+                <Text as="a" href={"mailto:" + data.email}>
+                  <Button
+                    my={1}
+                    colorScheme="blue"
+                    leftIcon={<EmailIcon />}
+                    variant="outline"
+                  >
+                    Email
+                  </Button>
+                </Text>
+              )}
+              {data.telephone && (
+                <Text display="block" as="a" href={"tel:" + data.telephone}>
+                  <Button
+                    my={1}
+                    leftIcon={<MdCall />}
+                    colorScheme="blue"
+                    variant="outline"
+                  >
+                    Appeller
+                  </Button>
+                </Text>
+              )}
+            </PopoverBody>
+            <PopoverFooter>
+              Ce sont des informations personnelles sur votre médecin
+            </PopoverFooter>
+          </PopoverContent>
+        </Portal>
+      </Popover>
+    ),
   });
-  let header = ["Nom", "Prenom", "Date reservation"];
+  let header = ["Nom Prenom", "Date reservation"];
   return (
     <React.Fragment>
       <Spinner
