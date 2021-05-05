@@ -29,7 +29,7 @@ export const useDeleteReservation = (config) => {
 };
 export const useReservationMListe = ({ params, ...config } = {}) => {
   return useQuery(
-    ["list de rendeves des parents en dashboard", params],
+    ["list de rendeves des parents en dashboard"],
     () => axios.get("listrm", { params }),
     config
   );
