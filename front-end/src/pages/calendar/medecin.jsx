@@ -87,8 +87,8 @@ const CalendarDashboardMedecin = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [listPatient, setListPatient] = useState([]);
   const {
-    isLoading: ListPatientDashboardAPIIsLoading,
-    refetch: ListPatientDashboardAPIRefetch,
+    isLoading: listPatientDashboardAPIIsLoading,
+    refetch: listPatientDashboardAPIRefetch,
   } = useListPatientDashboardAPI({
     params,
     onError: (error) => {
@@ -177,9 +177,7 @@ const CalendarDashboardMedecin = () => {
               Aujourd'hui
             </Button>
 
-            <ConfirmerUnRendezVous
-              refetchDashboard={ListPatientDashboardAPIRefetch}
-            />
+            <ConfirmerUnRendezVous refetchDashboard={refetchTask} />
             {!isMobile ? (
               <Button mx={2} onClick={() => setDaysView(7)}>
                 Par semaine
@@ -206,7 +204,7 @@ const CalendarDashboardMedecin = () => {
         />
 
         <BookingForm
-          ListPatientDashboardAPIRefetch={ListPatientDashboardAPIRefetch}
+          listPatientDashboardAPIRefetch={listPatientDashboardAPIRefetch}
           listPatient={listPatient}
           currentDateStart={currentDateStart}
           cancelRef={cancelRef}

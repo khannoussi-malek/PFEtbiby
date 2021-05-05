@@ -175,7 +175,7 @@ const MonRendezvous = () => {
           mx="auto"
           px={{ base: "1", md: "8" }}
         >
-          <Box>
+          <Box overflowX="auto">
             <TableContent
               header={header}
               content={content}

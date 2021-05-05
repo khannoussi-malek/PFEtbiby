@@ -18,33 +18,27 @@
              
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
-                $errer=[];
-
+                $error=[];
 				if($postdata['nom']!="null"){
                     $tableupdate['nom']=$postdata['nom'];
                 }
                 if($postdata['photo']!="null"){
-                
                         $extention=$postdata['photo']->getClientOriginalExtension();
                         if($extention=="jpg"||$extention=="png"||$extention=="gif"){}else{
-                            $errer['errer']="Veuillez saisir une image (jpg , ng ,gif)";
+                            $error['error']="Veuillez saisir une image (jpg , png ,gif)";
                         }
                 }
-
                 if($postdata['prenom']!="null"){
                     $tableupdate['prenom']=$postdata['prenom'];
                     }
-
                 if(!empty($postdata['telephone'])&&$postdata['telephone']!="null"){
-                    
                     $users = DB::table('cms_users')->select('telephone')->where('id','!=',$postdata['id'])
                     ->where('telephone',$postdata['telephone'])->first();
                     if($users==null){
                     $tableupdate['telephone']=$postdata['telephone'];
-                        
                     }
                     else{
-                        $errer['etelephone']="telephone existe deja";
+                        $error['etelephone']="telephone existe deja";
                     }
                     }
 
@@ -55,7 +49,7 @@
                            $tableupdate['email']=$postdata['email'];
                         }
                         else{
-                            $errer['eemail']="email existe deja";
+                            $error['eemail']="email existe deja";
                         }
                     }
 
@@ -72,7 +66,7 @@
                         
                     }
                     else{
-                        $errer['ecin']="cin existe deja";
+                        $error['ecin']="cin existe deja";
                     }
                     }
                 if($postdata['sexes']!="undefined"){
@@ -111,7 +105,7 @@
                     if($users->id!=null){
                         $patient["parent"]=$users->id;
                     }else{
-                        $errer["parent"]="idantifiant parent introvables";
+                        $error["parent"]="idantifiant parent introvables";
                     }
                     
                         }
@@ -157,7 +151,7 @@
 
                 }
 
-                if($errer==[]){
+                if($error==[]){
 
                     if($postdata['photo']!="null"){
                     
@@ -184,7 +178,7 @@
                     }
                 }
 
-				$postdata=$errer;
+				$postdata=$error;
 		    }
 
 		    public function hook_query(&$query) {
