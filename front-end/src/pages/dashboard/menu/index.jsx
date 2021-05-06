@@ -9,10 +9,9 @@ import {
   BsBookmarks,
   BsAlarm,
   BsFillPeopleFill,
-  BsHeartFill,
 } from "react-icons/bs";
 
-import { BiClipboard } from "react-icons/bi";
+import { BiClipboard, BiDonateHeart } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import { TbibyContext } from "./../../../router/context";
 const Menu = () => {
@@ -36,8 +35,9 @@ const Menu = () => {
   } else if (user.fonctionnalite == "medecin") {
     pages = [
       { url: "Mes patients", icon: <BsFillPeopleFill /> },
-      { url: "Consultation", icon: <BsHeartFill /> },
+      { url: "Consultation", icon: <BiDonateHeart /> },
       { url: "Modèle de certificat", icon: <BiClipboard /> },
+      { url: "Liste d'act", icon: <BiClipboard /> },
     ];
   } else if (user.fonctionnalite == "secretaire") {
     pages = Patientmenu;

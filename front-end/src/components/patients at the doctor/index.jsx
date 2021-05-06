@@ -38,7 +38,6 @@ const PatientsAtTheDoctor = (props) => {
     if (target == currentPatient.rendez_vous_id) {
       setCurrentPatient({});
     }
-    console.log("fff");
     onCloseWaiting();
   };
   return (
@@ -57,36 +56,38 @@ const PatientsAtTheDoctor = (props) => {
           }}
         >
           {data.nomprenom}
-          <Alert
-            Header="Supprimer la réservation"
-            Body={`Voulez-vous vraiment supprimer cette réservation avec ${data.nomprenom}`}
-            icon={<CloseIcon />}
-            colorScheme="teal"
-            bg="red.300"
-            target={data.rendez_vous_id}
-            fnTodo={removePatient}
-            btOK="Effacer"
-            btNon="Annuler"
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            onClose={onClose}
-            cancelRef={cancelRef}
-          />
-          <Alert
-            Header="envoyer à la salle d'attente"
-            Body={`Êtes-vous sûr que vous voulez envoyer ${data.nomprenom} à la salle d'attente`}
-            icon={<ExternalLinkIcon />}
-            colorScheme="teal"
-            bg="blue.300"
-            target={data.rendez_vous_id}
-            fnTodo={ToWaiting}
-            btOK="Effacer"
-            btNon="Annuler"
-            isOpen={isOpenWaiting}
-            setIsOpen={setIsOpenWaiting}
-            onClose={onCloseWaiting}
-            cancelRef={cancelRefWaiting}
-          />
+          <Box>
+            <Alert
+              Header="Supprimer la réservation"
+              Body={`Voulez-vous vraiment supprimer cette réservation avec ${data.nomprenom}`}
+              icon={<CloseIcon w={4} h={4} />}
+              colorScheme="teal"
+              bg="red.300"
+              target={data.rendez_vous_id}
+              fnTodo={removePatient}
+              btOK="Effacer"
+              btNon="Annuler"
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              onClose={onClose}
+              cancelRef={cancelRef}
+            />
+            <Alert
+              Header="envoyer à la salle d'attente"
+              Body={`Êtes-vous sûr que vous voulez envoyer ${data.nomprenom} à la salle d'attente`}
+              icon={<ExternalLinkIcon w={4} h={4} />}
+              colorScheme="teal"
+              bg="blue.300"
+              target={data.rendez_vous_id}
+              fnTodo={ToWaiting}
+              btOK="Effacer"
+              btNon="Annuler"
+              isOpen={isOpenWaiting}
+              setIsOpen={setIsOpenWaiting}
+              onClose={onCloseWaiting}
+              cancelRef={cancelRefWaiting}
+            />
+          </Box>
         </Box>
       ))}
     </SimpleGrid>

@@ -1,5 +1,6 @@
 import { CloseButton } from "@chakra-ui/close-button";
 import { Box, Divider } from "@chakra-ui/layout";
+import { useColorModeValue as mode } from "@chakra-ui/react";
 import { useState } from "react";
 import { Select2 } from "./../formInput/select";
 import { TextareaForm } from "./../formInput/Textarea";
@@ -12,6 +13,7 @@ import {
 import { Input } from "@chakra-ui/input";
 import { EditIcon } from "@chakra-ui/icons";
 import { MyField } from "../formInput";
+import { Prix } from "../formInput/Prix";
 export const Acte = (props) => {
   const { id, removeComponentsForm, name } = props;
   const [title, setTitle] = useState("");
@@ -43,28 +45,17 @@ export const Acte = (props) => {
           float="right"
         />
       </AccordionButton>
-      <AccordionPanel bgColor="gray.50" pb={4}>
-        {/* <Select2
-          required={"Sélect le type de certifica."}
-          label="type de certifica"
-          data={[
-            {
-              label: "Scholeur de certificats",
-              value: "Scholeur de certificats",
-            },
-            {
-              label: "Scholeur de certificats2",
-              value: "Scholeur de certificats2",
-            },
-            {
-              label: "Scholeur de certificats3",
-              value: "Scholeur de certificats3",
-            },
-          ]}
+      <AccordionPanel bgColor={mode("gray.50", "gray.700")} pb={4}>
+        <Select2
+          label="Type de certificat"
+          data={[]}
+          // onChange={(e) => changeValueOfEditer(e)}
           name="selectvalue"
-        /> */}
-        <MyField name={`${name}.type`} label="tarif d'acte" />
-        <TextareaForm name="acte" label="contenu d'acte" />
+        />
+        <MyField name="code" label="Code" />
+        <TextareaForm name="Diagnostic" label="Diagnostic" />
+        <TextareaForm name="note" label="Note" />
+        <Prix name="prix" label="Prix" />
       </AccordionPanel>
     </AccordionItem>
   );

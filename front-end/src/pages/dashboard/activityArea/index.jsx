@@ -11,6 +11,7 @@ import Consultation from "../../consultation";
 import CertificatPage from "../../Certificat";
 import MonRendezvous from "./../../Mon rendez vous/index";
 import TrouverUnMedecin from "../../Trouver un médecin";
+import ListeDact from "../../ListeDact";
 const ActivityArea = () => {
   const { user } = useContext(TbibyContext);
 
@@ -40,6 +41,12 @@ const ActivityArea = () => {
         <PrivateRoute
           path="/dashboard/Modèle de certificat"
           component={CertificatPage}
+          isAuth={user.isAuthenticated}
+          exact
+        />
+        <PrivateRoute
+          path="/dashboard/Liste d'act"
+          component={ListeDact}
           isAuth={user.isAuthenticated}
           exact
         />
