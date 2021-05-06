@@ -97,9 +97,9 @@ const BookingForm = (props) => {
             <Center>
               <RadioGroup onChange={setSearch} value={search}>
                 <Stack direction="row">
-                  <Radio value="old">Mon patient</Radio>
-                  <Radio value="new">Le patient a un compte</Radio>
-                  <Radio value="create">✨ Créer un copte </Radio>
+                  <Radio value="old">Patient associé </Radio>
+                  <Radio value="new">Patient non-associé</Radio>
+                  <Radio value="create">Inscrire un patient</Radio>
                 </Stack>
               </RadioGroup>
             </Center>
@@ -109,7 +109,7 @@ const BookingForm = (props) => {
                   {search != "create"
                     ? `Réservation d'un rendez-vous le ${
                         currentDateStart.slice(0, 10) + " "
-                      } à ${currentDateStart.slice(11, 19)} pour `
+                      } à ${currentDateStart.slice(11, 19)} pour : `
                     : ``}
                   {search == "new" ? (
                     <Box>

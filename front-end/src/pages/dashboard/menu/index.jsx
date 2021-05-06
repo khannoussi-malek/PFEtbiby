@@ -11,7 +11,7 @@ import {
   BsFillPeopleFill,
 } from "react-icons/bs";
 
-import { BiClipboard, BiDonateHeart } from "react-icons/bi";
+import { BiClipboard, BiDonateHeart, BiLayer } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import { TbibyContext } from "./../../../router/context";
 const Menu = () => {
@@ -24,20 +24,20 @@ const Menu = () => {
 
   let pages = [];
   let Patientmenu = [
-    { url: "Trouver un médecin", icon: <BsSearch /> },
-    { url: "Mes rendez vous", icon: <BsFillCalendarFill /> },
-    { url: "Mes médecins", icon: <BsFillPersonLinesFill /> },
-    { url: "Mes Rappels", icon: <BsAlarm /> },
-    { url: "Reserver un rendez-vous", icon: <BsBookmarks /> },
+    { url: "Trouver un médecin", icon: <BsSearch fontSize="20px" /> },
+    { url: "Mes rendez vous", icon: <BsFillCalendarFill fontSize="20px" /> },
+    { url: "Mes médecins", icon: <BsFillPersonLinesFill fontSize="20px" /> },
+    { url: "Mes Rappels", icon: <BsAlarm fontSize="20px" /> },
+    { url: "Reserver un rendez-vous", icon: <BsBookmarks fontSize="20px" /> },
   ];
   if (user.fonctionnalite == "patient") {
     pages = Patientmenu;
   } else if (user.fonctionnalite == "medecin") {
     pages = [
-      { url: "Mes patients", icon: <BsFillPeopleFill /> },
-      { url: "Consultation", icon: <BiDonateHeart /> },
-      { url: "Modèle de certificat", icon: <BiClipboard /> },
-      { url: "Liste d'act", icon: <BiClipboard /> },
+      { url: "Mes patients", icon: <BsFillPeopleFill fontSize="20px" /> },
+      { url: "Consultation", icon: <BiDonateHeart fontSize="20px" /> },
+      { url: "Modèle de certificat", icon: <BiClipboard fontSize="20px" /> },
+      { url: "Liste d'actes", icon: <BiLayer fontSize="20px" /> },
     ];
   } else if (user.fonctionnalite == "secretaire") {
     pages = Patientmenu;

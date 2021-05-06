@@ -20,16 +20,16 @@ import { useSwipeable } from "react-swipeable";
 const Dashboard = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { pathname } = useLocation();
-  const { isOpen, toggle,actions } = useMobileMenuState();
+  const { isOpen, toggle, actions } = useMobileMenuState();
   const handlers = useSwipeable({
     onSwipedLeft: () => toggle(),
     onSwipedRight: () => toggle(),
     preventDefaultTouchmoveEvent: true,
     trackMouse: true,
-});
+  });
   return (
     <Flex
-    {...handlers}
+      {...handlers}
       height="100vh"
       w="100vw"
       bg={mode("cyan.600", "inherit")}
@@ -43,7 +43,7 @@ const Dashboard = () => {
         width="var(--sidebar-width)"
         left="0"
         py="5"
-        px="3"
+        px="1"
         color="gray.200"
         position="fixed"
       >

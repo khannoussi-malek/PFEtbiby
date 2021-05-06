@@ -29,8 +29,12 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { link } from "./../../services/api/index";
 import { EmailIcon } from "@chakra-ui/icons";
 import { MdCall } from "react-icons/md";
+import { useBreakpointValue } from "@chakra-ui/media-query";
+import { BiInfoCircle } from "react-icons/bi";
 
 const MonRendezvous = () => {
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+
   const { user, cleanUser } = useContext(TbibyContext);
 
   const toast = useToast();
@@ -100,7 +104,7 @@ const MonRendezvous = () => {
       <Popover>
         <PopoverTrigger>
           <Button mx={1} my={3}>
-            Info
+            {isMobile ? <BiInfoCircle fontSize="20px" /> : `Info`}
           </Button>
         </PopoverTrigger>
         <Portal>
@@ -155,7 +159,7 @@ const MonRendezvous = () => {
       </Popover>
     ),
   });
-  let header = ["Nom Prenom", "Date reservation"];
+  let header = ["Nom Prenom", "Date de reservation"];
   return (
     <React.Fragment>
       <Spinner

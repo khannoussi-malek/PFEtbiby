@@ -2,12 +2,11 @@ import React, { useContext, useState } from "react";
 import { TbibyContext } from "./../../router/context/index";
 import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
-import CertificatUpdate from "./../../components/Certificat/CertificatUpdate";
 
-import { useToast, Center, Box } from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/hooks";
+import { useToast, Center, Box, Spinner } from "@chakra-ui/react";
 import AjoutActe from "../../components/Acte/_parcial/AjoutActe";
 import { useGetListActe } from "../../services/api/acte";
+import UpdateAct from "./../../components/Acte/_parcial/UpdateAct";
 const ListeDact = () => {
   const { user } = useContext(TbibyContext);
   const [content, setContent] = useState([[""]]);
@@ -37,14 +36,7 @@ const ListeDact = () => {
     },
   });
   const [fntable, setFntable] = useState({
-    fn: (data) => (
-      <CertificatUpdate
-        data={data.structure}
-        type={data.type}
-        id={data.id}
-        cms_users_id={data.cms_users_id}
-      />
-    ),
+    fn: (data) => <UpdateAct data={data} refetch={refetch} />,
   });
   let header = ["code", "designation"];
 
@@ -52,16 +44,25 @@ const ListeDact = () => {
     <React.Fragment>
       <Box>
         <Center>
-          <AjoutActe user={user} />
+          <AjoutActe refetch={refetch} user={user} />
         </Center>
-        <TableContent header={header} content={content} fntable={fntable} />
-        <TablePagination
-          total={total}
-          next_page_url={next}
-          prev_page_url={prev}
-          page={page}
-          setPage={setPage}
+        <Spinner
+          pt={3}
+          display={!isLoading ? `none` : `block`}
+          size="xl"
+          m="auto"
+          color="red.500"
         />
+        <Box display={isLoading ? `none` : ``}>
+          <TableContent header={header} content={content} fntable={fntable} />
+          <TablePagination
+            total={total}
+            next_page_url={next}
+            prev_page_url={prev}
+            page={page}
+            setPage={setPage}
+          />
+        </Box>
       </Box>
     </React.Fragment>
   );
