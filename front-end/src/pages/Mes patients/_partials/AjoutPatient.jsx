@@ -19,7 +19,9 @@ const AjouPatient = (props) => {
   const [message, setMessage] = useState("");
   const { mutate, isLoading } = useRelation({
     onError: (error) => {
-      setMessage("Vérifiez les informations de contact ou la liste que vous avez insérées");
+      setMessage(
+        "Vérifiez les données saisie. Vous devez saisir le numéro de la carte d'identité, le numéro de téléphone, ou l'adresse mail."
+      );
     },
     onSuccess: (res) => {
       setMessage("");

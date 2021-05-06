@@ -54,9 +54,8 @@ const Antecedants = (props) => {
 
   return (
     <React.Fragment>
-      <Button bg={mode("blue.100", "blue.800")} onClick={onOpen}>
-        Antecedants
-      </Button>
+      {/* <Button bg={mode("blue.100", "blue.800")} onClick={onOpen}> */}
+      <Button onClick={onOpen}>Antecedants</Button>
       <Drawer placement="left" size="xl" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent bg={mode("gray.50", "gray.700")}>
@@ -130,7 +129,7 @@ const Antecedants = (props) => {
                             style={{ cursor: "pointer" }}
                             borderRadius="20px"
                             p={2}
-                            colorScheme="blue"
+                            colorScheme="gray"
                           >
                             {data.medecin}
                           </Text>
