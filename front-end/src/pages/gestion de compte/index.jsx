@@ -189,7 +189,7 @@ const Accountmanagement = () => {
 
                 <MyField
                   name="prenom"
-                  label="Prenom"
+                  label="Prénom"
                   Placeholder={gcInfo.prenom}
                   // required="Il est requis de compléter le champ correspondant au prenom"
                   validations={[
@@ -248,7 +248,7 @@ const Accountmanagement = () => {
                 />
                 <MyField
                   name="telephone"
-                  label="Telephone"
+                  label="Téléphone"
                   Placeholder={gcInfo.telephone}
                   // required="Il est requis de compléter le champ correspondant au telephone"
                   validations={[
@@ -272,19 +272,19 @@ const Accountmanagement = () => {
                 />
                 <MyField
                   name="email"
-                  label="Email"
+                  label="E-mail"
                   Placeholder={gcInfo.email}
                   // required="Il est requis de compléter le champ correspondant au mail"
                   validations={[
                     {
                       rule: isEmail(),
                       message:
-                        "Veuillez vérifier le format de l'e-mail(doit contenir @ et .)",
+                        "Veuillez vérifier le format de l'E-mail(doit contenir @ et .)",
                     },
                     {
                       rule: (val) =>
                         !!val || !!values.cin || !!values.telephone,
-                      message: "Le champ email doit contenir @ et .",
+                      message: 'Le champ E-mail doit contenir "@" et "."',
                       deps: [values.cin, values.telephone],
                     },
                   ]}
@@ -306,7 +306,7 @@ const Accountmanagement = () => {
               </VStack>
             </FieldGroup>
             <Divider />
-            <FieldGroup title="Profile Photo">
+            <FieldGroup title="Photo de Profil">
               <Stack direction="row" spacing="10" align="center" width="full">
                 <Avatar
                   size="xl"
@@ -366,7 +366,7 @@ const Accountmanagement = () => {
                 borderColor="green.500"
                 disabled={!myForm.isValid}
               >
-                Submit
+                Sauvegarder
                 {!myForm.isValid ? `` : `👌`}
               </Button>
             </FormControl>

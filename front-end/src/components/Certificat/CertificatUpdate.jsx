@@ -19,7 +19,11 @@ import { Box } from "@chakra-ui/layout";
 import { MyField } from "../formInput";
 import { useUpdateCertificatType } from "./../../services/api/certificat/index";
 import { useToast, Spinner, useColorModeValue as mode } from "@chakra-ui/react";
+import { BiAnalyse } from "react-icons/bi";
+import { useBreakpointValue } from "@chakra-ui/media-query";
 const CertificatUpdate = (props) => {
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+
   const { refetch, data, type, id, cms_users_id } = props;
   const toast = useToast();
   const { mutate, isLoading } = useUpdateCertificatType({
@@ -68,7 +72,11 @@ const CertificatUpdate = (props) => {
         bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >
-        Mettre à jour un certificat
+        {isMobile ? (
+          <BiAnalyse fontSize="20px" />
+        ) : (
+          `Mettre à jour un certificat`
+        )}
       </Button>
 
       <Drawer
@@ -133,7 +141,7 @@ const CertificatUpdate = (props) => {
                               title: "Element",
                               dataDisplay: "submenu",
                               innerHTML:
-                                '<div style="width: 70px;">Element</div>',
+                                '<div style="width: 70px;">Modèle</div>',
                             },
                           ],
                           ["fullScreen"],
@@ -141,10 +149,11 @@ const CertificatUpdate = (props) => {
                       }}
                     />
                     <Box p={2} borderLeft="1px" my={2}>
-                      Il s'agit d'un élément de type de certification .Utilisez
-                      un élément pour écrire la valeur de changement comme le
-                      nom de votre patiente ou votre âge ou quelque chose comme
-                      ça
+                      Utiliser le boutton 'modèle' pour créer vos propres
+                      certificats . Exemple : si vou ajoutez 'patientNomPrénom'
+                      , lors de votre consulation le nom de votre patient sera
+                      ajouté automatiquement en utilisant votre certificat
+                      modélisée.
                     </Box>
                     <Box py={3}>
                       <Button colorScheme="blue" type="submit">

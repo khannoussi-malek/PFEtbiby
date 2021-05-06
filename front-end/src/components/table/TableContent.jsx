@@ -75,7 +75,7 @@ export const TableContent = (props) => {
                     </Td>
                   ) : null
                 )}
-              <Tr textAlign="right">
+              <Td textAlign="right">
                 <Box textAlign="center">
                   {!!fntable ? fntable.fn(row) : ``}
                   {!!fntable ? !!fntable.fn2 && fntable.fn2(row) : ``}
@@ -83,7 +83,7 @@ export const TableContent = (props) => {
                 <Box textAlign="center">
                   {!!fntable ? !!fntable.fn3 && fntable.fn3(row) : ``}
                 </Box>
-              </Tr>
+              </Td>
             </Tr>
           ))}
         </Tbody>

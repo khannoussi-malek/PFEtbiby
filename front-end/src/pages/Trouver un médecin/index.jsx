@@ -31,8 +31,12 @@ import { useFindeDoctor } from "./../../services/api/Trouver un medecin/index";
 import ReserverUnRendezVous from "../../components/reserver un rendez-vous";
 import { link, userImage } from "./../../services/api/index";
 import { TableActions } from "./../../components/table/TableActions";
+import { useBreakpointValue } from "@chakra-ui/media-query";
+import { BiInfoCircle } from "react-icons/bi";
 const TrouverUnMedecin = (props) => {
-  let header = ["Nom Prenom", "domain"];
+  let header = ["Nom Prenom", "domaine"];
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+
   const [content, setContent] = useState([]);
   const [total, setTotal] = useState(0);
   const [next, setNext] = useState("");
@@ -52,13 +56,14 @@ const TrouverUnMedecin = (props) => {
     sousDomaineSelected,
     page,
   };
+  console.log(!isMobile ? <BiInfoCircle fontSize="20px" /> : `Info`);
   const [fntable, setFntable] = useState({
     fn: (data) => <ReserverUnRendezVous data={data} />,
     fn2: (data) => (
       <Popover>
         <PopoverTrigger>
           <Button mx={1} my={3}>
-            Info
+            {isMobile ? <BiInfoCircle fontSize="20px" /> : `Info`}
           </Button>
         </PopoverTrigger>
         <Portal>
@@ -218,38 +223,35 @@ const TrouverUnMedecin = (props) => {
             </Button>
           </Grid>
           <Box>
-            {!isLoadingFindeDoctor ? (
-              <Box>
-                <TableActions
-                  buttonText="Chercher"
-                  buttonIcon={<SearchIcon />}
-                  chercherFn={setSearch}
-                />
-                <TableContent
-                  header={header}
-                  content={content}
-                  fntable={fntable}
-                  message={message}
-                />
-                <TablePagination
-                  total={total}
-                  next_page_url={next}
-                  prev_page_url={prev}
-                  page={page}
-                  setPage={setPage}
-                />
-              </Box>
-            ) : (
-              <Center>
-                <Spinner
-                  textAlign="center"
-                  size="xl"
-                  p={5}
-                  m="auto"
-                  color="red.500"
-                />
-              </Center>
-            )}
+            <Center>
+              <Spinner
+                display={!isLoadingFindeDoctor ? `none` : ``}
+                textAlign="center"
+                size="xl"
+                m="auto"
+                color="red.500"
+              />
+            </Center>
+            <Box display={isLoadingFindeDoctor ? `none` : ``}>
+              <TableActions
+                buttonText="Chercher"
+                buttonIcon={<SearchIcon />}
+                chercherFn={setSearch}
+              />
+              <TableContent
+                header={header}
+                content={content}
+                fntable={fntable}
+                message={message}
+              />
+              <TablePagination
+                total={total}
+                next_page_url={next}
+                prev_page_url={prev}
+                page={page}
+                setPage={setPage}
+              />
+            </Box>
           </Box>
         </form>
       </Formiz>

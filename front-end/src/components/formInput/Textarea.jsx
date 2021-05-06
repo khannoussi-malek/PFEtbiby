@@ -11,7 +11,7 @@ export const TextareaForm = (props) => {
   const { errorMessage, id, isValid, isSubmitted, setValue, value } = useField(
     props
   );
-  const { label, type, required, note, Placeholder } = props;
+  const { label, type, required, note, Placeholder, dtValue } = props;
   const [isTouched, setIsTouched] = React.useState(false);
   const showError = !isValid && (isTouched || isSubmitted);
   return (
@@ -24,7 +24,7 @@ export const TextareaForm = (props) => {
         id={id}
         type={type || "text"}
         placeholder={Placeholder || label}
-        value={value ?? ""}
+        value={value || dtValue || ""}
         onChange={(e) => setValue(e.target.value)}
         onBlur={() => setIsTouched(true)}
         aria-invalid={showError}

@@ -14,13 +14,17 @@ import { Spinner } from "@chakra-ui/react";
 import { Formiz, useForm } from "@formiz/core";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Prix } from "../../formInput/Prix";
-import { useCreateActe } from "./../../../services/api/acte/index";
 import { MyField } from "./../../formInput/index";
+import { useUpdateActe } from "../../../services/api/acte";
+import { useBreakpointValue } from "@chakra-ui/media-query";
+import { BiAnalyse } from "react-icons/bi";
 
-const AjoutActe = (props) => {
-  const { user, refetch } = props;
+const UpdateAct = (props) => {
+  const { data, refetch } = props;
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+
   const toast = useToast();
-  const { mutate, isLoading } = useCreateActe({
+  const { mutate, isLoading } = useUpdateActe({
     onError: (error) => {
       // setMessage("Vérifier l'information qui vous inseri ou votre liste");
     },
@@ -44,6 +48,7 @@ const AjoutActe = (props) => {
 
   const MyForm = useForm();
   const handleSubmit = (values) => {
+    values.id = data.id;
     mutate(values);
   };
   return (
@@ -54,7 +59,7 @@ const AjoutActe = (props) => {
         bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >
-        Ajouter un acte
+        {isMobile ? <BiAnalyse fontSize="20px" /> : `Mettre à jour`}
       </Button>
 
       <Drawer
@@ -67,7 +72,7 @@ const AjoutActe = (props) => {
         <DrawerOverlay>
           <DrawerContent bgColor={mode("gray.50", "gray.700")}>
             <DrawerCloseButton />
-            <DrawerHeader>Définit votre acte</DrawerHeader>
+            <DrawerHeader>Mettre à jour votre acte</DrawerHeader>
             <DrawerBody>
               <Spinner
                 display={!isLoading ? `none` : `block`}
@@ -82,14 +87,17 @@ const AjoutActe = (props) => {
                       <MyField
                         name="code"
                         label="Code"
+                        Placeholder={data.code}
                         required="Il est requis de compléter ce champ"
                       />
                       <MyField
                         name="designation"
+                        Placeholder={data.designation}
                         label="Designation"
                         required="Il est requis de compléter ce champ"
                       />
                       <Prix
+                        Placeholder={data.price}
                         name="price"
                         label="Price"
                         required="Il est requis de compléter ce champ"
@@ -117,4 +125,4 @@ const AjoutActe = (props) => {
     </React.Fragment>
   );
 };
-export default AjoutActe;
+export default UpdateAct;

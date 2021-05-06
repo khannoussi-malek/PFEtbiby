@@ -45,7 +45,7 @@ const ActivityArea = () => {
           exact
         />
         <PrivateRoute
-          path="/dashboard/Liste d'act"
+          path="/dashboard/Liste d'actes"
           component={ListeDact}
           isAuth={user.isAuthenticated}
           exact

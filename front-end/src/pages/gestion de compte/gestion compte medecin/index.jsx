@@ -58,7 +58,7 @@ const GestiondeCopmteMedecin = (props) => {
   });
   return (
     <React.Fragment>
-      <FieldGroup title="information spécifique">
+      <FieldGroup title="Information spécifique">
         <VStack width="full" spacing="6">
           <MyField
             name="adresse_physique"
@@ -70,19 +70,6 @@ const GestiondeCopmteMedecin = (props) => {
               {
                 rule: isPattern("^[a-zAZ ]*$"),
                 message: "L'adresse physique ne contient que des lettres",
-              },
-            ]}
-          />
-
-          <MyField
-            name="temps_de_seance"
-            label="temps_de_seance"
-            Placeholder={gcInfo.temps_de_seance}
-            // required="Il est requis de compléter le champ correspondant au temps_de_seance"
-            validations={[
-              {
-                rule: isNumber(),
-                message: "Le temps_de_seance ne contient que des chiffres",
               },
             ]}
           />

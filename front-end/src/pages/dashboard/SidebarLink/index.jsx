@@ -23,7 +23,7 @@ export const SidebarLink = (props) => {
       onClick={() => history.push("/dashboard/" + linkto)}
       display="block"
       px="3"
-      py="1"
+      py="2"
       rounded="md"
       cursor="pointer"
       _hover={{ color: "white", bg: mode("blue.700", "gray.600") }}

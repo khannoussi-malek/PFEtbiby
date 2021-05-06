@@ -97,8 +97,8 @@ const Task = (props) => {
                   {
                     usertype == "medecin" ? (
                       <Alert
-                        Header="confirmer"
-                        Body={`Avez-vous confirmé que ${taskvalue.nomprenom} va voir le médecin`}
+                        Header="Confirmer"
+                        Body={`Voulez-vous confirmer que ${taskvalue.nomprenom} débutera sa consultation ? `}
                         icon={<BsBoxArrowInRight w={4} h={4} />}
                         bg="blue.300"
                         btOK="oui"
