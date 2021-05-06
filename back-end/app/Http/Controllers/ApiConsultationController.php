@@ -26,6 +26,8 @@
 				$certificats=[];
 			
 				if($errer==[]){
+					
+					DB::table('rendez_vous')->where('id', $postdata['rendez_vous_id'])->delete();
 					$id=DB::table('consultation')->insertGetId(
 						['Diagnostic' => $postdata['Diagnostic'], 'prix' => $postdata['prix'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
 					);

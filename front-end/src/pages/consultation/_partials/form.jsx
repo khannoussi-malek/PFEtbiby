@@ -26,6 +26,7 @@ const Form = (props) => {
   const toast = useToast();
   const { user } = useContext(TbibyContext);
   const { Patient } = props;
+  console.log(Patient);
   const [id, setId] = useState(0);
   const { mutate, isLoading } = useCreateConsultation({
     onError: (error) => {
@@ -43,6 +44,7 @@ const Form = (props) => {
   });
   const MyForm = useForm();
   const handleSubmit = (values) => {
+    values.rendez_vous_id = Patient.rendez_vous_id;
     values.patient_id = Patient.id;
     values.medecin_id = user.id;
     mutate(values);
@@ -50,7 +52,6 @@ const Form = (props) => {
   const [componentsForm, setComponentsForm] = useState([]);
   const addelement = (element) => {
     setId(id + 1);
-    console.log(id);
     setComponentsForm([...componentsForm, element]);
   };
   const removeComponentsForm = (id) => {
@@ -71,11 +72,7 @@ const Form = (props) => {
       <Box overflowX="auto" display={isLoading ? `none` : ``}>
         <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
           <form noValidate onSubmit={MyForm.submit}>
-            <TextareaForm
-              name="Diagnostic"
-              label="Diagnostic"
-              required={"Vous devez écrire une valeur pour Diagnostic"}
-            />
+            <TextareaForm name="Diagnostic" label="Diagnostic" />
 
             <Divider my={5} />
             <Box display={componentsForm.length > 0 ? `block` : `none`}>

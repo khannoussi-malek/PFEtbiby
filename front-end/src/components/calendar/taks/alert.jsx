@@ -30,11 +30,11 @@ const Alert = (props) => {
   return (
     <>
       <IconButton
-        size="xs"
+        size="sm"
         m={1}
         bg={bg}
         colorScheme={colorScheme}
-        fontSize="10px"
+        // fontSize="10px"
         icon={icon}
         onClick={() => setIsOpen(true)}
       />
