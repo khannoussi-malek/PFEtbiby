@@ -24,7 +24,7 @@
 					$errer['Diagnostic']="Vous devez écrire un prix";
 				}
 				$certificats=[];
-			
+			dd($postdata);
 				if($errer==[]){
 					
 					DB::table('rendez_vous')->where('id', $postdata['rendez_vous_id'])->delete();

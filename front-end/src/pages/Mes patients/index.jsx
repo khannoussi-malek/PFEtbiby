@@ -152,6 +152,7 @@ const ListPatients = () => {
         >
           <Box>
             <AjouPatient refetch={refetch} />
+
             <TableActions
               buttonText="Chercher"
               buttonIcon={<RiFolderUserLine fontSize="1.25em" />}
