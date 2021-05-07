@@ -83,7 +83,7 @@ const Login = () => {
               name="user"
               label="Nom d'utilisateur"
               required="Il est requis de compléter ce champ"
-              note="Connectez-vous avec  N° Téléphone ou votre N° C.I.N dor E-mail"
+              note="Connectez-vous avec  N° Téléphone ou votre N° C.I.N ou E-mail"
             />
             <MyFieldPassword
               name="password"

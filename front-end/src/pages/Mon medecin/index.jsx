@@ -27,6 +27,7 @@ import { MdCall } from "react-icons/md";
 import { EmailIcon } from "@chakra-ui/icons";
 import { link, userImage } from "./../../services/api/index";
 import ReserverUnRendezVous from "../../components/reserver un rendez-vous";
+import AjoutMedecin from "./_partials/AjoutMedecin";
 
 const MonMedecin = () => {
   const { user } = useContext(TbibyContext);
@@ -157,6 +158,8 @@ const MonMedecin = () => {
           mx="auto"
           px={{ base: "1", md: "8" }}
         >
+          <AjoutMedecin refetch={refetch} />
+
           <Box>
             <TableContent
               header={header}

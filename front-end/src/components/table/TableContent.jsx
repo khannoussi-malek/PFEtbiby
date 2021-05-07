@@ -20,7 +20,7 @@ export const TableContent = (props) => {
       <Box
         display={!!content && content.length != 0 ? `none` : ``}
         maxW="2xl"
-        // mx="auto"
+        mx="auto"
         px={{ base: "6", lg: "8" }}
         py={{ base: "16", sm: "20" }}
         textAlign="center"

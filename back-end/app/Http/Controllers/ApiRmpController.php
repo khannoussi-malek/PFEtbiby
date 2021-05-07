@@ -15,10 +15,26 @@
 		
 
 		    public function hook_before(&$postdata) {
-		        //This method will be execute before run the main process
-				
-				if($postdata['patient_id']=="" or $postdata['patient_id']==null) 
-				{}
+		        //This method will be execute before run the main process				
+				if(gettype($postdata['medecin_id'])=="string") 
+				{
+					$user = DB::table('cms_users')->select('*')->where('email',$postdata['medecin_id'] )->orWhere('telephone',$postdata['medecin_id'])->orWhere('id',$postdata['medecin_id'])
+					->orWhere('cin',$postdata['medecin_id'])
+					->get();
+
+					$postdata['medecin_id']=strval($user[0]->id);
+
+					$user = DB::table('relation')->select('*')->where('patient_id',$postdata['patient_id'] )->Where('medecin_id',$postdata['medecin_id'])
+					->get();
+
+					if($user[0]==null && $postdata['medecin_id']!=$postdata['patient_id']){
+
+						DB::table('relation')->insert(
+							['patient_id' => $postdata['patient_id'], 'medecin_id' =>$postdata['medecin_id'],"created_at" =>  date('Y-m-d H:i:s'),]
+						);
+
+					}
+				}
 				else{
 					$user = DB::table('cms_users')->select('*')->where('email',$postdata['patient_id'] )->orWhere('telephone',$postdata['patient_id'])->orWhere('id',$postdata['patient_id'])
 					->orWhere('cin',$postdata['patient_id'])
@@ -29,7 +45,7 @@
 					$user = DB::table('relation')->select('*')->where('patient_id',$postdata['patient_id'] )->Where('medecin_id',$postdata['medecin_id'])
 					->get();
 
-					if($user[0]==null){
+					if($user[0]==null && $postdata['medecin_id']!=$postdata['patient_id']){
 
 						DB::table('relation')->insert(
 							['patient_id' => $postdata['patient_id'], 'medecin_id' =>$postdata['medecin_id'],"created_at" =>  date('Y-m-d H:i:s'),]
