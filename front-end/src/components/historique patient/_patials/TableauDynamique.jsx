@@ -12,6 +12,7 @@ import {
   useHistoriqueListOrdonnance,
   useHistoriqueListLettre,
 } from "../../../services/api/Historique patient";
+import HistoriqueActe from "../../Acte/ActeHistorique";
 import Antecedants from "../../Antecedants";
 import { TableContent } from "../../table/TableContent";
 import { TablePagination } from "../../table/TablePagination";
@@ -75,29 +76,6 @@ const TableauDynamique = (props) => {
       setPrev(res.data.prev_page_url);
       res.data.data !== [] && setContent(res.data.data);
       res.data.data !== [] && setHeader(["structure"]);
-    },
-  });
-
-  const {
-    isLoading: isLodingActe,
-    refetch: refetchActe,
-  } = useHistoriqueListActe({
-    params,
-    onError: (error) => {
-      toast({
-        title: ":globe_with_meridians: Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: 4000,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setTotal(res.data.total);
-      setNext(res.data.next_page_url);
-      setPrev(res.data.prev_page_url);
-      res.data.data !== [] && setContent(res.data.data);
-      res.data.data !== [] && setHeader(["description"]);
     },
   });
 
@@ -209,13 +187,14 @@ const TableauDynamique = (props) => {
         >
           Certificat
         </Button>
-        <Button
+        {/* <Button
           onClick={() => {
             refetchActe();
           }}
         >
           Acte
-        </Button>
+        </Button> */}
+        <HistoriqueActe patient={patient} />
         <Antecedants patient={patient} />
 
         <Button
