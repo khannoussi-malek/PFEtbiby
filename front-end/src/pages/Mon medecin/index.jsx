@@ -28,6 +28,7 @@ import { EmailIcon } from "@chakra-ui/icons";
 import { link, userImage } from "./../../services/api/index";
 import ReserverUnRendezVous from "../../components/reserver un rendez-vous";
 import AjoutMedecin from "./_partials/AjoutMedecin";
+import MedecinInfo from "./../../components/InformationsSurLeMedecin/FromData";
 
 const MonMedecin = () => {
   const { user } = useContext(TbibyContext);
@@ -58,69 +59,7 @@ const MonMedecin = () => {
     },
   });
   const [fntable, setFntable] = useState({
-    fn: (data) => (
-      <Popover>
-        <PopoverTrigger>
-          <Button mx={1}>Info</Button>
-        </PopoverTrigger>
-        <Portal>
-          <PopoverContent>
-            <PopoverArrow />
-            <PopoverHeader>{data.nomprenom} </PopoverHeader>
-            <PopoverCloseButton />
-            <PopoverBody>
-              {!!data.photo ? (
-                <Avatar
-                  name={data.nomprenom}
-                  size="xl"
-                  src={
-                    data.photo != null
-                      ? `${link}${data.photo}`
-                      : `${link}${userImage}`
-                  }
-                />
-              ) : (
-                ``
-              )}
-
-              {!!data.Adresse ? <Text>Adresse : {data.Adresse} </Text> : ``}
-
-              {!!data.email ? (
-                <Text as="a" href={"mailto:" + data.email}>
-                  <Button
-                    my={1}
-                    colorScheme="blue"
-                    leftIcon={<EmailIcon />}
-                    variant="outline"
-                  >
-                    Email
-                  </Button>
-                </Text>
-              ) : (
-                ``
-              )}
-              {!!data.telephone ? (
-                <Text display="block" as="a" href={"tel:" + data.telephone}>
-                  <Button
-                    my={1}
-                    leftIcon={<MdCall />}
-                    colorScheme="blue"
-                    variant="outline"
-                  >
-                    Appeller
-                  </Button>
-                </Text>
-              ) : (
-                ``
-              )}
-            </PopoverBody>
-            <PopoverFooter>
-              Ce sont des informations personnelles sur votre médecin
-            </PopoverFooter>
-          </PopoverContent>
-        </Portal>
-      </Popover>
-    ),
+    fn: (data) => <MedecinInfo data={data} />,
     fn2: (data) => <ReserverUnRendezVous data={data} />,
   });
   const message = () => {

@@ -11,10 +11,13 @@ export const MyField = (props) => {
   const { errorMessage, id, isValid, isSubmitted, setValue, value } = useField(
     props
   );
+
   const { label, type, required, note, Placeholder, dtValue } = props;
   const [isTouched, setIsTouched] = React.useState(false);
   const showError = !isValid && (isTouched || isSubmitted);
-
+  useEffect(() => {
+    setValue(dtValue);
+  }, [dtValue]);
   return (
     <FormControl>
       <FormLabel htmlFor={id}>

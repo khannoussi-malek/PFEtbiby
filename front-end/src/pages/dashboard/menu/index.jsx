@@ -54,8 +54,8 @@ const Menu = () => {
       </Box>
       <Box
         pos="fixed"
-        w={{ base: "100%", md: "50%" }}
-        bottom="24px"
+        w={{ base: "62%", md: "50%" }}
+        bottom={{ base: "27px", md: "24px" }}
         left={{ base: "120px", md: "140px" }}
       >
         <Stack bgColor="red.300" rounded={8}>

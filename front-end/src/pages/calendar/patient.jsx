@@ -101,8 +101,8 @@ const CalendarDashboardPatient = () => {
             Aujourd'hui
           </Button>
           {!isMobile ? (
-            <Button mx={2} onClick={() => setDaysView(7)}>
-              Par semaine
+            <Button mx={2} onClick={() => setDaysView(2)}>
+              Par 2 jour
             </Button>
           ) : (
             ``

@@ -1,21 +1,5 @@
 import React, { useState, useContext } from "react";
-import {
-  Box,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-  Spinner,
-  useToast,
-  Button,
-  Portal,
-  PopoverFooter,
-  Text,
-  Avatar,
-} from "@chakra-ui/react";
+import { Box, Spinner, useToast } from "@chakra-ui/react";
 import { TableActions } from "./../../components/table/TableActions";
 import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
@@ -23,26 +7,13 @@ import AjouPatient from "./_partials/AjoutPatient";
 import { useRelationListe } from "./../../services/api/relation/index";
 import { TbibyContext } from "./../../router/context/index";
 import { RiFolderUserLine } from "react-icons/ri";
-import { EmailIcon } from "@chakra-ui/icons";
-import { MdCall } from "react-icons/md";
-import { link, userImage } from "./../../services/api/index";
 import { useDisclosure } from "@chakra-ui/hooks";
 
-import { useColorModeValue as mode } from "@chakra-ui/react";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-} from "@chakra-ui/modal";
 import HistoriquePatient from "../../components/historique patient";
+import PatientInfo from "./../../components/informationSurPatient/index";
 const ListPatients = () => {
   const { user, cleanUser } = useContext(TbibyContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   const toast = useToast();
   const medecin_id = user.id;
   const [total, setTotal] = useState(0);
@@ -72,62 +43,7 @@ const ListPatients = () => {
     },
   });
   const [fntable, setFntable] = useState({
-    fn: (data) => (
-      <Popover>
-        <PopoverTrigger>
-          <Button mx={1}>Info</Button>
-        </PopoverTrigger>
-        <Portal>
-          <PopoverContent>
-            <PopoverArrow />
-            <PopoverHeader>{data.nom + " " + data.prenom} </PopoverHeader>
-            <PopoverCloseButton />
-            <PopoverBody>
-              {data.photo && (
-                <Box>
-                  <Avatar
-                    size="xl"
-                    name={data.nom + " " + data.prenom}
-                    src={`${link}${data.photo}`}
-                  />
-                </Box>
-              )}
-
-              {data.Adresse && <Text>Adresse : {data.Adresse} </Text>}
-              {data.Code_APCI && <Text>Code_APCI : {data.Code_APCI} </Text>}
-              {data.email && (
-                <Text as="a" href={"mailto:" + data.email}>
-                  <Button
-                    my={1}
-                    colorScheme="blue"
-                    leftIcon={<EmailIcon />}
-                    variant="outline"
-                  >
-                    Email
-                  </Button>
-                </Text>
-              )}
-              {data.telephone && (
-                <Text display="block" as="a" href={"tel:" + data.telephone}>
-                  <Button
-                    my={1}
-                    leftIcon={<MdCall />}
-                    colorScheme="blue"
-                    variant="outline"
-                  >
-                    Appeller
-                  </Button>
-                </Text>
-              )}
-              {data.cin && <Text>cin : {data.cin} </Text>}
-            </PopoverBody>
-            <PopoverFooter>
-              Ce sont des informations personnelles sur votre patient
-            </PopoverFooter>
-          </PopoverContent>
-        </Portal>
-      </Popover>
-    ),
+    fn: (data) => <PatientInfo data={data} />,
     fn2: (data) => <HistoriquePatient patient={data} />,
   });
   let header = ["Nom", "Prenom"];

@@ -31,6 +31,7 @@ import { EmailIcon } from "@chakra-ui/icons";
 import { MdCall } from "react-icons/md";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 import { BiInfoCircle } from "react-icons/bi";
+import MedecinInfo from "./../../components/InformationsSurLeMedecin/FromData";
 
 const MonRendezvous = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
@@ -100,66 +101,9 @@ const MonRendezvous = () => {
         btNon="Annuler"
       />
     ),
-    fn: (data) => (
-      <Popover>
-        <PopoverTrigger>
-          <Button mx={1} my={3}>
-            {isMobile ? <BiInfoCircle fontSize="20px" /> : `Info`}
-          </Button>
-        </PopoverTrigger>
-        <Portal>
-          <PopoverContent>
-            <PopoverArrow />
-            <PopoverHeader>{data.nomprenom}</PopoverHeader>
-            <PopoverCloseButton />
-            <PopoverBody>
-              {data.photo && (
-                <Avatar
-                  name={data.nomprenom}
-                  size="xl"
-                  src={`${link}${data.photo}`}
-                />
-              )}
-              {data.domaineName && <Text>Domain : {data.domaineName} </Text>}
-
-              {data.adresse_physique && (
-                <Text>Adresse : {data.adresse_physique} </Text>
-              )}
-
-              {data.email && (
-                <Text as="a" href={"mailto:" + data.email}>
-                  <Button
-                    my={1}
-                    colorScheme="blue"
-                    leftIcon={<EmailIcon />}
-                    variant="outline"
-                  >
-                    Email
-                  </Button>
-                </Text>
-              )}
-              {data.telephone && (
-                <Text display="block" as="a" href={"tel:" + data.telephone}>
-                  <Button
-                    my={1}
-                    leftIcon={<MdCall />}
-                    colorScheme="blue"
-                    variant="outline"
-                  >
-                    Appeller
-                  </Button>
-                </Text>
-              )}
-            </PopoverBody>
-            <PopoverFooter>
-              Ce sont des informations personnelles sur votre médecin
-            </PopoverFooter>
-          </PopoverContent>
-        </Portal>
-      </Popover>
-    ),
+    fn: (data) => <MedecinInfo data={data} />,
   });
-  let header = ["Nom Prenom", "Date de reservation"];
+  let header = ["Nom Prenom", "Date"];
   return (
     <React.Fragment>
       <Spinner

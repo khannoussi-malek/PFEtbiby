@@ -61,7 +61,7 @@ const AjoutMedecin = (props) => {
                   w="100%"
                 >
                   <Spinner display={!isLoading ? `none` : ``} color="red.500" />
-                  Ajouter 🤒
+                  Ajouter 🩺
                 </Button>
               </ButtonGroup>
             </SimpleGrid>

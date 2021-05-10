@@ -40,19 +40,13 @@ const Form = (props) => {
     onSuccess: (res) => {},
   });
   const MyForm = useForm();
-  const { values, setFieldsValues } = MyForm;
-
-  const updateFormActes = (val, i) => {
-    setFieldsValues({ actes: [...val] });
-    // values.actes[id] = val;
-  };
-  console.log(values);
+  const { values } = MyForm;
 
   const handleSubmit = () => {
     values.rendez_vous_id = Patient.rendez_vous_id;
     values.patient_id = Patient.id;
     values.medecin_id = user.id;
-
+    // console.log(values);
     mutate(values);
   };
   const [componentsForm, setComponentsForm] = useState([]);
@@ -111,11 +105,8 @@ const Form = (props) => {
                   } else if (type === "acte") {
                     return (
                       <Acte
-                        values={values}
-                        updateForm={updateFormActes}
                         id={id}
                         key={id}
-                        setFieldsValues={setFieldsValues}
                         removeComponentsForm={removeComponentsForm}
                         Patient={Patient}
                         index={index}

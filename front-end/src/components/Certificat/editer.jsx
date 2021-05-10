@@ -59,8 +59,8 @@ const EditerCertificat = (props) => {
     <React.Fragment>
       <Button
         ref={btnRef}
-        colorScheme={mode("teal", "gray.50")}
-        bgColor={mode("teal", "gray.50")}
+        // colorScheme={mode("teal", "gray.50")}
+        // bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >
         Ajouter un certificat

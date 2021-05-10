@@ -133,7 +133,7 @@ const MobileMenuButton = (props) => {
 
 const useMobileMenuState = () => {
   const [isOpen, actions] = useBoolean();
-  const isMobile = useBreakpointValue({ base: true, lg: false });
+  const isMobile = useBreakpointValue({ base: true, md: false });
   React.useEffect(() => {
     if (isMobile == false) {
       actions.off();

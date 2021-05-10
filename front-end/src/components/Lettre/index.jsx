@@ -11,10 +11,29 @@ import {
 } from "@chakra-ui/accordion";
 import { Input } from "@chakra-ui/input";
 import { EditIcon } from "@chakra-ui/icons";
+import { useListeMedec } from "../../services/api/Medecin information";
+import { useToast } from "@chakra-ui/react";
 export const Lettre = (props) => {
-  const { id, removeComponentsForm } = props;
+  const { id, removeComponentsForm, name } = props;
+  const [selectValue, setSelectValue] = useState([]);
   const [title, setTitle] = useState("");
   const [showEditTitle, setShowEditTitle] = useState(true);
+  const toast = useToast();
+
+  const { isLoading, refetch } = useListeMedec({
+    onError: (error) => {
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
+    },
+    onSuccess: (res) => {
+      setSelectValue(res.data || []);
+    },
+  });
 
   return (
     <AccordionItem boxShadow="lg">
@@ -43,27 +62,16 @@ export const Lettre = (props) => {
           display={showEditTitle ? `none` : `inline`}
           onChange={(e) => setTitle(e.target.value)}
         />
-
-        {/* <Select2
-          required={"Sélect le type de certifica."}
-          label="type de certifica"
-          data={[
-            {
-              label: "Scholeur de certificats",
-              value: "Scholeur de certificats",
-            },
-            {
-              label: "Scholeur de certificats2",
-              value: "Scholeur de certificats2",
-            },
-            {
-              label: "Scholeur de certificats3",
-              value: "Scholeur de certificats3",
-            },
-          ]}
-          name="selectvalue"
-        /> */}
-        <TextareaForm name="Lettre" label="contenu de lettre" />
+        <Select2
+          label="Sélectionner un medécin"
+          data={selectValue}
+          name={`${name}.medecin_destiantaire_id`}
+        />
+        <TextareaForm
+          name={`${name}.description`}
+          label="Contenu de lettre"
+          required="Il est requis de compléter ce champ"
+        />
       </AccordionPanel>
     </AccordionItem>
   );

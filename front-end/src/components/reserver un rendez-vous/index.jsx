@@ -11,14 +11,18 @@ import {
 } from "@chakra-ui/modal";
 import { useRef } from "react";
 import CalendarReserve from "./calendar/index";
+import { useBreakpointValue } from "@chakra-ui/media-query";
+import { BiHomeHeart } from "react-icons/bi";
 const ReserverUnRendezVous = (props) => {
   const { data } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" size="sm" my={3} onClick={onOpen}>
-        Rendez-vous
+      <Button ref={btnRef} size="sm" my={3} onClick={onOpen}>
+        {isMobile ? <BiHomeHeart fontSize="30px" /> : `Rendez-vous `}
       </Button>
       <Drawer
         size="full"

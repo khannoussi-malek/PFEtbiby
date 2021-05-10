@@ -15,13 +15,9 @@
 		
 
 		    public function hook_before(&$postdata) {
-		        //This method will be execute before run the main process
 				$errer=[];
-				if(empty($postdata['Diagnostic'])&&$postdata['Diagnostic']==""){
-					$errer['Diagnostic']="Vous devez écrire un diagnostic";
-				}
-				elseif(empty($postdata['prix'])&&$postdata['prix']==""){
-					$errer['Diagnostic']="Vous devez écrire un prix";
+				if(empty($postdata['prix'])&&$postdata['prix']==""){
+					$errer['prix']="Vous devez écrire un prix";
 				}
 				$certificats=[];
 			dd($postdata);
@@ -32,19 +28,48 @@
 						['Diagnostic' => $postdata['Diagnostic'], 'prix' => $postdata['prix'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
 					);
 					if($postdata['certificats']!=[]){
-						//incert all certificats
 						foreach ($postdata['certificats'] as &$value) {
-							DB::table('certificat')->insert(
-								['consultation_id' => $id, 'structure' => $value, 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
-							);
+							if(!empty($value)){
+								DB::table('certificat')->insert(
+									['consultation_id' => $id, 'structure' => $value, 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
+								);
+							}
 						}
 					}
 					if($postdata['antecedants']!=[]){
-						//incert all certificats
 						foreach ($postdata['antecedants'] as &$value) {
-							DB::table('antecedants')->insert(
-								['type' =>$value['type'], 'description' => $value['description'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
-							);
+							if(!empty($value)){
+								DB::table('antecedants')->insert(
+									['type' =>$value['type'], 'description' => $value['description'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
+								);
+							}
+						}
+					}
+					if($postdata['actes']!=[]){
+						foreach ($postdata['actes'] as &$value) {
+							if(!empty($value)){
+								DB::table('acte')->insert(
+									['consultation_id' => $id,'code' =>$value['code'],'designation' =>$value['designation'],'prix' =>$value['prix'], 'note' => $value['note'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
+								);
+							}
+						}
+					}
+					if($postdata['examens']!=[]){
+						foreach ($postdata['examens'] as &$value) {
+							if(!empty($value)){
+								DB::table('examen')->insert(
+									['consultation_id' => $id,'code' =>$value['code'],'type' =>$value['type'],'prix' =>$value['prix'], 'note' => $value['note'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
+								);
+							}
+						}
+					}
+					if($postdata['lettres']!=[]){
+						foreach ($postdata['lettres'] as &$value) {
+							if(!empty($value)){
+								DB::table('lettre')->insert(
+									['consultation_id' => $id,'medecin_destiantaire_id' =>$value['medecin_destiantaire_id'],'description' =>$value['description'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
+								);
+							}
 						}
 					}
 					

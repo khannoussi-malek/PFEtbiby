@@ -16,16 +16,7 @@ import { MyField } from "../formInput";
 import { Prix } from "../formInput/Prix";
 import { useGetAllListActe, useGetOnetActe } from "../../services/api/acte";
 export const Acte = (props) => {
-  const {
-    id,
-    removeComponentsForm,
-    name,
-    index,
-    values,
-    setFieldsValues,
-    updateForm,
-    key,
-  } = props;
+  const { id, removeComponentsForm, name, key } = props;
   const [title, setTitle] = useState("");
   const [showEditTitle, setShowEditTitle] = useState(true);
   const toast = useToast();
@@ -55,11 +46,6 @@ export const Acte = (props) => {
       setCode(res.data.code);
       setDesignation(res.data.designation);
       setPrice(res.data.price);
-      values.actes[index].code = res.data.code;
-      values.actes[index].designation = res.data.designation;
-      values.actes[index].price = res.data.price;
-      updateForm(values.actes, index);
-      // setFieldsValues({ actes: [...values.actes] });
     },
   });
   return (
@@ -101,8 +87,8 @@ export const Acte = (props) => {
           label="Diagnostic"
           dtValue={designation}
         />
-        <TextareaForm name={`${name}.note`} label="Note" />
-        <Prix name={`${name}.price`} label="Prix" dtValue={price} />
+        <TextareaForm name={`${name}.note`} label="Note" dtValue="" />
+        <Prix name={`${name}.prix`} label="Prix" dtValue={price} />
       </AccordionPanel>
     </AccordionItem>
   );
