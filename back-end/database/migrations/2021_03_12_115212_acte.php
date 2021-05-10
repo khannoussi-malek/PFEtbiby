@@ -26,7 +26,7 @@ class Acte extends Migration
             $table->string('code')->nullable();
             $table->string('designation')->nullable();
             $table->string('prix')->nullable();
-            $table->string('note')->nullable();
+            $table->longText('note')->nullable();
             $table->timestamps();
         });
     }

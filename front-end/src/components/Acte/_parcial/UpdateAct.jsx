@@ -17,7 +17,7 @@ import { Prix } from "../../formInput/Prix";
 import { MyField } from "./../../formInput/index";
 import { useUpdateActe } from "../../../services/api/acte";
 import { useBreakpointValue } from "@chakra-ui/media-query";
-import { BiAnalyse } from "react-icons/bi";
+import { BiSync } from "react-icons/bi";
 
 const UpdateAct = (props) => {
   const { data, refetch } = props;
@@ -55,11 +55,11 @@ const UpdateAct = (props) => {
     <React.Fragment>
       <Button
         ref={btnRef}
-        colorScheme={mode("teal", "gray.50")}
-        bgColor={mode("teal", "gray.50")}
+        // colorScheme={mode("teal", "gray.50")}
+        // bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >
-        {isMobile ? <BiAnalyse fontSize="20px" /> : `Mettre à jour`}
+        {isMobile ? <BiSync fontSize="30px" /> : `Mettre à jour`}
       </Button>
 
       <Drawer
@@ -70,7 +70,9 @@ const UpdateAct = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
-          <DrawerContent bgColor={mode("gray.50", "gray.700")}>
+          <DrawerContent
+          //  bgColor={mode("gray.50", "gray.700")}
+          >
             <DrawerCloseButton />
             <DrawerHeader>Mettre à jour votre acte</DrawerHeader>
             <DrawerBody>

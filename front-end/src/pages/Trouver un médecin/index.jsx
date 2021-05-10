@@ -33,6 +33,7 @@ import { link, userImage } from "./../../services/api/index";
 import { TableActions } from "./../../components/table/TableActions";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 import { BiInfoCircle } from "react-icons/bi";
+import MedecinInfo from "./../../components/InformationsSurLeMedecin/FromData";
 const TrouverUnMedecin = (props) => {
   let header = ["Nom Prenom", "domaine"];
   const isMobile = useBreakpointValue({ base: true, lg: false });
@@ -56,67 +57,9 @@ const TrouverUnMedecin = (props) => {
     sousDomaineSelected,
     page,
   };
-  console.log(!isMobile ? <BiInfoCircle fontSize="20px" /> : `Info`);
   const [fntable, setFntable] = useState({
     fn: (data) => <ReserverUnRendezVous data={data} />,
-    fn2: (data) => (
-      <Popover>
-        <PopoverTrigger>
-          <Button mx={1} my={3}>
-            {isMobile ? <BiInfoCircle fontSize="20px" /> : `Info`}
-          </Button>
-        </PopoverTrigger>
-        <Portal>
-          <PopoverContent>
-            <PopoverArrow />
-            <PopoverHeader>{data.nomprenom}</PopoverHeader>
-            <PopoverCloseButton />
-            <PopoverBody>
-              {data.photo && (
-                <Avatar
-                  name={data.nomprenom}
-                  size="xl"
-                  src={`${link}${data.photo}`}
-                />
-              )}
-              {data.domaineName && <Text>Domain : {data.domaineName} </Text>}
-
-              {data.adresse_physique && (
-                <Text>Adresse : {data.adresse_physique} </Text>
-              )}
-
-              {data.email && (
-                <Text as="a" href={"mailto:" + data.email}>
-                  <Button
-                    my={1}
-                    colorScheme="blue"
-                    leftIcon={<EmailIcon />}
-                    variant="outline"
-                  >
-                    Email
-                  </Button>
-                </Text>
-              )}
-              {data.telephone && (
-                <Text display="block" as="a" href={"tel:" + data.telephone}>
-                  <Button
-                    my={1}
-                    leftIcon={<MdCall />}
-                    colorScheme="blue"
-                    variant="outline"
-                  >
-                    Appeller
-                  </Button>
-                </Text>
-              )}
-            </PopoverBody>
-            <PopoverFooter>
-              Ce sont des informations personnelles sur votre médecin
-            </PopoverFooter>
-          </PopoverContent>
-        </Portal>
-      </Popover>
-    ),
+    fn2: (data) => <MedecinInfo data={data} />,
   });
   const {
     isLoading: isLoadingFindeDoctor,

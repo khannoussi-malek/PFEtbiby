@@ -19,7 +19,7 @@ import { Box } from "@chakra-ui/layout";
 import { MyField } from "../formInput";
 import { useUpdateCertificatType } from "./../../services/api/certificat/index";
 import { useToast, Spinner, useColorModeValue as mode } from "@chakra-ui/react";
-import { BiAnalyse } from "react-icons/bi";
+import { BiSync } from "react-icons/bi";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 const CertificatUpdate = (props) => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
@@ -68,15 +68,11 @@ const CertificatUpdate = (props) => {
     <React.Fragment>
       <Button
         ref={btnRef}
-        colorScheme={mode("teal", "gray.50")}
-        bgColor={mode("teal", "gray.50")}
+        // colorScheme={mode("teal", "gray.50")}
+        // bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >
-        {isMobile ? (
-          <BiAnalyse fontSize="20px" />
-        ) : (
-          `Mettre à jour un certificat`
-        )}
+        {isMobile ? <BiSync fontSize="30px" /> : `jour un certificat`}
       </Button>
 
       <Drawer

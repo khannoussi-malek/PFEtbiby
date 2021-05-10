@@ -11,6 +11,7 @@ import {
   useColorModeValue as mode,
   Center,
 } from "@chakra-ui/react";
+
 import * as React from "react";
 
 export const TableContent = (props) => {
@@ -56,11 +57,23 @@ export const TableContent = (props) => {
         <Thead bg={mode("gray.50", "gray.800")}>
           <Tr textAlign="center">
             {header.map((column, index) => (
-              <Th whiteSpace="nowrap" scope="col" key={index}>
+              <Th
+                maxW="10%"
+                whiteSpace="nowrap"
+                scope="col"
+                color={mode("gray.900", "gray.50")}
+                key={index}
+              >
                 {column}
               </Th>
             ))}
-            {!!fntable ? <Th textAlign="center">acte</Th> : ``}
+            {!!fntable ? (
+              <Th textAlign="center" color={mode("gray.900", "gray.50")}>
+                acte
+              </Th>
+            ) : (
+              ``
+            )}
           </Tr>
         </Thead>
         <Tbody>
@@ -70,7 +83,7 @@ export const TableContent = (props) => {
                 .slice(1)
                 .map((column, indexcol) =>
                   indexcol < Object.values(header).length ? (
-                    <Td whiteSpace="nowrap" key={indexcol}>
+                    <Td maxW="100px" whiteSpace="nowrap" key={indexcol}>
                       {column}
                     </Td>
                   ) : null

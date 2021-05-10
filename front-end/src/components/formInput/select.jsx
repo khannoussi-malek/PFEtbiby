@@ -23,7 +23,7 @@ export const Select2 = (props) => {
     e.stopPropagation();
   };
   const changeValue = (e) => {
-    setValue(e);
+    setValue(e.value);
   };
   const colourStyles = {
     control: (styles) => ({ ...styles, backgroundColor: "white" }),

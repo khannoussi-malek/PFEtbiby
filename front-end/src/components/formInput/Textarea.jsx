@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useField } from "@formiz/core";
 import {
   FormControl,
@@ -14,6 +14,9 @@ export const TextareaForm = (props) => {
   const { label, type, required, note, Placeholder, dtValue } = props;
   const [isTouched, setIsTouched] = React.useState(false);
   const showError = !isValid && (isTouched || isSubmitted);
+  useEffect(() => {
+    setValue(dtValue);
+  }, [dtValue]);
   return (
     <FormControl>
       <FormLabel htmlFor={id}>

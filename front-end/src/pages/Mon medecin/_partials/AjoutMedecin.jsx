@@ -47,7 +47,7 @@ const AjoutMedecin = (props) => {
               <FormControl minW={{ md: "320px" }} id="search">
                 <MyField
                   name="medecin_id"
-                  Placeholder="Entrez le cin, l'email ou le téléphone du patient"
+                  Placeholder="Entrez le cin, l'email ou le téléphone du médecin"
                 />
                 <Text color="tomato">{message}</Text>
               </FormControl>
@@ -61,7 +61,7 @@ const AjoutMedecin = (props) => {
                   w="100%"
                 >
                   <Spinner display={!isLoading ? `none` : ``} color="red.500" />
-                  Ajouter 🤒
+                  Ajouter 🩺
                 </Button>
               </ButtonGroup>
             </SimpleGrid>
