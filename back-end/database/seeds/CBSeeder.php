@@ -607,6 +607,18 @@ class cms_apicustom extends seeder {
                 'responses' => 'a:4:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:4:"code";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:11:"designation";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:5:"price";s:4:"type";s:7:"numeric";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
             ]);
             }
+            if(DB::table('cms_apicustom')->where('permalink' ,'lm')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'lm',
+                'tabel' => 'cms_users',
+                'aksi' => 'list',
+                'nama' => 'liste medecin',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            }
         
         
     }
