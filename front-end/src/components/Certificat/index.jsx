@@ -25,7 +25,7 @@ export const Certificat = (props) => {
   const editorRef = useRef();
   // editorRef.current.editor.setContents(editerValue);
 
-  const { id, removeComponentsForm, Patient, name } = props;
+  const { id, removeComponentsForm, Patient, name, key } = props;
   const [title, setTitle] = useState("");
   const [showEditTitle, setShowEditTitle] = useState(true);
   const toast = useToast();
@@ -73,7 +73,6 @@ export const Certificat = (props) => {
   };
 
   const decodeMessage = (text) => {
-    console.log(Patient);
     let sexesM = user.sexes == "homme" ? `Mr.` : `Mrs.`;
     let sexesP = Patient.sexes == "homme" ? `Mr.` : `Mrs.`;
     text = replaceAll(text, "{sexesPatient}", sexesP);
@@ -138,7 +137,7 @@ export const Certificat = (props) => {
     mywindow.print();
   };
   return (
-    <AccordionItem boxShadow="lg">
+    <AccordionItem boxShadow="lg" key={"c" + key}>
       <AccordionButton>
         <Box flex="1" textAlign="left">
           {title != "" ? title : `Certificat`}

@@ -25,7 +25,7 @@ import { TbibyContext } from "./../../../router/context/index";
 const Form = (props) => {
   const toast = useToast();
   const { user } = useContext(TbibyContext);
-  const { Patient } = props;
+  const { Patient, setCurrentPatient } = props;
   const [id, setId] = useState(0);
   const { mutate, isLoading } = useCreateConsultation({
     onError: (error) => {
@@ -38,19 +38,22 @@ const Form = (props) => {
       });
     },
     onSuccess: (res) => {
-      console.log("res");
+      setCurrentPatient({});
     },
   });
   const MyForm = useForm();
-  const handleSubmit = (values) => {
+  const { values } = MyForm;
+
+  const handleSubmit = () => {
+    values.rendez_vous_id = Patient.rendez_vous_id;
     values.patient_id = Patient.id;
     values.medecin_id = user.id;
+    // console.log(values);
     mutate(values);
   };
   const [componentsForm, setComponentsForm] = useState([]);
   const addelement = (element) => {
     setId(id + 1);
-    console.log(id);
     setComponentsForm([...componentsForm, element]);
   };
   const removeComponentsForm = (id) => {
@@ -71,11 +74,7 @@ const Form = (props) => {
       <Box overflowX="auto" display={isLoading ? `none` : ``}>
         <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
           <form noValidate onSubmit={MyForm.submit}>
-            <TextareaForm
-              name="Diagnostic"
-              label="Diagnostic"
-              required={"Vous devez écrire une valeur pour Diagnostic"}
-            />
+            <TextareaForm name="Diagnostic" label="Diagnostic" />
 
             <Divider my={5} />
             <Box display={componentsForm.length > 0 ? `block` : `none`}>
@@ -99,6 +98,7 @@ const Form = (props) => {
                     return (
                       <Certificat
                         id={id}
+                        key={id}
                         removeComponentsForm={removeComponentsForm}
                         Patient={Patient}
                         name={`certificats[${index}]`}
@@ -108,8 +108,10 @@ const Form = (props) => {
                     return (
                       <Acte
                         id={id}
+                        key={id}
                         removeComponentsForm={removeComponentsForm}
                         Patient={Patient}
+                        index={index}
                         name={`actes[${index}]`}
                       />
                     );
@@ -117,6 +119,7 @@ const Form = (props) => {
                     return (
                       <Examen
                         id={id}
+                        key={id}
                         removeComponentsForm={removeComponentsForm}
                         Patient={Patient}
                         name={`examens[${index}]`}
@@ -126,6 +129,7 @@ const Form = (props) => {
                     return (
                       <AntecedantsForm
                         id={id}
+                        key={id}
                         removeComponentsForm={removeComponentsForm}
                         Patient={Patient}
                         name={`antecedants[${index}]`}
@@ -135,6 +139,7 @@ const Form = (props) => {
                     return (
                       <Ordonnance
                         id={id}
+                        key={id}
                         removeComponentsForm={removeComponentsForm}
                         Patient={Patient}
                         name={`ordonnances[${index}]`}
@@ -144,6 +149,7 @@ const Form = (props) => {
                     return (
                       <Lettre
                         id={id}
+                        key={id}
                         removeComponentsForm={removeComponentsForm}
                         Patient={Patient}
                         name={`lettres[${index}]`}

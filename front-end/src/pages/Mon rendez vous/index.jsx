@@ -1,5 +1,23 @@
 import React, { useState, useContext } from "react";
-import { Box, useToast, Spinner, Heading, Text, Link } from "@chakra-ui/react";
+import {
+  Box,
+  useToast,
+  Spinner,
+  Heading,
+  Text,
+  Link as Linkurl,
+  Button,
+  Popover,
+  PopoverTrigger,
+  Portal,
+  PopoverContent,
+  PopoverArrow,
+  PopoverHeader,
+  PopoverCloseButton,
+  PopoverBody,
+  Avatar,
+  PopoverFooter,
+} from "@chakra-ui/react";
 import { useConsultationPatient } from "./../../services/api/consultation/index";
 import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
@@ -8,7 +26,16 @@ import { useDeleteReservation } from "./../../services/api/reservation/index";
 import G_Alert from "../../components/general alert";
 import { CloseIcon } from "@chakra-ui/icons";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { link } from "./../../services/api/index";
+import { EmailIcon } from "@chakra-ui/icons";
+import { MdCall } from "react-icons/md";
+import { useBreakpointValue } from "@chakra-ui/media-query";
+import { BiInfoCircle } from "react-icons/bi";
+import MedecinInfo from "./../../components/InformationsSurLeMedecin/FromData";
+
 const MonRendezvous = () => {
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+
   const { user, cleanUser } = useContext(TbibyContext);
 
   const toast = useToast();
@@ -54,14 +81,14 @@ const MonRendezvous = () => {
         <Text mt="4" fontSize="lg">
           si vous voulez réserver un rendez-vous , consulter le lien suivant :
         </Text>
-        <Link>
+        <Linkurl>
           Reserver un rendez-vous <ExternalLinkIcon mx="2px" />
-        </Link>
+        </Linkurl>
       </>
     );
   };
   const [fntable, setFntable] = useState({
-    fn: (data) => (
+    fn2: (data) => (
       <G_Alert
         Header="Supprimer la réservation"
         Body={`Voulez-vous vraiment supprimer cette réservation avec ${data.nom} ${data.prenom}`}
@@ -74,8 +101,9 @@ const MonRendezvous = () => {
         btNon="Annuler"
       />
     ),
+    fn: (data) => <MedecinInfo data={data} />,
   });
-  let header = ["Nom", "Prenom", "Date reservation"];
+  let header = ["Nom Prenom", "Date"];
   return (
     <React.Fragment>
       <Spinner
@@ -95,7 +123,7 @@ const MonRendezvous = () => {
           mx="auto"
           px={{ base: "1", md: "8" }}
         >
-          <Box>
+          <Box overflowX="auto">
             <TableContent
               header={header}
               content={content}

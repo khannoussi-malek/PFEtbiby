@@ -12,7 +12,7 @@ const list = () => {
 };
 export const useRelationListe = ({ params, ...config } = {}) => {
   return useQuery(
-    ["lrmp", params],
+    ["Liste de mes patients", params],
     () => axios.get("lrmp", { params }),
     config
   );

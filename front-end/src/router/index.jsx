@@ -25,9 +25,6 @@ function MainRouter() {
       <Router>
         <Switch>
           <Route path="/" exact>
-            {
-              //you need to add dashbord page
-            }
             <Redirect to="/dashboard" />
           </Route>
           <PublicRoute

@@ -44,8 +44,7 @@ const Login = () => {
             "👨‍⚕️ Bienvenue " +
             (data.sexes == "homme" ? `Mr ` : `Mrs `) +
             data.nom,
-          description:
-            " Vous êtes maintenant connecté à votre compte. être en bonne santé",
+          description: " Vous êtes maintenant connecté à votre compte.",
           status: "success",
           duration: `4000`,
           isClosable: true,
@@ -80,11 +79,16 @@ const Login = () => {
       <Box display={isLoading ? `none` : ``}>
         <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
           <form noValidate onSubmit={MyForm.submit}>
-            <MyField name="user" label="User" required="Il est requis de compléter le champ correspondant au user" />
+            <MyField
+              name="user"
+              label="Nom d'utilisateur"
+              required="Il est requis de compléter ce champ"
+              note="Connectez-vous avec  N° Téléphone ou votre N° C.I.N ou E-mail"
+            />
             <MyFieldPassword
               name="password"
-              label="password"
-              required="Il est requis de compléter le champ correspondant au mot de passe"
+              label="Mot de passe"
+              required="Il est requis de compléter ce champ"
               type="password"
             />
             <FormControl mt={5} align="center">
@@ -94,7 +98,7 @@ const Login = () => {
                 borderColor="green.500"
                 disabled={!MyForm.isValid}
               >
-                Submit
+                Se connecter
                 {!MyForm.isValid ? `` : `👌`}
               </Button>
             </FormControl>

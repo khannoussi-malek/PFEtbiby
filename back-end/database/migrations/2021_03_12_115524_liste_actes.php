@@ -15,8 +15,9 @@ class ListeActes extends Migration
     {
         Schema::create('liste_actes', function (Blueprint $table) {
             $table->Increments('id');
-            $table->string('nom')->nullable();
             $table->string('code')->nullable();
+            $table->string('designation')->nullable();
+            $table->decimal('price',9,3);
             $table->timestamps();
         });
     }

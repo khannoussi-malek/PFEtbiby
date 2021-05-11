@@ -5,8 +5,9 @@ import {
   FormControl,
   Button,
   Text,
-  HStack,
   ButtonGroup,
+  SimpleGrid,
+  Spinner,
 } from "@chakra-ui/react";
 import { MyField } from "./../../../components/formInput/index";
 import { Formiz, useForm } from "@formiz/core";
@@ -20,7 +21,7 @@ const AjouPatient = (props) => {
   const { mutate, isLoading } = useRelation({
     onError: (error) => {
       setMessage(
-        "Vérifiez les données saisie. Vous devez saisir le numéro de la carte d'identité, le numéro de téléphone, ou l'adresse mail."
+        "Vérifiez les informations de contact ou la liste que vous avez insérées"
       );
     },
     onSuccess: (res) => {
@@ -43,7 +44,7 @@ const AjouPatient = (props) => {
             direction={{ base: "column", md: "row" }}
             justify="space-between"
           >
-            <HStack>
+            <SimpleGrid columns={2} spacing={1} w="100%">
               <FormControl minW={{ md: "320px" }} id="search">
                 <MyField
                   name="patient_id"
@@ -51,19 +52,20 @@ const AjouPatient = (props) => {
                 />
                 <Text color="tomato">{message}</Text>
               </FormControl>
-              <Box></Box>
-            </HStack>
-            <ButtonGroup size="sm" variant="outline">
-              <Button
-                position="relative"
-                bottom="0"
-                type="submit"
-                fontSize="20px"
-                p={5}
-              >
-                Ajouter 🤒
-              </Button>
-            </ButtonGroup>
+              <ButtonGroup size="sm" variant="outline">
+                <Button
+                  position="relative"
+                  top="8px"
+                  type="submit"
+                  fontSize="20px"
+                  p={5}
+                  w="100%"
+                >
+                  <Spinner display={!isLoading ? `none` : ``} color="red.500" />
+                  Ajouter 🤒
+                </Button>
+              </ButtonGroup>
+            </SimpleGrid>
           </Stack>
         </form>
       </Formiz>

@@ -11,6 +11,7 @@ import {
   useColorModeValue as mode,
   Center,
 } from "@chakra-ui/react";
+
 import * as React from "react";
 
 export const TableContent = (props) => {
@@ -20,7 +21,7 @@ export const TableContent = (props) => {
       <Box
         display={!!content && content.length != 0 ? `none` : ``}
         maxW="2xl"
-        // mx="auto"
+        mx="auto"
         px={{ base: "6", lg: "8" }}
         py={{ base: "16", sm: "20" }}
         textAlign="center"
@@ -46,6 +47,7 @@ export const TableContent = (props) => {
         )}
       </Box>
       <Table
+        overflowX="scroll"
         w="100%"
         display={content.length == 0 ? `none` : ``}
         my="8"
@@ -55,11 +57,23 @@ export const TableContent = (props) => {
         <Thead bg={mode("gray.50", "gray.800")}>
           <Tr textAlign="center">
             {header.map((column, index) => (
-              <Th whiteSpace="nowrap" scope="col" key={index}>
+              <Th
+                maxW="10%"
+                whiteSpace="nowrap"
+                scope="col"
+                color={mode("gray.900", "gray.50")}
+                key={index}
+              >
                 {column}
               </Th>
             ))}
-            {!!fntable ? <Th textAlign="center">acte</Th> : ``}
+            {!!fntable ? (
+              <Th textAlign="center" color={mode("gray.900", "gray.50")}>
+                acte
+              </Th>
+            ) : (
+              ``
+            )}
           </Tr>
         </Thead>
         <Tbody>
@@ -69,12 +83,12 @@ export const TableContent = (props) => {
                 .slice(1)
                 .map((column, indexcol) =>
                   indexcol < Object.values(header).length ? (
-                    <Td whiteSpace="nowrap" key={indexcol}>
+                    <Td maxW="100px" whiteSpace="nowrap" key={indexcol}>
                       {column}
                     </Td>
                   ) : null
                 )}
-              <Tr textAlign="right">
+              <Td textAlign="right">
                 <Box textAlign="center">
                   {!!fntable ? fntable.fn(row) : ``}
                   {!!fntable ? !!fntable.fn2 && fntable.fn2(row) : ``}
@@ -82,7 +96,7 @@ export const TableContent = (props) => {
                 <Box textAlign="center">
                   {!!fntable ? !!fntable.fn3 && fntable.fn3(row) : ``}
                 </Box>
-              </Tr>
+              </Td>
             </Tr>
           ))}
         </Tbody>

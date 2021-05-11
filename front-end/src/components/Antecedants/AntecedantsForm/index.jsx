@@ -20,7 +20,7 @@ export const AntecedantsForm = (props) => {
     <AccordionItem boxShadow="lg">
       <AccordionButton>
         <Box flex="1" textAlign="left">
-          {title != "" ? title : `AntecedantsForms`}
+          {title != "" ? title : `Antecedant`}
           <EditIcon
             mx={5}
             onClick={(event) => {

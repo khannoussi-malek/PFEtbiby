@@ -94,32 +94,37 @@ const Task = (props) => {
                     cancelRef={cancelRef}
                   />
                   {taskvalue.nomprenom}
-                  {usertype == "medecin" ? (
-                    <Alert
-                      Header="confirmer"
-                      Body={`Avez-vous confirmé que ${taskvalue.nomprenom} va voir le médecin`}
-                      icon={<BsBoxArrowInRight />}
-                      bg="blue.300"
-                      btOK="oui"
-                      btNon="Non"
-                      fnTodo={Entered}
-                      isOpen={isOpenRemove}
-                      setIsOpen={setIsOpenRemove}
-                      onClose={onCloseRemove}
-                      cancelRef={cancelRefRemove}
-                    />
-                  ) : (
-                    <Alert
-                      Header="Supprimer la réservation"
-                      Body={`Voulez-vous vraiment supprimer cette réservation avec ${taskvalue.nomprenom}`}
-                      icon={<CloseIcon />}
-                      fnTodo={remove}
-                      isOpen={isOpen}
-                      setIsOpen={setIsOpen}
-                      onClose={onClose}
-                      cancelRef={cancelRef}
-                    />
-                  )}
+                  {
+                    usertype == "medecin" ? (
+                      <Alert
+                        Header="Confirmer"
+                        Body={`Voulez-vous confirmer que ${taskvalue.nomprenom} débutera sa consultation ? `}
+                        icon={<BsBoxArrowInRight w={4} h={4} />}
+                        bg="blue.300"
+                        btOK="oui"
+                        btNon="Non"
+                        fnTodo={Entered}
+                        isOpen={isOpenRemove}
+                        setIsOpen={setIsOpenRemove}
+                        onClose={onCloseRemove}
+                        cancelRef={cancelRefRemove}
+                      />
+                    ) : (
+                      ``
+                    )
+                    // (
+                    //   <Alert
+                    //     Header="Supprimer la réservation"
+                    //     Body={`Voulez-vous vraiment supprimer cette réservation avec ${taskvalue.nomprenom}`}
+                    //     icon={<CloseIcon />}
+                    //     fnTodo={remove}
+                    //     isOpen={isOpen}
+                    //     setIsOpen={setIsOpen}
+                    //     onClose={onClose}
+                    //     cancelRef={cancelRef}
+                    //   />
+                    // )
+                  }
                 </Box>
               }
             />

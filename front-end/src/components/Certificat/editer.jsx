@@ -59,8 +59,8 @@ const EditerCertificat = (props) => {
     <React.Fragment>
       <Button
         ref={btnRef}
-        colorScheme={mode("teal", "gray.50")}
-        bgColor={mode("teal", "gray.50")}
+        // colorScheme={mode("teal", "gray.50")}
+        // bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >
         Ajouter un certificat
@@ -135,7 +135,7 @@ const EditerCertificat = (props) => {
                               title: "Element",
                               dataDisplay: "submenu",
                               innerHTML:
-                                '<div style="width: 70px;">Element</div>',
+                                '<div style="width: 70px;">Modèle</div>',
                             },
                           ],
                           ["fullScreen"],
@@ -143,10 +143,11 @@ const EditerCertificat = (props) => {
                       }}
                     />
                     <Box p={2} borderLeft="1px" my={2}>
-                      Il s'agit d'un élément de type de certification .Utilisez
-                      un élément pour écrire la valeur de changement comme le
-                      nom de votre patiente ou votre âge ou quelque chose comme
-                      ça
+                      Utiliser le boutton 'modèle' pour créer vos propres
+                      certificats . Exemple : si vou ajoutez 'patientNomPrénom'
+                      , lors de votre consulation le nom de votre patient sera
+                      ajouté automatiquement en utilisant votre certificat
+                      modélisée.
                     </Box>
                     <Box py={3}>
                       <Button colorScheme="blue" type="submit">

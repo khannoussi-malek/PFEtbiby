@@ -2,26 +2,42 @@ import { Select2 } from "./../../components/formInput/select";
 import { useState } from "react";
 import { useForm, Formiz } from "@formiz/core";
 import { useSousDomaine } from "../../services/api/domaine";
+import { MdCall } from "react-icons/md";
+import { EmailIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   Button,
   Grid,
   Box,
   useToast,
   Heading,
-  Text,
-  Link,
   Spinner,
   Center,
+  Popover,
+  PopoverTrigger,
+  Portal,
+  PopoverContent,
+  PopoverArrow,
+  PopoverHeader,
+  PopoverCloseButton,
+  PopoverBody,
+  Avatar,
+  Text,
+  PopoverFooter,
 } from "@chakra-ui/react";
 import { useDomaine } from "./../../services/api/domaine/index";
-import { FormControl } from "@chakra-ui/form-control";
 import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { useFindeDoctor } from "./../../services/api/Trouver un medecin/index";
 import ReserverUnRendezVous from "../../components/reserver un rendez-vous";
+import { link, userImage } from "./../../services/api/index";
+import { TableActions } from "./../../components/table/TableActions";
+import { useBreakpointValue } from "@chakra-ui/media-query";
+import { BiInfoCircle } from "react-icons/bi";
+import MedecinInfo from "./../../components/InformationsSurLeMedecin/FromData";
 const TrouverUnMedecin = (props) => {
-  let header = ["Nom", "Prenom"];
+  let header = ["Nom Prenom", "domaine"];
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+
   const [content, setContent] = useState([]);
   const [total, setTotal] = useState(0);
   const [next, setNext] = useState("");
@@ -31,16 +47,19 @@ const TrouverUnMedecin = (props) => {
   const [DomaineSelected, setDomaineSelected] = useState(-1);
   const [sousDomaineSelected, setSousDomaineSelected] = useState(-1);
   const [sousDomaine, setSousDomaine] = useState([]);
+  const [search, setSearch] = useState("");
   const toast = useToast();
   const MyForm = useForm();
   const { values } = MyForm;
   const params = {
+    search,
     DomaineSelected,
     sousDomaineSelected,
     page,
   };
   const [fntable, setFntable] = useState({
     fn: (data) => <ReserverUnRendezVous data={data} />,
+    fn2: (data) => <MedecinInfo data={data} />,
   });
   const {
     isLoading: isLoadingFindeDoctor,
@@ -112,6 +131,7 @@ const TrouverUnMedecin = (props) => {
       <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
         <form noValidate onSubmit={MyForm.submit}>
           <Grid
+            p={3}
             templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
             gap={3}
           >
@@ -146,33 +166,35 @@ const TrouverUnMedecin = (props) => {
             </Button>
           </Grid>
           <Box>
-            {!isLoadingFindeDoctor ? (
-              <Box>
-                <TableContent
-                  header={header}
-                  content={content}
-                  fntable={fntable}
-                  message={message}
-                />
-                <TablePagination
-                  total={total}
-                  next_page_url={next}
-                  prev_page_url={prev}
-                  page={page}
-                  setPage={setPage}
-                />
-              </Box>
-            ) : (
-              <Center>
-                <Spinner
-                  textAlign="center"
-                  size="xl"
-                  p={5}
-                  m="auto"
-                  color="red.500"
-                />
-              </Center>
-            )}
+            <Center>
+              <Spinner
+                display={!isLoadingFindeDoctor ? `none` : ``}
+                textAlign="center"
+                size="xl"
+                m="auto"
+                color="red.500"
+              />
+            </Center>
+            <Box display={isLoadingFindeDoctor ? `none` : ``}>
+              <TableActions
+                buttonText="Chercher"
+                buttonIcon={<SearchIcon />}
+                chercherFn={setSearch}
+              />
+              <TableContent
+                header={header}
+                content={content}
+                fntable={fntable}
+                message={message}
+              />
+              <TablePagination
+                total={total}
+                next_page_url={next}
+                prev_page_url={prev}
+                page={page}
+                setPage={setPage}
+              />
+            </Box>
           </Box>
         </form>
       </Formiz>

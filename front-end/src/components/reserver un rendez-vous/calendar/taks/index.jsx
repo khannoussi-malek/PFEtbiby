@@ -99,8 +99,8 @@ const TaskReserve = (props) => {
                     {taskvalue.nomprenom}
                     {usertype == "medecin" ? (
                       <Alert
-                        Header="confirmer"
-                        Body={`Avez-vous confirmé que ${taskvalue.nomprenom} va voir le médecin`}
+                        Header="Confirmer"
+                        Body={`Voulez-vous confirmer que ${taskvalue.nomprenom} débutera sa consultation ? `}
                         icon={<BsBoxArrowInRight />}
                         bg="blue.300"
                         btOK="oui"

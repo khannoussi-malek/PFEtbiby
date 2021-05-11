@@ -7,7 +7,13 @@ import {
   DrawerHeader,
   DrawerOverlay,
 } from "@chakra-ui/modal";
-import { Button, Box } from "@chakra-ui/react";
+import {
+  Button,
+  Box,
+  Heading,
+  Link as LinkChakra,
+  Text,
+} from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { useRef, useContext, useState } from "react";
 import { TbibyContext } from "./../../router/context/index";
@@ -79,8 +85,8 @@ const ConfirmerUnRendezVous = (props) => {
     ),
     fn: (data) => (
       <G_Alert
-        Header="Valude la réservation"
-        Body={`Voulez-vous vraiment Valude cette proposition de réservation avec ${data.nomprenom}`}
+        Header="Valider la réservation"
+        Body={`Voulez-vous vraiment valider cette proposition de réservation avec ${data.nomprenom}`}
         icon={<CheckIcon />}
         colorScheme="teal"
         bg="blue.300"
@@ -112,6 +118,15 @@ const ConfirmerUnRendezVous = (props) => {
       refetchDashboard();
     },
   });
+  const message = () => {
+    return (
+      <>
+        <Heading as="h2" size="lg" fontWeight="extrabold" letterSpacing="tight">
+          Vous n'avez aucune réservation de la part d'aucun patient
+        </Heading>
+      </>
+    );
+  };
   return (
     <>
       <Button
@@ -122,10 +137,10 @@ const ConfirmerUnRendezVous = (props) => {
         colorScheme="teal"
         onClick={onOpen}
       >
-        valider un rendez vous
+        Valider un rendez vous
       </Button>
       <Drawer
-        size="md"
+        size="lg"
         isOpen={isOpen}
         placement="right"
         onClose={onClose}
@@ -134,7 +149,7 @@ const ConfirmerUnRendezVous = (props) => {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>valider un rendez vous</DrawerHeader>
+            <DrawerHeader>Valider un rendez vous</DrawerHeader>
 
             <DrawerBody>
               <Box display={isLoading ? `none` : ``}>
@@ -142,6 +157,7 @@ const ConfirmerUnRendezVous = (props) => {
                   header={header}
                   content={content}
                   fntable={fntable}
+                  message={message}
                 />
                 <TablePagination
                   total={total}
