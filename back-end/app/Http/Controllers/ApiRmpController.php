@@ -15,7 +15,7 @@
 		
 
 		    public function hook_before(&$postdata) {
-		        //This method will be execute before run the main process				
+		        //This method will be execute before run the main process			
 				if(gettype($postdata['medecin_id'])=="string") 
 				{
 					$user = DB::table('cms_users')->select('*')->where('email',$postdata['medecin_id'] )->orWhere('telephone',$postdata['medecin_id'])->orWhere('id',$postdata['medecin_id'])

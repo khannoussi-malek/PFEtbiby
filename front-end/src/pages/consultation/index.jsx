@@ -65,6 +65,7 @@ const Consultation = () => {
       refetch();
     },
   });
+  console.log(currentPatient);
   return (
     <React.Fragment>
       <Spinner
@@ -116,7 +117,10 @@ const Consultation = () => {
           </SimpleGrid>
 
           <Box p={5}>
-            <Form Patient={currentPatient} />
+            <Form
+              setCurrentPatient={setCurrentPatient}
+              Patient={currentPatient}
+            />
           </Box>
         </Box>
       </Box>

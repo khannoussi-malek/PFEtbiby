@@ -25,6 +25,7 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
+
 				if(empty($postdata['patient_id'])){
 					$relation = DB::table('relation')					
 					->where('relation.medecin_id',$postdata['medecin_id'])

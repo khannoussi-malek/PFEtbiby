@@ -73,7 +73,6 @@ export const Certificat = (props) => {
   };
 
   const decodeMessage = (text) => {
-    console.log(Patient);
     let sexesM = user.sexes == "homme" ? `Mr.` : `Mrs.`;
     let sexesP = Patient.sexes == "homme" ? `Mr.` : `Mrs.`;
     text = replaceAll(text, "{sexesPatient}", sexesP);
