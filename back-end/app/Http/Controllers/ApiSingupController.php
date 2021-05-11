@@ -21,6 +21,7 @@
 				$postdata['password']=Hash::make($postdata['password']);
 				$postdata['status']="Active";
 				$postdata['id_cms_privileges']= Privilege::PrivilegeID($postdata['id_cms_privileges']);
+
 				
 		    }
 
@@ -61,7 +62,6 @@
 					}else if($postdata['id_cms_privileges']=="medecin"){
 						DB::table('medecin')->insert($insert);
 					}
-
 				}
 		
 		    }

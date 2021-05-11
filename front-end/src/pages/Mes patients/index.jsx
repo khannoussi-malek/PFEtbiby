@@ -1,21 +1,5 @@
 import React, { useState, useContext } from "react";
-import {
-  Box,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-  Spinner,
-  useToast,
-  Button,
-  Portal,
-  PopoverFooter,
-  Text,
-  Avatar,
-} from "@chakra-ui/react";
+import { Box, Spinner, useToast } from "@chakra-ui/react";
 import { TableActions } from "./../../components/table/TableActions";
 import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
@@ -23,12 +7,13 @@ import AjouPatient from "./_partials/AjoutPatient";
 import { useRelationListe } from "./../../services/api/relation/index";
 import { TbibyContext } from "./../../router/context/index";
 import { RiFolderUserLine } from "react-icons/ri";
-import { EmailIcon } from "@chakra-ui/icons";
-import { MdCall } from "react-icons/md";
-import { link, userImage } from "./../../services/api/index";
-const ListPatents = () => {
-  const { user, cleanUser } = useContext(TbibyContext);
+import { useDisclosure } from "@chakra-ui/hooks";
 
+import HistoriquePatient from "../../components/historique patient";
+import PatientInfo from "./../../components/informationSurPatient/index";
+const ListPatients = () => {
+  const { user, cleanUser } = useContext(TbibyContext);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const medecin_id = user.id;
   const [total, setTotal] = useState(0);
@@ -38,6 +23,7 @@ const ListPatents = () => {
   const [content, setContent] = useState([[""], [""]]);
   const [patientId, setPatientId] = useState("");
   const params = { medecin_id, patient_id: patientId, page };
+  const btnRef = React.useRef();
   const { isLoading, refetch } = useRelationListe({
     params,
     onError: (error) => {
@@ -53,144 +39,12 @@ const ListPatents = () => {
       setTotal(res.data.total);
       setNext(res.data.next_page_url);
       setPrev(res.data.prev_page_url);
-      setContent(res.data.data);
+      setContent((!!res.data.data && res.data.data) || []);
     },
   });
   const [fntable, setFntable] = useState({
-    fn: (data) => (
-      <Popover>
-        <PopoverTrigger>
-          <Button mx={1}>Info</Button>
-        </PopoverTrigger>
-        <Portal>
-          <PopoverContent>
-            <PopoverArrow />
-            <PopoverHeader>{data.nom + " " + data.prenom} </PopoverHeader>
-            <PopoverCloseButton />
-            <PopoverBody>
-              {!!data.photo ? (
-                <Avatar
-                  name={data.nom + " " + data.prenom}
-                  src={
-                    data.photo != null
-                      ? `${link}${data.photo}`
-                      : `${link}${userImage}`
-                  }
-                />
-              ) : (
-                ``
-              )}
-
-              {!!data.Adresse ? <Text>Adresse : {data.Adresse} </Text> : ``}
-              {!!data.Code_APCI ? (
-                <Text>Code_APCI : {data.Code_APCI} </Text>
-              ) : (
-                ``
-              )}
-              {!!data.email ? (
-                <Text as="a" href={"mailto:" + data.email}>
-                  <Button
-                    my={1}
-                    colorScheme="blue"
-                    leftIcon={<EmailIcon />}
-                    variant="outline"
-                  >
-                    Email
-                  </Button>
-                </Text>
-              ) : (
-                ``
-              )}
-              {!!data.telephone ? (
-                <Text display="block" as="a" href={"tel:" + data.telephone}>
-                  <Button
-                    my={1}
-                    leftIcon={<MdCall />}
-                    colorScheme="blue"
-                    variant="outline"
-                  >
-                    Appeller
-                  </Button>
-                </Text>
-              ) : (
-                ``
-              )}
-              {!!data.cin ? <Text>cin : {data.cin} </Text> : ``}
-            </PopoverBody>
-            <PopoverFooter>
-              Ce sont des informations personnelles sur votre patient
-            </PopoverFooter>
-          </PopoverContent>
-        </Portal>
-      </Popover>
-    ),
-    fn2: (data) => (
-      <Popover>
-        <PopoverTrigger>
-          <Button mx={1}>Info</Button>
-        </PopoverTrigger>
-        <Portal>
-          <PopoverContent>
-            <PopoverArrow />
-            <PopoverHeader>{data.nom + " " + data.prenom} </PopoverHeader>
-            <PopoverCloseButton />
-            <PopoverBody>
-              {!!data.photo ? (
-                <Avatar
-                  name={data.nom + " " + data.prenom}
-                  src={
-                    data.photo != null
-                      ? `${link}${data.photo}`
-                      : `${link}${userImage}`
-                  }
-                />
-              ) : (
-                ``
-              )}
-
-              {!!data.Adresse ? <Text>Adresse : {data.Adresse} </Text> : ``}
-              {!!data.Code_APCI ? (
-                <Text>Code_APCI : {data.Code_APCI} </Text>
-              ) : (
-                ``
-              )}
-              {!!data.email ? (
-                <Text as="a" href={"mailto:" + data.email}>
-                  <Button
-                    my={1}
-                    colorScheme="blue"
-                    leftIcon={<EmailIcon />}
-                    variant="outline"
-                  >
-                    Email
-                  </Button>
-                </Text>
-              ) : (
-                ``
-              )}
-              {!!data.telephone ? (
-                <Text display="block" as="a" href={"tel:" + data.telephone}>
-                  <Button
-                    my={1}
-                    leftIcon={<MdCall />}
-                    colorScheme="blue"
-                    variant="outline"
-                  >
-                    Appeller
-                  </Button>
-                </Text>
-              ) : (
-                ``
-              )}
-              {!!data.cin ? <Text>cin : {data.cin} </Text> : ``}
-            </PopoverBody>
-            <PopoverFooter>
-              Ce sont des informations personnelles sur votre patient
-            </PopoverFooter>
-          </PopoverContent>
-        </Portal>
-      </Popover>
-    ),
+    fn: (data) => <PatientInfo data={data} />,
+    fn2: (data) => <HistoriquePatient patient={data} />,
   });
   let header = ["Nom", "Prenom"];
   return (
@@ -214,6 +68,7 @@ const ListPatents = () => {
         >
           <Box>
             <AjouPatient refetch={refetch} />
+
             <TableActions
               buttonText="Chercher"
               buttonIcon={<RiFolderUserLine fontSize="1.25em" />}
@@ -235,4 +90,4 @@ const ListPatents = () => {
   );
 };
 
-export default ListPatents;
+export default ListPatients;

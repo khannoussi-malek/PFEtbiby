@@ -12,3 +12,10 @@ export const useSendPatientToWaitingRoom = (config) => {
     config
   );
 };
+export const useSendPatientToWaitingRoomEnligne = (config) => {
+  return useMutation(
+    ({ id, etat, state }) =>
+      axios.post("sptwr", { id, etat: "en attente", state }),
+    config
+  );
+};

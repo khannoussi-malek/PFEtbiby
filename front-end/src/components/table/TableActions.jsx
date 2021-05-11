@@ -3,19 +3,19 @@ import {
   ButtonGroup,
   FormControl,
   FormLabel,
-  HStack,
+  Grid,
   Box,
   Input,
   InputGroup,
   InputLeftElement,
   Stack,
 } from "@chakra-ui/react";
-import * as React from "react";
+import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 
 export const TableActions = (props) => {
   const { chercherFn, buttonText, buttonIcon } = props;
-  let inputValue = "";
+  const [inputValue, setInputValue] = useState("");
   return (
     <Stack
       pt={10}
@@ -23,8 +23,8 @@ export const TableActions = (props) => {
       direction={{ base: "column", md: "row" }}
       justify="space-between"
     >
-      <HStack>
-        <FormControl minW={{ md: "320px" }} id="search">
+      <Grid templateColumns="repeat(2, 1fr)" w="100%" gap={2}>
+        <FormControl w="100%" id="search">
           <InputGroup size="sm">
             <FormLabel srOnly>Filtrer par nom ou par e-mail</FormLabel>
             <InputLeftElement pointerEvents="none" color="gray.400">
@@ -33,22 +33,22 @@ export const TableActions = (props) => {
             <Input
               rounded="base"
               type="search"
-              onChange={(value) => (inputValue = value.target.value)}
-              placeholder="Filtrer par nom ou par e-mail"
+              onChange={(value) => setInputValue(value.target.value)}
+              placeholder="Filtrer"
             />
           </InputGroup>
         </FormControl>
-        <Box></Box>
-      </HStack>
-      <ButtonGroup size="sm" variant="outline">
-        <Button
-          onClick={() => chercherFn(inputValue)}
-          iconSpacing="1"
-          leftIcon={buttonIcon}
-        >
-          {buttonText}
-        </Button>
-      </ButtonGroup>
+        <ButtonGroup size="sm" variant="outline">
+          <Button
+            w="100%"
+            onClick={() => chercherFn(inputValue)}
+            iconSpacing="1"
+            leftIcon={buttonIcon}
+          >
+            {buttonText}
+          </Button>
+        </ButtonGroup>
+      </Grid>
     </Stack>
   );
 };

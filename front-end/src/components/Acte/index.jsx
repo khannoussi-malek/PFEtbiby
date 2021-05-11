@@ -1,5 +1,6 @@
 import { CloseButton } from "@chakra-ui/close-button";
 import { Box, Divider } from "@chakra-ui/layout";
+import { useColorModeValue as mode, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import { Select2 } from "./../formInput/select";
 import { TextareaForm } from "./../formInput/Textarea";
@@ -11,13 +12,44 @@ import {
 } from "@chakra-ui/accordion";
 import { Input } from "@chakra-ui/input";
 import { EditIcon } from "@chakra-ui/icons";
+import { MyField } from "../formInput";
+import { Prix } from "../formInput/Prix";
+import { useGetAllListActe, useGetOnetActe } from "../../services/api/acte";
 export const Acte = (props) => {
-  const { id, removeComponentsForm } = props;
+  const { id, removeComponentsForm, name, key } = props;
   const [title, setTitle] = useState("");
   const [showEditTitle, setShowEditTitle] = useState(true);
-
+  const toast = useToast();
+  const [selectValue, setSelectValue] = useState([]);
+  const [code, setCode] = useState("");
+  const [designation, setDesignation] = useState("");
+  const [price, setPrice] = useState("");
+  const { isLoading, refetch } = useGetAllListActe({
+    onError: (error) => {
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
+    },
+    onSuccess: (res) => {
+      setSelectValue(res.data);
+    },
+  });
+  const { mutate, isLoading: isLoadingGetActe } = useGetOnetActe({
+    onError: (error) => {
+      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+    },
+    onSuccess: (res) => {
+      setCode(res.data.code);
+      setDesignation(res.data.designation);
+      setPrice(res.data.price);
+    },
+  });
   return (
-    <AccordionItem boxShadow="lg">
+    <AccordionItem boxShadow="lg" key={"a" + key}>
       <AccordionButton>
         <Box flex="1" textAlign="left">
           {title != "" ? title : `Acte`}
@@ -42,27 +74,21 @@ export const Acte = (props) => {
           float="right"
         />
       </AccordionButton>
-      <AccordionPanel bgColor="gray.50" pb={4}>
+      <AccordionPanel bgColor={mode("gray.50", "gray.700")} pb={4}>
         <Select2
-          required={"Sélect le type de certifica."}
-          label="type de certifica"
-          data={[
-            {
-              label: "Scholeur de certificats",
-              value: "Scholeur de certificats",
-            },
-            {
-              label: "Scholeur de certificats2",
-              value: "Scholeur de certificats2",
-            },
-            {
-              label: "Scholeur de certificats3",
-              value: "Scholeur de certificats3",
-            },
-          ]}
+          label="Sélectionner une acte"
+          data={selectValue}
+          onChange={(e) => mutate({ id: e.value })}
           name="selectvalue"
         />
-        <TextareaForm name="certificat" label="contune de certificat" />
+        <MyField name={`${name}.code`} label="Code" dtValue={code} />
+        <TextareaForm
+          name={`${name}.designation`}
+          label="Diagnostic"
+          dtValue={designation}
+        />
+        <TextareaForm name={`${name}.note`} label="Note" dtValue="" />
+        <Prix name={`${name}.prix`} label="Prix" dtValue={price} />
       </AccordionPanel>
     </AccordionItem>
   );

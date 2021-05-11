@@ -11,8 +11,10 @@ import {
 } from "@chakra-ui/accordion";
 import { Input } from "@chakra-ui/input";
 import { EditIcon } from "@chakra-ui/icons";
+import { MyField } from "../formInput";
+import { Prix } from "../formInput/Prix";
 export const Examen = (props) => {
-  const { id, removeComponentsForm } = props;
+  const { id, removeComponentsForm, name } = props;
   const [title, setTitle] = useState("");
   const [showEditTitle, setShowEditTitle] = useState(true);
 
@@ -42,27 +44,22 @@ export const Examen = (props) => {
           float="right"
         />
       </AccordionButton>
-      <AccordionPanel bgColor="gray.50" pb={4}>
-        <Select2
-          required={"Sélect le type de certifica."}
-          label="type de certifica"
-          data={[
-            {
-              label: "Scholeur de certificats",
-              value: "Scholeur de certificats",
-            },
-            {
-              label: "Scholeur de certificats2",
-              value: "Scholeur de certificats2",
-            },
-            {
-              label: "Scholeur de certificats3",
-              value: "Scholeur de certificats3",
-            },
-          ]}
-          name="selectvalue"
+      <AccordionPanel pb={4}>
+        <MyField
+          name={`${name}.type`}
+          label="Type d'examen"
+          required="Il est requis de compléter ce champ"
         />
-        <TextareaForm name="certificat" label="contune de certificat" />
+        <TextareaForm
+          name={`${name}.note`}
+          label="Note d'examen"
+          required="Il est requis de compléter ce champ"
+        />
+        <Prix
+          name={`${name}.prix`}
+          label="Prix d'examen"
+          required="Il est requis de compléter ce champ"
+        />
       </AccordionPanel>
     </AccordionItem>
   );

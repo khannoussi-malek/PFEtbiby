@@ -3,7 +3,7 @@ import { Spinner } from "@chakra-ui/react";
 
 import { Box, Spacer, Flex } from "@chakra-ui/layout";
 import Calendar from "./../../components/calendar/index";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@chakra-ui/button";
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import { useBreakpointValue } from "@chakra-ui/media-query";
@@ -15,11 +15,14 @@ import { useToast } from "@chakra-ui/react";
 import { TbibyContext } from "../../router/context/index";
 import { usePatientEntrer } from "./../../services/api/manageTheRoom/index";
 import { useHistory } from "react-router-dom";
+import ConfirmerUnRendezVous from "./../../components/confirmer un rendez vous/index";
 import {
   useReservationMListe,
   useUpdateReservation,
   useDeleteReservation,
 } from "../../services/api/reservation";
+import { InputDate } from "../../components/formInput/date";
+import { Formiz, useForm } from "@formiz/core";
 
 const CalendarDashboardMedecin = () => {
   const toast = useToast();
@@ -49,7 +52,6 @@ const CalendarDashboardMedecin = () => {
     },
     onSuccess: (res) => {
       refetchTask();
-      console.log("refetch");
     },
   });
 
@@ -73,7 +75,6 @@ const CalendarDashboardMedecin = () => {
       });
     },
     onSuccess: (res) => {
-      // console.log(res.data.data);
       for (let i in res.data) {
         res.data[i].start = res.data[i].start.replace(" ", "T").slice(0, -3);
       }
@@ -86,8 +87,8 @@ const CalendarDashboardMedecin = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [listPatient, setListPatient] = useState([]);
   const {
-    isLoading: ListPatientDashboardAPIIsLoading,
-    refetch: ListPatientDashboardAPIRefetch,
+    isLoading: listPatientDashboardAPIIsLoading,
+    refetch: listPatientDashboardAPIRefetch,
   } = useListPatientDashboardAPI({
     params,
     onError: (error) => {
@@ -120,86 +121,101 @@ const CalendarDashboardMedecin = () => {
 
   //view
   const [daysView, setDaysView] = useState(1);
-  const [date, setDate] = useState(new Date());
   const isMobile = useBreakpointValue({ base: true, lg: false });
   const addDays = (date, days) => {
     var result = new Date(date);
     result.setDate(result.getDate() + days);
     setDate(result);
   };
+  const [date, setDate] = useState(new Date());
 
+  const MyForm = useForm();
+  const { values } = MyForm;
+
+  const handleSubmit = (values) => {};
   return (
     <Box>
-      <Spinner
-        display={
-          !isLoadingUpdate && !DeleteIsLoading && !PatientEntrerIsLoading
-            ? `none`
-            : ``
-        }
-        size="xl"
-        m="auto"
-        color="red.500"
-      />
-      <Box
-        display={
-          isLoadingUpdate || DeleteIsLoading || PatientEntrerIsLoading
-            ? `none`
-            : ``
-        }
-      >
-        <Flex py={2}>
-          <Button ml={2} onClick={() => addDays(date, daysView * -1)}>
-            <ArrowLeftIcon />
-          </Button>
-          <Spacer />
-          {!isMobile ? (
-            <Button mx={2} onClick={() => setDaysView(1)}>
-              Par jour
+      <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
+        <Spinner
+          display={
+            !isLoadingUpdate && !DeleteIsLoading && !PatientEntrerIsLoading
+              ? `none`
+              : ``
+          }
+          size="xl"
+          m="auto"
+          color="red.500"
+        />
+        <Box
+          display={
+            isLoadingUpdate || DeleteIsLoading || PatientEntrerIsLoading
+              ? `none`
+              : ``
+          }
+        >
+          <Flex py={2}>
+            <Button ml={2} onClick={() => addDays(date, daysView * -1)}>
+              <ArrowLeftIcon />
             </Button>
-          ) : (
-            ``
-          )}
-
-          <Button mx={2} onClick={() => setDate(new Date())}>
-            Ajourdhui
-          </Button>
-          {!isMobile ? (
-            <Button mx={2} onClick={() => setDaysView(7)}>
-              Par semaine
+            <Spacer />
+            {!isMobile ? (
+              <Button mx={2} onClick={() => setDaysView(1)}>
+                Par jour
+              </Button>
+            ) : (
+              ``
+            )}
+            <Box w="120px" position="relative" top="-7px" mx={2}>
+              <InputDate SyncWithVariable={setDate} name="date" />
+            </Box>
+            <Button
+              mx={2}
+              onClick={() => {
+                setDate(new Date());
+              }}
+            >
+              Aujourd'hui
             </Button>
-          ) : (
-            ``
-          )}
-          <Spacer />
-          <Button mr={2} onClick={() => addDays(date, daysView)}>
-            <ArrowRightIcon />
-          </Button>
-        </Flex>
-      </Box>
-      <Calendar
-        EnteredMutate={EnteredMutate}
-        usertype={user.fonctionnalite}
-        DeleteMutate={DeleteMutate}
-        task={task}
-        setTask={setTask}
-        date={date}
-        rowNumber={daysView}
-        updateTask={updateTask}
-        addtask={addtask}
-      />
 
-      <BookingForm
-        ListPatientDashboardAPIRefetch={ListPatientDashboardAPIRefetch}
-        listPatient={listPatient}
-        currentDateStart={currentDateStart}
-        cancelRef={cancelRef}
-        onClose={onClose}
-        isOpen={isOpen}
-        refetchTask={refetchTask}
-        medecin_id={user.id}
-        setTask={setTask}
-        end={end}
-      />
+            <ConfirmerUnRendezVous refetchDashboard={refetchTask} />
+            {!isMobile ? (
+              <Button mx={2} onClick={() => setDaysView(2)}>
+                Par 2 jour
+              </Button>
+            ) : (
+              ``
+            )}
+            <Spacer />
+            <Button mr={2} onClick={() => addDays(date, daysView)}>
+              <ArrowRightIcon />
+            </Button>
+          </Flex>
+        </Box>
+        <Calendar
+          EnteredMutate={EnteredMutate}
+          usertype={user.fonctionnalite}
+          DeleteMutate={DeleteMutate}
+          task={task}
+          setTask={setTask}
+          date={date}
+          rowNumber={daysView}
+          updateTask={updateTask}
+          addtask={addtask}
+        />
+
+        <BookingForm
+          listPatientDashboardAPIRefetch={listPatientDashboardAPIRefetch}
+          listPatient={listPatient}
+          currentDateStart={currentDateStart}
+          cancelRef={cancelRef}
+          onClose={onClose}
+          isOpen={isOpen}
+          refetchTask={refetchTask}
+          medecin_id={user.id}
+          setTask={setTask}
+          end={end}
+        />
+      </Formiz>
     </Box>
   );
 };

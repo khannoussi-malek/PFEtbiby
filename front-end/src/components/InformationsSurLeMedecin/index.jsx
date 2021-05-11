@@ -29,14 +29,9 @@ const InformationsSurLeMedecin = (props) => {
   return (
     <React.Fragment>
       <Text>{medecinInfo.nom}</Text>
-      <Avatar
-        size="xl"
-        src={
-          medecinInfo.photo != null
-            ? `${link}${medecinInfo.photo}`
-            : `${link}${userImage}`
-        }
-      />
+      {medecinInfo.photo && (
+        <Avatar size="xl" src={`${link}${medecinInfo.photo}`} />
+      )}
       <Text display="block" as="a" href={"tel:" + medecinInfo.telephone}>
         <Button
           my={1}

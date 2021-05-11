@@ -1,13 +1,37 @@
 import React, { useState, useContext } from "react";
-import { Box, useToast, Spinner } from "@chakra-ui/react";
+import {
+  Box,
+  useToast,
+  Spinner,
+  Popover,
+  PopoverTrigger,
+  Portal,
+  PopoverContent,
+  PopoverArrow,
+  PopoverHeader,
+  PopoverCloseButton,
+  PopoverBody,
+  Button,
+  Avatar,
+  Text,
+  PopoverFooter,
+  Heading,
+  Link as LinkChakra,
+} from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { TableContent } from "../../components/table/TableContent";
 import { TablePagination } from "../../components/table/TablePagination";
 import { TbibyContext } from "../../router/context/index";
 import { useRelationPM } from "./../../services/api/relation/index";
+import { MdCall } from "react-icons/md";
+import { EmailIcon } from "@chakra-ui/icons";
+import { link, userImage } from "./../../services/api/index";
+import ReserverUnRendezVous from "../../components/reserver un rendez-vous";
+import AjoutMedecin from "./_partials/AjoutMedecin";
+import MedecinInfo from "./../../components/InformationsSurLeMedecin/FromData";
 
 const MonMedecin = () => {
-  const { user, cleanUser } = useContext(TbibyContext);
-
+  const { user } = useContext(TbibyContext);
   const toast = useToast();
   const [total, setTotal] = useState(0);
   const [next, setNext] = useState("");
@@ -31,10 +55,29 @@ const MonMedecin = () => {
       setTotal(res.data.total);
       setNext(res.data.next_page_url);
       setPrev(res.data.prev_page_url);
-      setContent(res.data.data);
+      setContent((!!res.data.data && res.data.data) || []);
     },
   });
-  let header = ["Nom", "Prenom"];
+  const [fntable, setFntable] = useState({
+    fn: (data) => <MedecinInfo data={data} />,
+    fn2: (data) => <ReserverUnRendezVous data={data} />,
+  });
+  const message = () => {
+    return (
+      <>
+        <Heading as="h2" size="lg" fontWeight="extrabold" letterSpacing="tight">
+          Vous n'avez aucun relation avec aucun médecin
+        </Heading>
+        <Text mt="4" fontSize="lg">
+          si vous voulez réserver une relation avec médecin voir
+        </Text>
+        <LinkChakra>
+          Reserver un rendez-vous <ExternalLinkIcon mx="2px" />
+        </LinkChakra>
+      </>
+    );
+  };
+  let header = ["Nom Prenom", "domaine"];
   return (
     <React.Fragment>
       <Spinner
@@ -54,8 +97,15 @@ const MonMedecin = () => {
           mx="auto"
           px={{ base: "1", md: "8" }}
         >
+          <AjoutMedecin refetch={refetch} />
+
           <Box>
-            <TableContent header={header} content={content} />
+            <TableContent
+              header={header}
+              content={content}
+              fntable={fntable}
+              message={message}
+            />
             <TablePagination
               total={total}
               next_page_url={next}

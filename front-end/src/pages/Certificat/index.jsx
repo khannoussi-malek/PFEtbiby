@@ -6,7 +6,7 @@ import { useGetListCertificat } from "./../../services/api/certificat/index";
 import { TablePagination } from "./../../components/table/TablePagination";
 import CertificatUpdate from "./../../components/Certificat/CertificatUpdate";
 
-import { useToast, Center, Box } from "@chakra-ui/react";
+import { useToast, Center, Box, Spinner } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
 
 const CertificatPage = () => {
@@ -34,12 +34,13 @@ const CertificatPage = () => {
       setTotal(res.data.total);
       setNext(res.data.next_page_url);
       setPrev(res.data.prev_page_url);
-      setContent(res.data.data);
+      setContent((!!res.data.data && res.data.data) || []);
     },
   });
   const [fntable, setFntable] = useState({
     fn: (data) => (
       <CertificatUpdate
+        refetch={refetch}
         data={data.structure}
         type={data.type}
         id={data.id}
@@ -53,16 +54,25 @@ const CertificatPage = () => {
     <React.Fragment>
       <Box>
         <Center>
-          <EditerCertificat user={user} />
+          <EditerCertificat refetch={refetch} user={user} />
         </Center>
-        <TableContent header={header} content={content} fntable={fntable} />
-        <TablePagination
-          total={total}
-          next_page_url={next}
-          prev_page_url={prev}
-          page={page}
-          setPage={setPage}
+        <Spinner
+          pt={3}
+          display={!isLoading ? `none` : `block`}
+          size="xl"
+          m="auto"
+          color="red.500"
         />
+        <Box display={isLoading ? `none` : ``}>
+          <TableContent header={header} content={content} fntable={fntable} />
+          <TablePagination
+            total={total}
+            next_page_url={next}
+            prev_page_url={prev}
+            page={page}
+            setPage={setPage}
+          />
+        </Box>
       </Box>
     </React.Fragment>
   );

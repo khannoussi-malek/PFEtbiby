@@ -14,6 +14,7 @@ import {
   useColorModeValue as mode,
   IconButton,
   Text,
+  DrawerFooter,
 } from "@chakra-ui/react";
 import { EmailIcon } from "@chakra-ui/icons";
 import React, { useState } from "react";
@@ -46,10 +47,10 @@ const GeneralPatientsInformation = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <React.Fragment>
-      <Button m={5} bg={mode("blue.100", "blue.800")} onClick={onOpen}>
+      <Button bg={mode("blue.100", "blue.800")} onClick={onOpen}>
         Informations
       </Button>
-      <Drawer placement="right" size="md" onClose={onClose} isOpen={isOpen}>
+      <Drawer placement="left" size="md" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent bg={mode("gray.50", "gray.700")}>
           <DrawerHeader borderBottomWidth="1px">
@@ -99,7 +100,7 @@ const GeneralPatientsInformation = (props) => {
             ) : (
               ``
             )}
-            <TextInfo data={patientInfo.sexes} type="Sexes" />
+            <TextInfo data={patientInfo.sexes} type="Sexe" />
             <TextInfo data={patientInfo.telephone} type="Telephone" />
 
             {!!patientInfo.telephone ? (
@@ -121,6 +122,11 @@ const GeneralPatientsInformation = (props) => {
               ``
             )}
           </DrawerBody>
+          <DrawerFooter>
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Annuler
+            </Button>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </React.Fragment>

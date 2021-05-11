@@ -8,3 +8,7 @@ export const useMedecinInfo = ({ params, ...config } = {}) => {
     config
   );
 };
+
+export const useListeMedec = ({ params, ...config } = {}) => {
+  return useQuery(["liste medecin"], () => axios.get("lm"), config);
+};

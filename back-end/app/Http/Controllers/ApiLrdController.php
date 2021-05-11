@@ -28,6 +28,7 @@
 		        //This method will be execute after run the main process
 				$result=DB::table('rendez_vous')
 				->where('patient_id',$postdata['patient_id'])
+				->where('etat','en attente')
 				->join('cms_users', 'cms_users.id', '=', 'rendez_vous.medecin_id')
 				->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'), 'rendez_vous.id','rendez_vous.date_reservation as start')
 				->get();

@@ -31,7 +31,7 @@
 				->where('rendez_vous.patient_id',$postdata['patient_id'])
 				->where('etat','en attente')
 				->join('cms_users', 'cms_users.id', '=', 'rendez_vous.medecin_id')
-				->select('cms_users.id','cms_users.nom', 'cms_users.prenom', 'rendez_vous.date_reservation')->orderBy('rendez_vous.date_reservation')
+				->select('rendez_vous.id',DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'), 'rendez_vous.date_reservation' ,'rendez_vous.medecin_id','cms_users.cin','cms_users.email','cms_users.telephone','cms_users.photo' )->orderBy('rendez_vous.date_reservation')
 				->paginate(10);
 				
 		    }

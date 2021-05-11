@@ -3,13 +3,15 @@ import { Box } from "@chakra-ui/react";
 import Accountmanagement from "./../../gestion de compte/";
 import { PrivateRoute } from "./../../../router/_partials/PrivateRoute";
 import Rappel from "./../../rappel";
-import ListPatents from "./../../Mes patients";
+import ListPatients from "./../../Mes patients";
 import CalendarDashboard from "./../../calendar";
 import { TbibyContext } from "./../../../router/context";
-import MonRendezvous from "./../../Mon rendez vous";
 import MonMedecin from "./../../Mon medecin";
 import Consultation from "../../consultation";
 import CertificatPage from "../../Certificat";
+import MonRendezvous from "./../../Mon rendez vous/index";
+import TrouverUnMedecin from "../../Trouver un médecin";
+import ListeDact from "../../ListeDact";
 const ActivityArea = () => {
   const { user } = useContext(TbibyContext);
 
@@ -19,7 +21,8 @@ const ActivityArea = () => {
         flex="1"
         borderWidth="2px"
         rounded="xl"
-        // px={{ base: 0, md: 1 }}
+        // overflowX="scroll"
+        px={{ base: 0, md: 1 }}
         py={{ base: 2, md: 1 }}
       >
         <PrivateRoute
@@ -28,12 +31,7 @@ const ActivityArea = () => {
           isAuth={user.isAuthenticated}
           exact
         />
-        <PrivateRoute
-          path="/dashboard/Mon médecin"
-          component={MonMedecin}
-          isAuth={user.isAuthenticated}
-          exact
-        />
+
         <PrivateRoute
           path="/dashboard/consultation"
           component={Consultation}
@@ -47,13 +45,19 @@ const ActivityArea = () => {
           exact
         />
         <PrivateRoute
+          path="/dashboard/Liste d'actes"
+          component={ListeDact}
+          isAuth={user.isAuthenticated}
+          exact
+        />
+        <PrivateRoute
           path="/dashboard/Gestion de compte"
           component={Accountmanagement}
           isAuth={user.isAuthenticated}
           exact
         />
         <PrivateRoute
-          path="/dashboard/Mon rendez vous"
+          path="/dashboard/Mes rendez vous"
           component={MonRendezvous}
           isAuth={user.isAuthenticated}
           exact
@@ -66,7 +70,19 @@ const ActivityArea = () => {
         />
         <PrivateRoute
           path="/dashboard/Mes patients"
-          component={ListPatents}
+          component={ListPatients}
+          isAuth={user.isAuthenticated}
+          exact
+        />
+        <PrivateRoute
+          path="/dashboard/Mes médecins"
+          component={MonMedecin}
+          isAuth={user.isAuthenticated}
+          exact
+        />
+        <PrivateRoute
+          path="/dashboard/Trouver un médecin"
+          component={TrouverUnMedecin}
           isAuth={user.isAuthenticated}
           exact
         />

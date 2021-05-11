@@ -29,7 +29,7 @@ class CBSeeder extends Seeder
 class cms_apicustom extends seeder {
     public function run()
     {
-        if(DB::table('cms_apicustom')->count() == 0){
+            if(DB::table('cms_apicustom')->where('permalink' ,'login')->count() == 0){
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'login',
                 'tabel' => 'cms_users',
@@ -39,6 +39,8 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:2:{i:0;a:5:{s:4:"name";s:4:"user";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}i:1;a:5:{s:4:"name";s:8:"password";s:4:"type";s:8:"password";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:13:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:3:"nom";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:6:"prenom";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:9:"telephone";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:4;a:4:{s:4:"name";s:5:"photo";s:4:"type";s:5:"image";s:8:"subquery";N;s:4:"used";s:1:"1";}i:5;a:4:{s:4:"name";s:5:"email";s:4:"type";s:5:"email";s:8:"subquery";N;s:4:"used";s:1:"1";}i:6;a:4:{s:4:"name";s:3:"cin";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:7;a:4:{s:4:"name";s:8:"password";s:4:"type";s:8:"password";s:8:"subquery";N;s:4:"used";s:1:"1";}i:8;a:4:{s:4:"name";s:17:"id_cms_privileges";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:9;a:4:{s:4:"name";s:19:"cms_privileges_name";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:10;a:4:{s:4:"name";s:28:"cms_privileges_is_superadmin";s:4:"type";s:7:"tinyint";s:8:"subquery";N;s:4:"used";s:1:"1";}i:11;a:4:{s:4:"name";s:26:"cms_privileges_theme_color";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:12;a:4:{s:4:"name";s:6:"status";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'singup')->count() == 0){
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'singup',
                 'tabel' => 'cms_users',
@@ -47,7 +49,9 @@ class cms_apicustom extends seeder {
                 'method_type' => 'post',
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:3:"nom";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:13:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:3:"nom";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:6:"prenom";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:9:"telephone";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:4;a:4:{s:4:"name";s:5:"photo";s:4:"type";s:5:"image";s:8:"subquery";N;s:4:"used";s:1:"1";}i:5;a:4:{s:4:"name";s:5:"email";s:4:"type";s:5:"email";s:8:"subquery";N;s:4:"used";s:1:"1";}i:6;a:4:{s:4:"name";s:3:"cin";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:7;a:4:{s:4:"name";s:8:"password";s:4:"type";s:8:"password";s:8:"subquery";N;s:4:"used";s:1:"1";}i:8;a:4:{s:4:"name";s:17:"id_cms_privileges";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:9;a:4:{s:4:"name";s:19:"cms_privileges_name";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:10;a:4:{s:4:"name";s:28:"cms_privileges_is_superadmin";s:4:"type";s:7:"tinyint";s:8:"subquery";N;s:4:"used";s:1:"1";}i:11;a:4:{s:4:"name";s:26:"cms_privileges_theme_color";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:12;a:4:{s:4:"name";s:6:"status";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
-            ]);
+            ]);}
+            if(DB::table('cms_apicustom')->where('permalink' ,'rmp')->count() == 0){
+        
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'rmp',
                 'tabel' => 'relation',
@@ -57,6 +61,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:2:{i:0;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}i:1;a:5:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:3:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'lrmp')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'lrmp',
                 'tabel' => 'relation',
@@ -66,6 +73,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:2:{i:0;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}i:1;a:5:{s:4:"name";s:10:"medecin_id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:3:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'listpatientdashboard')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'listpatientdashboard',
                 'tabel' => 'relation',
@@ -75,6 +85,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:3:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'cr')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'cr',
                 'tabel' => 'rendez_vous',
@@ -84,6 +97,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:4:{i:0;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:2;a:5:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:3;a:5:{s:4:"name";s:16:"date_reservation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:7:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:4;a:4:{s:4:"name";s:17:"date_réservation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:5;a:4:{s:4:"name";s:16:"date_acceptation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:6;a:4:{s:4:"name";s:12:"date_dentré";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
             ]);  
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'listrm')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'listrm',
                 'tabel' => 'rendez_vous',
@@ -93,6 +109,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:7:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:4;a:4:{s:4:"name";s:16:"date_reservation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:5;a:4:{s:4:"name";s:16:"date_acceptation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:6;a:4:{s:4:"name";s:12:"date_dentré";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'updater')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'updater',
                 'tabel' => 'rendez_vous',
@@ -102,6 +121,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:2:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:16:"date_reservation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:7:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:4;a:4:{s:4:"name";s:16:"date_reservation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:5;a:4:{s:4:"name";s:16:"date_acceptation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:6;a:4:{s:4:"name";s:12:"date_dentré";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'deleter')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'deleter',
                 'tabel' => 'rendez_vous',
@@ -111,6 +133,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:7:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:4;a:4:{s:4:"name";s:16:"date_reservation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:5;a:4:{s:4:"name";s:16:"date_acceptation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:6;a:4:{s:4:"name";s:12:"date_dentré";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'lrd')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'lrd',
                 'tabel' => 'rendez_vous',
@@ -120,6 +145,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:7:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:4;a:4:{s:4:"name";s:16:"date_reservation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:5;a:4:{s:4:"name";s:16:"date_acceptation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:6;a:4:{s:4:"name";s:12:"date_dentré";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'cp')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'cp',
                 'tabel' => 'rendez_vous',
@@ -129,6 +157,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:7:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:4;a:4:{s:4:"name";s:16:"date_reservation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:5;a:4:{s:4:"name";s:16:"date_acceptation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:6;a:4:{s:4:"name";s:12:"date_dentré";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'pm')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'pm',
                 'tabel' => 'relation',
@@ -138,6 +169,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:3:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'pe')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'pe',
                 'tabel' => 'rendez_vous',
@@ -147,6 +181,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:2:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:7:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:4;a:4:{s:4:"name";s:16:"date_reservation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:5;a:4:{s:4:"name";s:16:"date_acceptation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}i:6;a:4:{s:4:"name";s:12:"date_dentré";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'pdcm')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'pdcm',
                 'tabel' => 'rendez_vous',
@@ -156,6 +193,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:0:{}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'sptwr')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'sptwr',
                 'tabel' => 'rendez_vous',
@@ -165,6 +205,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:2:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'ucp')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'ucp',
                 'tabel' => 'cms_users',
@@ -174,6 +217,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'antecedants')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'antecedants',
                 'tabel' => 'antecedants',
@@ -183,6 +229,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'medecininfo')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'medecininfo',
                 'tabel' => 'cms_users',
@@ -192,6 +241,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'addct')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'addct',
                 'tabel' => 'certificat_type',
@@ -201,6 +253,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:2:{i:0;a:5:{s:4:"name";s:4:"type";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:9:"structure";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:3:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:4:"type";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:9:"structure";s:4:"type";s:8:"longtext";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'gc')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'gc',
                 'tabel' => 'certificat_type',
@@ -210,6 +265,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:0:{}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'dom')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'dom',
                 'tabel' => 'domaine',
@@ -219,6 +277,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:0:{}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'sousdom')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'sousdom',
                 'tabel' => 'sous_domaine',
@@ -228,6 +289,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:0:{}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'gcf')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'gcf',
                 'tabel' => 'cms_users',
@@ -237,6 +301,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'rmpp')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'rmpp',
                 'tabel' => 'cms_users',
@@ -246,6 +313,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'ltc')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'ltc',
                 'tabel' => 'certificat_type',
@@ -255,6 +325,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'notification')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'notification',
                 'tabel' => 'cms_notifications',
@@ -264,6 +337,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:0:{}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'rmnot')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'rmnot',
                 'tabel' => 'cms_notifications',
@@ -273,6 +349,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'rmanotif')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'rmanotif',
                 'tabel' => 'cms_notifications',
@@ -282,7 +361,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:0:{}',
             ]);
-            
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'vnotif')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'vnotif',
                 'tabel' => 'cms_notifications',
@@ -292,6 +373,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"0";s:4:"used";s:1:"0";}}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'uct')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'uct',
                 'tabel' => 'certificat_type',
@@ -301,6 +385,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:4:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:4:"type";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:2;a:5:{s:4:"name";s:9:"structure";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:3;a:5:{s:4:"name";s:12:"cms_users_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'ad')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'ad',
                 'tabel' => 'domaine',
@@ -310,6 +397,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:3:"nom";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'asd')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'asd',
                 'tabel' => 'sous_domaine',
@@ -319,6 +409,9 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:2:{i:0;a:5:{s:4:"name";s:10:"domaine_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:3:"nom";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'consultation')->count() == 0){
+
             DB::table('cms_apicustom')->insert([
                 'permalink' => 'consultation',
                 'tabel' => 'consultation',
@@ -328,8 +421,206 @@ class cms_apicustom extends seeder {
                 'parameters' => 'a:0:{}',
                 'responses' => 'a:0:{}',
             ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'hc')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
             
-        }
+                'permalink' => 'hc',
+                'tabel' => 'certificat',
+                'aksi' => 'list',
+                'nama' => 'historique certificat',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'hact')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
+            
+                'permalink' => 'hact',
+                'tabel' => 'acte',
+                'aksi' => 'list',
+                'nama' => 'historique acte ',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'hant')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
+            
+                'permalink' => 'hant',
+                'tabel' => 'antecedants',
+                'aksi' => 'list',
+                'nama' => 'historique antecedant',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'hex')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
+            
+                'permalink' => 'hex',
+                'tabel' => 'examen',
+                'aksi' => 'list',
+                'nama' => 'historique examen',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'hor')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
+            
+                'permalink' => 'hor',
+                'tabel' => 'ordonnance',
+                'aksi' => 'list',
+                'nama' => 'historique ordonnance',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'hl')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
+            
+                'permalink' => 'hl',
+                'tabel' => 'lettre',
+                'aksi' => 'list',
+                'nama' => 'historique lettre',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+                ]);
+
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'tm')->count() == 0){
+            
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'tm',
+                'tabel' => 'cms_users',
+                'aksi' => 'list',
+                'nama' => 'Trouver un médecin',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'lrde')->count() == 0){
+            
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'lrde',
+                'tabel' => 'rendez_vous',
+                'aksi' => 'list',
+                'nama' => 'liste rendez_vous en ligne',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'pcr')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'pcr',
+                'tabel' => 'rendez_vous',
+                'aksi' => 'save_add',
+                'nama' => 'Patient Create Reservation',
+                'method_type' => 'post',
+                'parameters' => 'a:4:{i:0;a:5:{s:4:"name";s:10:"patient_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:10:"medecin_id";s:4:"type";s:7:"integer";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:2;a:5:{s:4:"name";s:4:"etat";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:3;a:5:{s:4:"name";s:16:"date_reservation";s:4:"type";s:23:"date_format:Y-m-d H:i:s";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
+                'responses' => 'a:0:{}',
+            ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'vr')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'vr',
+                'tabel' => 'rendez_vous',
+                'aksi' => 'list',
+                'nama' => 'valider un rendez vous',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'add_act')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'add_act',
+                'tabel' => 'liste_actes',
+                'aksi' => 'save_add',
+                'nama' => 'add act',
+                'method_type' => 'post',
+                'parameters' => 'a:3:{i:0;a:5:{s:4:"name";s:4:"code";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:11:"designation";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:2;a:5:{s:4:"name";s:5:"price";s:4:"type";s:7:"numeric";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
+                'responses' => 'a:1:{i:0;a:4:{s:4:"name";s:5:"price";s:4:"type";s:7:"numeric";s:8:"subquery";N;s:4:"used";s:1:"0";}}',
+            ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'la')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'la',
+                'tabel' => 'liste_actes',
+                'aksi' => 'list',
+                'nama' => 'list acte',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);}
+            if(DB::table('cms_apicustom')->where('permalink' ,'uact')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'uact',
+                'tabel' => 'liste_actes',
+                'aksi' => 'save_edit',
+                'nama' => 'update acte',
+                'method_type' => 'post',
+                'parameters' => 'a:4:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:1;a:5:{s:4:"name";s:4:"code";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:2;a:5:{s:4:"name";s:11:"designation";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}i:3;a:5:{s:4:"name";s:5:"price";s:4:"type";s:7:"numeric";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
+                'responses' => 'a:0:{}',
+            ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'gac')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'gac',
+                'tabel' => 'liste_actes',
+                'aksi' => 'list',
+                'nama' => 'get all list acte',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'ga')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'ga',
+                'tabel' => 'liste_actes',
+                'aksi' => 'detail',
+                'nama' => 'get one acte',
+                'method_type' => 'post',
+                'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:2:"id";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
+                'responses' => 'a:4:{i:0;a:4:{s:4:"name";s:2:"id";s:4:"type";s:3:"int";s:8:"subquery";N;s:4:"used";s:1:"1";}i:1;a:4:{s:4:"name";s:4:"code";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:2;a:4:{s:4:"name";s:11:"designation";s:4:"type";s:6:"string";s:8:"subquery";N;s:4:"used";s:1:"1";}i:3;a:4:{s:4:"name";s:5:"price";s:4:"type";s:7:"numeric";s:8:"subquery";N;s:4:"used";s:1:"1";}}',
+            ]);
+            }
+            if(DB::table('cms_apicustom')->where('permalink' ,'lm')->count() == 0){
+
+            DB::table('cms_apicustom')->insert([
+                'permalink' => 'lm',
+                'tabel' => 'cms_users',
+                'aksi' => 'list',
+                'nama' => 'liste medecin',
+                'method_type' => 'get',
+                'parameters' => 'a:0:{}',
+                'responses' => 'a:0:{}',
+            ]);
+            }
+        
         
     }
 }
@@ -520,7 +811,7 @@ class Cms_settingsSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'google_api_key',
                 'label' => 'Google API Key',
-                'content' => '',
+                'content' => 'AIzaSyAmCyYFfDHqzxYQuU7nVvZSOLu3hywZvEQ',
                 'content_input_type' => 'text',
                 'group_setting' => trans('crudbooster.application_setting'),
                 'dataenum' => null,
@@ -536,6 +827,7 @@ class Cms_settingsSeeder extends Seeder
                 'dataenum' => null,
                 'helper' => null,
             ],
+            
         ];
 
         foreach ($data as $row) {
