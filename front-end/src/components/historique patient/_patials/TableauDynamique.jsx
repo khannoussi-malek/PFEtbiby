@@ -3,16 +3,13 @@ import { SimpleGrid } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import React, { useContext, useState } from "react";
 import { TbibyContext } from "../../../router/context";
-import {
-  useHistoriqueListConsultation,
-  useHistoriqueListCertificat,
-  useHistoriqueListActe,
-  useHistoriqueListAntecedants,
-  useHistoriqueListExamen,
-  useHistoriqueListOrdonnance,
-  useHistoriqueListLettre,
-} from "../../../services/api/Historique patient";
+import { useHistoriqueListConsultation } from "../../../services/api/Historique patient";
+import HistoriqueActe from "../../Acte/ActeHistorique";
 import Antecedants from "../../Antecedants";
+import HistoriqueCertificat from "../../Certificat/CertificatHistorique";
+import HistoriqueExamen from "../../Examen/ExamenHistorique";
+import HistoriqueLettre from "../../Lettre/LettreHistorique";
+import HistoriqueOrdonnance from "../../Ordonnance/OrdonnanceHistorique";
 import { TableContent } from "../../table/TableContent";
 import { TablePagination } from "../../table/TablePagination";
 
@@ -54,144 +51,6 @@ const TableauDynamique = (props) => {
       res.data.data !== [] && setHeader(["Diagnostic"]);
     },
   });
-
-  const {
-    isLoading: isLodingCertificat,
-    refetch: refetchCertifcat,
-  } = useHistoriqueListCertificat({
-    params,
-    onError: (error) => {
-      toast({
-        title: ":globe_with_meridians: Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: 4000,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setTotal(res.data.total);
-      setNext(res.data.next_page_url);
-      setPrev(res.data.prev_page_url);
-      res.data.data !== [] && setContent(res.data.data);
-      res.data.data !== [] && setHeader(["structure"]);
-    },
-  });
-
-  const {
-    isLoading: isLodingActe,
-    refetch: refetchActe,
-  } = useHistoriqueListActe({
-    params,
-    onError: (error) => {
-      toast({
-        title: ":globe_with_meridians: Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: 4000,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setTotal(res.data.total);
-      setNext(res.data.next_page_url);
-      setPrev(res.data.prev_page_url);
-      res.data.data !== [] && setContent(res.data.data);
-      res.data.data !== [] && setHeader(["description"]);
-    },
-  });
-
-  const {
-    isLoading: isLodingAntecedants,
-    refetch: refetchAntecedants,
-  } = useHistoriqueListAntecedants({
-    params,
-    onError: (error) => {
-      toast({
-        title: ":globe_with_meridians: Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: 4000,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setTotal(res.data.total);
-      setNext(res.data.next_page_url);
-      setPrev(res.data.prev_page_url);
-      res.data.data !== [] && setContent(res.data.data);
-      res.data.data !== [] && setHeader(["description"]);
-    },
-  });
-
-  const {
-    isLoading: isLodingExamen,
-    refetch: refetchExamen,
-  } = useHistoriqueListExamen({
-    params,
-    onError: (error) => {
-      toast({
-        title: ":globe_with_meridians: Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: 4000,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setTotal(res.data.total);
-      setNext(res.data.next_page_url);
-      setPrev(res.data.prev_page_url);
-      res.data.data !== [] && setContent(res.data.data);
-      res.data.data !== [] && setHeader(["nom"]);
-    },
-  });
-
-  const {
-    isLoading: isLodingOrdonnance,
-    refetch: refetchOrdonnance,
-  } = useHistoriqueListOrdonnance({
-    params,
-    onError: (error) => {
-      toast({
-        title: ":globe_with_meridians: Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: 4000,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setTotal(res.data.total);
-      setNext(res.data.next_page_url);
-      setPrev(res.data.prev_page_url);
-      res.data.data !== [] && setContent(res.data.data);
-      res.data.data !== [] && setHeader(["description"]);
-    },
-  });
-
-  const {
-    isLoading: isLodingLettre,
-    refetch: refetchLettre,
-  } = useHistoriqueListLettre({
-    params,
-    onError: (error) => {
-      toast({
-        title: ":globe_with_meridians: Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: 4000,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setTotal(res.data.total);
-      setNext(res.data.next_page_url);
-      setPrev(res.data.prev_page_url);
-      res.data.data !== [] && setContent(res.data.data);
-      res.data.data !== [] && setHeader(["description"]);
-    },
-  });
   return (
     <React.Fragment>
       <SimpleGrid minChildWidth="100px" spacing="10px">
@@ -202,43 +61,12 @@ const TableauDynamique = (props) => {
         >
           Consultation
         </Button>
-        <Button
-          onClick={() => {
-            refetchCertifcat();
-          }}
-        >
-          Certificat
-        </Button>
-        <Button
-          onClick={() => {
-            refetchActe();
-          }}
-        >
-          Acte
-        </Button>
+        <HistoriqueCertificat patient={patient} />
+        <HistoriqueActe patient={patient} />
         <Antecedants patient={patient} />
-
-        <Button
-          onClick={() => {
-            refetch: refetchExamen();
-          }}
-        >
-          Examen
-        </Button>
-        <Button
-          onClick={() => {
-            refetch: refetchOrdonnance();
-          }}
-        >
-          Ordonnance
-        </Button>
-        <Button
-          onClick={() => {
-            refetch: refetchLettre();
-          }}
-        >
-          Lettre
-        </Button>
+        <HistoriqueExamen patient={patient} />
+        <HistoriqueOrdonnance patient={patient} />
+        <HistoriqueLettre patient={patient} />
       </SimpleGrid>
       <TableContent header={header} content={content} />
       <TablePagination

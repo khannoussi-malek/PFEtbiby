@@ -36,13 +36,13 @@ export const TableContent = (props) => {
               fontWeight="extrabold"
               letterSpacing="tight"
             >
-              Vous n'avez aucun patient avec ces informations
+              Aucun element
             </Heading>
-            <Text mt="4" fontSize="lg">
+            {/* <Text mt="4" fontSize="lg">
               Si vous n'avez pas ce patient, veuillez l'ajouter en tapant son
               CIN, son email ou son numéro de téléphone dans le champ "Ajouter
               un patient".
-            </Text>
+            </Text> */}
           </>
         )}
       </Box>
