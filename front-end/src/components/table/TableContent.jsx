@@ -88,15 +88,17 @@ export const TableContent = (props) => {
                     </Td>
                   ) : null
                 )}
-              <Td textAlign="right">
-                <Box textAlign="center">
-                  {!!fntable ? fntable.fn(row) : ``}
-                  {!!fntable ? !!fntable.fn2 && fntable.fn2(row) : ``}
-                </Box>
-                <Box textAlign="center">
-                  {!!fntable ? !!fntable.fn3 && fntable.fn3(row) : ``}
-                </Box>
-              </Td>
+              {!!fntable && (
+                <Td textAlign="right">
+                  <Box textAlign="center">
+                    {!!fntable ? fntable.fn(row) : ``}
+                    {!!fntable ? !!fntable.fn2 && fntable.fn2(row) : ``}
+                  </Box>
+                  <Box textAlign="center">
+                    {!!fntable ? !!fntable.fn3 && fntable.fn3(row) : ``}
+                  </Box>
+                </Td>
+              )}
             </Tr>
           ))}
         </Tbody>

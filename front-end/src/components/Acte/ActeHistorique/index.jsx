@@ -41,7 +41,7 @@ const HistoriqueActe = (props) => {
   const [next, setNext] = useState("");
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
-  const [header, setHeader] = useState([]);
+  const [header, setHeader] = useState(["Code", "Designation", "note"]);
   const [content, setContent] = useState([[""], [""]]);
   const [patientId, setPatientId] = useState("");
   const params = { medecin_id, patient_id: patient.id, page };
@@ -64,8 +64,7 @@ const HistoriqueActe = (props) => {
       setTotal(res.data.total);
       setNext(res.data.next_page_url);
       setPrev(res.data.prev_page_url);
-      res.data.data !== [] && setContent(res.data.data);
-      res.data.data !== [] && setHeader(["Code", "Designation", "note"]);
+      setContent((res.data.data && res.data.data) || []);
     },
   });
 

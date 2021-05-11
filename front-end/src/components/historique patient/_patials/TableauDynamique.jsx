@@ -21,7 +21,7 @@ const TableauDynamique = (props) => {
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([""], [""]);
-  const [header, setHeader] = useState([]);
+  const header = ["date", "Diagnostic"];
   const toast = useToast();
   const params = {
     patient_id: patient.id,
@@ -47,8 +47,13 @@ const TableauDynamique = (props) => {
       setTotal(res.data.total);
       setNext(res.data.next_page_url);
       setPrev(res.data.prev_page_url);
+      !!res.data.data &&
+        res.data.data.map((value) => {
+          if (value.Diagnostic == null) {
+            value.Diagnostic = "Aucun diagnostic écrit";
+          }
+        });
       setContent((!!res.data.data && res.data.data) || []);
-      res.data.data !== [] && setHeader(["Diagnostic"]);
     },
   });
   return (
