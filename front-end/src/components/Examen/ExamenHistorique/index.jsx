@@ -1,22 +1,5 @@
 import React, { useState, useContext } from "react";
-import {
-  Box,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-  Spinner,
-  useToast,
-  Button,
-  Portal,
-  PopoverFooter,
-  Text,
-  Avatar,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { useToast, Button, useDisclosure } from "@chakra-ui/react";
 import {
   Drawer,
   DrawerBody,
@@ -29,8 +12,8 @@ import {
 import { TbibyContext } from "../../../router/context";
 import { TableContent } from "../../table/TableContent";
 import { TablePagination } from "../../table/TablePagination";
-import { useHistoriqueListActe } from "../../../services/api/Historique patient";
-const HistoriqueActe = (props) => {
+import { useHistoriqueListExamen } from "../../../services/api/Historique patient";
+const HistoriqueExamen = (props) => {
   const { user, cleanUser } = useContext(TbibyContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { patient } = props;
@@ -42,18 +25,19 @@ const HistoriqueActe = (props) => {
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
   const [header, setHeader] = useState([]);
+
   const [content, setContent] = useState([[""], [""]]);
   const [patientId, setPatientId] = useState("");
   const params = { medecin_id, patient_id: patient.id, page };
   const btnRef = React.useRef();
   const {
-    isLoading: isLodingActe,
-    refetch: refetchActe,
-  } = useHistoriqueListActe({
+    isLoading: isLodingExamen,
+    refetch: refetchExamen,
+  } = useHistoriqueListExamen({
     params,
     onError: (error) => {
       toast({
-        title: ":Problème de connexion",
+        title: "Problème de connexion",
         description: " Il y a un problème de connexion",
         status: "success",
         duration: 4000,
@@ -65,15 +49,15 @@ const HistoriqueActe = (props) => {
       setNext(res.data.next_page_url);
       setPrev(res.data.prev_page_url);
       res.data.data !== [] && setContent(res.data.data);
-      res.data.data !== [] && setHeader(["Code", "Designation", "note"]);
+      res.data.data !== [] && setHeader(["Note", "Type", "Prix"]);
     },
   });
 
-  // let header = ["Code", "Designation", "note"];
+  // let header = ["Note", "Type", "Prix"];
   return (
     <>
       <Button ref={btnRef} onClick={onOpen}>
-        Acte
+        Examen
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -85,7 +69,7 @@ const HistoriqueActe = (props) => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Acte</DrawerHeader>
+          <DrawerHeader>Examen</DrawerHeader>
 
           <DrawerBody>
             <TableContent header={header} content={content} />
@@ -109,4 +93,4 @@ const HistoriqueActe = (props) => {
   );
 };
 
-export default HistoriqueActe;
+export default HistoriqueExamen;

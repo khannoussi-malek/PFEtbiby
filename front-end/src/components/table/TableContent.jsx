@@ -35,7 +35,7 @@ export const TableContent = (props) => {
               fontWeight="extrabold"
               letterSpacing="tight"
             >
-              Vous n'avez aucune certificat
+              Aucun element
             </Heading>
             {/* <Text mt="4" fontSize="lg">
               Si vous n'avez pas ce patient, veuillez l'ajouter en tapant son

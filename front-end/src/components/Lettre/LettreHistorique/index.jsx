@@ -1,22 +1,5 @@
 import React, { useState, useContext } from "react";
-import {
-  Box,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-  Spinner,
-  useToast,
-  Button,
-  Portal,
-  PopoverFooter,
-  Text,
-  Avatar,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { useToast, Button, useDisclosure } from "@chakra-ui/react";
 import {
   Drawer,
   DrawerBody,
@@ -29,8 +12,8 @@ import {
 import { TbibyContext } from "../../../router/context";
 import { TableContent } from "../../table/TableContent";
 import { TablePagination } from "../../table/TablePagination";
-import { useHistoriqueListActe } from "../../../services/api/Historique patient";
-const HistoriqueActe = (props) => {
+import { useHistoriqueListLettre } from "../../../services/api/Historique patient";
+const HistoriqueLettre = (props) => {
   const { user, cleanUser } = useContext(TbibyContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { patient } = props;
@@ -46,10 +29,11 @@ const HistoriqueActe = (props) => {
   const [patientId, setPatientId] = useState("");
   const params = { medecin_id, patient_id: patient.id, page };
   const btnRef = React.useRef();
+
   const {
-    isLoading: isLodingActe,
-    refetch: refetchActe,
-  } = useHistoriqueListActe({
+    isLoading: isLodingLettre,
+    refetch: refetchLettre,
+  } = useHistoriqueListLettre({
     params,
     onError: (error) => {
       toast({
@@ -65,15 +49,15 @@ const HistoriqueActe = (props) => {
       setNext(res.data.next_page_url);
       setPrev(res.data.prev_page_url);
       res.data.data !== [] && setContent(res.data.data);
-      res.data.data !== [] && setHeader(["Code", "Designation", "note"]);
+      res.data.data !== [] && setHeader(["Description"]);
     },
   });
 
-  // let header = ["Code", "Designation", "note"];
+  //   let header = ["Description"];
   return (
     <>
       <Button ref={btnRef} onClick={onOpen}>
-        Acte
+        Lettre
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -85,7 +69,7 @@ const HistoriqueActe = (props) => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Acte</DrawerHeader>
+          <DrawerHeader>Lettre</DrawerHeader>
 
           <DrawerBody>
             <TableContent header={header} content={content} />
@@ -109,4 +93,4 @@ const HistoriqueActe = (props) => {
   );
 };
 
-export default HistoriqueActe;
+export default HistoriqueLettre;

@@ -44,25 +44,6 @@ export const Acte = (props) => {
         />
       </AccordionButton>
       <AccordionPanel bgColor="gray.50" pb={4}>
-        {/* <Select2
-          required={"Sélect le type de certifica."}
-          label="type de certifica"
-          data={[
-            {
-              label: "Scholeur de certificats",
-              value: "Scholeur de certificats",
-            },
-            {
-              label: "Scholeur de certificats2",
-              value: "Scholeur de certificats2",
-            },
-            {
-              label: "Scholeur de certificats3",
-              value: "Scholeur de certificats3",
-            },
-          ]}
-          name="selectvalue"
-        /> */}
         <MyField name={`${name}.type`} label="tarif d'acte" />
         <TextareaForm name="acte" label="contenu d'acte" />
       </AccordionPanel>
