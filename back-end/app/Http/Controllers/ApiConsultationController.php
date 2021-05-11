@@ -58,7 +58,7 @@
 						foreach ($postdata['examens'] as &$value) {
 							if(!empty($value)){
 								DB::table('examen')->insert(
-									['consultation_id' => $id,'code' =>$value['code'],'type' =>$value['type'],'prix' =>$value['prix'], 'note' => $value['note'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
+									['consultation_id' => $id,'type' =>$value['type'],'prix' =>$value['prix'], 'note' => $value['note'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
 								);
 							}
 						}

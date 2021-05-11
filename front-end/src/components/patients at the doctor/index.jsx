@@ -97,7 +97,7 @@ const PatientsAtTheDoctor = (props) => {
     return (
       <Center>
         <Heading as="h2" size="lg" fontWeight="extrabold" letterSpacing="tight">
-          Ils ne sont pas de rite patient nouveau
+          Aucun patient pour le moment
         </Heading>
       </Center>
     );
