@@ -30,7 +30,6 @@ const CalendarDashboardPatient = () => {
     },
     onSuccess: (res) => {
       refetchTask();
-      console.log("refetch");
     },
   });
 

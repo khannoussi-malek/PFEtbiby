@@ -63,6 +63,7 @@ export const Lettre = (props) => {
           onChange={(e) => setTitle(e.target.value)}
         />
         <Select2
+          selectValue="true"
           label="Sélectionner un medécin"
           data={selectValue}
           name={`${name}.medecin_destiantaire_id`}

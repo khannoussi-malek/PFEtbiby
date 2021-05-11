@@ -12,7 +12,6 @@ import { FieldGroup } from "./../../../components/FieldGroup/index";
 
 const GestiondeCopmtePatient = (props) => {
   const { gcInfo, age } = props;
-  console.log();
   return (
     <React.Fragment>
       <FieldGroup title="information spécifique">
@@ -45,7 +44,6 @@ const GestiondeCopmtePatient = (props) => {
             dtValue={gcInfo.Adresse}
             Placeholder={gcInfo.Adresse}
           />
-          
         </VStack>
       </FieldGroup>
     </React.Fragment>

@@ -25,7 +25,7 @@ import { TbibyContext } from "./../../../router/context/index";
 const Form = (props) => {
   const toast = useToast();
   const { user } = useContext(TbibyContext);
-  const { Patient } = props;
+  const { Patient, setCurrentPatient } = props;
   const [id, setId] = useState(0);
   const { mutate, isLoading } = useCreateConsultation({
     onError: (error) => {
@@ -37,7 +37,9 @@ const Form = (props) => {
         isClosable: true,
       });
     },
-    onSuccess: (res) => {},
+    onSuccess: (res) => {
+      setCurrentPatient({});
+    },
   });
   const MyForm = useForm();
   const { values } = MyForm;

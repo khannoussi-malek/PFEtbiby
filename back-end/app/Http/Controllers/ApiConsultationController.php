@@ -20,7 +20,7 @@
 					$errer['prix']="Vous devez écrire un prix";
 				}
 				$certificats=[];
-			dd($postdata);
+			// dd($postdata);
 				if($errer==[]){
 					
 					DB::table('rendez_vous')->where('id', $postdata['rendez_vous_id'])->delete();
@@ -67,7 +67,7 @@
 						foreach ($postdata['lettres'] as &$value) {
 							if(!empty($value)){
 								DB::table('lettre')->insert(
-									['consultation_id' => $id,'medecin_destiantaire_id' =>$value['medecin_destiantaire_id'],'description' =>$value['description'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
+									['consultation_id' => $id,'medecin_destiantaire_id' =>$value['medecin_destiantaire_id']['value'],'description' =>$value['description'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
 								);
 							}
 						}
@@ -75,6 +75,7 @@
 					
 					}
 				$postdata=$errer;
+				$postdata=['api_status'=>1];
 			
 
 		    }

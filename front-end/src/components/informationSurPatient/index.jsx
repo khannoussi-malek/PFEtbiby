@@ -46,10 +46,9 @@ const PatientInfo = (props) => {
                 />
               </Box>
             )}
-
             {data.Adresse && <Text>Adresse : {data.Adresse} </Text>}
             {data.Code_APCI && <Text>Code_APCI : {data.Code_APCI} </Text>}
-            {data.email && (
+            {data.email != "" && data.email != null ? (
               <Text as="a" href={"mailto:" + data.email}>
                 <Button
                   my={1}
@@ -60,8 +59,10 @@ const PatientInfo = (props) => {
                   Email
                 </Button>
               </Text>
+            ) : (
+              ``
             )}
-            {data.telephone && (
+            {data.telephone != "" && data.telephone != null ? (
               <Text display="block" as="a" href={"tel:" + data.telephone}>
                 <Button
                   my={1}
@@ -72,6 +73,8 @@ const PatientInfo = (props) => {
                   Appeller
                 </Button>
               </Text>
+            ) : (
+              ``
             )}
             {data.cin && <Text>cin : {data.cin} </Text>}
           </PopoverBody>

@@ -16,6 +16,6 @@ export const useListOfThePatientInConsultation = ({
   );
 };
 
-export const useCreateConsultation = (props, config) => {
-  return useMutation((props) => axios.post("consultation", props), config);
+export const useCreateConsultation = ({ params, ...config } = {}) => {
+  return useMutation((params) => axios.post("consultation", params), config);
 };

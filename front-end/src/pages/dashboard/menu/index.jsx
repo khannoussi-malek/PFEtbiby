@@ -11,7 +11,12 @@ import {
   BsFillPeopleFill,
 } from "react-icons/bs";
 
-import { BiClipboard, BiDonateHeart, BiLayer } from "react-icons/bi";
+import {
+  BiClipboard,
+  BiDonateHeart,
+  BiLayer,
+  BiCalendarAlt,
+} from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import { TbibyContext } from "./../../../router/context";
 const Menu = () => {
@@ -24,6 +29,7 @@ const Menu = () => {
 
   let pages = [];
   let Patientmenu = [
+    { url: "dashboard", icon: <BiCalendarAlt fontSize="20px" /> },
     { url: "Trouver un médecin", icon: <BsSearch fontSize="20px" /> },
     { url: "Mes rendez vous", icon: <BsFillCalendarFill fontSize="20px" /> },
     { url: "Mes médecins", icon: <BsFillPersonLinesFill fontSize="20px" /> },
@@ -34,6 +40,8 @@ const Menu = () => {
     pages = Patientmenu;
   } else if (user.fonctionnalite == "medecin") {
     pages = [
+      { url: "dashboard", icon: <BiCalendarAlt fontSize="20px" /> },
+
       { url: "Mes patients", icon: <BsFillPeopleFill fontSize="20px" /> },
       { url: "Consultation", icon: <BiDonateHeart fontSize="20px" /> },
       { url: "Modèle de certificat", icon: <BiClipboard fontSize="20px" /> },
@@ -47,7 +55,11 @@ const Menu = () => {
     <React.Fragment>
       <Box mb={{ base: "70px" }}>
         {pages.map((page) => (
-          <SidebarLink key={page.url} linkto={page.url} icon={page.icon}>
+          <SidebarLink
+            key={page.url}
+            linkto={page.url == "dashboard" ? `` : page.url}
+            icon={page.icon}
+          >
             {page.url}
           </SidebarLink>
         ))}

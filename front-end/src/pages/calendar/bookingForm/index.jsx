@@ -23,7 +23,7 @@ const BookingForm = (props) => {
     medecin_id,
     refetchTask,
     currentDateStart,
-    ListPatientDashboardAPIRefetch,
+    listPatientDashboardAPIRefetch,
     cancelRef,
     isOpen,
     onClose,
@@ -48,7 +48,7 @@ const BookingForm = (props) => {
     onSuccess: (res) => {
       setErrorMessage("");
       setSearch("old");
-      ListPatientDashboardAPIRefetch();
+      listPatientDashboardAPIRefetch();
     },
   });
   const MyForm = useForm();
