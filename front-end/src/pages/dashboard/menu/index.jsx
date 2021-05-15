@@ -29,7 +29,7 @@ const Menu = () => {
 
   let pages = [];
   let Patientmenu = [
-    { url: "dashboard", icon: <BiCalendarAlt fontSize="20px" /> },
+    { url: "Dashboard", icon: <BiCalendarAlt fontSize="20px" /> },
     { url: "Trouver un médecin", icon: <BsSearch fontSize="20px" /> },
     { url: "Mes rendez vous", icon: <BsFillCalendarFill fontSize="20px" /> },
     { url: "Mes médecins", icon: <BsFillPersonLinesFill fontSize="20px" /> },
@@ -40,7 +40,7 @@ const Menu = () => {
     pages = Patientmenu;
   } else if (user.fonctionnalite == "medecin") {
     pages = [
-      { url: "dashboard", icon: <BiCalendarAlt fontSize="20px" /> },
+      { url: "Dashboard", icon: <BiCalendarAlt fontSize="20px" /> },
 
       { url: "Mes patients", icon: <BsFillPeopleFill fontSize="20px" /> },
       { url: "Consultation", icon: <BiDonateHeart fontSize="20px" /> },
@@ -57,7 +57,7 @@ const Menu = () => {
         {pages.map((page) => (
           <SidebarLink
             key={page.url}
-            linkto={page.url == "dashboard" ? `` : page.url}
+            linkto={page.url == "Dashboard" ? `` : page.url}
             icon={page.icon}
           >
             {page.url}

@@ -66,14 +66,15 @@ const MonMedecin = () => {
     return (
       <>
         <Heading as="h2" size="lg" fontWeight="extrabold" letterSpacing="tight">
-          Vous n'avez aucun relation avec aucun médecin
+          Vous n'avez aucun médecin dans votre liste.
         </Heading>
         <Text mt="4" fontSize="lg">
-          si vous voulez réserver une relation avec médecin voir
+          Si vous voulez trouver un médecin,entrer ses coordonnées dans le barre
+          ci-dessus
         </Text>
-        <LinkChakra>
-          Reserver un rendez-vous <ExternalLinkIcon mx="2px" />
-        </LinkChakra>
+        <Text mt fontSize="lg">
+          (C.I.N , E-mail, Num°tél)
+        </Text>
       </>
     );
   };

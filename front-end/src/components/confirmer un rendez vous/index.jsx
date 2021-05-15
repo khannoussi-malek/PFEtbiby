@@ -28,6 +28,7 @@ import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import G_Alert from "./../general alert/index";
 import { useSendPatientToWaitingRoomEnligne } from "../../services/api/manageTheRoom";
 import GeneralPatientsInformation from "./../general patients information/index";
+import { useBreakpointValue } from "@chakra-ui/media-query";
 
 const ConfirmerUnRendezVous = (props) => {
   const { refetchDashboard } = props;
@@ -41,31 +42,29 @@ const ConfirmerUnRendezVous = (props) => {
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([]);
   const [header, setHeader] = useState(["nom prenom", "Date"]);
-  const {
-    mutate: SPTWRMutate,
-    isLoading: SPTWRIsLoading,
-  } = useSendPatientToWaitingRoomEnligne({
-    onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
-    },
-    onSuccess: (res) => {
-      refetchDashboard();
-      refetchlist();
-    },
-  });
+  const { mutate: SPTWRMutate, isLoading: SPTWRIsLoading } =
+    useSendPatientToWaitingRoomEnligne({
+      onError: (error) => {
+        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      },
+      onSuccess: (res) => {
+        refetchDashboard();
+        refetchlist();
+      },
+    });
   const params = { medecin_id: user.id };
-  const {
-    mutate: DeleteMutate,
-    isLoading: DeleteIsLoading,
-  } = useDeleteReservation({
-    onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
-    },
-    onSuccess: (res) => {
-      refetchlist();
-      refetchDashboard();
-    },
-  });
+  const { mutate: DeleteMutate, isLoading: DeleteIsLoading } =
+    useDeleteReservation({
+      onError: (error) => {
+        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      },
+      onSuccess: (res) => {
+        refetchlist();
+        refetchDashboard();
+      },
+    });
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+
   const [fntable, setFntable] = useState({
     fn2: (data) => (
       <G_Alert
@@ -137,7 +136,8 @@ const ConfirmerUnRendezVous = (props) => {
         colorScheme="teal"
         onClick={onOpen}
       >
-        Valider un rendez vous
+        {isMobile ? `` : `Valider un rendez vous `}
+        {content == [] ? `📫` : `📪`}
       </Button>
       <Drawer
         size="lg"
@@ -149,7 +149,7 @@ const ConfirmerUnRendezVous = (props) => {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>Valider un rendez vous</DrawerHeader>
+            <DrawerHeader>📫 Valider un rendez vous </DrawerHeader>
 
             <DrawerBody>
               <Box display={isLoading ? `none` : ``}>

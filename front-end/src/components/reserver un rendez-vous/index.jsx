@@ -13,6 +13,7 @@ import { useRef } from "react";
 import CalendarReserve from "./calendar/index";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 import { BiHomeHeart } from "react-icons/bi";
+import { Tooltip } from "@chakra-ui/tooltip";
 const ReserverUnRendezVous = (props) => {
   const { data } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -21,9 +22,14 @@ const ReserverUnRendezVous = (props) => {
 
   return (
     <>
-      <Button ref={btnRef} size="sm" my={3} onClick={onOpen}>
-        {isMobile ? <BiHomeHeart fontSize="30px" /> : `Rendez-vous `}
-      </Button>
+      <Tooltip
+        label="Consultez la salle d'attente"
+        aria-label="Consultez la salle d'attente"
+      >
+        <Button ref={btnRef} size="sm" my={3} onClick={onOpen}>
+          {isMobile ? <BiHomeHeart fontSize="30px" /> : `Rendez-vous `}
+        </Button>
+      </Tooltip>
       <Drawer
         size="full"
         isOpen={isOpen}
