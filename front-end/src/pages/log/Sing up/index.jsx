@@ -104,9 +104,6 @@ const Singup = () => {
                     <Radio value="medecin" py={3} mx={5}>
                       🩺 Médecin
                     </Radio>
-                    <Radio value="secretaire" py={3} mx={5}>
-                      👩‍💼 Secrétaire
-                    </Radio>
                   </Stack>
                 </RadioGroup>
               </Center>

@@ -19,16 +19,16 @@
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
                 $error=[];
-				if($postdata['nom']!="null"){
+				if($postdata['nom']!="null"&&!empty($postdata['nom'])){
                     $tableupdate['nom']=$postdata['nom'];
                 }
-                if($postdata['photo']!="null"){
+                if($postdata['photo']!="null"&&!empty($postdata['photo'])){
                         $extention=$postdata['photo']->getClientOriginalExtension();
                         if($extention=="jpg"||$extention=="png"||$extention=="gif"){}else{
                             $error['error']="Veuillez saisir une image (jpg , png ,gif)";
                         }
                 }
-                if($postdata['prenom']!="null"){
+                if($postdata['prenom']!="null"&&!empty($postdata['prenom'])){
                     $tableupdate['prenom']=$postdata['prenom'];
                     }
                 if(!empty($postdata['telephone'])&&$postdata['telephone']!="null"){
@@ -53,7 +53,7 @@
                         }
                     }
 
-                if($postdata['date_naissance']!="null"){
+                if($postdata['date_naissance']!="null"&&!empty($postdata['date_naissance'])){
                     $tableupdate['date_naissance']=$postdata['date_naissance'];
                     }
                 if(!empty($postdata['cin'])&&$postdata['cin']!="null"){
@@ -69,36 +69,22 @@
                         $error['ecin']="cin existe deja";
                     }
                     }
-                if($postdata['sexes']!="undefined"){
+                if($postdata['sexes']!="null"&&!empty($postdata['sexes'])){
                     $tableupdate['sexes']=$postdata['sexes'];
                     }
 
 
-                if($postdata['password']!="null"){
+                if($postdata['password']!="null"&&!empty($postdata['password'])){
                     $postdata['password']=Hash::make($postdata['password']);
                     $tableupdate['password']=$postdata['password'];
                     }
 
-					// dd($tableupdate);
-                    // dd($tableupdate);
-			
-
-					// dd($tableupdate);
-				// DB::table('cms_users')
-                // ->where('id', $postdata['id'])
-                // ->update(["nom"=>"malek"]);
-
-                // if(!empty($postdata['parent'])){
-                //     $user = DB::table('cms_users')->select('id')->where('email',$postdata['user'] )->orWhere('telephone',$postdata['user'])
-                //     ->orWhere('cin',$postdata['user'])
-                //     ->first();
-                //     // dd($user);
-                // }
+					
 
   
                 if($postdata['id_cms_privileges']=="patient"){
                   $patient= [];
-                    if($postdata['parent']!="null"){
+                    if($postdata['parent']!="null"&&!empty($postdata['parent'])){
                     $users = DB::table('cms_users')->select('id')->where('email',$postdata['parent'] )->orWhere('telephone',$postdata['parent'])
                     ->orWhere('cin',$postdata['parent'])
                     ->first();
@@ -109,13 +95,13 @@
                     }
                     
                         }
-                    if($postdata['Code_APCI']!="null"){
+                    if($postdata['Code_APCI']!="null"&&!empty($postdata['Code_APCI'])){
 
                             $patient["Code_APCI"]=$postdata['Code_APCI'];
                         
                             }
 
-                    if($postdata['adresse']!="null"){
+                    if($postdata['adresse']!="null"&&!empty($postdata['adresse'])){
 
                         $patient["adresse"]=$postdata['adresse'];
                     
@@ -126,22 +112,18 @@
                 }
                 if($postdata['id_cms_privileges']=="medecin"){
                     $medecin=[];
-                    if($postdata['temps_de_seance']!="null"){
+          
+                    if($postdata['SelectDomaine']!="null"&&!empty($postdata['SelectDomaine'])){
 
-                        $medecin["temps_de_seance"]=$postdata['temps_de_seance'];
+                        $medecin["domaine_id"]=$postdata['SelectDomaine'];
                     
-                        }
-                        if($postdata['SelectDomaine']!="null"){
+                    }
+                    if($postdata['adresse_physique']!="null"&&!empty($postdata['adresse_physique'])){
 
-                            $medecin["domaine_id"]=$postdata['SelectDomaine'];
-                        
-                        }
-                        if($postdata['adresse_physique']!="null"){
-
-                            $medecin["adresse_physique"]=$postdata['adresse_physique'];
-                        
-                        }
-                    if($postdata['selectSousDomaine']!="null"){
+                        $medecin["adresse_physique"]=$postdata['adresse_physique'];
+                    
+                    }
+                    if($postdata['selectSousDomaine']!="null"&&!empty($postdata['selectSousDomaine'])){
 
                         $medecin["sous_domaine_id"]=$postdata['selectSousDomaine'];
                     

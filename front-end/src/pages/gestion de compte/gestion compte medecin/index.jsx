@@ -63,15 +63,12 @@ const GestiondeCopmteMedecin = (props) => {
           <MyField
             name="adresse_physique"
             label="Adresse"
-            // // dtValue={gcInfo.adresse_physique}
-            // Placeholder={gcInfo.adresse_physique}
-            // required="Il est requis de compléter le champ correspondant au adresse_physique"
-            validations={[
-              {
-                rule: isPattern("^[a-zAZ ]*$"),
-                message: "L'adresse physique ne contient que des lettres",
-              },
-            ]}
+            // validations={[
+            //   {
+            //     rule: isPattern("^[a-zAZ ]*$"),
+            //     message: "L'adresse physique ne contient que des lettres",
+            //   },
+            // ]}
           />
 
           <Flex w="100%">
@@ -103,6 +100,11 @@ const GestiondeCopmteMedecin = (props) => {
               />
             </Box>
           </Flex>
+          <MyField
+            name="secret"
+            label="Secret"
+            note="Entrez le cin ou le numéro de téléphone ou l'email de la secrétaire"
+          />
         </VStack>
       </FieldGroup>
     </React.Fragment>
