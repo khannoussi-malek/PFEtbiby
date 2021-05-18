@@ -15,6 +15,7 @@ import {
   IconButton,
   Text,
   DrawerFooter,
+  Tooltip,
 } from "@chakra-ui/react";
 import { EmailIcon } from "@chakra-ui/icons";
 import React, { useState } from "react";
@@ -47,8 +48,13 @@ const GeneralPatientsInformation = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <React.Fragment>
-      <Button bg={mode("blue.100", "blue.800")} onClick={onOpen}>
-        Informations
+      <Button colorScheme={mode("green", "blue")} onClick={onOpen}>
+        <Tooltip
+          label={`Obtenez les informations générales sur ${patientInfo.nom} ${patientInfo.prenom}`}
+          aria-label="ff"
+        >
+          Informations
+        </Tooltip>
       </Button>
       <Drawer placement="left" size="md" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
@@ -90,7 +96,7 @@ const GeneralPatientsInformation = (props) => {
               <Text as="a" href={"mailto:" + patientInfo.email}>
                 <Button
                   my={1}
-                  colorScheme="blue"
+                  colorScheme="green"
                   leftIcon={<EmailIcon />}
                   variant="outline"
                 >

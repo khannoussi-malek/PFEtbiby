@@ -22,14 +22,8 @@ const Task = (props) => {
   const onCloseRemove = () => setIsOpenRemove(false);
   const cancelRefRemove = useRef();
 
-  const {
-    taskvalue,
-    task,
-    setTask,
-    DeleteMutate,
-    EnteredMutate,
-    usertype,
-  } = props;
+  const { taskvalue, task, setTask, DeleteMutate, EnteredMutate, usertype } =
+    props;
 
   const Entered = (event) => {
     event.stopPropagation();

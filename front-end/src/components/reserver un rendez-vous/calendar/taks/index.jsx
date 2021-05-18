@@ -24,14 +24,8 @@ const TaskReserve = (props) => {
   const cancelRefRemove = useRef();
   const { user } = useContext(TbibyContext);
 
-  const {
-    taskvalue,
-    task,
-    setTask,
-    DeleteMutate,
-    EnteredMutate,
-    usertype,
-  } = props;
+  const { taskvalue, task, setTask, DeleteMutate, EnteredMutate, usertype } =
+    props;
 
   const Entered = (event) => {
     event.stopPropagation();

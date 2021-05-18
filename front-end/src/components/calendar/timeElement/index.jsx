@@ -25,7 +25,7 @@ const TimeElement = (props) => {
       h="160px"
       fontSize="20px"
       border="1px"
-      borderColor={mode("cyan.200", "cyan.800")}
+      borderColor={mode("green.200", "cyan.800")}
     >
       <Grid
         h="100%"
@@ -46,7 +46,7 @@ const TimeElement = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={mode("cyan.50", "cyan.600")}
+              bgColor={mode("green.50", "cyan.600")}
               // bgColor={snapshot.isDraggingOver ? "green.100" : `gray.50`}
               color={mode("gray.800", "gray.300")}
               maxH="40px"
@@ -111,7 +111,7 @@ const TimeElement = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={mode("cyan.100", "cyan.700")}
+              bgColor={mode("green.100", "cyan.700")}
               maxH="40px"
               color={mode("gray.800", "gray.300")}
               onClick={(event) =>
@@ -175,7 +175,7 @@ const TimeElement = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={mode("cyan.200", "cyan.800")}
+              bgColor={mode("green.200", "cyan.800")}
               maxH="40px"
               color={mode("gray.800", "gray.300")}
               onClick={(event) =>
@@ -239,7 +239,7 @@ const TimeElement = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={mode("cyan.300", "cyan.900")}
+              bgColor={mode("green.300", "cyan.900")}
               color={mode("gray.800", "gray.300")}
               maxH="40px"
               onClick={(event) =>

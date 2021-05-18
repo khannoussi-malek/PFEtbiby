@@ -16,7 +16,9 @@ import {
   BiDonateHeart,
   BiLayer,
   BiCalendarAlt,
+  BiPlusMedical,
 } from "react-icons/bi";
+
 import { useHistory } from "react-router-dom";
 import { TbibyContext } from "./../../../router/context";
 const Menu = () => {
@@ -39,11 +41,11 @@ const Menu = () => {
   } else if (user.fonctionnalite == "medecin") {
     pages = [
       { url: "dashboard", icon: <BiCalendarAlt fontSize="20px" /> },
-
       { url: "Mes patients", icon: <BsFillPeopleFill fontSize="20px" /> },
       { url: "Consultation", icon: <BiDonateHeart fontSize="20px" /> },
       { url: "Modèle de certificat", icon: <BiClipboard fontSize="20px" /> },
       { url: "Liste d'actes", icon: <BiLayer fontSize="20px" /> },
+      { url: "Liste medicament", icon: <BiPlusMedical fontSize="20px" /> },
     ];
   } else if (user.fonctionnalite == "secretaire") {
     pages = Patientmenu;
@@ -65,8 +67,8 @@ const Menu = () => {
       <Box
         pos="fixed"
         w={{ base: "62%", md: "50%" }}
-        bottom={{ base: "27px", md: "24px" }}
-        left={{ base: "120px", md: "140px" }}
+        bottom={{ base: "20px", md: "24px" }}
+        left={{ base: "72px", md: "95px" }}
       >
         <Stack bgColor="red.300" rounded={8}>
           <SidebarLink
@@ -75,7 +77,7 @@ const Menu = () => {
             fontSize="xlx"
             p={4}
           >
-            log out
+            Se déconnecter
           </SidebarLink>
         </Stack>
       </Box>

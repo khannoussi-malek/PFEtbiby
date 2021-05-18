@@ -72,6 +72,15 @@
 							}
 						}
 					}
+					if($postdata['ordonnances']!=[]){
+						foreach ($postdata['ordonnances'] as &$value) {
+							if(!empty($value)){
+								DB::table('ordonnance')->insert(
+									['consultation_id' => $id, 'patient_id' => $postdata['patient_id'],'medicament_id' => $value['medicament_id']['value'],'date_debut' => substr($value['duree'],0,10),'date_fin' => substr($value['duree'],11),'created_at' => date('Y-m-d H:i:s')]
+								);
+							}
+						}
+					}
 					
 					}
 				$postdata=$errer;

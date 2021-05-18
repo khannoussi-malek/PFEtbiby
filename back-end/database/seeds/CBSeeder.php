@@ -609,16 +609,54 @@ class cms_apicustom extends seeder {
             }
             if(DB::table('cms_apicustom')->where('permalink' ,'lm')->count() == 0){
 
-            DB::table('cms_apicustom')->insert([
-                'permalink' => 'lm',
-                'tabel' => 'cms_users',
-                'aksi' => 'list',
-                'nama' => 'liste medecin',
-                'method_type' => 'get',
-                'parameters' => 'a:0:{}',
-                'responses' => 'a:0:{}',
-            ]);
-            }
+                DB::table('cms_apicustom')->insert([
+                    'permalink' => 'lm',
+                    'tabel' => 'cms_users',
+                    'aksi' => 'list',
+                    'nama' => 'liste medecin',
+                    'method_type' => 'get',
+                    'parameters' => 'a:0:{}',
+                    'responses' => 'a:0:{}',
+                ]);
+            
+                if(DB::table('cms_apicustom')->where('permalink' ,'listem')->count() == 0){
+
+                    DB::table('cms_apicustom')->insert([
+                        'permalink' => 'listem',
+                        'tabel' => 'medicament',
+                        'aksi' => 'list',
+                        'nama' => 'liste medicament',
+                        'method_type' => 'get',
+                        'parameters' => 'a:0:{}',
+                        'responses' => 'a:0:{}',
+                    ]);
+                }
+                
+                if(DB::table('cms_apicustom')->where('permalink' ,'addm')->count() == 0){
+
+                    DB::table('cms_apicustom')->insert([
+                        'permalink' => 'addm',
+                        'tabel' => 'medicament',
+                        'aksi' => 'save_add',
+                        'nama' => 'add medicament',
+                        'method_type' => 'post',
+                        'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:11:"designation";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
+                        'responses' => 'a:0:{}',
+                    ]);
+                }
+                
+                if(DB::table('cms_apicustom')->where('permalink' ,'lms2')->count() == 0){
+
+                    DB::table('cms_apicustom')->insert([
+                        'permalink' => 'lms2',
+                        'tabel' => 'medicament',
+                        'aksi' => 'list',
+                        'nama' => 'liste medicament select2',
+                        'method_type' => 'get',
+                        'parameters' => 'a:0:{}',
+                        'responses' => 'a:0:{}',
+                    ]);
+                }
         
         
     }

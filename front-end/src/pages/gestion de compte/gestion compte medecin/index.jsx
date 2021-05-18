@@ -63,6 +63,8 @@ const GestiondeCopmteMedecin = (props) => {
           <MyField
             name="adresse_physique"
             label="Adresse"
+            Placeholder={gcInfo.adresse_physique}
+
             // validations={[
             //   {
             //     rule: isPattern("^[a-zAZ ]*$"),
@@ -101,9 +103,10 @@ const GestiondeCopmteMedecin = (props) => {
             </Box>
           </Flex>
           <MyField
-            name="secret"
-            label="Secret"
-            note="Entrez le cin ou le numéro de téléphone ou l'email de la secrétaire"
+            name="secretaire"
+            label="Secrétaire"
+            note="Entrez le cin ou le numéro de téléphone ou l'email de la secrétaire. Pour supprimer vous devez écrire 'supprimer'"
+            Placeholder={gcInfo.secretaire}
           />
         </VStack>
       </FieldGroup>
