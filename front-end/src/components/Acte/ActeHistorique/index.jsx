@@ -41,32 +41,30 @@ const HistoriqueActe = (props) => {
   const [next, setNext] = useState("");
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
-  const [header, setHeader] = useState(["Code", "Designation", "note"]);
+  const [header, setHeader] = useState(["Code", "Designation", "note", "Date"]);
   const [content, setContent] = useState([[""], [""]]);
   const [patientId, setPatientId] = useState("");
   const params = { medecin_id, patient_id: patient.id, page };
   const btnRef = React.useRef();
-  const {
-    isLoading: isLodingActe,
-    refetch: refetchActe,
-  } = useHistoriqueListActe({
-    params,
-    onError: (error) => {
-      toast({
-        title: ":Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: 4000,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setTotal(res.data.total);
-      setNext(res.data.next_page_url);
-      setPrev(res.data.prev_page_url);
-      setContent((res.data.data && res.data.data) || []);
-    },
-  });
+  const { isLoading: isLodingActe, refetch: refetchActe } =
+    useHistoriqueListActe({
+      params,
+      onError: (error) => {
+        toast({
+          title: ":Problème de connexion",
+          description: " Il y a un problème de connexion",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+        });
+      },
+      onSuccess: (res) => {
+        setTotal(res.data.total);
+        setNext(res.data.next_page_url);
+        setPrev(res.data.prev_page_url);
+        setContent((res.data.data && res.data.data) || []);
+      },
+    });
 
   // let header = ["Code", "Designation", "note"];
   return (

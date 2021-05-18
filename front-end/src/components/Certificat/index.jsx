@@ -48,24 +48,22 @@ export const Certificat = (props) => {
   });
   const [patientInfo, setPatientInfo] = useState({});
   const paramsPatentInfo = { cms_users_id: Patient.id };
-  const {
-    isLoading: isLodingForPatentInfo,
-    refetch: refetchPatentInfo,
-  } = usePatentInfo({
-    params: paramsPatentInfo,
-    onError: (error) => {
-      toast({
-        title: "🌐 Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: `4000`,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setPatientInfo(res.data);
-    },
-  });
+  const { isLoading: isLodingForPatentInfo, refetch: refetchPatentInfo } =
+    usePatentInfo({
+      params: paramsPatentInfo,
+      onError: (error) => {
+        toast({
+          title: "🌐 Problème de connexion",
+          description: " Il y a un problème de connexion",
+          status: "success",
+          duration: `4000`,
+          isClosable: true,
+        });
+      },
+      onSuccess: (res) => {
+        setPatientInfo(res.data);
+      },
+    });
   // console.log(patientInfo);
 
   const replaceAll = (string, search, replace) => {

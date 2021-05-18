@@ -30,28 +30,26 @@ const HistoriqueExamen = (props) => {
   const [patientId, setPatientId] = useState("");
   const params = { medecin_id, patient_id: patient.id, page };
   const btnRef = React.useRef();
-  const {
-    isLoading: isLodingExamen,
-    refetch: refetchExamen,
-  } = useHistoriqueListExamen({
-    params,
-    onError: (error) => {
-      toast({
-        title: "Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: 4000,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setTotal(res.data.total);
-      setNext(res.data.next_page_url);
-      setPrev(res.data.prev_page_url);
-      res.data.data !== [] && setContent(res.data.data);
-      res.data.data !== [] && setHeader(["Note", "Type", "Prix"]);
-    },
-  });
+  const { isLoading: isLodingExamen, refetch: refetchExamen } =
+    useHistoriqueListExamen({
+      params,
+      onError: (error) => {
+        toast({
+          title: "Problème de connexion",
+          description: " Il y a un problème de connexion",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+        });
+      },
+      onSuccess: (res) => {
+        setTotal(res.data.total);
+        setNext(res.data.next_page_url);
+        setPrev(res.data.prev_page_url);
+        res.data.data !== [] && setContent(res.data.data);
+        res.data.data !== [] && setHeader(["Note", "Type", "Prix", "Date"]);
+      },
+    });
 
   // let header = ["Note", "Type", "Prix"];
   return (

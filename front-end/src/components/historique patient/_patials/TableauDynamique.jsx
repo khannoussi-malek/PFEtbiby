@@ -7,6 +7,7 @@ import { useHistoriqueListConsultation } from "../../../services/api/Historique 
 import HistoriqueActe from "../../Acte/ActeHistorique";
 import Antecedants from "../../Antecedants";
 import HistoriqueCertificat from "../../Certificat/CertificatHistorique";
+// import HistoriqueConsultation from "../../Consultation";
 import HistoriqueExamen from "../../Examen/ExamenHistorique";
 import HistoriqueLettre from "../../Lettre/LettreHistorique";
 import HistoriqueOrdonnance from "../../Ordonnance/OrdonnanceHistorique";
@@ -21,41 +22,38 @@ const TableauDynamique = (props) => {
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([""], [""]);
-  const header = ["date", "Diagnostic"];
+  const header = ["date", "Diagnostic", "Acte"];
   const toast = useToast();
   const params = {
     patient_id: patient.id,
     medecin_id: user.id,
-    //consultation_id: consultation.id,
     page,
   };
-  const {
-    isLoading: isLodingConsultation,
-    refetch: refetchConsultation,
-  } = useHistoriqueListConsultation({
-    params,
-    onError: (error) => {
-      toast({
-        title: "Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: 4000,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setTotal(res.data.total);
-      setNext(res.data.next_page_url);
-      setPrev(res.data.prev_page_url);
-      !!res.data.data &&
-        res.data.data.map((value) => {
-          if (value.Diagnostic == null) {
-            value.Diagnostic = "Aucun diagnostic écrit";
-          }
+  const { isLoading: isLodingConsultation, refetch: refetchConsultation } =
+    useHistoriqueListConsultation({
+      params,
+      onError: (error) => {
+        toast({
+          title: "Problème de connexion",
+          description: " Il y a un problème de connexion",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
         });
-      setContent((!!res.data.data && res.data.data) || []);
-    },
-  });
+      },
+      onSuccess: (res) => {
+        setTotal(res.data.total);
+        setNext(res.data.next_page_url);
+        setPrev(res.data.prev_page_url);
+        !!res.data.data &&
+          res.data.data.map((value) => {
+            if (value.Diagnostic == null) {
+              value.Diagnostic = "Aucun diagnostic écrit";
+            }
+          });
+        setContent((!!res.data.data && res.data.data) || []);
+      },
+    });
   return (
     <React.Fragment>
       <SimpleGrid minChildWidth="100px" spacing="10px">
