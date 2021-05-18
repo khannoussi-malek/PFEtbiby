@@ -22,17 +22,15 @@ const Consultation = () => {
   const { user } = useContext(TbibyContext);
 
   const params = { medecin_id: user.id };
-  const {
-    mutate: SPTWRMutate,
-    isLoading: SPTWRIsLoading,
-  } = useSendPatientToWaitingRoom({
-    onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
-    },
-    onSuccess: (res) => {
-      refetch();
-    },
-  });
+  const { mutate: SPTWRMutate, isLoading: SPTWRIsLoading } =
+    useSendPatientToWaitingRoom({
+      onError: (error) => {
+        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      },
+      onSuccess: (res) => {
+        refetch();
+      },
+    });
   const { isLoading, refetch } = useListOfThePatientInConsultation({
     params,
     onError: (error) => {
@@ -48,23 +46,21 @@ const Consultation = () => {
       setpatientsWaiting(res.data);
     },
   });
-  const {
-    mutate: DeleteMutate,
-    isLoading: DeleteIsLoading,
-  } = useDeleteReservation({
-    onError: (error) => {
-      toast({
-        title: "🌐 Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: `4000`,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      refetch();
-    },
-  });
+  const { mutate: DeleteMutate, isLoading: DeleteIsLoading } =
+    useDeleteReservation({
+      onError: (error) => {
+        toast({
+          title: "🌐 Problème de connexion",
+          description: " Il y a un problème de connexion",
+          status: "success",
+          duration: `4000`,
+          isClosable: true,
+        });
+      },
+      onSuccess: (res) => {
+        refetch();
+      },
+    });
   console.log(currentPatient);
   return (
     <React.Fragment>

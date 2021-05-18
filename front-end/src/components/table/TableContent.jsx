@@ -9,7 +9,6 @@ import {
   Text,
   Heading,
   useColorModeValue as mode,
-  Center,
 } from "@chakra-ui/react";
 
 import * as React from "react";
@@ -36,13 +35,8 @@ export const TableContent = (props) => {
               fontWeight="extrabold"
               letterSpacing="tight"
             >
-              Aucun element
+              Vous n'avez aucun information
             </Heading>
-            {/* <Text mt="4" fontSize="lg">
-              Si vous n'avez pas ce patient, veuillez l'ajouter en tapant son
-              CIN, son email ou son numéro de téléphone dans le champ "Ajouter
-              un patient".
-            </Text> */}
           </>
         )}
       </Box>
@@ -88,15 +82,19 @@ export const TableContent = (props) => {
                     </Td>
                   ) : null
                 )}
-              <Td textAlign="right">
-                <Box textAlign="center">
-                  {!!fntable ? fntable.fn(row) : ``}
-                  {!!fntable ? !!fntable.fn2 && fntable.fn2(row) : ``}
-                </Box>
-                <Box textAlign="center">
-                  {!!fntable ? !!fntable.fn3 && fntable.fn3(row) : ``}
-                </Box>
-              </Td>
+              {!!fntable ? (
+                <Td textAlign="right">
+                  <Box textAlign="center">
+                    {!!fntable ? fntable.fn(row) : ``}
+                    {!!fntable ? !!fntable.fn2 && fntable.fn2(row) : ``}
+                  </Box>
+                  <Box textAlign="center">
+                    {!!fntable ? !!fntable.fn3 && fntable.fn3(row) : ``}
+                  </Box>
+                </Td>
+              ) : (
+                ``
+              )}
             </Tr>
           ))}
         </Tbody>

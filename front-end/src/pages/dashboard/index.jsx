@@ -32,7 +32,7 @@ const Dashboard = () => {
       {...handlers}
       height="100vh"
       w="100vw"
-      bg={mode("cyan.600", "inherit")}
+      bg={mode("green.500", "inherit")}
       overflow="hidden"
       sx={{ "--sidebar-width": "230px" }}
     >

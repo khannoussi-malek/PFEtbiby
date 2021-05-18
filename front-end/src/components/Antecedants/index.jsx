@@ -83,6 +83,7 @@ const Antecedants = (props) => {
               {data.medecin}
             </Text>
           </PopoverTrigger>
+
           <PopoverContent>
             <PopoverArrow />
             <PopoverCloseButton />
@@ -98,8 +99,9 @@ const Antecedants = (props) => {
   });
   return (
     <React.Fragment>
-      {/* <Button bg={mode("blue.100", "blue.800")} onClick={onOpen}> */}
-      <Button onClick={onOpen}>Antecedants</Button>
+      <Button colorScheme={mode("green", "blue")} onClick={onOpen}>
+        Antecedants
+      </Button>
       <Drawer placement="left" size="xl" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent bg={mode("gray.50", "gray.700")}>

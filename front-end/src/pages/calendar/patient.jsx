@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Button } from "@chakra-ui/button";
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import { useBreakpointValue } from "@chakra-ui/media-query";
+import { Formiz, useForm } from "@formiz/core";
 
 import { useToast } from "@chakra-ui/react";
 import { TbibyContext } from "../../router/context/index";
@@ -14,6 +15,7 @@ import {
   useListReservation,
   useDeleteReservation,
 } from "../../services/api/reservation";
+import { InputDate } from "../../components/formInput/date";
 
 const CalendarDashboardPatient = () => {
   const toast = useToast();
@@ -21,17 +23,15 @@ const CalendarDashboardPatient = () => {
   const [task, setTask] = useState([]);
 
   const params = { patient_id: user.id };
-  const {
-    mutate: DeleteMutate,
-    isLoading: DeleteIsLoading,
-  } = useDeleteReservation({
-    onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
-    },
-    onSuccess: (res) => {
-      refetchTask();
-    },
-  });
+  const { mutate: DeleteMutate, isLoading: DeleteIsLoading } =
+    useDeleteReservation({
+      onError: (error) => {
+        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      },
+      onSuccess: (res) => {
+        refetchTask();
+      },
+    });
 
   const { isLoading, refetch: refetchTask } = useListReservation({
     params,
@@ -73,55 +73,62 @@ const CalendarDashboardPatient = () => {
     result.setDate(result.getDate() + days);
     setDate(result);
   };
+  const MyForm = useForm();
+  const { values } = MyForm;
+  const handleSubmit = (values) => {};
 
   return (
     <Box>
-      <Spinner
-        display={!DeleteIsLoading ? `none` : ``}
-        size="xl"
-        m="auto"
-        color="red.500"
-      />
-      <Box display={DeleteIsLoading ? `none` : ``}>
-        <Flex py={2}>
-          <Button ml={2} onClick={() => addDays(date, daysView * -1)}>
-            <ArrowLeftIcon />
-          </Button>
-          <Spacer />
-          {!isMobile ? (
-            <Button mx={2} onClick={() => setDaysView(1)}>
-              Par jour
+      <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
+        <Spinner
+          display={!DeleteIsLoading ? `none` : ``}
+          size="xl"
+          m="auto"
+          color="red.500"
+        />
+        <Box display={DeleteIsLoading ? `none` : ``}>
+          <Flex py={2}>
+            <Button ml={2} onClick={() => addDays(date, daysView * -1)}>
+              <ArrowLeftIcon />
             </Button>
-          ) : (
-            ``
-          )}
-
-          <Button mx={2} onClick={() => setDate(new Date())}>
-            Aujourd'hui
-          </Button>
-          {!isMobile ? (
-            <Button mx={2} onClick={() => setDaysView(2)}>
-              Par 2 jour
+            <Spacer />
+            {!isMobile ? (
+              <Button mx={2} onClick={() => setDaysView(1)}>
+                Par jour
+              </Button>
+            ) : (
+              ``
+            )}
+            <Box w="120px" position="relative" top="-7px" mx={2}>
+              <InputDate SyncWithVariable={setDate} name="date" />
+            </Box>
+            <Button mx={2} onClick={() => setDate(new Date())}>
+              Aujourd'hui
             </Button>
-          ) : (
-            ``
-          )}
-          <Spacer />
-          <Button mr={2} onClick={() => addDays(date, daysView)}>
-            <ArrowRightIcon />
-          </Button>
-        </Flex>
-      </Box>
-      <Calendar
-        usertype={user.fonctionnalite}
-        DeleteMutate={DeleteMutate}
-        task={task}
-        setTask={setTask}
-        date={date}
-        rowNumber={daysView}
-        updateTask={updateTask}
-        addtask={addtask}
-      />
+            {!isMobile ? (
+              <Button mx={2} onClick={() => setDaysView(2)}>
+                Par 2 jour
+              </Button>
+            ) : (
+              ``
+            )}
+            <Spacer />
+            <Button mr={2} onClick={() => addDays(date, daysView)}>
+              <ArrowRightIcon />
+            </Button>
+          </Flex>
+        </Box>
+        <Calendar
+          usertype={user.fonctionnalite}
+          DeleteMutate={DeleteMutate}
+          task={task}
+          setTask={setTask}
+          date={date}
+          rowNumber={daysView}
+          updateTask={updateTask}
+          addtask={addtask}
+        />
+      </Formiz>
     </Box>
   );
 };

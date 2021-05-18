@@ -41,31 +41,27 @@ const ConfirmerUnRendezVous = (props) => {
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([]);
   const [header, setHeader] = useState(["nom prenom", "Date"]);
-  const {
-    mutate: SPTWRMutate,
-    isLoading: SPTWRIsLoading,
-  } = useSendPatientToWaitingRoomEnligne({
-    onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
-    },
-    onSuccess: (res) => {
-      refetchDashboard();
-      refetchlist();
-    },
-  });
+  const { mutate: SPTWRMutate, isLoading: SPTWRIsLoading } =
+    useSendPatientToWaitingRoomEnligne({
+      onError: (error) => {
+        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      },
+      onSuccess: (res) => {
+        refetchDashboard();
+        refetchlist();
+      },
+    });
   const params = { medecin_id: user.id };
-  const {
-    mutate: DeleteMutate,
-    isLoading: DeleteIsLoading,
-  } = useDeleteReservation({
-    onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
-    },
-    onSuccess: (res) => {
-      refetchlist();
-      refetchDashboard();
-    },
-  });
+  const { mutate: DeleteMutate, isLoading: DeleteIsLoading } =
+    useDeleteReservation({
+      onError: (error) => {
+        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      },
+      onSuccess: (res) => {
+        refetchlist();
+        refetchDashboard();
+      },
+    });
   const [fntable, setFntable] = useState({
     fn2: (data) => (
       <G_Alert
@@ -89,7 +85,7 @@ const ConfirmerUnRendezVous = (props) => {
         Body={`Voulez-vous vraiment valider cette proposition de réservation avec ${data.nomprenom}`}
         icon={<CheckIcon />}
         colorScheme="teal"
-        bg="blue.300"
+        bg="green.300"
         target={{ id: data.idR, etat: "en attente", state: "valide" }}
         fnTodo={SPTWRMutate}
         btOK="Valide"

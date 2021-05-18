@@ -10,9 +10,8 @@ import { Text } from "@chakra-ui/layout";
 
 export const Select2 = (props) => {
   const [clickCount, setClickCount] = useState(0);
-  const { errorMessage, id, isValid, isSubmitted, setValue, value } = useField(
-    props
-  );
+  const { errorMessage, id, isValid, isSubmitted, setValue, value } =
+    useField(props);
   const { data, name, label, note } = props;
   const [isTouched, setIsTouched] = React.useState(false);
   const showError = !isValid && (isTouched || isSubmitted);
@@ -30,7 +29,7 @@ export const Select2 = (props) => {
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
       return {
         ...styles,
-        backgroundColor: isFocused ? "purple" : "white",
+        backgroundColor: isFocused ? "green" : "white",
         color: !isFocused ? "#000" : "#FFF",
         cursor: isDisabled ? "not-allowed" : "default",
       };

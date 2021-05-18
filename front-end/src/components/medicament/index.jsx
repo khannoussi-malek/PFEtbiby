@@ -12,24 +12,22 @@ import {
 import { Button, useToast, useColorModeValue as mode } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
 import { Formiz, useForm } from "@formiz/core";
+import { useAddMedicament } from "../../services/api/list medicament";
 import { useDisclosure } from "@chakra-ui/hooks";
-import { Prix } from "../../formInput/Prix";
-import { useCreateActe } from "./../../../services/api/acte/index";
-import { MyField } from "./../../formInput/index";
+import { MyField } from "../formInput";
 
-const AjoutActe = (props) => {
+const AjoutMedicament = (props) => {
   const { user, refetch } = props;
   const toast = useToast();
-  const { mutate, isLoading } = useCreateActe({
+  const { mutate, isLoading } = useAddMedicament({
     onError: (error) => {
       // setMessage("Vérifier l'information qui vous inseri ou votre liste");
     },
     onSuccess: (res) => {
       onClose();
       toast({
-        title: "Type d'acte ajouté avec succès",
-        description:
-          "Vous pouvez le sélectionner nouveau à partir dans 'Liste d'acte'",
+        title: "Medicament ajouté avec succès",
+        description: "Vous pouvez l'utiliser maintenant dans la consultation",
         status: "success",
         duration: `4000`,
         isClosable: true,
@@ -54,7 +52,7 @@ const AjoutActe = (props) => {
         // bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >
-        Ajouter un acte
+        Ajouter un medicament
       </Button>
 
       <Drawer
@@ -67,7 +65,7 @@ const AjoutActe = (props) => {
         <DrawerOverlay>
           <DrawerContent bgColor={mode("gray.50", "gray.700")}>
             <DrawerCloseButton />
-            <DrawerHeader>Définit votre acte</DrawerHeader>
+            <DrawerHeader>Ajouter un medicament</DrawerHeader>
             <DrawerBody>
               <Spinner
                 display={!isLoading ? `none` : `block`}
@@ -80,24 +78,14 @@ const AjoutActe = (props) => {
                   <form noValidate onSubmit={MyForm.submit}>
                     <Box mb={5}>
                       <MyField
-                        name="code"
-                        label="Code"
-                        required="Il est requis de compléter ce champ"
-                      />
-                      <MyField
                         name="designation"
                         label="Designation"
-                        required="Il est requis de compléter ce champ"
-                      />
-                      <Prix
-                        name="price"
-                        label="Price"
                         required="Il est requis de compléter ce champ"
                       />
                     </Box>
 
                     <Box py={3}>
-                      <Button colorScheme="green" type="submit">
+                      <Button colorScheme="blue" type="submit">
                         Sauvegarder {!MyForm.isValid ? `` : `👌`}
                       </Button>
                     </Box>
@@ -117,4 +105,4 @@ const AjoutActe = (props) => {
     </React.Fragment>
   );
 };
-export default AjoutActe;
+export default AjoutMedicament;
