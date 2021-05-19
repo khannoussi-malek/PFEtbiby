@@ -1,4 +1,4 @@
-import { useMedecinInfo } from "./../../services/api/Medecin information/index";
+import { useMedecinInfo } from "./../../services/api/Medecin information";
 import { useToast, Text, Button, Avatar } from "@chakra-ui/react";
 import { useState } from "react";
 import { MdCall } from "react-icons/md";

@@ -5,7 +5,7 @@ import { Button } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import React from "react";
 import { IconButton } from "@chakra-ui/button";
-import { useSeeNotification } from "./../../../services/api/notification/index";
+import { useSeeNotification } from "./../../../services/api/notification";
 import { useColorModeValue as mode } from "@chakra-ui/react";
 
 const OneNotification = (props) => {

@@ -10,12 +10,12 @@ import {
 import { NavBreadcrumb } from "./_partials";
 import * as React from "react";
 import { HiMenu, HiX } from "react-icons/hi";
-import ScrollArea from "./ScrollArea/index";
+import ScrollArea from "./ScrollArea";
 import Menu from "./menu";
-import UserAvatar from "./userAvatar/index";
-import ActivityArea from "./activityArea/index";
+import UserAvatar from "./userAvatar";
+import ActivityArea from "./activityArea";
 import { useLocation } from "react-router-dom";
-import Notification from "./../../components/notification/index";
+import Notification from "./../../components/notification";
 import { useSwipeable } from "react-swipeable";
 const Dashboard = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -50,7 +50,7 @@ const Dashboard = () => {
         <Box fontSize="sm" lineHeight="tall">
           <UserAvatar />
           <ScrollArea pt="5" pb="6">
-            <Menu />
+            <Menu toggle={toggle} />
           </ScrollArea>
         </Box>
       </Box>

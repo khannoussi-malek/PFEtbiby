@@ -3,7 +3,7 @@ import { BiInfoCircle } from "react-icons/bi";
 
 import { EmailIcon } from "@chakra-ui/icons";
 import { MdCall } from "react-icons/md";
-import { link, userImage } from "./../../services/api/index";
+import { link, userImage } from "./../../services/api";
 import {
   Box,
   Popover,
@@ -18,6 +18,7 @@ import {
   PopoverFooter,
   Text,
   Avatar,
+  Tooltip,
 } from "@chakra-ui/react";
 const PatientInfo = (props) => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
@@ -28,7 +29,14 @@ const PatientInfo = (props) => {
     <Popover>
       <PopoverTrigger>
         <Button m={1}>
-          {isMobile ? <BiInfoCircle fontSize="30px" /> : `Info`}
+          <Tooltip
+            label={`Plus d'informations sur ${data.nom + " " + data.prenom}`}
+            aria-label={`Plus d'informations sur ${
+              data.nom + " " + data.prenom
+            }`}
+          >
+            {isMobile ? <BiInfoCircle fontSize="30px" /> : `Informations`}
+          </Tooltip>
         </Button>
       </PopoverTrigger>
       <Portal>

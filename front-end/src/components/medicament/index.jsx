@@ -48,7 +48,7 @@ const AjoutMedicament = (props) => {
     <React.Fragment>
       <Button
         ref={btnRef}
-        // colorScheme={mode("teal", "gray.50")}
+        colorScheme={mode("green", "gray")}
         // bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Spinner } from "@chakra-ui/react";
 
 import { Box, Spacer, Flex } from "@chakra-ui/layout";
-import Calendar from "./../../components/calendar/index";
+import Calendar from "./../../components/calendar";
 import { useState, useEffect } from "react";
 import { Button } from "@chakra-ui/button";
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
@@ -12,10 +12,10 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import BookingForm from "./bookingForm";
 import { useListPatientDashboardAPI } from "../../services/api/listPatientDashboard/inde";
 import { useToast } from "@chakra-ui/react";
-import { TbibyContext } from "../../router/context/index";
-import { usePatientEntrer } from "./../../services/api/manageTheRoom/index";
+import { TbibyContext } from "../../router/context";
+import { usePatientEntrer } from "./../../services/api/manageTheRoom";
 import { useHistory } from "react-router-dom";
-import ConfirmerUnRendezVous from "./../../components/confirmer un rendez vous/index";
+import ConfirmerUnRendezVous from "./../../components/confirmer un rendez vous";
 import {
   useReservationMListe,
   useUpdateReservation,
@@ -31,29 +31,25 @@ const CalendarDashboardMedecin = () => {
 
   const [task, setTask] = useState([{ start: "2021-03-22T00:00" }]);
   const params = { medecin_id: user.id };
-  const {
-    mutate: EnteredMutate,
-    isLoading: PatientEntrerIsLoading,
-  } = usePatientEntrer({
-    onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
-    },
-    onSuccess: (res) => {
-      refetchTask();
-      history.push("/dashboard/consultation");
-    },
-  });
-  const {
-    mutate: DeleteMutate,
-    isLoading: DeleteIsLoading,
-  } = useDeleteReservation({
-    onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
-    },
-    onSuccess: (res) => {
-      refetchTask();
-    },
-  });
+  const { mutate: EnteredMutate, isLoading: PatientEntrerIsLoading } =
+    usePatientEntrer({
+      onError: (error) => {
+        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      },
+      onSuccess: (res) => {
+        refetchTask();
+        history.push("/dashboard/consultation");
+      },
+    });
+  const { mutate: DeleteMutate, isLoading: DeleteIsLoading } =
+    useDeleteReservation({
+      onError: (error) => {
+        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      },
+      onSuccess: (res) => {
+        refetchTask();
+      },
+    });
 
   const { mutate, isLoading: isLoadingUpdate } = useUpdateReservation({
     onError: (error) => {

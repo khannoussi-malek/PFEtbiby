@@ -3,7 +3,7 @@ import { BiInfoCircle } from "react-icons/bi";
 
 import { EmailIcon } from "@chakra-ui/icons";
 import { MdCall } from "react-icons/md";
-import { link, userImage } from "./../../services/api/index";
+import { link, userImage } from "./../../services/api";
 import {
   Box,
   Popover,

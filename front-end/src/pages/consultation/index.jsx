@@ -1,7 +1,7 @@
 import { Box, Center, Text, SimpleGrid } from "@chakra-ui/layout";
 import React, { useContext, useState, useRef } from "react";
 import { useListOfThePatientInConsultation } from "../../services/api/consultation";
-import { TbibyContext } from "./../../router/context/index";
+import { TbibyContext } from "./../../router/context";
 import {
   useToast,
   Spinner,
@@ -12,7 +12,7 @@ import { useDeleteReservation } from "./../../services/api/reservation";
 import { useSendPatientToWaitingRoom } from "./../../services/api/manageTheRoom";
 import PatientsAtTheDoctor from "../../components/patients at the doctor";
 import GeneralPatientsInformation from "../../components/general patients information";
-import Antecedants from "./../../components/Antecedants/index";
+import Antecedants from "./../../components/Antecedants";
 import Form from "./_partials/form";
 
 const Consultation = () => {
@@ -61,13 +61,11 @@ const Consultation = () => {
         refetch();
       },
     });
-  console.log(currentPatient);
+  console.log(isLoading);
   return (
     <React.Fragment>
       <Spinner
-        display={
-          !isLoading && !DeleteIsLoading && !SPTWRIsLoading ? `none` : ``
-        }
+        display={isLoading || DeleteIsLoading || SPTWRIsLoading ? `` : `none`}
         size="xl"
         m="auto"
         color="red.500"

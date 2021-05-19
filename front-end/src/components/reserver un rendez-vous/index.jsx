@@ -10,7 +10,7 @@ import {
   DrawerOverlay,
 } from "@chakra-ui/modal";
 import { useRef } from "react";
-import CalendarReserve from "./calendar/index";
+import CalendarReserve from "./calendar";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 import { BiHomeHeart } from "react-icons/bi";
 const ReserverUnRendezVous = (props) => {

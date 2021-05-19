@@ -12,7 +12,7 @@ import { useColorModeValue as mode } from "@chakra-ui/react";
 
 import { useState, useRef, useContext } from "react";
 import { CloseIcon } from "@chakra-ui/icons";
-import { TbibyContext } from "./../../../../router/context/index";
+import { TbibyContext } from "./../../../../router/context";
 import Alert from "./../../../calendar/taks/alert";
 
 const TaskReserve = (props) => {

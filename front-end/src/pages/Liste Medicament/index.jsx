@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 
 import { useToast, Center, Box, Spinner } from "@chakra-ui/react";
 import { useListMedicament } from "../../services/api/list medicament";
-import AjoutMedicament from "./../../components/medicament/index";
-import { TbibyContext } from "./../../router/context/index";
+import AjoutMedicament from "./../../components/medicament";
+import { TbibyContext } from "./../../router/context";
 import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
 const ListeMedicament = () => {

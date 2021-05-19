@@ -66,7 +66,7 @@ function Calendar(props) {
       <Box>
         <Center
           w="100%"
-          key={index}
+          key={`key${index}`}
           border="1px"
           borderColor={mode("green.200", "cyan.900")}
           bgColor={mode("green.300", "cyan.900")}

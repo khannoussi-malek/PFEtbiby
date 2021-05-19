@@ -10,9 +10,9 @@ import {
   useListReservationEnLigne,
 } from "./../../../services/api/reservation";
 import { useDisclosure } from "@chakra-ui/hooks";
-import BookingFormReserve from "./bookingForm/index";
+import BookingFormReserve from "./bookingForm";
 import CalendarReservePara from "./../calendar";
-import { TbibyContext } from "./../../../router/context/index";
+import { TbibyContext } from "./../../../router/context";
 const CalendarReserve = (props) => {
   const { user } = useContext(TbibyContext);
 
@@ -51,17 +51,15 @@ const CalendarReserve = (props) => {
     result.setDate(result.getDate() + days);
     setDate(result);
   };
-  const {
-    mutate: DeleteMutate,
-    isLoading: DeleteIsLoading,
-  } = useDeleteReservation({
-    onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
-    },
-    onSuccess: (res) => {
-      refetchTask();
-    },
-  });
+  const { mutate: DeleteMutate, isLoading: DeleteIsLoading } =
+    useDeleteReservation({
+      onError: (error) => {
+        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      },
+      onSuccess: (res) => {
+        refetchTask();
+      },
+    });
 
   const { mutate, isLoading: isLoadingUpdate } = useUpdateReservation({
     onError: (error) => {

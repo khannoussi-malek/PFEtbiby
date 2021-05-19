@@ -18,15 +18,15 @@ import {
   Avatar,
   PopoverFooter,
 } from "@chakra-ui/react";
-import { useConsultationPatient } from "./../../services/api/consultation/index";
+import { useConsultationPatient } from "./../../services/api/consultation";
 import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
-import { TbibyContext } from "./../../router/context/index";
-import { useDeleteReservation } from "./../../services/api/reservation/index";
+import { TbibyContext } from "./../../router/context";
+import { useDeleteReservation } from "./../../services/api/reservation";
 import G_Alert from "../../components/general alert";
 import { CloseIcon } from "@chakra-ui/icons";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-import { link } from "./../../services/api/index";
+import { link } from "./../../services/api";
 import { EmailIcon } from "@chakra-ui/icons";
 import { MdCall } from "react-icons/md";
 import { useBreakpointValue } from "@chakra-ui/media-query";
@@ -64,14 +64,12 @@ const MonRendezvous = () => {
       setContent((!!res.data.data && res.data.data) || []);
     },
   });
-  const {
-    mutate: DeleteMutate,
-    isLoading: DeleteIsLoading,
-  } = useDeleteReservation({
-    onSuccess: (res) => {
-      refetch();
-    },
-  });
+  const { mutate: DeleteMutate, isLoading: DeleteIsLoading } =
+    useDeleteReservation({
+      onSuccess: (res) => {
+        refetch();
+      },
+    });
   const message = () => {
     return (
       <>

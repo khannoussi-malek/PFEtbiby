@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Spinner } from "@chakra-ui/react";
 
 import { Box, Spacer, Flex } from "@chakra-ui/layout";
-import Calendar from "./../../components/calendar/index";
+import Calendar from "./../../components/calendar";
 import { useState } from "react";
 import { Button } from "@chakra-ui/button";
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
@@ -10,7 +10,7 @@ import { useBreakpointValue } from "@chakra-ui/media-query";
 import { Formiz, useForm } from "@formiz/core";
 
 import { useToast } from "@chakra-ui/react";
-import { TbibyContext } from "../../router/context/index";
+import { TbibyContext } from "../../router/context";
 import {
   useListReservation,
   useDeleteReservation,

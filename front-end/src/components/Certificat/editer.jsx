@@ -17,7 +17,7 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import { useForm, Formiz } from "@formiz/core";
 import { Box } from "@chakra-ui/layout";
 import { MyField } from "../formInput";
-import { useAddCertificatType } from "./../../services/api/certificat/index";
+import { useAddCertificatType } from "./../../services/api/certificat";
 import { useToast, Spinner, useColorModeValue as mode } from "@chakra-ui/react";
 const EditerCertificat = (props) => {
   const { user, refetch } = props;
@@ -59,7 +59,7 @@ const EditerCertificat = (props) => {
     <React.Fragment>
       <Button
         ref={btnRef}
-        // colorScheme={mode("teal", "gray.50")}
+        colorScheme={mode("green", "gray")}
         // bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >

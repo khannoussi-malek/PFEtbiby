@@ -14,7 +14,7 @@ import { Spinner } from "@chakra-ui/react";
 import { Formiz, useForm } from "@formiz/core";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Prix } from "../../formInput/Prix";
-import { MyField } from "./../../formInput/index";
+import { MyField } from "./../../formInput";
 import { useUpdateActe } from "../../../services/api/acte";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 import { BiSync } from "react-icons/bi";
@@ -55,7 +55,7 @@ const UpdateAct = (props) => {
     <React.Fragment>
       <Button
         ref={btnRef}
-        // colorScheme={mode("teal", "gray.50")}
+        colorScheme={mode("green", "gray")}
         // bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >

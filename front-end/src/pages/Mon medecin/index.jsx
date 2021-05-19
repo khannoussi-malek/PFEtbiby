@@ -21,11 +21,11 @@ import {
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { TableContent } from "../../components/table/TableContent";
 import { TablePagination } from "../../components/table/TablePagination";
-import { TbibyContext } from "../../router/context/index";
-import { useRelationPM } from "./../../services/api/relation/index";
+import { TbibyContext } from "../../router/context";
+import { useRelationPM } from "./../../services/api/relation";
 import { MdCall } from "react-icons/md";
 import { EmailIcon } from "@chakra-ui/icons";
-import { link, userImage } from "./../../services/api/index";
+import { link, userImage } from "./../../services/api";
 import ReserverUnRendezVous from "../../components/reserver un rendez-vous";
 import AjoutMedecin from "./_partials/AjoutMedecin";
 import MedecinInfo from "./../../components/InformationsSurLeMedecin/FromData";

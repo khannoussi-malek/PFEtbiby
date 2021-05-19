@@ -13,10 +13,10 @@ import { Input } from "@chakra-ui/input";
 import { EditIcon } from "@chakra-ui/icons";
 import { InputDateRange } from "./../formInput/range";
 import { MyNumberInput } from "./../formInput/numberinput";
-import { useGetListeMedicamentSelect2 } from "./../../services/api/list medicament/index";
+import { useGetListeMedicamentSelect2 } from "./../../services/api/list medicament";
 import { useToast } from "@chakra-ui/react";
-import { MyField } from "./../formInput/index";
-import AjoutMedicament from "./../medicament/index";
+import { MyField } from "./../formInput";
+import AjoutMedicament from "./../medicament";
 export const Ordonnance = (props) => {
   const { id, removeComponentsForm, name } = props;
   const toast = useToast();

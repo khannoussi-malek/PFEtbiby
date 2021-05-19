@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import { TbibyContext } from "./../../router/context/index";
+import { TbibyContext } from "./../../router/context";
 import EditerCertificat from "./../../components/Certificat/editer";
 import { TableContent } from "./../../components/table/TableContent";
-import { useGetListCertificat } from "./../../services/api/certificat/index";
+import { useGetListCertificat } from "./../../services/api/certificat";
 import { TablePagination } from "./../../components/table/TablePagination";
 import CertificatUpdate from "./../../components/Certificat/CertificatUpdate";
 

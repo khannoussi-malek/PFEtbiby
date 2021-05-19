@@ -1,4 +1,4 @@
-import { usePatentInfo } from "./../../services/api/patient information/index";
+import { usePatentInfo } from "./../../services/api/patient information";
 import {
   Center,
   useToast,
@@ -22,7 +22,7 @@ import React, { useState } from "react";
 import TextInfo from "./_partials/text";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { CloseIcon } from "@chakra-ui/icons";
-import { link, userImage } from "./../../services/api/index";
+import { link, userImage } from "./../../services/api";
 import { MdCall } from "react-icons/md";
 
 const GeneralPatientsInformation = (props) => {
@@ -51,7 +51,7 @@ const GeneralPatientsInformation = (props) => {
       <Button colorScheme={mode("green", "blue")} onClick={onOpen}>
         <Tooltip
           label={`Obtenez les informations générales sur ${patientInfo.nom} ${patientInfo.prenom}`}
-          aria-label="ff"
+          aria-label={`Obtenez les informations générales sur ${patientInfo.nom} ${patientInfo.prenom}`}
         >
           Informations
         </Tooltip>

@@ -8,11 +8,12 @@ import {
   ButtonGroup,
   SimpleGrid,
   Spinner,
+  Tooltip,
 } from "@chakra-ui/react";
-import { MyField } from "./../../../components/formInput/index";
+import { MyField } from "./../../../components/formInput";
 import { Formiz, useForm } from "@formiz/core";
-import { useRelation } from "./../../../services/api/relation/index";
-import { TbibyContext } from "./../../../router/context/index";
+import { useRelation } from "./../../../services/api/relation";
+import { TbibyContext } from "./../../../router/context";
 const AjouPatient = (props) => {
   const { user, cleanUser } = useContext(TbibyContext);
   const { refetch } = props;
@@ -45,26 +46,36 @@ const AjouPatient = (props) => {
             justify="space-between"
           >
             <SimpleGrid columns={2} spacing={1} w="100%">
-              <FormControl minW={{ md: "320px" }} id="search">
-                <MyField
-                  name="patient_id"
-                  Placeholder="Entrez le cin, l'email ou le téléphone du patient"
-                />
-                <Text color="tomato">{message}</Text>
-              </FormControl>
-              <ButtonGroup size="sm" variant="outline">
-                <Button
-                  position="relative"
-                  top="8px"
-                  type="submit"
-                  fontSize="20px"
-                  p={5}
-                  w="100%"
-                >
-                  <Spinner display={!isLoading ? `none` : ``} color="red.500" />
-                  Ajouter 🤒
-                </Button>
-              </ButtonGroup>
+              <Tooltip
+                label="Entrez le cin, l'email ou le téléphone du patient"
+                aria-label="Entrez le cin, l'email ou le téléphone du patient"
+              >
+                <FormControl minW={{ md: "320px" }} id="search">
+                  <MyField name="patient_id" Placeholder="ajouter un patient" />
+                  <Text color="tomato">{message}</Text>
+                </FormControl>
+              </Tooltip>
+              <Tooltip
+                label="ajouter un patient"
+                aria-label="ajouter un patient"
+              >
+                <ButtonGroup size="sm" variant="outline">
+                  <Button
+                    position="relative"
+                    top="8px"
+                    type="submit"
+                    fontSize="20px"
+                    p={5}
+                    w="100%"
+                  >
+                    <Spinner
+                      display={!isLoading ? `none` : ``}
+                      color="red.500"
+                    />
+                    Ajouter 🤒
+                  </Button>
+                </ButtonGroup>
+              </Tooltip>
             </SimpleGrid>
           </Stack>
         </form>

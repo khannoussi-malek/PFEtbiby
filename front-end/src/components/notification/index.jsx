@@ -1,5 +1,5 @@
 import { useNotification } from "./../../services/api/notification";
-import { TbibyContext } from "./../../router/context/index";
+import { TbibyContext } from "./../../router/context";
 import { useContext, useState } from "react";
 import {
   Box,
@@ -18,7 +18,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import OneNotification from "./_partials/One notification";
-import { useRemoveAllNotification } from "./../../services/api/notification/index";
+import { useRemoveAllNotification } from "./../../services/api/notification";
 const Notification = (props) => {
   const { user } = useContext(TbibyContext);
   const toast = useToast();

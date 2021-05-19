@@ -19,16 +19,17 @@ import {
   Text,
   useColorModeValue as mode,
   DrawerFooter,
+  Tooltip,
 } from "@chakra-ui/react";
 
 import { CloseIcon } from "@chakra-ui/icons";
 import React, { useState } from "react";
 import { useDisclosure } from "@chakra-ui/hooks";
-import InformationsSurLeMedecin from "./../InformationsSurLeMedecin/index";
+import InformationsSurLeMedecin from "./../InformationsSurLeMedecin";
 import { TableContent } from "./../table/TableContent";
 import { TablePagination } from "./../table/TablePagination";
 import { useBreakpointValue } from "@chakra-ui/media-query";
-import DescriptionMobile from "./descriptionMobile/index";
+import DescriptionMobile from "./descriptionMobile";
 
 const Antecedants = (props) => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
@@ -100,7 +101,12 @@ const Antecedants = (props) => {
   return (
     <React.Fragment>
       <Button colorScheme={mode("green", "blue")} onClick={onOpen}>
-        Antecedants
+        <Tooltip
+          label={`Trouver tous les antécédents médicauxr`}
+          aria-label="Trouver tous les antécédents médicaux"
+        >
+          Antécédents
+        </Tooltip>
       </Button>
       <Drawer placement="left" size="xl" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />

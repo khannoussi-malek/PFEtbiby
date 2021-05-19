@@ -16,7 +16,7 @@ import { MyField } from "../../../components/formInput/";
 import { MyFieldPassword } from "../../../components/formInput/password";
 import { Link } from "react-router-dom";
 import { useLogin } from "./../../../services/api/auth";
-import { TbibyContext } from "./../../../router/context/index";
+import { TbibyContext } from "./../../../router/context";
 
 const Login = () => {
   const history = useHistory();

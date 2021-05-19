@@ -74,6 +74,7 @@ const Task = (props) => {
               children={
                 <Box color="gray.800" fontSize="17px">
                   <Alert
+                    hoverMassage="Supprimer ce réservatitien"
                     Header="Supprimer la réservation"
                     Body={`Voulez-vous vraiment supprimer cette réservation avec ${taskvalue.nomprenom}`}
                     icon={<CloseIcon />}
@@ -91,6 +92,7 @@ const Task = (props) => {
                   {
                     usertype == "medecin" ? (
                       <Alert
+                        hoverMassage="Envoyer ce patient au médecin"
                         Header="Confirmer"
                         Body={`Voulez-vous confirmer que ${taskvalue.nomprenom} débutera sa consultation ? `}
                         icon={<BsBoxArrowInRight w={4} h={4} />}

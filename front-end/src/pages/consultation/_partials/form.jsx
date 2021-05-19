@@ -10,17 +10,18 @@ import {
   SimpleGrid,
   useToast,
   Spinner,
+  useColorModeValue as mode,
 } from "@chakra-ui/react";
 import React, { useState, useContext } from "react";
 import { Prix } from "./../../../components/formInput/Prix";
 import { Certificat } from "../../../components/Certificat";
 import { Acte } from "../../../components/Acte";
 import { Examen } from "../../../components/Examen";
-import { Ordonnance } from "./../../../components/Ordonnance/index";
-import { Lettre } from "./../../../components/Lettre/index";
+import { Ordonnance } from "./../../../components/Ordonnance";
+import { Lettre } from "./../../../components/Lettre";
 import { AntecedantsForm } from "./../../../components/Antecedants/AntecedantsForm";
-import { useCreateConsultation } from "./../../../services/api/consultation/index";
-import { TbibyContext } from "./../../../router/context/index";
+import { useCreateConsultation } from "./../../../services/api/consultation";
+import { TbibyContext } from "./../../../router/context";
 
 const Form = (props) => {
   const toast = useToast();
@@ -160,22 +161,40 @@ const Form = (props) => {
             </Accordion>
             <Box py={3}>
               <SimpleGrid minChildWidth="100px" spacing="10px">
-                <Button onClick={() => addelement({ id, type: "certificat" })}>
+                <Button
+                  onClick={() => addelement({ id, type: "certificat" })}
+                  colorScheme={mode("green", "gray")}
+                >
                   Certificat
                 </Button>
-                <Button onClick={() => addelement({ id, type: "acte" })}>
+                <Button
+                  onClick={() => addelement({ id, type: "acte" })}
+                  colorScheme={mode("green", "gray")}
+                >
                   Acte
                 </Button>
-                <Button onClick={() => addelement({ id, type: "examen" })}>
+                <Button
+                  onClick={() => addelement({ id, type: "examen" })}
+                  colorScheme={mode("green", "gray")}
+                >
                   Examen
                 </Button>
-                <Button onClick={() => addelement({ id, type: "antecedants" })}>
+                <Button
+                  onClick={() => addelement({ id, type: "antecedants" })}
+                  colorScheme={mode("green", "gray")}
+                >
                   Antecedants
                 </Button>
-                <Button onClick={() => addelement({ id, type: "ordonnance" })}>
+                <Button
+                  onClick={() => addelement({ id, type: "ordonnance" })}
+                  colorScheme={mode("green", "gray")}
+                >
                   Ordonnance
                 </Button>
-                <Button onClick={() => addelement({ id, type: "lettre" })}>
+                <Button
+                  onClick={() => addelement({ id, type: "lettre" })}
+                  colorScheme={mode("green", "gray")}
+                >
                   Lettre
                 </Button>
               </SimpleGrid>

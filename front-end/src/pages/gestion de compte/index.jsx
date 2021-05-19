@@ -33,16 +33,16 @@ import { MyFieldPassword } from "./../../components/formInput/password";
 import { Formiz, useForm } from "@formiz/core";
 import GestiondeCopmtePatient from "./gestion compte patient";
 import GestiondeCopmteMedecin from "./gestion compte medecin";
-import { TbibyContext } from "./../../router/context/index";
+import { TbibyContext } from "./../../router/context";
 import {
   useRemovePhoto,
   useUpdateComptePatient,
-} from "./../../services/api/Update Compte/index";
+} from "./../../services/api/Update Compte";
 //import { useUpdateCompteMedecin } from "./../../services/api/Update Compte/update_compte_medecin";
 import { ImageFile } from "./../../components/formInput/image";
-import { FieldGroup } from "./../../components/FieldGroup/index";
-import { useGestionDeCompte } from "./../../services/api/gestion de compte/index";
-import { link, userImage } from "./../../services/api/index";
+import { FieldGroup } from "./../../components/FieldGroup";
+import { useGestionDeCompte } from "./../../services/api/gestion de compte";
+import { link, userImage } from "./../../services/api";
 import { RiContactsBookLine } from "react-icons/ri";
 
 const Accountmanagement = () => {
