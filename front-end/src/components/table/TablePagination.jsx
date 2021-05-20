@@ -14,7 +14,7 @@ export const TablePagination = (props) => {
   return (
     <Box px={2} display={total == 0 ? `none` : ``}>
       <Flex align="center" justify="space-between">
-        <Text color={mode("gray.600", "gray.400")} fontSize="sm">
+        <Text color={mode("green.600", "gray.400")} fontSize="sm">
           {total} Colonne
         </Text>
         <ButtonGroup variant="outline" size="sm">

@@ -13,6 +13,7 @@ import { useRef } from "react";
 import TableauDynamique from "./_patials/TableauDynamique";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 import { BiHistory } from "react-icons/bi";
+import { Tooltip } from "@chakra-ui/tooltip";
 
 const HistoriquePatient = (props) => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
@@ -24,7 +25,12 @@ const HistoriquePatient = (props) => {
   return (
     <>
       <Button ref={btnRef} m={1} onClick={onOpen}>
-        {isMobile ? <BiHistory fontSize="30px" /> : `Historique`}
+        <Tooltip
+          label={`Tout ce que j'ai fait pour ce patient`}
+          aria-label="Tout ce que j'ai fait pour ce patient"
+        >
+          {isMobile ? <BiHistory fontSize="30px" /> : `Historique`}
+        </Tooltip>
       </Button>
       <Drawer
         size="xl"

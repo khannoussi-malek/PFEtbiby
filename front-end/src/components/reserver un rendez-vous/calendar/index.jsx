@@ -1,5 +1,5 @@
 import { useUpdateReservation } from "../../../services/api/reservation";
-import { useToast, Button } from "@chakra-ui/react";
+import { useToast, Button, Tooltip } from "@chakra-ui/react";
 import React, { useState, useContext } from "react";
 import { Box, Spacer, Flex } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/react";
@@ -51,17 +51,15 @@ const CalendarReserve = (props) => {
     result.setDate(result.getDate() + days);
     setDate(result);
   };
-  const {
-    mutate: DeleteMutate,
-    isLoading: DeleteIsLoading,
-  } = useDeleteReservation({
-    onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
-    },
-    onSuccess: (res) => {
-      refetchTask();
-    },
-  });
+  const { mutate: DeleteMutate, isLoading: DeleteIsLoading } =
+    useDeleteReservation({
+      onError: (error) => {
+        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      },
+      onSuccess: (res) => {
+        refetchTask();
+      },
+    });
 
   const { mutate, isLoading: isLoadingUpdate } = useUpdateReservation({
     onError: (error) => {
@@ -95,8 +93,14 @@ const CalendarReserve = (props) => {
       />
       <Box display={isLoadingUpdate || DeleteIsLoading ? `none` : ``}>
         <Flex py={2}>
-          <Button ml={2} onClick={() => addDays(date, daysView * -1)}>
-            <ArrowLeftIcon />
+          <Button
+            ml={2}
+            colorScheme="green"
+            onClick={() => addDays(date, daysView * -1)}
+          >
+            <Tooltip label="Moin un jour" aria-label="Moin un jour">
+              <ArrowLeftIcon />
+            </Tooltip>
           </Button>
           <Spacer />
           {!isMobile ? (
@@ -118,8 +122,14 @@ const CalendarReserve = (props) => {
             ``
           )}
           <Spacer />
-          <Button mr={2} onClick={() => addDays(date, daysView)}>
-            <ArrowRightIcon />
+          <Button
+            mr={2}
+            colorScheme="green"
+            onClick={() => addDays(date, daysView)}
+          >
+            <Tooltip label="Plus un jour" aria-label="Plus un jour">
+              <ArrowRightIcon />
+            </Tooltip>
           </Button>
         </Flex>
       </Box>

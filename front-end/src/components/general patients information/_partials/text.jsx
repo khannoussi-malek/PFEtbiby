@@ -9,10 +9,10 @@ const TextInfo = (props) => {
       <Text
         fontSize="xl"
         borderBottom="1px"
-        borderColor={mode("gray.300", "gray.500")}
+        borderColor={mode("green.300", "gray.500")}
         px={2}
         display="inline"
-        color={mode("gray.700", "gray.50")}
+        color={mode("green.700", "gray.50")}
       >
         {type}:
       </Text>

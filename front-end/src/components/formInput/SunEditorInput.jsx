@@ -7,29 +7,21 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
-import { TbibyContext } from "./../../router/context/index";
+import { TbibyContext } from "./../../router/context";
 import SunEditor from "suneditor-react";
 import { IconButton } from "@chakra-ui/button";
 import { RiPrinterFill } from "react-icons/ri";
-import { usePatentInfo } from "./../../services/api/patient information/index";
+import { usePatentInfo } from "./../../services/api/patient information";
 
 const InputSunEditor = (props) => {
   const { user } = useContext(TbibyContext);
 
   const [editerValue, setEditerValue] = useState("");
 
-  const { errorMessage, id, isValid, isSubmitted, setValue, value } = useField(
-    props
-  );
-  const {
-    label,
-    required,
-    note,
-    Placeholder,
-    dtValue,
-    Patient,
-    editorRef,
-  } = props;
+  const { errorMessage, id, isValid, isSubmitted, setValue, value } =
+    useField(props);
+  const { label, required, note, Placeholder, dtValue, Patient, editorRef } =
+    props;
   const [isTouched, setIsTouched] = React.useState(false);
   const showError = !isValid && (isTouched || isSubmitted);
   //   const editorRef = useRef();
@@ -37,24 +29,22 @@ const InputSunEditor = (props) => {
 
   const [patientInfo, setPatientInfo] = useState({});
   const paramsPatentInfo = { cms_users_id: Patient.id };
-  const {
-    isLoading: isLodingForPatentInfo,
-    refetch: refetchPatentInfo,
-  } = usePatentInfo({
-    params: paramsPatentInfo,
-    onError: (error) => {
-      toast({
-        title: "🌐 Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: `4000`,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setPatientInfo(res.data);
-    },
-  });
+  const { isLoading: isLodingForPatentInfo, refetch: refetchPatentInfo } =
+    usePatentInfo({
+      params: paramsPatentInfo,
+      onError: (error) => {
+        toast({
+          title: "🌐 Problème de connexion",
+          description: " Il y a un problème de connexion",
+          status: "success",
+          duration: `4000`,
+          isClosable: true,
+        });
+      },
+      onSuccess: (res) => {
+        setPatientInfo(res.data);
+      },
+    });
   const handleChange = (content) => {
     setEditerValue(content); //Get Content Inside Editor
     setValue(content);

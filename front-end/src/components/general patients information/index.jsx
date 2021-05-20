@@ -1,4 +1,4 @@
-import { usePatentInfo } from "./../../services/api/patient information/index";
+import { usePatentInfo } from "./../../services/api/patient information";
 import {
   Center,
   useToast,
@@ -15,13 +15,14 @@ import {
   IconButton,
   Text,
   DrawerFooter,
+  Tooltip,
 } from "@chakra-ui/react";
 import { EmailIcon } from "@chakra-ui/icons";
 import React, { useState } from "react";
 import TextInfo from "./_partials/text";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { CloseIcon } from "@chakra-ui/icons";
-import { link, userImage } from "./../../services/api/index";
+import { link, userImage } from "./../../services/api";
 import { MdCall } from "react-icons/md";
 
 const GeneralPatientsInformation = (props) => {
@@ -47,12 +48,17 @@ const GeneralPatientsInformation = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <React.Fragment>
-      <Button bg={mode("blue.100", "blue.800")} onClick={onOpen}>
-        Informations
+      <Button colorScheme={mode("green", "blue")} onClick={onOpen}>
+        <Tooltip
+          label={`Obtenez les informations générales sur ${patientInfo.nom} ${patientInfo.prenom}`}
+          aria-label={`Obtenez les informations générales sur ${patientInfo.nom} ${patientInfo.prenom}`}
+        >
+          Informations
+        </Tooltip>
       </Button>
       <Drawer placement="left" size="md" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent bg={mode("gray.50", "gray.700")}>
+        <DrawerContent bg={mode("green.50", "gray.700")}>
           <DrawerHeader borderBottomWidth="1px">
             Information de patient
             <IconButton
@@ -90,7 +96,7 @@ const GeneralPatientsInformation = (props) => {
               <Text as="a" href={"mailto:" + patientInfo.email}>
                 <Button
                   my={1}
-                  colorScheme="blue"
+                  colorScheme="green"
                   leftIcon={<EmailIcon />}
                   variant="outline"
                 >

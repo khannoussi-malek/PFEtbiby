@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { useRef, useContext, useState } from "react";
-import { TbibyContext } from "./../../router/context/index";
+import { TbibyContext } from "./../../router/context";
 import {
   useDeleteReservation,
   useValideReservation,
@@ -25,7 +25,7 @@ import { useToast } from "@chakra-ui/toast";
 import { TableContent } from "./../table/TableContent";
 import { TablePagination } from "./../table/TablePagination";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
-import G_Alert from "./../general alert/index";
+import G_Alert from "./../general alert";
 import { useSendPatientToWaitingRoomEnligne } from "../../services/api/manageTheRoom";
 import GeneralPatientsInformation from "./../general patients information/index";
 import { useBreakpointValue } from "@chakra-ui/media-query";
@@ -88,7 +88,7 @@ const ConfirmerUnRendezVous = (props) => {
         Body={`Voulez-vous vraiment valider cette proposition de réservation avec ${data.nomprenom}`}
         icon={<CheckIcon />}
         colorScheme="teal"
-        bg="blue.300"
+        bg="green.300"
         target={{ id: data.idR, etat: "en attente", state: "valide" }}
         fnTodo={SPTWRMutate}
         btOK="Valide"

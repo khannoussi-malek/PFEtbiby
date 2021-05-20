@@ -19,14 +19,17 @@ export const SidebarLink = (props) => {
       as="a"
       marginEnd="2"
       fontSize="sm"
-      bgColor={pathname == "/dashboard/" + linkto ? `blue.500` : ``}
+      color="white"
+      bgColor={
+        pathname == "/dashboard/" + linkto ? mode("green.300", "gray.600") : ``
+      }
       onClick={() => history.push("/dashboard/" + linkto)}
       display="block"
       px="3"
       py="2"
       rounded="md"
       cursor="pointer"
-      _hover={{ color: "white", bg: mode("blue.700", "gray.600") }}
+      _hover={{ color: "white", bg: mode("green.300", "gray.600") }}
       className="group"
       fontWeight="medium"
       transition="background .1s ease-out"

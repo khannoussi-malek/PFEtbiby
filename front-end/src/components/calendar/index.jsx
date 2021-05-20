@@ -66,11 +66,11 @@ function Calendar(props) {
       <Box>
         <Center
           w="100%"
-          key={index}
+          key={`key${index}`}
           border="1px"
-          borderColor={mode("cyan.200", "cyan.900")}
-          bgColor={mode("cyan.300", "cyan.900")}
-          color={mode("gray.800", "gray.50")}
+          borderColor={mode("green.200", "cyan.900")}
+          bgColor={mode("green.300", "cyan.900")}
+          color={mode("green.800", "gray.50")}
           h={10}
           align="center"
         >
@@ -99,16 +99,16 @@ function Calendar(props) {
           <Box
             w="100%"
             border="1px"
-            bgColor={mode("cyan.300", "cyan.900")}
-            borderColor={mode("cyan.200", "cyan.900")}
+            bgColor={mode("green.300", "cyan.900")}
+            borderColor={mode("green.200", "cyan.900")}
           >
             <Center h={10} align="center"></Center>
             {Hours.map((value) => (
               <Center
                 border="1px"
-                borderColor={mode("cyan.200", "cyan.900")}
-                bgColor={mode("cyan.300", "cyan.900")}
-                color={mode("gray.800", "gray.50")}
+                borderColor={mode("green.200", "cyan.900")}
+                bgColor={mode("green.300", "cyan.900")}
+                color={mode("green.800", "gray.50")}
                 h="160px"
                 key={value}
                 px={2}

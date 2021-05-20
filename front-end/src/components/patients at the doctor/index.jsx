@@ -46,7 +46,7 @@ const PatientsAtTheDoctor = (props) => {
         {patientsWaiting.map((data) => (
           <Box
             _hover={{ cursor: "pointer" }}
-            bg={mode("gray.100", "gray.800")}
+            bg={mode("green.100", "gray.800")}
             key={`${data.id}`}
             borderRadius="20px"
             textAlign="center"
@@ -59,6 +59,7 @@ const PatientsAtTheDoctor = (props) => {
             {data.nomprenom}
             <Box>
               <Alert
+                hoverMassage="Supprimer la réservation"
                 Header="Supprimer la réservation"
                 Body={`Voulez-vous vraiment supprimer cette réservation avec ${data.nomprenom}`}
                 icon={<CloseIcon w={4} h={4} />}
@@ -74,11 +75,12 @@ const PatientsAtTheDoctor = (props) => {
                 cancelRef={cancelRef}
               />
               <Alert
+                hoverMassage="Envoyer cette patient à la salle d'attente"
                 Header="envoyer à la salle d'attente"
                 Body={`Êtes-vous sûr que vous voulez envoyer ${data.nomprenom} à la salle d'attente`}
                 icon={<ExternalLinkIcon w={4} h={4} />}
                 colorScheme="teal"
-                bg="blue.300"
+                bg="green.300"
                 target={data.rendez_vous_id}
                 fnTodo={ToWaiting}
                 btOK="Effacer"

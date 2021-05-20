@@ -24,14 +24,8 @@ const TaskReserve = (props) => {
   const cancelRefRemove = useRef();
   const { user } = useContext(TbibyContext);
 
-  const {
-    taskvalue,
-    task,
-    setTask,
-    DeleteMutate,
-    EnteredMutate,
-    usertype,
-  } = props;
+  const { taskvalue, task, setTask, DeleteMutate, EnteredMutate, usertype } =
+    props;
 
   const Entered = (event) => {
     event.stopPropagation();
@@ -52,94 +46,104 @@ const TaskReserve = (props) => {
     padding: 3,
     margin: `0 0 0px 0`,
   });
+
   if (user.nom + " " + user.prenom == taskvalue.nomprenom) {
-    return (
-      <Draggable
-        key={taskvalue.id}
-        draggableId={taskvalue.id.toString()}
-        index={taskvalue.id}
-      >
-        {(provided, snapshot) => (
-          <Popover>
-            <PopoverTrigger>
-              <Box
-                onClick={(event) => detail(event)}
-                ref={provided.innerRef}
-                {...provided.draggableProps}
-                {...provided.dragHandleProps}
-                style={
-                  ("none",
-                  getItemStyle(
-                    snapshot.isDragging,
-                    provided.draggableProps.style
-                  ))
-                }
-                border="2px"
-                borderRadius="20px"
-                bgColor={snapshot.isDragging ? `#3b8a5b` : `#b3e6c8`}
-                borderColor="green.200"
-                mx={3}
-                px={2}
-                children={
-                  <Box color="gray.800" fontSize="17px">
-                    <Alert
-                      Header="Supprimer la réservation"
-                      Body={`Voulez-vous vraiment supprimer cette réservation avec ${taskvalue.nomprenom}`}
-                      icon={<CloseIcon />}
-                      colorScheme="teal"
-                      bg="red.300"
-                      fnTodo={remove}
-                      btOK="Effacer"
-                      btNon="Annuler"
-                      isOpen={isOpen}
-                      setIsOpen={setIsOpen}
-                      onClose={onClose}
-                      cancelRef={cancelRef}
-                    />
-                    {taskvalue.nomprenom}
-                    {usertype == "medecin" ? (
-                      <Alert
-                        Header="Confirmer"
-                        Body={`Voulez-vous confirmer que ${taskvalue.nomprenom} débutera sa consultation ? `}
-                        icon={<BsBoxArrowInRight />}
-                        bg="blue.300"
-                        btOK="oui"
-                        btNon="Non"
-                        fnTodo={Entered}
-                        isOpen={isOpenRemove}
-                        setIsOpen={setIsOpenRemove}
-                        onClose={onCloseRemove}
-                        cancelRef={cancelRefRemove}
-                      />
-                    ) : (
+    if (taskvalue.etat == "en attente") {
+      return (
+        <>
+          <Box
+            border="2px"
+            borderRadius="20px"
+            bgColor="green.200"
+            borderColor="green.200"
+            mx={3}
+            px={2}
+            children={
+              <Box color="gray.800" fontSize="17px">
+                taskvalue.nomprenom
+              </Box>
+            }
+          />
+        </>
+      );
+    } else {
+      return (
+        <Draggable
+          key={taskvalue.id}
+          draggableId={taskvalue.id.toString()}
+          index={taskvalue.id}
+        >
+          {(provided, snapshot) => (
+            <Popover>
+              <PopoverTrigger>
+                <Box
+                  onClick={(event) => detail(event)}
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                  style={
+                    ("none",
+                    getItemStyle(
+                      snapshot.isDragging,
+                      provided.draggableProps.style
+                    ))
+                  }
+                  border="2px"
+                  borderRadius="20px"
+                  bgColor={snapshot.isDragging ? `#3b8a5b` : `#b3e6c8`}
+                  borderColor="green.200"
+                  mx={3}
+                  px={2}
+                  children={
+                    <Box color="gray.800" fontSize="17px">
                       <Alert
                         Header="Supprimer la réservation"
                         Body={`Voulez-vous vraiment supprimer cette réservation avec ${taskvalue.nomprenom}`}
                         icon={<CloseIcon />}
+                        colorScheme="teal"
+                        bg="red.300"
                         fnTodo={remove}
+                        btOK="Effacer"
+                        btNon="Annuler"
                         isOpen={isOpen}
                         setIsOpen={setIsOpen}
                         onClose={onClose}
                         cancelRef={cancelRef}
                       />
-                    )}
-                  </Box>
-                }
-              />
-            </PopoverTrigger>
-            <PopoverContent bg={mode("gray.50", "gray.800")}>
-              <PopoverHeader fontWeight="semibold">
-                {taskvalue.nomprenom}
-              </PopoverHeader>
-              <PopoverBody>
-                Votre rendez-vous est le {taskvalue.start.slice(0, 10) + " "}à
-                {" " + taskvalue.start.slice(11, 19)}
-              </PopoverBody>
-            </PopoverContent>
-          </Popover>
-        )}
-      </Draggable>
-    );
+                      {taskvalue.nomprenom}
+                      {usertype == "medecin" ? (
+                        <Alert
+                          Header="Confirmer"
+                          Body={`Voulez-vous confirmer que ${taskvalue.nomprenom} débutera sa consultation ? `}
+                          icon={<BsBoxArrowInRight />}
+                          bg="blue.300"
+                          btOK="oui"
+                          btNon="Non"
+                          fnTodo={Entered}
+                          isOpen={isOpenRemove}
+                          setIsOpen={setIsOpenRemove}
+                          onClose={onCloseRemove}
+                          cancelRef={cancelRefRemove}
+                        />
+                      ) : null}
+                    </Box>
+                  }
+                />
+              </PopoverTrigger>
+              <PopoverContent bg={mode("green.50", "gray.800")}>
+                <PopoverHeader fontWeight="semibold">
+                  {taskvalue.nomprenom}
+                </PopoverHeader>
+                <PopoverBody>
+                  Votre rendez-vous est le {taskvalue.start.slice(0, 10) + " "}à
+                  {" " + taskvalue.start.slice(11, 19)}
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
+          )}
+        </Draggable>
+      );
+    }
   } else {
     return (
       <>

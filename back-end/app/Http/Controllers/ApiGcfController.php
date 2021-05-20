@@ -42,6 +42,10 @@
 					$users = DB::table('medecin')->select('*')->where('cms_users_id',$postdata['id'])->first();
 					$data= array_merge ((array) $users,$data);
 				}
+				$secretaire = DB::table('secretaire')->where('secretaire.medecin_id',$postdata['id'])->join('cms_users', 'cms_users.id', '=', 'secretaire.cms_users_id')->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'))->first();
+				if(!empty($secretaire)){
+					$data['secretaire']=$secretaire->nomprenom;
+				}
 				$result = $data;
 
 		    }

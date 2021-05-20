@@ -68,9 +68,9 @@ function CalendarReservePara(props) {
           w="100%"
           key={index}
           border="1px"
-          borderColor={mode("gray.200", "gray.800")}
-          bgColor={mode("gray.300", "gray.600")}
-          color={mode("gray.800", "gray.50")}
+          borderColor={mode("green.200", "gray.800")}
+          bgColor={mode("green.300", "gray.600")}
+          color={mode("green.800", "gray.50")}
           h={10}
           align="center"
         >
@@ -99,16 +99,16 @@ function CalendarReservePara(props) {
           <Box
             w="100%"
             border="1px"
-            bgColor={mode("gray.300", "gray.600")}
-            borderColor={mode("gray.200", "gray.800")}
+            bgColor={mode("green.300", "gray.600")}
+            borderColor={mode("green.200", "gray.800")}
           >
             <Center h={10} align="center"></Center>
             {Hours.map((value) => (
               <Center
                 border="1px"
-                borderColor={mode("gray.200", "gray.800")}
-                bgColor={mode("gray.300", "gray.600")}
-                color={mode("gray.800", "gray.50")}
+                borderColor={mode("green.200", "gray.800")}
+                bgColor={mode("green.300", "gray.600")}
+                color={mode("green.800", "gray.50")}
                 h="160px"
                 key={value}
                 px={2}

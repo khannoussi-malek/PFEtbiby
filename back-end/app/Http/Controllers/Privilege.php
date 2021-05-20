@@ -7,8 +7,6 @@
 		use CRUDBooster;
 
 		class Privilege {
-
-		   
 		    public static function PrivilegeName($id) {
 				$PrivilegeName = DB::table('cms_privileges')->select('name')->where('id',$id )
 				->first();
@@ -19,9 +17,6 @@
 				->first();
 				return $PrivilegeName->id;
 				}
-						
-				
-
 		    }
 
 		

@@ -24,12 +24,12 @@ import {
   Text,
   PopoverFooter,
 } from "@chakra-ui/react";
-import { useDomaine } from "./../../services/api/domaine/index";
+import { useDomaine } from "./../../services/api/domaine";
 import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
-import { useFindeDoctor } from "./../../services/api/Trouver un medecin/index";
+import { useFindeDoctor } from "./../../services/api/Trouver un medecin";
 import ReserverUnRendezVous from "../../components/reserver un rendez-vous";
-import { link, userImage } from "./../../services/api/index";
+import { link, userImage } from "./../../services/api";
 import { TableActions } from "./../../components/table/TableActions";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 import { BiInfoCircle } from "react-icons/bi";
@@ -61,27 +61,25 @@ const TrouverUnMedecin = (props) => {
     fn: (data) => <ReserverUnRendezVous data={data} />,
     fn2: (data) => <MedecinInfo data={data} />,
   });
-  const {
-    isLoading: isLoadingFindeDoctor,
-    refetch: refetchFindeDoctor,
-  } = useFindeDoctor({
-    params,
-    onError: (error) => {
-      toast({
-        title: "🌐 Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: `4000`,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setTotal(res.data.total);
-      setNext(res.data.next_page_url);
-      setPrev(res.data.prev_page_url);
-      setContent((!!res.data.data && res.data.data) || []);
-    },
-  });
+  const { isLoading: isLoadingFindeDoctor, refetch: refetchFindeDoctor } =
+    useFindeDoctor({
+      params,
+      onError: (error) => {
+        toast({
+          title: "🌐 Problème de connexion",
+          description: " Il y a un problème de connexion",
+          status: "success",
+          duration: `4000`,
+          isClosable: true,
+        });
+      },
+      onSuccess: (res) => {
+        setTotal(res.data.total);
+        setNext(res.data.next_page_url);
+        setPrev(res.data.prev_page_url);
+        setContent((!!res.data.data && res.data.data) || []);
+      },
+    });
   const { isLoading, refetch } = useDomaine({
     onError: (error) => {
       toast({

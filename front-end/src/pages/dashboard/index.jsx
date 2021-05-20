@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Flex,
+  Tooltip,
   useBoolean,
   useBreakpointValue,
   useColorMode,
@@ -10,12 +11,12 @@ import {
 import { NavBreadcrumb } from "./_partials";
 import * as React from "react";
 import { HiMenu, HiX } from "react-icons/hi";
-import ScrollArea from "./ScrollArea/index";
+import ScrollArea from "./ScrollArea";
 import Menu from "./menu";
-import UserAvatar from "./userAvatar/index";
-import ActivityArea from "./activityArea/index";
+import UserAvatar from "./userAvatar";
+import ActivityArea from "./activityArea";
 import { useLocation } from "react-router-dom";
-import Notification from "./../../components/notification/index";
+import Notification from "./../../components/notification";
 import { useSwipeable } from "react-swipeable";
 const Dashboard = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -32,7 +33,7 @@ const Dashboard = () => {
       {...handlers}
       height="100vh"
       w="100vw"
-      bg={mode("cyan.600", "inherit")}
+      bg={mode("green.500", "inherit")}
       overflow="hidden"
       sx={{ "--sidebar-width": "230px" }}
     >
@@ -50,7 +51,7 @@ const Dashboard = () => {
         <Box fontSize="sm" lineHeight="tall">
           <UserAvatar />
           <ScrollArea pt="5" pb="6">
-            <Menu />
+            <Menu toggle={toggle} />
           </ScrollArea>
         </Box>
       </Box>
@@ -88,7 +89,9 @@ const Dashboard = () => {
                   _hover={{ cursor: "pointer" }}
                   onClick={toggleColorMode}
                 >
-                  {colorMode === "light" ? "☀️" : "🌙"}
+                  <Tooltip label="Mode sombre" aria-label="Mode sombre">
+                    {colorMode === "light" ? "☀️" : "🌙"}
+                  </Tooltip>
                 </Box>
               </Flex>
             </Flex>

@@ -5,7 +5,7 @@ import { Button } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import React from "react";
 import { IconButton } from "@chakra-ui/button";
-import { useSeeNotification } from "./../../../services/api/notification/index";
+import { useSeeNotification } from "./../../../services/api/notification";
 import { useColorModeValue as mode } from "@chakra-ui/react";
 
 const OneNotification = (props) => {
@@ -48,8 +48,8 @@ const OneNotification = (props) => {
             notif.is_read = 1;
           }
         }}
-        color={mode("gray.900", "gray.100")}
-        bgColor={notif.is_read == 1 ? `` : mode("gray.50", "gray.500")}
+        color={mode("green.900", "gray.100")}
+        bgColor={notif.is_read == 1 ? `` : mode("green.50", "gray.500")}
       >
         <Box float="right" fontSize="10px" colorScheme="red">
           <IconButton

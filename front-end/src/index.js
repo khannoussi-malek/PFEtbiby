@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider, ColorModeScript, CSSReset } from "@chakra-ui/react";
 import App from "./app";
-import theme, { customTheme } from "./theme/index";
+import theme, { customTheme } from "./theme";
 ReactDOM.render(
   <React.StrictMode>
     <ColorModeScript initialColorMode={theme.config.initialColorMode} />

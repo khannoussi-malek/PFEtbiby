@@ -9,9 +9,11 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
 } from "@chakra-ui/modal";
+import { Tooltip } from "@chakra-ui/tooltip";
 
 const Alert = (props) => {
   const {
+    hoverMassage,
     target,
     isOpen,
     setIsOpen,
@@ -29,16 +31,20 @@ const Alert = (props) => {
 
   return (
     <>
-      <IconButton
-        size="sm"
-        m={1}
-        bg={bg}
-        colorScheme={colorScheme}
-        // fontSize="10px"
-        icon={icon}
-        onClick={() => setIsOpen(true)}
-      />
-
+      <Tooltip
+        label={!!hoverMassage && hoverMassage}
+        aria-label={!!hoverMassage && hoverMassage}
+      >
+        <IconButton
+          size="sm"
+          m={1}
+          bg={bg}
+          colorScheme={colorScheme}
+          // fontSize="10px"
+          icon={icon}
+          onClick={() => setIsOpen(true)}
+        />
+      </Tooltip>
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}

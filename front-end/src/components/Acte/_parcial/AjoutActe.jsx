@@ -14,8 +14,8 @@ import { Spinner } from "@chakra-ui/react";
 import { Formiz, useForm } from "@formiz/core";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Prix } from "../../formInput/Prix";
-import { useCreateActe } from "./../../../services/api/acte/index";
-import { MyField } from "./../../formInput/index";
+import { useCreateActe } from "./../../../services/api/acte";
+import { MyField } from "./../../formInput";
 
 const AjoutActe = (props) => {
   const { user, refetch } = props;
@@ -27,9 +27,9 @@ const AjoutActe = (props) => {
     onSuccess: (res) => {
       onClose();
       toast({
-        title: "Type de certification ajouté avec succès",
+        title: "Type d'acte ajouté avec succès",
         description:
-          "Vous pouvez le sélectionner nouveau à partir de 'Type de certificat'",
+          "Vous pouvez le sélectionner nouveau à partir dans 'Liste d'acte'",
         status: "success",
         duration: `4000`,
         isClosable: true,
@@ -50,7 +50,7 @@ const AjoutActe = (props) => {
     <React.Fragment>
       <Button
         ref={btnRef}
-        // colorScheme={mode("teal", "gray.50")}
+        colorScheme={mode("green", "gray")}
         // bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >
@@ -65,7 +65,7 @@ const AjoutActe = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
-          <DrawerContent bgColor={mode("gray.50", "gray.700")}>
+          <DrawerContent bgColor={mode("green.50", "gray.700")}>
             <DrawerCloseButton />
             <DrawerHeader>Définit votre acte</DrawerHeader>
             <DrawerBody>
@@ -97,7 +97,7 @@ const AjoutActe = (props) => {
                     </Box>
 
                     <Box py={3}>
-                      <Button colorScheme="blue" type="submit">
+                      <Button colorScheme="green" type="submit">
                         Sauvegarder {!MyForm.isValid ? `` : `👌`}
                       </Button>
                     </Box>

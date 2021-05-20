@@ -4,13 +4,13 @@ import { TableActions } from "./../../components/table/TableActions";
 import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
 import AjouPatient from "./_partials/AjoutPatient";
-import { useRelationListe } from "./../../services/api/relation/index";
-import { TbibyContext } from "./../../router/context/index";
+import { useRelationListe } from "./../../services/api/relation";
+import { TbibyContext } from "./../../router/context";
 import { RiFolderUserLine } from "react-icons/ri";
 import { useDisclosure } from "@chakra-ui/hooks";
 
 import HistoriquePatient from "../../components/historique patient";
-import PatientInfo from "./../../components/informationSurPatient/index";
+import PatientInfo from "./../../components/informationSurPatient";
 const ListPatients = () => {
   const { user, cleanUser } = useContext(TbibyContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -73,6 +73,8 @@ const ListPatients = () => {
               buttonText="Chercher"
               buttonIcon={<RiFolderUserLine fontSize="1.25em" />}
               chercherFn={setPatientId}
+              buttonhoverTesxt={`Rechercher 🔎`}
+              inputhoverTesxt={`écris quoi que ce soit pour indiquer sur la personne que tu veux trouver`}
             />
 
             <TableContent header={header} content={content} fntable={fntable} />

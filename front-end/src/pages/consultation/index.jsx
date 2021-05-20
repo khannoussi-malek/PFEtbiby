@@ -1,7 +1,7 @@
 import { Box, Center, Text, SimpleGrid } from "@chakra-ui/layout";
 import React, { useContext, useState, useRef } from "react";
 import { useListOfThePatientInConsultation } from "../../services/api/consultation";
-import { TbibyContext } from "./../../router/context/index";
+import { TbibyContext } from "./../../router/context";
 import {
   useToast,
   Spinner,
@@ -12,7 +12,7 @@ import { useDeleteReservation } from "./../../services/api/reservation";
 import { useSendPatientToWaitingRoom } from "./../../services/api/manageTheRoom";
 import PatientsAtTheDoctor from "../../components/patients at the doctor";
 import GeneralPatientsInformation from "../../components/general patients information";
-import Antecedants from "./../../components/Antecedants/index";
+import Antecedants from "./../../components/Antecedants";
 import Form from "./_partials/form";
 
 const Consultation = () => {
@@ -22,17 +22,15 @@ const Consultation = () => {
   const { user } = useContext(TbibyContext);
 
   const params = { medecin_id: user.id };
-  const {
-    mutate: SPTWRMutate,
-    isLoading: SPTWRIsLoading,
-  } = useSendPatientToWaitingRoom({
-    onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
-    },
-    onSuccess: (res) => {
-      refetch();
-    },
-  });
+  const { mutate: SPTWRMutate, isLoading: SPTWRIsLoading } =
+    useSendPatientToWaitingRoom({
+      onError: (error) => {
+        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      },
+      onSuccess: (res) => {
+        refetch();
+      },
+    });
   const { isLoading, refetch } = useListOfThePatientInConsultation({
     params,
     onError: (error) => {
@@ -48,30 +46,25 @@ const Consultation = () => {
       setpatientsWaiting(res.data);
     },
   });
-  const {
-    mutate: DeleteMutate,
-    isLoading: DeleteIsLoading,
-  } = useDeleteReservation({
-    onError: (error) => {
-      toast({
-        title: "🌐 Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: `4000`,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      refetch();
-    },
-  });
-  console.log(currentPatient);
+  const { mutate: DeleteMutate, isLoading: DeleteIsLoading } =
+    useDeleteReservation({
+      onError: (error) => {
+        toast({
+          title: "🌐 Problème de connexion",
+          description: " Il y a un problème de connexion",
+          status: "success",
+          duration: `4000`,
+          isClosable: true,
+        });
+      },
+      onSuccess: (res) => {
+        refetch();
+      },
+    });
   return (
     <React.Fragment>
       <Spinner
-        display={
-          !isLoading && !DeleteIsLoading && !SPTWRIsLoading ? `none` : ``
-        }
+        display={isLoading || DeleteIsLoading || SPTWRIsLoading ? `` : `none`}
         size="xl"
         m="auto"
         color="red.500"
@@ -92,7 +85,7 @@ const Consultation = () => {
       <Box pb={5} display={!!currentPatient.nomprenom == "" ? `none` : `block`}>
         <Center
           p={5}
-          bg={mode("gray.100", "gray.800")}
+          bg={mode("green.100", "gray.800")}
           mx="auto"
           boxShadow="xl"
           w={{ base: "100%", md: "95%" }}
@@ -104,7 +97,7 @@ const Consultation = () => {
         <Box
           mx="auto"
           boxShadow="lg"
-          bg={mode("gray.50", "gray.800")}
+          bg={mode("green.50", "gray.800")}
           w={{ base: "90%", md: "92%" }}
         >
           <SimpleGrid minChildWidth="100px" spacing="10px">
@@ -120,6 +113,9 @@ const Consultation = () => {
             <Form
               setCurrentPatient={setCurrentPatient}
               Patient={currentPatient}
+              refetchPatientListe={refetch}
+              patientsWaiting={patientsWaiting}
+              setpatientsWaiting={setpatientsWaiting}
             />
           </Box>
         </Box>

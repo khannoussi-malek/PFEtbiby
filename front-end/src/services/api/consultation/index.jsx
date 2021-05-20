@@ -10,7 +10,7 @@ export const useListOfThePatientInConsultation = ({
   ...config
 } = {}) => {
   return useQuery(
-    ["pdcm", params],
+    ["liste-pattient-wating"],
     () => axios.get("pdcm", { params }),
     config
   );

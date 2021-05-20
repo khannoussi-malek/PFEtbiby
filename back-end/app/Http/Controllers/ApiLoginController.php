@@ -27,6 +27,7 @@
 		    }
 
 		    public function hook_after($postdata,&$result) {
+
 		        //This method will be execute after run the main process
 				$users = DB::table('cms_users')->select('*')->where('email',$postdata['user'] )->orWhere('telephone',$postdata['user'])
 				->orWhere('cin',$postdata['user'])
@@ -35,7 +36,10 @@
 				foreach ($users as &$user) {
 					if(\Hash::check($postdata['password'], $user->password)){
 						$user->fonctionnalite=Privilege::PrivilegeName($user->id_cms_privileges);
-						
+						if($user->fonctionnalite=="secretaire"){
+							$idMedecin = DB::table('secretaire')->select('medecin_id')->where('cms_users_id',$user->id)->first();
+							$user->idMedecin=$idMedecin->medecin_id;
+						}
 						$result = $user;
 						return $result;
 					}

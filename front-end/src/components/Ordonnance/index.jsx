@@ -11,11 +11,32 @@ import {
 } from "@chakra-ui/accordion";
 import { Input } from "@chakra-ui/input";
 import { EditIcon } from "@chakra-ui/icons";
+import { InputDateRange } from "./../formInput/range";
+import { MyNumberInput } from "./../formInput/numberinput";
+import { useGetListeMedicamentSelect2 } from "./../../services/api/list medicament";
+import { useToast } from "@chakra-ui/react";
+import { MyField } from "./../formInput";
+import AjoutMedicament from "./../medicament";
 export const Ordonnance = (props) => {
-  const { id, removeComponentsForm } = props;
+  const { id, removeComponentsForm, name } = props;
+  const toast = useToast();
   const [title, setTitle] = useState("");
+  const [selectValue, setSelectValue] = useState([]);
   const [showEditTitle, setShowEditTitle] = useState(true);
-
+  const { isLoading, refetch } = useGetListeMedicamentSelect2({
+    onError: (error) => {
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
+    },
+    onSuccess: (res) => {
+      setSelectValue(res.data);
+    },
+  });
   return (
     <AccordionItem boxShadow="lg">
       <AccordionButton>
@@ -43,27 +64,27 @@ export const Ordonnance = (props) => {
         />
       </AccordionButton>
       <AccordionPanel bgColor="gray.50" pb={4}>
-        {/* <Select2
-          required={"Sélect le type de certifica."}
-          label="type de certifica"
-          data={[
-            {
-              label: "Scholeur de certificats",
-              value: "Scholeur de certificats",
-            },
-            {
-              label: "Scholeur de certificats2",
-              value: "Scholeur de certificats2",
-            },
-            {
-              label: "Scholeur de certificats3",
-              value: "Scholeur de certificats3",
-            },
-          ]}
-          name="selectvalue"
-        /> */}
+        <AjoutMedicament refetch={refetch} />
 
-        <TextareaForm name="ordonnance" label="contenu d'ordonnance" />
+        <InputDateRange
+          name={`${name}.duree`}
+          label="Durée"
+          required="la valeur de durée est obligatoire"
+        />
+        <Select2
+          label="Sélectionner une medicament"
+          data={selectValue}
+          name={`${name}.medicament_id`}
+          required="le nom de medicament est obligatoire"
+        />
+        <MyField
+          name={`${name}.duree_entre_chaque_medicament`}
+          label="duree entre chaque medicament"
+        />
+        <MyNumberInput
+          name={`${name}.NBR_FOIS_JOURS`}
+          label="Nombre de fois par jour"
+        />
       </AccordionPanel>
     </AccordionItem>
   );

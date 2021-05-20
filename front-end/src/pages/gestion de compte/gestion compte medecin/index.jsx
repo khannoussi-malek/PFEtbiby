@@ -10,11 +10,8 @@ import {
 import { Select2 } from "../../../components/formInput/select";
 import { isNumber, isPattern } from "@formiz/validations";
 import { MyField } from "./../../../components/formInput";
-import {
-  useDomaine,
-  useSousDomaine,
-} from "./../../../services/api/domaine/index";
-import { FieldGroup } from "./../../../components/FieldGroup/index";
+import { useDomaine, useSousDomaine } from "./../../../services/api/domaine";
+import { FieldGroup } from "./../../../components/FieldGroup";
 import AddDomaine from "./_partials/Domaine";
 import SousDomaine from "./_partials/SousDomaine";
 
@@ -63,15 +60,14 @@ const GestiondeCopmteMedecin = (props) => {
           <MyField
             name="adresse_physique"
             label="Adresse"
-            // // dtValue={gcInfo.adresse_physique}
-            // Placeholder={gcInfo.adresse_physique}
-            // required="Il est requis de compléter le champ correspondant au adresse_physique"
-            validations={[
-              {
-                rule: isPattern("^[a-zAZ ]*$"),
-                message: "L'adresse physique ne contient que des lettres",
-              },
-            ]}
+            Placeholder={gcInfo.adresse_physique}
+
+            // validations={[
+            //   {
+            //     rule: isPattern("^[a-zAZ ]*$"),
+            //     message: "L'adresse physique ne contient que des lettres",
+            //   },
+            // ]}
           />
 
           <Flex w="100%">
@@ -103,6 +99,12 @@ const GestiondeCopmteMedecin = (props) => {
               />
             </Box>
           </Flex>
+          <MyField
+            name="secretaire"
+            label="Secrétaire"
+            note="Entrez le cin ou le numéro de téléphone ou l'email de la secrétaire. Pour supprimer vous devez écrire 'supprimer'"
+            Placeholder={gcInfo.secretaire}
+          />
         </VStack>
       </FieldGroup>
     </React.Fragment>

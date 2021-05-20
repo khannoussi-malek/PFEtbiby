@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import { TbibyContext } from "./../../router/context/index";
+import { TbibyContext } from "./../../router/context";
 import EditerCertificat from "./../../components/Certificat/editer";
 import { TableContent } from "./../../components/table/TableContent";
-import { useGetListCertificat } from "./../../services/api/certificat/index";
+import { useGetListCertificat } from "./../../services/api/certificat";
 import { TablePagination } from "./../../components/table/TablePagination";
 import CertificatUpdate from "./../../components/Certificat/CertificatUpdate";
 
@@ -17,8 +17,8 @@ const CertificatPage = () => {
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
   const toast = useToast();
-
-  const params = { id: user.id, page };
+  const id = user.idMedecin || user.id;
+  const [params, setParams] = useState({ id: id, page });
   const { isLoading, refetch } = useGetListCertificat({
     params,
     onError: (error) => {

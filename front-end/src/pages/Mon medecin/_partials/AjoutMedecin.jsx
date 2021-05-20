@@ -8,10 +8,10 @@ import {
   SimpleGrid,
   Spinner,
 } from "@chakra-ui/react";
-import { MyField } from "../../../components/formInput/index";
+import { MyField } from "../../../components/formInput";
 import { Formiz, useForm } from "@formiz/core";
-import { useRelation } from "../../../services/api/relation/index";
-import { TbibyContext } from "../../../router/context/index";
+import { useRelation } from "../../../services/api/relation";
+import { TbibyContext } from "../../../router/context";
 const AjoutMedecin = (props) => {
   const { user, cleanUser } = useContext(TbibyContext);
   const { refetch } = props;

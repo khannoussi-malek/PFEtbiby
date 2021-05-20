@@ -21,11 +21,73 @@ class CBSeeder extends Seeder
         $this->call('CmsEmailTemplates');
         $this->call('cms_apicustom');
         $this->call('cms_apikey');
+        $this->call('cms_menusseeder');
 
         $this->command->info('Updating the data completed !');
     }
 }
 
+class cms_menusseeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('cms_menus')->insert([
+            'created_at' => date('Y-m-d H:i:s'),
+            'name' => "patient",
+            'type' => "Route",
+            'path' => "AdminPatientControllerGetIndex",
+            'icon' => "fa fa-child",
+            'parent_id' => 0,
+            'is_active' => 1,
+            'is_dashboard' => 0,
+            'id_cms_privileges' => 1,
+            'sorting' => 1,
+        ]);
+        DB::table('cms_menus')->insert([
+            'created_at' => date('Y-m-d H:i:s'),
+            'name' => "secrétaire",
+            'type' => "Route",
+            'path' => "AdminSecrétaireControllerGetIndex",
+            'icon' => "fa fa-user-plus",
+            'parent_id' => 0,
+            'is_active' => 1,
+            'is_dashboard' => 0,
+            'id_cms_privileges' => 1,
+            'sorting' => 2,
+        ]);
+        DB::table('cms_menus')->insert([
+            'created_at' => date('Y-m-d H:i:s'),
+            'name' => "patient",
+            'type' => "Route",
+            'path' => "AdminPatientControllerGetIndex",
+            'icon' => "fa fa-child",
+            'parent_id' => 0,
+            'is_active' => 1,
+            'is_dashboard' => 0,
+            'id_cms_privileges' => 1,
+            'sorting' => 3,
+        ]);
+
+
+        
+        DB::table('cms_menus_privileges')->insert([
+            'id_cms_menus' => 1,
+            'id_cms_privileges' => 1,
+            
+        ]);
+        DB::table('cms_menus_privileges')->insert([
+            'id_cms_menus' => 2,
+            'id_cms_privileges' => 1,
+            
+        ]);
+        DB::table('cms_menus_privileges')->insert([
+            'id_cms_menus' => 3,
+            'id_cms_privileges' => 1,
+            
+        ]);
+    }
+
+}
 class cms_apicustom extends seeder {
     public function run()
     {
@@ -610,16 +672,54 @@ class cms_apicustom extends seeder {
             }
             if(DB::table('cms_apicustom')->where('permalink' ,'lm')->count() == 0){
 
-            DB::table('cms_apicustom')->insert([
-                'permalink' => 'lm',
-                'tabel' => 'cms_users',
-                'aksi' => 'list',
-                'nama' => 'liste medecin',
-                'method_type' => 'get',
-                'parameters' => 'a:0:{}',
-                'responses' => 'a:0:{}',
-            ]);
-            }
+                DB::table('cms_apicustom')->insert([
+                    'permalink' => 'lm',
+                    'tabel' => 'cms_users',
+                    'aksi' => 'list',
+                    'nama' => 'liste medecin',
+                    'method_type' => 'get',
+                    'parameters' => 'a:0:{}',
+                    'responses' => 'a:0:{}',
+                ]);
+            
+                if(DB::table('cms_apicustom')->where('permalink' ,'listem')->count() == 0){
+
+                    DB::table('cms_apicustom')->insert([
+                        'permalink' => 'listem',
+                        'tabel' => 'medicament',
+                        'aksi' => 'list',
+                        'nama' => 'liste medicament',
+                        'method_type' => 'get',
+                        'parameters' => 'a:0:{}',
+                        'responses' => 'a:0:{}',
+                    ]);
+                }
+                
+                if(DB::table('cms_apicustom')->where('permalink' ,'addm')->count() == 0){
+
+                    DB::table('cms_apicustom')->insert([
+                        'permalink' => 'addm',
+                        'tabel' => 'medicament',
+                        'aksi' => 'save_add',
+                        'nama' => 'add medicament',
+                        'method_type' => 'post',
+                        'parameters' => 'a:1:{i:0;a:5:{s:4:"name";s:11:"designation";s:4:"type";s:6:"string";s:6:"config";N;s:8:"required";s:1:"1";s:4:"used";s:1:"1";}}',
+                        'responses' => 'a:0:{}',
+                    ]);
+                }
+                
+                if(DB::table('cms_apicustom')->where('permalink' ,'lms2')->count() == 0){
+
+                    DB::table('cms_apicustom')->insert([
+                        'permalink' => 'lms2',
+                        'tabel' => 'medicament',
+                        'aksi' => 'list',
+                        'nama' => 'liste medicament select2',
+                        'method_type' => 'get',
+                        'parameters' => 'a:0:{}',
+                        'responses' => 'a:0:{}',
+                    ]);
+                }
         
         
     }
@@ -942,7 +1042,7 @@ class Cms_privilegesSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'Super Administrator',
                 'is_superadmin' => 1,
-                'theme_color' => 'skin-red',
+                'theme_color' => 'skin-green-light',
             ]);
         }
         if (DB::table('cms_privileges')->where('name', 'medecin')->count() == 0) {
@@ -950,7 +1050,7 @@ class Cms_privilegesSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'medecin',
                 'is_superadmin' => 0,
-                'theme_color' => 'skin-purple-light',
+                'theme_color' => 'skin-green-light',
             ]);
         }
         
@@ -959,7 +1059,7 @@ class Cms_privilegesSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'secretaire',
                 'is_superadmin' => 0,
-                'theme_color' => 'skin-purple-light',
+                'theme_color' => 'skin-green-light',
             ]);
         }
         
@@ -968,7 +1068,7 @@ class Cms_privilegesSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'patient',
                 'is_superadmin' => 0,
-                'theme_color' => 'skin-purple-light',
+                'theme_color' => 'skin-green-light',
             ]);
         }
     }
@@ -1103,6 +1203,41 @@ class Cms_modulsSeeder extends Seeder
                 'path' => 'logs',
                 'table_name' => 'cms_logs',
                 'controller' => 'LogsController',
+                'is_protected' => 1,
+                'is_active' => 1,
+            ],
+            [
+
+                'created_at' => date('Y-m-d H:i:s'),
+                'name' => 'médecin',
+                'icon' => 'fa fa-user-md',
+                'path' => 'cms_users',
+                'table_name' => 'cms_users',
+                'controller' => 'AdminCmsUsers1Controller',
+                'is_protected' => 1,
+                'is_active' => 1,
+            ],
+            
+            [
+
+                'created_at' => date('Y-m-d H:i:s'),
+                'name' => 'secrétaire',
+                'icon' => 'fa fa-user-plus',
+                'path' => 'secretaire14',
+                'table_name' => 'secretaire',
+                'controller' => 'AdminSecrétaireController',
+                'is_protected' => 1,
+                'is_active' => 1,
+            ],
+            
+            [
+
+                'created_at' => date('Y-m-d H:i:s'),
+                'name' => 'patient',
+                'icon' => 'fa fa-child',
+                'path' => 'relation',
+                'table_name' => 'relation',
+                'controller' => 'AdminPatientController',
                 'is_protected' => 1,
                 'is_active' => 1,
             ],

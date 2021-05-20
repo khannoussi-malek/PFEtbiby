@@ -8,8 +8,8 @@ import {
 } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import { BsGear } from "react-icons/bs";
-import { link, userImage } from "./../../../services/api/index";
-import { TbibyContext } from "./../../../router/context/index";
+import { link, userImage } from "./../../../services/api";
+import { TbibyContext } from "./../../../router/context";
 
 const UserAvatar = () => {
   const { user } = useContext(TbibyContext);
