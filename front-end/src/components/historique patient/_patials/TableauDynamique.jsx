@@ -7,7 +7,7 @@ import { useHistoriqueListConsultation } from "../../../services/api/Historique 
 import HistoriqueActe from "../../Acte/ActeHistorique";
 import Antecedants from "../../Antecedants";
 import HistoriqueCertificat from "../../Certificat/CertificatHistorique";
-// import HistoriqueConsultation from "../../Consultation";
+import HistoriqueConsultation from "../../Consultation";
 import HistoriqueExamen from "../../Examen/ExamenHistorique";
 import HistoriqueLettre from "../../Lettre/LettreHistorique";
 import HistoriqueOrdonnance from "../../Ordonnance/OrdonnanceHistorique";
@@ -22,7 +22,7 @@ const TableauDynamique = (props) => {
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([""], [""]);
-  const header = ["date", "Diagnostic", "Acte"];
+  const header = ["date", "Diagnostic"];
   const toast = useToast();
   const params = {
     patient_id: patient.id,
@@ -54,6 +54,9 @@ const TableauDynamique = (props) => {
         setContent((!!res.data.data && res.data.data) || []);
       },
     });
+  const [fntable, setFntable] = useState({
+    fn: (data) => <HistoriqueConsultation data={patient} />,
+  });
   return (
     <React.Fragment>
       <SimpleGrid minChildWidth="100px" spacing="10px">
@@ -71,7 +74,7 @@ const TableauDynamique = (props) => {
         <HistoriqueOrdonnance patient={patient} />
         <HistoriqueLettre patient={patient} />
       </SimpleGrid>
-      <TableContent header={header} content={content} />
+      <TableContent header={header} content={content} fntable={fntable} />
       <TablePagination
         total={total}
         next_page_url={next}
