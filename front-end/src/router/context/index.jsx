@@ -13,6 +13,7 @@ const initialUserValues = {
   sexes: null,
   photo: null,
   fonctionnalite: "",
+  idMedecin: null,
 };
 
 const TheContext = (props) => {

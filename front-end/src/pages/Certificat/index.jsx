@@ -17,8 +17,8 @@ const CertificatPage = () => {
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
   const toast = useToast();
-
-  const params = { id: user.id, page };
+  const id = user.idMedecin || user.id;
+  const [params, setParams] = useState({ id: id, page });
   const { isLoading, refetch } = useGetListCertificat({
     params,
     onError: (error) => {

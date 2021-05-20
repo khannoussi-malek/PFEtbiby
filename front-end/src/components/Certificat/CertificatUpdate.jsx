@@ -83,7 +83,7 @@ const CertificatUpdate = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
-          <DrawerContent bgColor={mode("gray.50", "gray.700")}>
+          <DrawerContent bgColor={mode("green.50", "gray.700")}>
             <DrawerCloseButton />
             <DrawerHeader>Créez votre type de certificat</DrawerHeader>
             <DrawerBody>

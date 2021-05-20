@@ -125,7 +125,7 @@ const Task = (props) => {
               }
             />
           </PopoverTrigger>
-          <PopoverContent bg={mode("gray.50", "gray.800")}>
+          <PopoverContent bg={mode("green.50", "gray.800")}>
             <PopoverHeader fontWeight="semibold">
               {taskvalue.nomprenom}
             </PopoverHeader>

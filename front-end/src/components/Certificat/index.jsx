@@ -161,7 +161,7 @@ export const Certificat = (props) => {
           float="right"
         />
       </AccordionButton>
-      <AccordionPanel bgColor={mode("gray.50", "gray.700")} pb={4}>
+      <AccordionPanel bgColor={mode("green.50", "gray.700")} pb={4}>
         <EditerCertificat user={user} />
 
         <Box py={2}>

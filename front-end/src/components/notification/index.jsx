@@ -94,7 +94,7 @@ const Notification = (props) => {
             ``
           )}
         </PopoverHeader>
-        <PopoverBody overflowY="scroll" maxH="80hw">
+        <PopoverBody overflowY="scroll" maxH="70vh">
           {notification.map((element) => (
             <OneNotification
               removeElement={removeElement}

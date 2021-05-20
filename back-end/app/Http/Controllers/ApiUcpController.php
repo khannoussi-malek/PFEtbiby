@@ -6,6 +6,7 @@
 		use CRUDBooster;
         use Storage;
 		use Illuminate\Support\Facades\Hash;
+		use App\Http\Controllers\Privilege as Privilege;
 
 		class ApiUcpController extends \crocodicstudio\crudbooster\controllers\ApiController {
 
@@ -34,7 +35,6 @@
                 if(!empty($postdata['telephone'])&&$postdata['telephone']!="null"&&$postdata['telephone']!="undefined"){
                     $users = DB::table('cms_users')->select('telephone')->where('id','!=',$postdata['id'])
                     ->where('telephone',$postdata['telephone'])->first();
-                    dd($postdata['telephone']);
                     if($users==null){
                     $tableupdate['telephone']=$postdata['telephone'];
                     }
@@ -138,7 +138,7 @@
                                 DB::table('secretaire')->select('cms_users_id')->where('medecin_id',$postdata['id'])->delete();
                             }
                         }else{
-                            $NewSecretaire = DB::table('cms_users')->select('id')->where('email',$postdata['secretaire'] )->orWhere('telephone',$postdata['secretaire'])->orWhere('cin',$postdata['secretaire'])->('id_cms_privileges',Privilege::PrivilegeID('patient'))->first();
+                            $NewSecretaire = DB::table('cms_users')->where('email',$postdata['secretaire'] )->orWhere('telephone',$postdata['secretaire'])->orWhere('cin',$postdata['secretaire'])->where('id_cms_privileges',Privilege::PrivilegeID('patient'))->select('id')->first();
 
                             if(!empty($NewSecretaire)){
                                 $sec=DB::table('secretaire')->select('cms_users_id')->where('medecin_id',$postdata['id'])->first();

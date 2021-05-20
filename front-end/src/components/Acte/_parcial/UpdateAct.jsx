@@ -71,7 +71,7 @@ const UpdateAct = (props) => {
       >
         <DrawerOverlay>
           <DrawerContent
-          //  bgColor={mode("gray.50", "gray.700")}
+          //  bgColor={mode("green.50", "gray.700")}
           >
             <DrawerCloseButton />
             <DrawerHeader>Mettre à jour votre acte</DrawerHeader>

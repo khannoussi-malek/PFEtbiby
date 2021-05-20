@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Flex,
+  Tooltip,
   useBoolean,
   useBreakpointValue,
   useColorMode,
@@ -88,7 +89,9 @@ const Dashboard = () => {
                   _hover={{ cursor: "pointer" }}
                   onClick={toggleColorMode}
                 >
-                  {colorMode === "light" ? "☀️" : "🌙"}
+                  <Tooltip label="Mode sombre" aria-label="Mode sombre">
+                    {colorMode === "light" ? "☀️" : "🌙"}
+                  </Tooltip>
                 </Box>
               </Flex>
             </Flex>

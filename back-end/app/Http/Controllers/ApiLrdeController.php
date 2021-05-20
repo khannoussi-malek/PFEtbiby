@@ -39,7 +39,7 @@
 				])
 				->join('cms_users', 'cms_users.id', '=', 'rendez_vous.patient_id')
 				// ->select('rendez_vous.etat','rendez_vous.patient_id','rendez_vous.medecin_id')
-				->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'), 'rendez_vous.id','rendez_vous.date_reservation as start')
+				->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'), 'rendez_vous.id','rendez_vous.date_reservation as start', 'rendez_vous.etat')
 				->get();
 		    }
 

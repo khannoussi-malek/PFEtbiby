@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/admin/desactiver','Medein@desactiver');
+Route::get('/admin/activer','Medein@activer');
 Route::get('/', function () {
-    return  redirect('/admin');;
+    
+    return  redirect('/admin');
 });

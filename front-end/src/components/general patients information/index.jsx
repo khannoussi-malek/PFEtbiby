@@ -58,7 +58,7 @@ const GeneralPatientsInformation = (props) => {
       </Button>
       <Drawer placement="left" size="md" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent bg={mode("gray.50", "gray.700")}>
+        <DrawerContent bg={mode("green.50", "gray.700")}>
           <DrawerHeader borderBottomWidth="1px">
             Information de patient
             <IconButton

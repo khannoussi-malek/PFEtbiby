@@ -16,6 +16,7 @@ import {
   useDeleteReservation,
 } from "../../services/api/reservation";
 import { InputDate } from "../../components/formInput/date";
+import { Tooltip } from "@chakra-ui/tooltip";
 
 const CalendarDashboardPatient = () => {
   const toast = useToast();
@@ -88,8 +89,14 @@ const CalendarDashboardPatient = () => {
         />
         <Box display={DeleteIsLoading ? `none` : ``}>
           <Flex py={2}>
-            <Button ml={2} onClick={() => addDays(date, daysView * -1)}>
-              <ArrowLeftIcon />
+            <Button
+              ml={2}
+              colorScheme="green"
+              onClick={() => addDays(date, daysView * -1)}
+            >
+              <Tooltip label="Moin un jour" aria-label="Moin un jour">
+                <ArrowLeftIcon />
+              </Tooltip>
             </Button>
             <Spacer />
             {!isMobile ? (
@@ -113,8 +120,14 @@ const CalendarDashboardPatient = () => {
               ``
             )}
             <Spacer />
-            <Button mr={2} onClick={() => addDays(date, daysView)}>
-              <ArrowRightIcon />
+            <Button
+              colorScheme="green"
+              mr={2}
+              onClick={() => addDays(date, daysView)}
+            >
+              <Tooltip label="Plus un jour" aria-label="Plus un jour">
+                <ArrowRightIcon />
+              </Tooltip>
             </Button>
           </Flex>
         </Box>

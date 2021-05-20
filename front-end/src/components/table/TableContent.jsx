@@ -48,21 +48,21 @@ export const TableContent = (props) => {
         borderWidth="1px"
         fontSize="sm"
       >
-        <Thead bg={mode("gray.50", "gray.800")}>
+        <Thead bg={mode("green.50", "gray.800")}>
           <Tr textAlign="center">
             {header.map((column, index) => (
               <Th
                 maxW="10%"
                 whiteSpace="nowrap"
                 scope="col"
-                color={mode("gray.900", "gray.50")}
+                color={mode("green.900", "gray.50")}
                 key={index}
               >
                 {column}
               </Th>
             ))}
             {!!fntable ? (
-              <Th textAlign="center" color={mode("gray.900", "gray.50")}>
+              <Th textAlign="center" color={mode("green.900", "gray.50")}>
                 acte
               </Th>
             ) : (

@@ -979,7 +979,7 @@ class Cms_privilegesSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'Super Administrator',
                 'is_superadmin' => 1,
-                'theme_color' => 'skin-red',
+                'theme_color' => 'skin-green-light',
             ]);
         }
         if (DB::table('cms_privileges')->where('name', 'medecin')->count() == 0) {
@@ -987,7 +987,7 @@ class Cms_privilegesSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'medecin',
                 'is_superadmin' => 0,
-                'theme_color' => 'skin-purple-light',
+                'theme_color' => 'skin-green-light',
             ]);
         }
         
@@ -996,7 +996,7 @@ class Cms_privilegesSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'secretaire',
                 'is_superadmin' => 0,
-                'theme_color' => 'skin-purple-light',
+                'theme_color' => 'skin-green-light',
             ]);
         }
         
@@ -1005,7 +1005,7 @@ class Cms_privilegesSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'patient',
                 'is_superadmin' => 0,
-                'theme_color' => 'skin-purple-light',
+                'theme_color' => 'skin-green-light',
             ]);
         }
     }

@@ -67,12 +67,12 @@ const Antecedants = (props) => {
   // console.log(patientInfo);
   const [fntable, setFntable] = useState({
     fn: (data) => (
-      <Text fontSize="20px" color={mode("gray.700", "gray.50")}>
+      <Text fontSize="20px" color={mode("green.700", "gray.50")}>
         <Popover>
           <PopoverTrigger>
             <Text
               textAlign="center"
-              bgColor={mode("gray.100", "gray.500")}
+              bgColor={mode("green.100", "gray.500")}
               _hover={{
                 background: mode("blue.100", "gray.600"),
               }}
@@ -110,7 +110,7 @@ const Antecedants = (props) => {
       </Button>
       <Drawer placement="left" size="xl" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent bg={mode("gray.50", "gray.700")}>
+        <DrawerContent bg={mode("green.50", "gray.700")}>
           <DrawerHeader borderBottomWidth="1px">
             Antecedants
             <IconButton

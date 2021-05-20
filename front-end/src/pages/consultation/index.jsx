@@ -61,7 +61,6 @@ const Consultation = () => {
         refetch();
       },
     });
-  console.log(isLoading);
   return (
     <React.Fragment>
       <Spinner
@@ -86,7 +85,7 @@ const Consultation = () => {
       <Box pb={5} display={!!currentPatient.nomprenom == "" ? `none` : `block`}>
         <Center
           p={5}
-          bg={mode("gray.100", "gray.800")}
+          bg={mode("green.100", "gray.800")}
           mx="auto"
           boxShadow="xl"
           w={{ base: "100%", md: "95%" }}
@@ -98,7 +97,7 @@ const Consultation = () => {
         <Box
           mx="auto"
           boxShadow="lg"
-          bg={mode("gray.50", "gray.800")}
+          bg={mode("green.50", "gray.800")}
           w={{ base: "90%", md: "92%" }}
         >
           <SimpleGrid minChildWidth="100px" spacing="10px">

@@ -70,7 +70,7 @@ function Calendar(props) {
           border="1px"
           borderColor={mode("green.200", "cyan.900")}
           bgColor={mode("green.300", "cyan.900")}
-          color={mode("gray.800", "gray.50")}
+          color={mode("green.800", "gray.50")}
           h={10}
           align="center"
         >
@@ -108,7 +108,7 @@ function Calendar(props) {
                 border="1px"
                 borderColor={mode("green.200", "cyan.900")}
                 bgColor={mode("green.300", "cyan.900")}
-                color={mode("gray.800", "gray.50")}
+                color={mode("green.800", "gray.50")}
                 h="160px"
                 key={value}
                 px={2}

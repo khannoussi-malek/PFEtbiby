@@ -12,7 +12,7 @@ import { Route } from "react-router";
 const log = () => {
   return (
     <Box
-      bg={mode("gray.50", "inherit")}
+      bg={mode("green.50", "inherit")}
       minH="100vh"
       py="12"
       px={{ sm: "6", lg: "8" }}

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Spinner } from "@chakra-ui/react";
+import { Spinner, Tooltip } from "@chakra-ui/react";
 
 import { Box, Spacer, Flex } from "@chakra-ui/layout";
 import Calendar from "./../../components/calendar";
@@ -30,7 +30,9 @@ const CalendarDashboardMedecin = () => {
   const { user } = useContext(TbibyContext);
 
   const [task, setTask] = useState([{ start: "2021-03-22T00:00" }]);
-  const params = { medecin_id: user.id };
+
+  const id = user.idMedecin || user.id;
+  const [params, setParams] = useState({ medecin_id: id });
   const { mutate: EnteredMutate, isLoading: PatientEntrerIsLoading } =
     usePatientEntrer({
       onError: (error) => {
@@ -150,8 +152,14 @@ const CalendarDashboardMedecin = () => {
           }
         >
           <Flex py={2}>
-            <Button ml={2} onClick={() => addDays(date, daysView * -1)}>
-              <ArrowLeftIcon />
+            <Button
+              colorScheme="green"
+              ml={2}
+              onClick={() => addDays(date, daysView * -1)}
+            >
+              <Tooltip label="Moin un jour" aria-label="Moin un jour">
+                <ArrowLeftIcon />
+              </Tooltip>
             </Button>
             <Spacer />
             {!isMobile ? (
@@ -182,8 +190,14 @@ const CalendarDashboardMedecin = () => {
               ``
             )}
             <Spacer />
-            <Button mr={2} onClick={() => addDays(date, daysView)}>
-              <ArrowRightIcon />
+            <Button
+              colorScheme="green"
+              mr={2}
+              onClick={() => addDays(date, daysView)}
+            >
+              <Tooltip label="Plus un jour" aria-label="Plus un jour">
+                <ArrowRightIcon />
+              </Tooltip>
             </Button>
           </Flex>
         </Box>
@@ -207,7 +221,7 @@ const CalendarDashboardMedecin = () => {
           onClose={onClose}
           isOpen={isOpen}
           refetchTask={refetchTask}
-          medecin_id={user.id}
+          medecin_id={id}
           setTask={setTask}
           end={end}
         />

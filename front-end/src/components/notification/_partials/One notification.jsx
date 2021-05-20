@@ -48,8 +48,8 @@ const OneNotification = (props) => {
             notif.is_read = 1;
           }
         }}
-        color={mode("gray.900", "gray.100")}
-        bgColor={notif.is_read == 1 ? `` : mode("gray.50", "gray.500")}
+        color={mode("green.900", "gray.100")}
+        bgColor={notif.is_read == 1 ? `` : mode("green.50", "gray.500")}
       >
         <Box float="right" fontSize="10px" colorScheme="red">
           <IconButton
