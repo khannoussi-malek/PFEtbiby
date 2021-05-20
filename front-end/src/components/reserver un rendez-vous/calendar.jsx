@@ -1,7 +1,7 @@
 import { Box, Center, Grid, GridItem } from "@chakra-ui/layout";
 import { useColorModeValue as mode } from "@chakra-ui/react";
 import { DragDropContext } from "react-beautiful-dnd";
-import TimeElementReserve from "./calendar/timeElement";
+import TimeElementReserve from "./calendar/timeElement/index";
 function CalendarReservePara(props) {
   const {
     usertype,

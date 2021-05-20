@@ -26,7 +26,14 @@ import { TbibyContext } from "./../../../router/context";
 const Form = (props) => {
   const toast = useToast();
   const { user } = useContext(TbibyContext);
-  const { Patient, setCurrentPatient } = props;
+  const {
+    Patient,
+    setCurrentPatient,
+    refetchPatientListe,
+    patientsWaiting,
+    setpatientsWaiting,
+  } = props;
+
   const [id, setId] = useState(0);
   const { mutate, isLoading } = useCreateConsultation({
     onError: (error) => {
@@ -39,6 +46,9 @@ const Form = (props) => {
       });
     },
     onSuccess: (res) => {
+      patientsWaiting.splice(patientsWaiting.indexOf(Patient), 1);
+      setpatientsWaiting([...patientsWaiting]);
+      refetchPatientListe();
       setCurrentPatient({});
     },
   });

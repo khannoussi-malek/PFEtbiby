@@ -21,7 +21,7 @@ const log = () => {
         <Box>
           <Box>
             <Image
-              w={["140px", "275px"]}
+              maxW={["140px", "140px", "140px", "275px"]}
               // maxWidth="140px"
               m="auto"
               src="./logo192.png"

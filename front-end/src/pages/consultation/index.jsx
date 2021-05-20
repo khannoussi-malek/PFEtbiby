@@ -114,6 +114,9 @@ const Consultation = () => {
             <Form
               setCurrentPatient={setCurrentPatient}
               Patient={currentPatient}
+              refetchPatientListe={refetch}
+              patientsWaiting={patientsWaiting}
+              setpatientsWaiting={setpatientsWaiting}
             />
           </Box>
         </Box>
