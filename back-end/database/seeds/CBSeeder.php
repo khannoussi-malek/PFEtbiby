@@ -21,11 +21,73 @@ class CBSeeder extends Seeder
         $this->call('CmsEmailTemplates');
         $this->call('cms_apicustom');
         $this->call('cms_apikey');
+        $this->call('cms_menusseeder');
 
         $this->command->info('Updating the data completed !');
     }
 }
 
+class cms_menusseeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('cms_menus')->insert([
+            'created_at' => date('Y-m-d H:i:s'),
+            'name' => "patient",
+            'type' => "Route",
+            'path' => "AdminPatientControllerGetIndex",
+            'icon' => "fa fa-child",
+            'parent_id' => 0,
+            'is_active' => 1,
+            'is_dashboard' => 0,
+            'id_cms_privileges' => 1,
+            'sorting' => 1,
+        ]);
+        DB::table('cms_menus')->insert([
+            'created_at' => date('Y-m-d H:i:s'),
+            'name' => "secrétaire",
+            'type' => "Route",
+            'path' => "AdminSecrétaireControllerGetIndex",
+            'icon' => "fa fa-user-plus",
+            'parent_id' => 0,
+            'is_active' => 1,
+            'is_dashboard' => 0,
+            'id_cms_privileges' => 1,
+            'sorting' => 2,
+        ]);
+        DB::table('cms_menus')->insert([
+            'created_at' => date('Y-m-d H:i:s'),
+            'name' => "patient",
+            'type' => "Route",
+            'path' => "AdminPatientControllerGetIndex",
+            'icon' => "fa fa-child",
+            'parent_id' => 0,
+            'is_active' => 1,
+            'is_dashboard' => 0,
+            'id_cms_privileges' => 1,
+            'sorting' => 3,
+        ]);
+
+
+        
+        DB::table('cms_menus_privileges')->insert([
+            'id_cms_menus' => 1,
+            'id_cms_privileges' => 1,
+            
+        ]);
+        DB::table('cms_menus_privileges')->insert([
+            'id_cms_menus' => 2,
+            'id_cms_privileges' => 1,
+            
+        ]);
+        DB::table('cms_menus_privileges')->insert([
+            'id_cms_menus' => 3,
+            'id_cms_privileges' => 1,
+            
+        ]);
+    }
+
+}
 class cms_apicustom extends seeder {
     public function run()
     {
@@ -1140,6 +1202,41 @@ class Cms_modulsSeeder extends Seeder
                 'path' => 'logs',
                 'table_name' => 'cms_logs',
                 'controller' => 'LogsController',
+                'is_protected' => 1,
+                'is_active' => 1,
+            ],
+            [
+
+                'created_at' => date('Y-m-d H:i:s'),
+                'name' => 'médecin',
+                'icon' => 'fa fa-user-md',
+                'path' => 'cms_users',
+                'table_name' => 'cms_users',
+                'controller' => 'AdminCmsUsers1Controller',
+                'is_protected' => 1,
+                'is_active' => 1,
+            ],
+            
+            [
+
+                'created_at' => date('Y-m-d H:i:s'),
+                'name' => 'secrétaire',
+                'icon' => 'fa fa-user-plus',
+                'path' => 'secretaire14',
+                'table_name' => 'secretaire',
+                'controller' => 'AdminSecrétaireController',
+                'is_protected' => 1,
+                'is_active' => 1,
+            ],
+            
+            [
+
+                'created_at' => date('Y-m-d H:i:s'),
+                'name' => 'patient',
+                'icon' => 'fa fa-child',
+                'path' => 'relation',
+                'table_name' => 'relation',
+                'controller' => 'AdminPatientController',
                 'is_protected' => 1,
                 'is_active' => 1,
             ],
