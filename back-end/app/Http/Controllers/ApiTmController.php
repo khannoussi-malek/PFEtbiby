@@ -101,7 +101,8 @@
 					->orwhere('cms_users.email', 'LIKE', '%'.$postdata['search'].'%')
 					->orwhere('cms_users.cin', 'LIKE', '%'.$postdata['search'].'%')
 					->select('cms_users.id',DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'),'domaine.nom as domaineName','medecin.adresse_physique','cms_users.sexes','cms_users.telephone','cms_users.photo','cms_users.email','cms_users.date_naissance')
-					->paginate(10);}
+					->paginate(10);
+				}
 				}
 				
 		    }

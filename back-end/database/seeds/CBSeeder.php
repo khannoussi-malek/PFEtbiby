@@ -27,67 +27,6 @@ class CBSeeder extends Seeder
     }
 }
 
-class cms_menusseeder extends Seeder
-{
-    public function run()
-    {
-        DB::table('cms_menus')->insert([
-            'created_at' => date('Y-m-d H:i:s'),
-            'name' => "patient",
-            'type' => "Route",
-            'path' => "AdminPatientControllerGetIndex",
-            'icon' => "fa fa-child",
-            'parent_id' => 0,
-            'is_active' => 1,
-            'is_dashboard' => 0,
-            'id_cms_privileges' => 1,
-            'sorting' => 1,
-        ]);
-        DB::table('cms_menus')->insert([
-            'created_at' => date('Y-m-d H:i:s'),
-            'name' => "secrétaire",
-            'type' => "Route",
-            'path' => "AdminSecrétaireControllerGetIndex",
-            'icon' => "fa fa-user-plus",
-            'parent_id' => 0,
-            'is_active' => 1,
-            'is_dashboard' => 0,
-            'id_cms_privileges' => 1,
-            'sorting' => 2,
-        ]);
-        DB::table('cms_menus')->insert([
-            'created_at' => date('Y-m-d H:i:s'),
-            'name' => "patient",
-            'type' => "Route",
-            'path' => "AdminPatientControllerGetIndex",
-            'icon' => "fa fa-child",
-            'parent_id' => 0,
-            'is_active' => 1,
-            'is_dashboard' => 0,
-            'id_cms_privileges' => 1,
-            'sorting' => 3,
-        ]);
-
-
-        
-        DB::table('cms_menus_privileges')->insert([
-            'id_cms_menus' => 1,
-            'id_cms_privileges' => 1,
-            
-        ]);
-        DB::table('cms_menus_privileges')->insert([
-            'id_cms_menus' => 2,
-            'id_cms_privileges' => 1,
-            
-        ]);
-        DB::table('cms_menus_privileges')->insert([
-            'id_cms_menus' => 3,
-            'id_cms_privileges' => 1,
-            
-        ]);
-    }
-
-}
 class cms_apicustom extends seeder {
     public function run()
     {
@@ -719,6 +658,7 @@ class cms_apicustom extends seeder {
                         'responses' => 'a:0:{}',
                     ]);
                 }
+            }
         
         
     }
@@ -1271,3 +1211,64 @@ class Cms_usersSeeder extends Seeder
     }
 }
 
+class cms_menusseeder extends seeder
+{
+    public function run()
+    {
+        DB::table('cms_menus')->insert([
+            'created_at' => date('Y-m-d H:i:s'),
+            'name' => "patient",
+            'type' => "Route",
+            'path' => "AdminPatientControllerGetIndex",
+            'icon' => "fa fa-child",
+            'parent_id' => 0,
+            'is_active' => 1,
+            'is_dashboard' => 0,
+            'id_cms_privileges' => 1,
+            'sorting' => 1,
+        ]);
+        DB::table('cms_menus')->insert([
+            'created_at' => date('Y-m-d H:i:s'),
+            'name' => "secrétaire",
+            'type' => "Route",
+            'path' => "AdminSecrétaireControllerGetIndex",
+            'icon' => "fa fa-user-plus",
+            'parent_id' => 0,
+            'is_active' => 1,
+            'is_dashboard' => 0,
+            'id_cms_privileges' => 1,
+            'sorting' => 2,
+        ]);
+        DB::table('cms_menus')->insert([
+            'created_at' => date('Y-m-d H:i:s'),
+            'name' => "patient",
+            'type' => "Route",
+            'path' => "AdminPatientControllerGetIndex",
+            'icon' => "fa fa-child",
+            'parent_id' => 0,
+            'is_active' => 1,
+            'is_dashboard' => 0,
+            'id_cms_privileges' => 1,
+            'sorting' => 3,
+        ]);
+
+
+        
+        DB::table('cms_menus_privileges')->insert([
+            'id_cms_menus' => 1,
+            'id_cms_privileges' => 1,
+            
+        ]);
+        DB::table('cms_menus_privileges')->insert([
+            'id_cms_menus' => 2,
+            'id_cms_privileges' => 1,
+            
+        ]);
+        DB::table('cms_menus_privileges')->insert([
+            'id_cms_menus' => 3,
+            'id_cms_privileges' => 1,
+            
+        ]);
+    }
+
+}
