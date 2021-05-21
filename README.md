@@ -1,6 +1,6 @@
 # tbiby 
 PFE iset djerba
-![Image of Yaktocat](https://raw.githubusercontent.com/khannoussi-malek/tbiby/master/front-end/public/image/icons/logo192.png?token=AOSS3CPEGZ2TV3WR22JSXPLAWFF4U)
+![Logo of Tbiby](https://raw.githubusercontent.com/khannoussi-malek/tbiby/master/front-end/public/image/icons/logo192.png?token=AOSS3CPEGZ2TV3WR22JSXPLAWFF4U)
 
 to install the back end
 ```
