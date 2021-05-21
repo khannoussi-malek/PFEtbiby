@@ -3,7 +3,7 @@ import axios from "./../";
 
 export const useNotification = ({ params, ...config } = {}) => {
   return useQuery(
-    ["notification", params],
+    "notification",
     () => axios.get("notification", { params }),
     config
   );

@@ -60,7 +60,7 @@ const TaskReserve = (props) => {
             px={2}
             children={
               <Box color="gray.800" fontSize="17px">
-                taskvalue.nomprenom
+                {taskvalue.nomprenom}
               </Box>
             }
           />

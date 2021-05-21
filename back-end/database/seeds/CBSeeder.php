@@ -1150,10 +1150,10 @@ class Cms_modulsSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'médecin',
                 'icon' => 'fa fa-user-md',
-                'path' => 'cms_users',
+                'path' => 'medecin',
                 'table_name' => 'cms_users',
                 'controller' => 'AdminCmsUsers1Controller',
-                'is_protected' => 1,
+                'is_protected' => 0,
                 'is_active' => 1,
             ],
             
@@ -1162,13 +1162,12 @@ class Cms_modulsSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'secrétaire',
                 'icon' => 'fa fa-user-plus',
-                'path' => 'secretaire14',
+                'path' => 'secretaire',
                 'table_name' => 'secretaire',
                 'controller' => 'AdminSecrétaireController',
-                'is_protected' => 1,
+                'is_protected' => 0,
                 'is_active' => 1,
-            ],
-            
+            ],            
             [
 
                 'created_at' => date('Y-m-d H:i:s'),
@@ -1177,7 +1176,7 @@ class Cms_modulsSeeder extends Seeder
                 'path' => 'relation',
                 'table_name' => 'relation',
                 'controller' => 'AdminPatientController',
-                'is_protected' => 1,
+                'is_protected' => 0,
                 'is_active' => 1,
             ],
         ];
@@ -1217,10 +1216,10 @@ class cms_menusseeder extends seeder
     {
         DB::table('cms_menus')->insert([
             'created_at' => date('Y-m-d H:i:s'),
-            'name' => "patient",
+            'name' => "médecin",
             'type' => "Route",
-            'path' => "AdminPatientControllerGetIndex",
-            'icon' => "fa fa-child",
+            'path' => "AdminCmsUsers1ControllerGetIndex",
+            'icon' => "fa fa-user-md",
             'parent_id' => 0,
             'is_active' => 1,
             'is_dashboard' => 0,

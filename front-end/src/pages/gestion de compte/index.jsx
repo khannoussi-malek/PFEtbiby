@@ -313,11 +313,7 @@ const Accountmanagement = () => {
                 <Avatar
                   size="xl"
                   name={gcInfo.nom + " " + gcInfo.prenom}
-                  src={
-                    !!gcInfo.photo
-                      ? `${link}${gcInfo.photo}`
-                      : `${link}${userImage}`
-                  }
+                  src={!!gcInfo.photo ? `${link}${gcInfo.photo}` : ``}
                 />
                 <Box>
                   <HStack spacing="5">

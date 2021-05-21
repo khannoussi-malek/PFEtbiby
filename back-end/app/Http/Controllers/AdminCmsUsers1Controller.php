@@ -80,7 +80,7 @@
 	        | 
 	        */
 	        $this->sub_module = array();
-			$this->sub_module[] = ['label'=>'secretaire','path'=>'secretaire14','foreign_key'=>'medecin_id','button_color'=>'success','button_icon'=>'fa fa-user-plus'];
+			$this->sub_module[] = ['label'=>'secretaire','path'=>'secretaire','foreign_key'=>'medecin_id','button_color'=>'success','button_icon'=>'fa fa-user-plus'];
 			$this->sub_module[] = ['label'=>'patient','path'=>'relation','foreign_key'=>'medecin_id','button_color'=>'info','button_icon'=>'fa fa-child'];
 
 
