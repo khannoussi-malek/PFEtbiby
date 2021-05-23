@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 
 import { MyField } from "./../../../components/formInput";
-import { FieldGroup } from "./../../../components/FieldGroup/index";
+import { FieldGroup } from "./../../../components/FieldGroup";
 
 const GestiondeCopmtePatient = (props) => {
   const { gcInfo, age } = props;

@@ -15,12 +15,12 @@ const DescriptionMobile = (props) => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
 
   return isMobile ? (
-    <Text fontSize="20px" color={mode("gray.700", "gray.50")} m={1}>
+    <Text fontSize="20px" color={mode("green.700", "gray.50")} m={1}>
       <Popover>
         <PopoverTrigger>
           <Text
             textAlign="center"
-            bgColor={mode("gray.100", "gray.500")}
+            bgColor={mode("green.100", "gray.500")}
             _hover={{
               background: mode("blue.100", "gray.600"),
             }}

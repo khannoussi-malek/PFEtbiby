@@ -26,9 +26,18 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-				$result = DB::table('liste_actes')
-				->select('id','code','designation','price')
-				->paginate(10);
+				if(!empty($postdata['recherche'])&& $postdata['recherche']!=""){
+					$search =$postdata['recherche'];
+					$result = DB::table('liste_actes')
+					->select('id','code','designation','price')
+					->where('designation', 'like', "%$search%")
+					->orwhere('code', 'like', "%$search%")
+					->paginate(10);
+				}else{
+					$result = DB::table('liste_actes')->select('id','code','designation','price')
+					->paginate(10);
+
+				}
 		    }
 
 		}

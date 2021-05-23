@@ -1,13 +1,29 @@
-import React, { useContext, useState } from "react";
-import { TbibyContext } from "./../../router/context/index";
+import React, { useContext, useState, useEffect } from "react";
+import { TbibyContext } from "./../../router/context";
 import EditerCertificat from "./../../components/Certificat/editer";
 import { TableContent } from "./../../components/table/TableContent";
-import { useGetListCertificat } from "./../../services/api/certificat/index";
+import { useGetListCertificat } from "./../../services/api/certificat";
 import { TablePagination } from "./../../components/table/TablePagination";
 import CertificatUpdate from "./../../components/Certificat/CertificatUpdate";
 
-import { useToast, Center, Box, Spinner } from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/hooks";
+import {
+  useToast,
+  Center,
+  Box,
+  Spinner,
+  Button,
+  ButtonGroup,
+  FormControl,
+  FormLabel,
+  Grid,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Stack,
+  Tooltip,
+} from "@chakra-ui/react";
+import { RiFolderUserLine } from "react-icons/ri";
+import { BsSearch } from "react-icons/bs";
 
 const CertificatPage = () => {
   const { user } = useContext(TbibyContext);
@@ -17,8 +33,10 @@ const CertificatPage = () => {
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
   const toast = useToast();
+  const [inputValue, setInputValue] = useState("");
 
-  const params = { id: user.id, page };
+  const id = user.idMedecin || user.id;
+  const [params, setParams] = useState({ id: id, page });
   const { isLoading, refetch } = useGetListCertificat({
     params,
     onError: (error) => {
@@ -37,6 +55,9 @@ const CertificatPage = () => {
       setContent((!!res.data.data && res.data.data) || []);
     },
   });
+  useEffect(() => {
+    refetch();
+  }, [params]);
   const [fntable, setFntable] = useState({
     fn: (data) => (
       <CertificatUpdate
@@ -64,6 +85,49 @@ const CertificatPage = () => {
           color="red.500"
         />
         <Box display={isLoading ? `none` : ``}>
+          <Stack
+            pt={10}
+            spacing="4"
+            direction={{ base: "column", md: "row" }}
+            justify="space-between"
+          >
+            <Grid templateColumns="repeat(2, 1fr)" w="100%" gap={2}>
+              <Tooltip
+                label={`Écrivez le nom du certificat que vous avez recherché sur ce`}
+                aria-label={`Écrivez le nom du certificat que vous avez recherché sur ce`}
+              >
+                <FormControl w="100%" id="search">
+                  <InputGroup size="sm">
+                    <FormLabel srOnly>Filtrer:</FormLabel>
+                    <InputLeftElement pointerEvents="none" color="gray.400">
+                      <BsSearch />
+                    </InputLeftElement>
+                    <Input
+                      rounded="base"
+                      type="search"
+                      onChange={(value) => setInputValue(value.target.value)}
+                      placeholder="Filtrer"
+                    />
+                  </InputGroup>
+                </FormControl>
+              </Tooltip>
+
+              <Tooltip label={`Rechercher 🔎`} aria-label={`Rechercher 🔎`}>
+                <ButtonGroup size="sm" variant="outline">
+                  <Button
+                    w="100%"
+                    onClick={() => {
+                      setParams({ id: id, page, recherche: inputValue });
+                    }}
+                    iconSpacing="1"
+                    leftIcon={<RiFolderUserLine fontSize="1.25em" />}
+                  >
+                    {"Chercher"}
+                  </Button>
+                </ButtonGroup>
+              </Tooltip>
+            </Grid>
+          </Stack>
           <TableContent header={header} content={content} fntable={fntable} />
           <TablePagination
             total={total}

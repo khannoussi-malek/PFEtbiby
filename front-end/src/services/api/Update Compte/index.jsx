@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "react-query";
 import axios from "..";
-import { link } from "./../index";
+import { link } from "./..";
 const headers = {
   // "Content-type": "multipart/form-data",
 };

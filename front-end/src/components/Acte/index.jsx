@@ -74,7 +74,7 @@ export const Acte = (props) => {
           float="right"
         />
       </AccordionButton>
-      <AccordionPanel bgColor={mode("gray.50", "gray.700")} pb={4}>
+      <AccordionPanel bgColor={mode("green.50", "gray.700")} pb={4}>
         <Select2
           label="Sélectionner une acte"
           data={selectValue}

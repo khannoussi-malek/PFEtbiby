@@ -26,7 +26,15 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-				$result = DB::table('medicament')->select('*')->paginate(10);
+				if(!empty($postdata['recherche'])){
+					$search =$postdata['recherche'];
+					$result = DB::table('medicament')->select('*')
+					->where('type', 'like', "%$search%")
+					->paginate(10);
+				}else{
+					$result = DB::table('medicament')->select('*')->paginate(10);
+
+				}
 		    }
 
 		}

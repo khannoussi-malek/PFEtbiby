@@ -46,7 +46,7 @@ const PatientsAtTheDoctor = (props) => {
         {patientsWaiting.map((data) => (
           <Box
             _hover={{ cursor: "pointer" }}
-            bg={mode("gray.100", "gray.800")}
+            bg={mode("green.100", "gray.800")}
             key={`${data.id}`}
             borderRadius="20px"
             textAlign="center"

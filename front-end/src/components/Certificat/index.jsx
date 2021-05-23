@@ -14,8 +14,8 @@ import EditerCertificat from "./editer";
 import { useGetCertificat } from "../../services/api/certificat";
 import { useToast, useColorModeValue as mode } from "@chakra-ui/react";
 import SunEditor from "suneditor-react";
-import { TbibyContext } from "./../../router/context/index";
-import { usePatentInfo } from "./../../services/api/patient information/index";
+import { TbibyContext } from "./../../router/context";
+import { usePatentInfo } from "./../../services/api/patient information";
 import { RiPrinterFill } from "react-icons/ri";
 import { IconButton } from "@chakra-ui/button";
 import InputSunEditor from "../formInput/SunEditorInput";
@@ -161,7 +161,7 @@ export const Certificat = (props) => {
           float="right"
         />
       </AccordionButton>
-      <AccordionPanel bgColor={mode("gray.50", "gray.700")} pb={4}>
+      <AccordionPanel bgColor={mode("green.50", "gray.700")} pb={4}>
         <EditerCertificat user={user} />
 
         <Box py={2}>

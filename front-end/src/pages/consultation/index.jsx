@@ -1,19 +1,21 @@
 import { Box, Center, Text, SimpleGrid } from "@chakra-ui/layout";
 import React, { useContext, useState, useRef } from "react";
 import { useListOfThePatientInConsultation } from "../../services/api/consultation";
-import { TbibyContext } from "./../../router/context/index";
+import { TbibyContext } from "./../../router/context";
 import {
   useToast,
   Spinner,
   Textarea,
   useColorModeValue as mode,
+  Button,
 } from "@chakra-ui/react";
 import { useDeleteReservation } from "./../../services/api/reservation";
 import { useSendPatientToWaitingRoom } from "./../../services/api/manageTheRoom";
 import PatientsAtTheDoctor from "../../components/patients at the doctor";
 import GeneralPatientsInformation from "../../components/general patients information";
-import Antecedants from "./../../components/Antecedants/index";
+import Antecedants from "./../../components/Antecedants";
 import Form from "./_partials/form";
+import { CloseIcon } from "@chakra-ui/icons";
 
 const Consultation = () => {
   const toast = useToast();
@@ -61,13 +63,10 @@ const Consultation = () => {
         refetch();
       },
     });
-  console.log(currentPatient);
   return (
     <React.Fragment>
       <Spinner
-        display={
-          !isLoading && !DeleteIsLoading && !SPTWRIsLoading ? `none` : ``
-        }
+        display={isLoading || DeleteIsLoading || SPTWRIsLoading ? `` : `none`}
         size="xl"
         m="auto"
         color="red.500"
@@ -88,19 +87,29 @@ const Consultation = () => {
       <Box pb={5} display={!!currentPatient.nomprenom == "" ? `none` : `block`}>
         <Center
           p={5}
-          bg={mode("gray.100", "gray.800")}
+          bg={mode("green.100", "gray.800")}
           mx="auto"
           boxShadow="xl"
           w={{ base: "100%", md: "95%" }}
           borderRadius="20px"
         >
           <Text fontSize="xl"> {currentPatient.nomprenom}</Text>
+          <Button
+            position="relative"
+            p={0}
+            m={0}
+            left={["5vw", "20vw", "10vw", "20vw"]}
+            colorScheme="green"
+            onClick={() => setCurrentPatient({})}
+          >
+            <CloseIcon w={4} h={4} />
+          </Button>
         </Center>
 
         <Box
           mx="auto"
           boxShadow="lg"
-          bg={mode("gray.50", "gray.800")}
+          bg={mode("green.50", "gray.800")}
           w={{ base: "90%", md: "92%" }}
         >
           <SimpleGrid minChildWidth="100px" spacing="10px">
@@ -116,6 +125,9 @@ const Consultation = () => {
             <Form
               setCurrentPatient={setCurrentPatient}
               Patient={currentPatient}
+              refetchPatientListe={refetch}
+              patientsWaiting={patientsWaiting}
+              setpatientsWaiting={setpatientsWaiting}
             />
           </Box>
         </Box>

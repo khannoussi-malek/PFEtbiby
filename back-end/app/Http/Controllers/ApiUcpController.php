@@ -6,6 +6,7 @@
 		use CRUDBooster;
         use Storage;
 		use Illuminate\Support\Facades\Hash;
+		use App\Http\Controllers\Privilege as Privilege;
 
 		class ApiUcpController extends \crocodicstudio\crudbooster\controllers\ApiController {
 
@@ -34,7 +35,6 @@
                 if(!empty($postdata['telephone'])&&$postdata['telephone']!="null"&&$postdata['telephone']!="undefined"){
                     $users = DB::table('cms_users')->select('telephone')->where('id','!=',$postdata['id'])
                     ->where('telephone',$postdata['telephone'])->first();
-                    dd($postdata['telephone']);
                     if($users==null){
                     $tableupdate['telephone']=$postdata['telephone'];
                     }
@@ -86,21 +86,21 @@
                 if($postdata['id_cms_privileges']=="patient"){
                   $patient= [];
                     if($postdata['parent']!="null"&&!empty($postdata['parent'])&&$postdata['parent']!="undefined"){
-                    $users = DB::table('cms_users')->select('id')->where('email',$postdata['parent'] )->orWhere('telephone',$postdata['parent'])
-                    ->orWhere('cin',$postdata['parent'])
-                    ->first();
-                    if($users->id!=null){
-                        $patient["parent"]=$users->id;
-                    }else{
-                        $error["parent"]="idantifiant parent introvables";
-                    }
-                    
+                        $users = DB::table('cms_users')->select('id')->where('email',$postdata['parent'] )->orWhere('telephone',$postdata['parent'])
+                        ->orWhere('cin',$postdata['parent'])
+                        ->first();
+                        if($users->id!=null){
+                            $patient["parent"]=$users->id;
+                        }else{
+                            $error["parent"]="idantifiant parent introvables";
                         }
+                    
+                    }
                     if($postdata['Code_APCI']!="null"&&!empty($postdata['Code_APCI'])&&$postdata['Code_APCI']!="undefined"){
 
                             $patient["Code_APCI"]=$postdata['Code_APCI'];
                         
-                            }
+                    }
 
                     if($postdata['adresse']!="null"&&!empty($postdata['adresse'])&&$postdata['adresse']!="undefined"){
 
@@ -138,7 +138,7 @@
                                 DB::table('secretaire')->select('cms_users_id')->where('medecin_id',$postdata['id'])->delete();
                             }
                         }else{
-                            $NewSecretaire = DB::table('cms_users')->select('id')->where('email',$postdata['secretaire'] )->orWhere('telephone',$postdata['secretaire'])->orWhere('cin',$postdata['secretaire'])->('id_cms_privileges',Privilege::PrivilegeID('patient'))->first();
+                            $NewSecretaire = DB::table('cms_users')->where('email',$postdata['secretaire'] )->orWhere('telephone',$postdata['secretaire'])->orWhere('cin',$postdata['secretaire'])->where('id_cms_privileges',Privilege::PrivilegeID('patient'))->select('id')->first();
 
                             if(!empty($NewSecretaire)){
                                 $sec=DB::table('secretaire')->select('cms_users_id')->where('medecin_id',$postdata['id'])->first();
@@ -177,7 +177,7 @@
                     $update=DB::table('cms_users')
                     ->where('id', $postdata['id'])
                     ->update($tableupdate);
-                    if($postdata['id_cms_privileges']=="patient"){
+                    if($postdata['id_cms_privileges']=="patient" && $patient!=[]){
                         $update=DB::table('patient')
                     ->where('cms_users_id', $postdata['id'])
                     ->update($patient);
@@ -202,6 +202,7 @@
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
                 $result=$postdata;
+
                 
               
 

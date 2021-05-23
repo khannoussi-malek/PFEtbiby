@@ -18,5 +18,5 @@ export const useRelationListe = ({ params, ...config } = {}) => {
   );
 };
 export const useRelationPM = ({ params, ...config } = {}) => {
-  return useQuery(["pm", params], () => axios.get("pm", { params }), config);
+  return useQuery("pm", () => axios.get("pm", { params }), config);
 };

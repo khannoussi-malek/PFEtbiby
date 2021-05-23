@@ -9,10 +9,10 @@ import { TbibyContext } from "./../../../router/context";
 import MonMedecin from "./../../Mon medecin";
 import Consultation from "../../consultation";
 import CertificatPage from "../../Certificat";
-import MonRendezvous from "./../../Mon rendez vous/index";
+import MonRendezvous from "./../../Mon rendez vous";
 import TrouverUnMedecin from "../../Trouver un médecin";
 import ListeDact from "../../ListeDact";
-import ListeMedicament from "./../../Liste Medicament/index";
+import ListeMedicament from "./../../Liste Medicament";
 const ActivityArea = () => {
   const { user } = useContext(TbibyContext);
 

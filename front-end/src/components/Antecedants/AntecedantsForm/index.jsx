@@ -42,7 +42,7 @@ export const AntecedantsForm = (props) => {
           float="right"
         />
       </AccordionButton>
-      <AccordionPanel bgColor={mode("gray.50", "gray.700")} pb={4}>
+      <AccordionPanel bgColor={mode("green.50", "gray.700")} pb={4}>
         <MyField name={`${name}.type`} label="type de antecedant" />
         <TextareaForm
           name={`${name}.description`}

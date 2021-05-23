@@ -25,7 +25,7 @@ const TimeElementReserve = (props) => {
       h="160px"
       fontSize="20px"
       border="1px"
-      borderColor={mode("gray.200", "gray.800")}
+      borderColor={mode("green.200", "gray.800")}
     >
       <Grid
         h="100%"
@@ -46,9 +46,9 @@ const TimeElementReserve = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={mode("gray.50", "gray.600")}
+              bgColor={mode("green.50", "gray.600")}
               // bgColor={snapshot.isDraggingOver ? "green.100" : `gray.50`}
-              color={mode("gray.800", "gray.300")}
+              color={mode("green.800", "gray.300")}
               maxH="40px"
               onClick={(event) =>
                 addtask(
@@ -111,9 +111,9 @@ const TimeElementReserve = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={mode("gray.100", "gray.700")}
+              bgColor={mode("green.100", "gray.700")}
               maxH="40px"
-              color={mode("gray.800", "gray.300")}
+              color={mode("green.800", "gray.300")}
               onClick={(event) =>
                 addtask(
                   event,
@@ -175,9 +175,9 @@ const TimeElementReserve = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={mode("gray.200", "gray.800")}
+              bgColor={mode("green.200", "gray.800")}
               maxH="40px"
-              color={mode("gray.800", "gray.300")}
+              color={mode("green.800", "gray.300")}
               onClick={(event) =>
                 addtask(
                   event,
@@ -239,8 +239,8 @@ const TimeElementReserve = (props) => {
             <GridItem
               {...provided.droppableProps}
               ref={provided.innerRef}
-              bgColor={mode("gray.300", "gray.900")}
-              color={mode("gray.800", "gray.300")}
+              bgColor={mode("green.300", "gray.900")}
+              color={mode("green.800", "gray.300")}
               maxH="40px"
               onClick={(event) =>
                 addtask(

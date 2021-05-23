@@ -1,4 +1,4 @@
-import { useMedecinInfo } from "./../../services/api/Medecin information/index";
+import { useMedecinInfo } from "./../../services/api/Medecin information";
 import { useToast, Text, Button, Avatar } from "@chakra-ui/react";
 import { useState } from "react";
 import { MdCall } from "react-icons/md";
@@ -30,7 +30,11 @@ const InformationsSurLeMedecin = (props) => {
     <React.Fragment>
       <Text>{medecinInfo.nom}</Text>
       {medecinInfo.photo && (
-        <Avatar size="xl" src={`${link}${medecinInfo.photo}`} />
+        <Avatar
+          size="xl"
+          name={medecinInfo.nom}
+          src={`${link}${medecinInfo.photo}`}
+        />
       )}
       <Text display="block" as="a" href={"tel:" + medecinInfo.telephone}>
         <Button

@@ -20,7 +20,9 @@ export const SidebarLink = (props) => {
       marginEnd="2"
       fontSize="sm"
       color="white"
-      bgColor={pathname == "/dashboard/" + linkto ? `green.700` : ``}
+      bgColor={
+        pathname == "/dashboard/" + linkto ? mode("green.300", "gray.600") : ``
+      }
       onClick={() => history.push("/dashboard/" + linkto)}
       display="block"
       px="3"

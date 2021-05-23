@@ -12,7 +12,7 @@ import { Route } from "react-router";
 const log = () => {
   return (
     <Box
-      bg={mode("gray.50", "inherit")}
+      bg={mode("green.50", "inherit")}
       minH="100vh"
       py="12"
       px={{ sm: "6", lg: "8" }}
@@ -21,7 +21,7 @@ const log = () => {
         <Box>
           <Box>
             <Image
-              w={["140px", "275px"]}
+              maxW={["140px", "140px", "140px", "275px"]}
               // maxWidth="140px"
               m="auto"
               src="./logo192.png"

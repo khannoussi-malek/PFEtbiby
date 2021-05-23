@@ -17,7 +17,7 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import { useForm, Formiz } from "@formiz/core";
 import { Box } from "@chakra-ui/layout";
 import { MyField } from "../formInput";
-import { useUpdateCertificatType } from "./../../services/api/certificat/index";
+import { useUpdateCertificatType } from "./../../services/api/certificat";
 import { useToast, Spinner, useColorModeValue as mode } from "@chakra-ui/react";
 import { BiSync } from "react-icons/bi";
 import { useBreakpointValue } from "@chakra-ui/media-query";
@@ -68,11 +68,11 @@ const CertificatUpdate = (props) => {
     <React.Fragment>
       <Button
         ref={btnRef}
-        // colorScheme={mode("teal", "gray.50")}
+        colorScheme={mode("green", "gray")}
         // bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >
-        {isMobile ? <BiSync fontSize="30px" /> : `jour un certificat`}
+        {isMobile ? <BiSync fontSize="30px" /> : `Mettre à jour`}
       </Button>
 
       <Drawer
@@ -83,7 +83,7 @@ const CertificatUpdate = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
-          <DrawerContent bgColor={mode("gray.50", "gray.700")}>
+          <DrawerContent bgColor={mode("green.50", "gray.700")}>
             <DrawerCloseButton />
             <DrawerHeader>Créez votre type de certificat</DrawerHeader>
             <DrawerBody>

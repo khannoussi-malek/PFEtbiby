@@ -15,8 +15,6 @@ import {
   Button,
   Spinner,
   Center,
-  Image,
-  useColorModeValue as mode,
   VStack,
   Avatar,
   HStack,
@@ -25,7 +23,6 @@ import {
   Divider,
   useToast,
 } from "@chakra-ui/react";
-import { HiCloudUpload } from "react-icons/hi";
 import { InputDate } from "./../../components/formInput/date";
 
 import { MyField } from "./../../components/formInput";
@@ -33,22 +30,22 @@ import { MyFieldPassword } from "./../../components/formInput/password";
 import { Formiz, useForm } from "@formiz/core";
 import GestiondeCopmtePatient from "./gestion compte patient";
 import GestiondeCopmteMedecin from "./gestion compte medecin";
-import { TbibyContext } from "./../../router/context/index";
+import { TbibyContext } from "./../../router/context";
 import {
   useRemovePhoto,
   useUpdateComptePatient,
-} from "./../../services/api/Update Compte/index";
+} from "./../../services/api/Update Compte";
 //import { useUpdateCompteMedecin } from "./../../services/api/Update Compte/update_compte_medecin";
 import { ImageFile } from "./../../components/formInput/image";
-import { FieldGroup } from "./../../components/FieldGroup/index";
-import { useGestionDeCompte } from "./../../services/api/gestion de compte/index";
-import { link, userImage } from "./../../services/api/index";
-import { RiContactsBookLine } from "react-icons/ri";
+import { FieldGroup } from "./../../components/FieldGroup";
+import { useGestionDeCompte } from "./../../services/api/gestion de compte";
+import { link } from "./../../services/api";
 
 const Accountmanagement = () => {
   const [pictures, setPictures] = useState(null);
-
+  const [showpictures, setShowPictures] = useState(null);
   const { user, setUser } = useContext(TbibyContext);
+
   const { mutate, isLoading } = useUpdateComptePatient({
     onError: (error) => {
       toast({
@@ -61,6 +58,9 @@ const Accountmanagement = () => {
     },
     onSuccess: (res) => {
       gcRefetch();
+      let userValue = { ...user, ...res.data };
+      localStorage.setItem("user", JSON.stringify(userValue));
+      setUser(userValue);
       let ch = "";
       for (const [key, value] of Object.entries(res.data)) {
         ch = ch + `|  ${value} |  `;
@@ -100,6 +100,8 @@ const Accountmanagement = () => {
     },
     onSuccess: (res) => {
       console.log(res);
+      console.log("user");
+      console.log(user);
       let newUser = { ...res.data };
       newUser.isAuthenticated = true;
       newUser.fonctionnalite = user.fonctionnalite;
@@ -151,7 +153,17 @@ const Accountmanagement = () => {
       ).getUTCFullYear() - 1970
     );
   };
-
+  const getBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  };
+  getBase64(pictures)
+    .then((res) => setShowPictures(res))
+    .catch((err) => console.log(err));
   return (
     <React.Fragment>
       <Spinner
@@ -314,9 +326,9 @@ const Accountmanagement = () => {
                   size="xl"
                   name={gcInfo.nom + " " + gcInfo.prenom}
                   src={
-                    !!gcInfo.photo
-                      ? `${link}${gcInfo.photo}`
-                      : `${link}${userImage}`
+                    !!showpictures
+                      ? showpictures
+                      : gcInfo.photo && `${link}${gcInfo.photo}`
                   }
                 />
                 <Box>
@@ -328,11 +340,15 @@ const Accountmanagement = () => {
                       label="photo"
                     />
                     <Button
-                      display={!!gcInfo.photo ? `block` : `none`}
+                      display={
+                        !!gcInfo.photo || !!showpictures ? `block` : `none`
+                      }
                       variant="ghost"
                       colorScheme="red"
                       onClick={() => {
-                        RMmutate({ id: user.id });
+                        (!!showpictures &&
+                          setShowPictures(null, setPictures(null))) ||
+                          RMmutate({ id: user.id });
                         gcRefetch();
                       }}
                     >

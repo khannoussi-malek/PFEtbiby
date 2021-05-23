@@ -10,11 +10,8 @@ import {
 import { Select2 } from "../../../components/formInput/select";
 import { isNumber, isPattern } from "@formiz/validations";
 import { MyField } from "./../../../components/formInput";
-import {
-  useDomaine,
-  useSousDomaine,
-} from "./../../../services/api/domaine/index";
-import { FieldGroup } from "./../../../components/FieldGroup/index";
+import { useDomaine, useSousDomaine } from "./../../../services/api/domaine";
+import { FieldGroup } from "./../../../components/FieldGroup";
 import AddDomaine from "./_partials/Domaine";
 import SousDomaine from "./_partials/SousDomaine";
 

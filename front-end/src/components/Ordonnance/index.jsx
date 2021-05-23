@@ -1,8 +1,8 @@
 import { CloseButton } from "@chakra-ui/close-button";
-import { Box, Divider } from "@chakra-ui/layout";
+import { Box } from "@chakra-ui/layout";
 import { useState } from "react";
+import { useColorModeValue as mode } from "@chakra-ui/react";
 import { Select2 } from "./../formInput/select";
-import { TextareaForm } from "./../formInput/Textarea";
 import {
   AccordionButton,
   AccordionIcon,
@@ -13,17 +13,17 @@ import { Input } from "@chakra-ui/input";
 import { EditIcon } from "@chakra-ui/icons";
 import { InputDateRange } from "./../formInput/range";
 import { MyNumberInput } from "./../formInput/numberinput";
-import { useGetListeMedicamentSelect2 } from "./../../services/api/list medicament/index";
+import { useGetListeMedicamentSelect2 } from "./../../services/api/list medicament";
 import { useToast } from "@chakra-ui/react";
-import { MyField } from "./../formInput/index";
-import AjoutMedicament from "./../medicament/index";
+import { MyField } from "./../formInput";
+import AjoutMedicament from "./../medicament";
 export const Ordonnance = (props) => {
   const { id, removeComponentsForm, name } = props;
   const toast = useToast();
   const [title, setTitle] = useState("");
   const [selectValue, setSelectValue] = useState([]);
   const [showEditTitle, setShowEditTitle] = useState(true);
-  const { isLoading, refetch } = useGetListeMedicamentSelect2({
+  const { refetch } = useGetListeMedicamentSelect2({
     onError: (error) => {
       toast({
         title: "🌐 Problème de connexion",
@@ -63,7 +63,7 @@ export const Ordonnance = (props) => {
           onChange={(e) => setTitle(e.target.value)}
         />
       </AccordionButton>
-      <AccordionPanel bgColor="gray.50" pb={4}>
+      <AccordionPanel bgColor={mode("green.50", "gray.700")} pb={4}>
         <AjoutMedicament refetch={refetch} />
 
         <InputDateRange

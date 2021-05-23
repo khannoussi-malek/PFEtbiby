@@ -48,7 +48,7 @@ const AjoutMedicament = (props) => {
     <React.Fragment>
       <Button
         ref={btnRef}
-        // colorScheme={mode("teal", "gray.50")}
+        colorScheme={mode("green", "gray")}
         // bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >
@@ -63,7 +63,7 @@ const AjoutMedicament = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
-          <DrawerContent bgColor={mode("gray.50", "gray.700")}>
+          <DrawerContent bgColor={mode("green.50", "gray.700")}>
             <DrawerCloseButton />
             <DrawerHeader>Ajouter un medicament</DrawerHeader>
             <DrawerBody>

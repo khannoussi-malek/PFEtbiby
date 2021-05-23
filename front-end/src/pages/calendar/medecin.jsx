@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { Spinner } from "@chakra-ui/react";
+import { Spinner, Tooltip } from "@chakra-ui/react";
 
 import { Box, Spacer, Flex } from "@chakra-ui/layout";
-import Calendar from "./../../components/calendar/index";
+import Calendar from "./../../components/calendar";
 import { useState, useEffect } from "react";
 import { Button } from "@chakra-ui/button";
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
@@ -12,10 +12,10 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import BookingForm from "./bookingForm";
 import { useListPatientDashboardAPI } from "../../services/api/listPatientDashboard/inde";
 import { useToast } from "@chakra-ui/react";
-import { TbibyContext } from "../../router/context/index";
-import { usePatientEntrer } from "./../../services/api/manageTheRoom/index";
+import { TbibyContext } from "../../router/context";
+import { usePatientEntrer } from "./../../services/api/manageTheRoom";
 import { useHistory } from "react-router-dom";
-import ConfirmerUnRendezVous from "./../../components/confirmer un rendez vous/index";
+import ConfirmerUnRendezVous from "./../../components/confirmer un rendez vous";
 import {
   useReservationMListe,
   useUpdateReservation,
@@ -30,30 +30,28 @@ const CalendarDashboardMedecin = () => {
   const { user } = useContext(TbibyContext);
 
   const [task, setTask] = useState([{ start: "2021-03-22T00:00" }]);
-  const params = { medecin_id: user.id };
-  const {
-    mutate: EnteredMutate,
-    isLoading: PatientEntrerIsLoading,
-  } = usePatientEntrer({
-    onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
-    },
-    onSuccess: (res) => {
-      refetchTask();
-      history.push("/dashboard/consultation");
-    },
-  });
-  const {
-    mutate: DeleteMutate,
-    isLoading: DeleteIsLoading,
-  } = useDeleteReservation({
-    onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
-    },
-    onSuccess: (res) => {
-      refetchTask();
-    },
-  });
+
+  const id = user.idMedecin || user.id;
+  const [params, setParams] = useState({ medecin_id: id });
+  const { mutate: EnteredMutate, isLoading: PatientEntrerIsLoading } =
+    usePatientEntrer({
+      onError: (error) => {
+        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      },
+      onSuccess: (res) => {
+        refetchTask();
+        history.push("/dashboard/consultation");
+      },
+    });
+  const { mutate: DeleteMutate, isLoading: DeleteIsLoading } =
+    useDeleteReservation({
+      onError: (error) => {
+        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      },
+      onSuccess: (res) => {
+        refetchTask();
+      },
+    });
 
   const { mutate, isLoading: isLoadingUpdate } = useUpdateReservation({
     onError: (error) => {
@@ -154,8 +152,14 @@ const CalendarDashboardMedecin = () => {
           }
         >
           <Flex py={2}>
-            <Button ml={2} onClick={() => addDays(date, daysView * -1)}>
-              <ArrowLeftIcon />
+            <Button
+              colorScheme="green"
+              ml={2}
+              onClick={() => addDays(date, daysView * -1)}
+            >
+              <Tooltip label="Moin un jour" aria-label="Moin un jour">
+                <ArrowLeftIcon />
+              </Tooltip>
             </Button>
             <Spacer />
             {!isMobile ? (
@@ -186,8 +190,14 @@ const CalendarDashboardMedecin = () => {
               ``
             )}
             <Spacer />
-            <Button mr={2} onClick={() => addDays(date, daysView)}>
-              <ArrowRightIcon />
+            <Button
+              colorScheme="green"
+              mr={2}
+              onClick={() => addDays(date, daysView)}
+            >
+              <Tooltip label="Plus un jour" aria-label="Plus un jour">
+                <ArrowRightIcon />
+              </Tooltip>
             </Button>
           </Flex>
         </Box>
@@ -211,7 +221,7 @@ const CalendarDashboardMedecin = () => {
           onClose={onClose}
           isOpen={isOpen}
           refetchTask={refetchTask}
-          medecin_id={user.id}
+          medecin_id={id}
           setTask={setTask}
           end={end}
         />

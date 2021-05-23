@@ -4,8 +4,9 @@
 	use Request;
 	use DB;
 	use CRUDBooster;
+	use App\Http\Controllers\Privilege as Privilege;
 
-	class AdminMedicamentController extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminCmsUsers1Controller extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
@@ -18,53 +19,52 @@
 			$this->button_bulk_action = true;
 			$this->button_action_style = "button_icon";
 			$this->button_add = true;
-			$this->button_edit = true;
+			$this->button_edit = false;
 			$this->button_delete = true;
 			$this->button_detail = true;
 			$this->button_show = true;
 			$this->button_filter = true;
 			$this->button_import = false;
 			$this->button_export = false;
-			$this->table = "medicament";
+			$this->table = "cms_users";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Consultation Id","name"=>"consultation_id","join"=>"consultation,id"];
-			$this->col[] = ["label"=>"Medecin Id","name"=>"medecin_id","join"=>"cms_users,id"];
-			$this->col[] = ["label"=>"Ordonnance Id","name"=>"ordonnance_id","join"=>"ordonnance,id"];
-			$this->col[] = ["label"=>"Patient Id","name"=>"patient_id","join"=>"cms_users,id"];
-			$this->col[] = ["label"=>"Date Debut","name"=>"date_debut"];
-			$this->col[] = ["label"=>"Date Fin","name"=>"date_fin"];
-			$this->col[] = ["label"=>"Quantité","name"=>"quantité"];
+			$this->col[] = ["label"=>"etat","name"=>"status"];
+			$this->col[] = ["label"=>"Nom","name"=>"nom"];
+			$this->col[] = ["label"=>"Prenom","name"=>"prenom"];
+			$this->col[] = ["label"=>"Photo","name"=>"photo","image"=>true];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Consultation Id','name'=>'consultation_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'consultation,id'];
-			$this->form[] = ['label'=>'Medecin Id','name'=>'medecin_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'cms_users,id'];
-			$this->form[] = ['label'=>'Ordonnance Id','name'=>'ordonnance_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'ordonnance,id'];
-			$this->form[] = ['label'=>'Patient Id','name'=>'patient_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'cms_users,id'];
-			$this->form[] = ['label'=>'Date Debut','name'=>'date_debut','type'=>'date','validation'=>'required|date','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Date Fin','name'=>'date_fin','type'=>'date','validation'=>'required|date','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Quantité','name'=>'quantité','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'NBR FOIS JOURS','name'=>'NBR_FOIS_JOURS','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Durée Entre Chaque Médicament','name'=>'durée_entre_chaque_médicament','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'List Medicament Id','name'=>'list_medicament_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'list_medicament,id'];
+			$this->form[] = ['label'=>'Nom','name'=>'nom','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Prenom','name'=>'prenom','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Sexes','name'=>'sexes','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Telephone','name'=>'telephone','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Photo','name'=>'photo','type'=>'upload','validation'=>'required|image|max:3000','width'=>'col-sm-10','help'=>'File types support : JPG, JPEG, PNG, GIF, BMP'];
+			$this->form[] = ['label'=>'Email','name'=>'email','type'=>'email','validation'=>'required|min:1|max:255|email|unique:cms_users','width'=>'col-sm-10','placeholder'=>'Please enter a valid email address'];
+			$this->form[] = ['label'=>'Date Naissance','name'=>'date_naissance','type'=>'date','validation'=>'required|date','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Cin','name'=>'cin','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Password','name'=>'password','type'=>'password','validation'=>'min:3|max:32','width'=>'col-sm-10','help'=>'Minimum 5 characters. Please leave empty if you did not change the password.'];
+			$this->form[] = ['label'=>'Cms Privileges','name'=>'id_cms_privileges','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'cms_privileges,name'];
+			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ["label"=>"Consultation Id","name"=>"consultation_id","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"consultation,id"];
-			//$this->form[] = ["label"=>"Medecin Id","name"=>"medecin_id","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"medecin,id"];
-			//$this->form[] = ["label"=>"Ordonnance Id","name"=>"ordonnance_id","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"ordonnance,id"];
-			//$this->form[] = ["label"=>"Patient Id","name"=>"patient_id","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"patient,id"];
-			//$this->form[] = ["label"=>"Date Debut","name"=>"date_debut","type"=>"date","required"=>TRUE,"validation"=>"required|date"];
-			//$this->form[] = ["label"=>"Date Fin","name"=>"date_fin","type"=>"date","required"=>TRUE,"validation"=>"required|date"];
-			//$this->form[] = ["label"=>"Quantité","name"=>"quantité","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"NBR FOIS JOURS","name"=>"NBR_FOIS_JOURS","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Durée Entre Chaque Médicament","name"=>"durée_entre_chaque_médicament","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"List Medicament Id","name"=>"list_medicament_id","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"list_medicament,id"];
+			//$this->form[] = ["label"=>"Nom","name"=>"nom","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Prenom","name"=>"prenom","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Sexes","name"=>"sexes","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Telephone","name"=>"telephone","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Photo","name"=>"photo","type"=>"upload","required"=>TRUE,"validation"=>"required|image|max:3000","help"=>"File types support : JPG, JPEG, PNG, GIF, BMP"];
+			//$this->form[] = ["label"=>"Email","name"=>"email","type"=>"email","required"=>TRUE,"validation"=>"required|min:1|max:255|email|unique:cms_users","placeholder"=>"Please enter a valid email address"];
+			//$this->form[] = ["label"=>"Date Naissance","name"=>"date_naissance","type"=>"date","required"=>TRUE,"validation"=>"required|date"];
+			//$this->form[] = ["label"=>"Cin","name"=>"cin","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Password","name"=>"password","type"=>"password","required"=>TRUE,"validation"=>"min:3|max:32","help"=>"Minimum 5 characters. Please leave empty if you did not change the password."];
+			//$this->form[] = ["label"=>"Cms Privileges","name"=>"id_cms_privileges","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"cms_privileges,name"];
+			//$this->form[] = ["label"=>"Status","name"=>"status","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
 			# OLD END FORM
 
 			/* 
@@ -80,6 +80,8 @@
 	        | 
 	        */
 	        $this->sub_module = array();
+			$this->sub_module[] = ['label'=>'secretaire','path'=>'secretaire','foreign_key'=>'medecin_id','button_color'=>'success','button_icon'=>'fa fa-user-plus'];
+			$this->sub_module[] = ['label'=>'patient','path'=>'relation','foreign_key'=>'medecin_id','button_color'=>'info','button_icon'=>'fa fa-child'];
 
 
 	        /* 
@@ -92,8 +94,12 @@
 	        | @color 	   = Default is primary. (primary, warning, succecss, info)     
 	        | @showIf 	   = If condition when action show. Use field alias. e.g : [id] == 1
 	        | 
-	        */
-	        $this->addaction = array();
+	        */	        
+			$this->addaction = array();
+			$this->addaction[] = ['label'=>'','url'=>'desactiver?medecin=[id]','icon'=>'fa fa-minus-circle','color'=>'warning','showIf'=>"[status] == 'Active'", 'confirmation' => true];
+			$this->addaction[] = ['label'=>'','url'=>'activer?medecin=[id]','icon'=>'fa fa-check','color'=>'success','showIf'=>"[status] == 'non Active'", 'confirmation' => true];
+			
+
 
 
 	        /* 
@@ -142,7 +148,8 @@
 	        | @color = Default is none. You can use bootstrap success,info,warning,danger,primary.        
 	        | 
 	        */
-	        $this->table_row_color = array();     	          
+	        $this->table_row_color = array();     	         
+			$this->table_row_color[] =['condition'=>"[status] == 'non Active'",'color'=>'danger'];   
 
 	        
 	        /*
@@ -251,6 +258,7 @@
 	    |
 	    */
 	    public function hook_query_index(&$query) {
+			$query->where('id_cms_privileges', Privilege::PrivilegeID('medecin'));
 	        //Your code here
 	            
 	    }

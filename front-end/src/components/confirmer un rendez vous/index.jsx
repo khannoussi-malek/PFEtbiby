@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { useRef, useContext, useState } from "react";
-import { TbibyContext } from "./../../router/context/index";
+import { TbibyContext } from "./../../router/context";
 import {
   useDeleteReservation,
   useValideReservation,
@@ -25,9 +25,9 @@ import { useToast } from "@chakra-ui/toast";
 import { TableContent } from "./../table/TableContent";
 import { TablePagination } from "./../table/TablePagination";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
-import G_Alert from "./../general alert/index";
+import G_Alert from "./../general alert";
 import { useSendPatientToWaitingRoomEnligne } from "../../services/api/manageTheRoom";
-import GeneralPatientsInformation from "./../general patients information/index";
+import GeneralPatientsInformation from "./../general patients information";
 
 const ConfirmerUnRendezVous = (props) => {
   const { refetchDashboard } = props;

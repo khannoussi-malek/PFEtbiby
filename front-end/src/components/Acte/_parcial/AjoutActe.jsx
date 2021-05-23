@@ -14,8 +14,8 @@ import { Spinner } from "@chakra-ui/react";
 import { Formiz, useForm } from "@formiz/core";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Prix } from "../../formInput/Prix";
-import { useCreateActe } from "./../../../services/api/acte/index";
-import { MyField } from "./../../formInput/index";
+import { useCreateActe } from "./../../../services/api/acte";
+import { MyField } from "./../../formInput";
 
 const AjoutActe = (props) => {
   const { user, refetch } = props;
@@ -50,7 +50,7 @@ const AjoutActe = (props) => {
     <React.Fragment>
       <Button
         ref={btnRef}
-        // colorScheme={mode("teal", "gray.50")}
+        colorScheme={mode("green", "gray")}
         // bgColor={mode("teal", "gray.50")}
         onClick={onOpen}
       >
@@ -65,7 +65,7 @@ const AjoutActe = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
-          <DrawerContent bgColor={mode("gray.50", "gray.700")}>
+          <DrawerContent bgColor={mode("green.50", "gray.700")}>
             <DrawerCloseButton />
             <DrawerHeader>Définit votre acte</DrawerHeader>
             <DrawerBody>

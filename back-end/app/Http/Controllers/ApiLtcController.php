@@ -26,10 +26,20 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-				$result = DB::table('certificat_type')
+				if(!empty($postdata['recherche'])){
+					$search =$postdata['recherche'];
+					$result = DB::table('certificat_type')
+					->where('cms_users_id',$postdata['id'])
+					->where('type', 'like', "%$search%")
+					->select('*')
+					->paginate(7);
+				}else{
+					$result = DB::table('certificat_type')
 					->where('cms_users_id',$postdata['id'])
 					->select('*')
 					->paginate(7);
+				}
+			
 
 		    }
 
