@@ -32,7 +32,7 @@ const UserAvatar = () => {
         <HStack>
           <Avatar
             size="md"
-            src={image != null ? `${link}${image}` : ``}
+            src={!!user.photo ? `${link}${user.photo}` : ``}
             name={user.nom + " " + user.prenom}
           />
           <Box lineHeight="1">

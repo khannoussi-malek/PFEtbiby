@@ -7,6 +7,7 @@ import {
   Spinner,
   Textarea,
   useColorModeValue as mode,
+  Button,
 } from "@chakra-ui/react";
 import { useDeleteReservation } from "./../../services/api/reservation";
 import { useSendPatientToWaitingRoom } from "./../../services/api/manageTheRoom";
@@ -14,6 +15,7 @@ import PatientsAtTheDoctor from "../../components/patients at the doctor";
 import GeneralPatientsInformation from "../../components/general patients information";
 import Antecedants from "./../../components/Antecedants";
 import Form from "./_partials/form";
+import { CloseIcon } from "@chakra-ui/icons";
 
 const Consultation = () => {
   const toast = useToast();
@@ -92,6 +94,16 @@ const Consultation = () => {
           borderRadius="20px"
         >
           <Text fontSize="xl"> {currentPatient.nomprenom}</Text>
+          <Button
+            position="relative"
+            p={0}
+            m={0}
+            left={["5vw", "20vw", "10vw", "20vw"]}
+            colorScheme="green"
+            onClick={() => setCurrentPatient({})}
+          >
+            <CloseIcon w={4} h={4} />
+          </Button>
         </Center>
 
         <Box

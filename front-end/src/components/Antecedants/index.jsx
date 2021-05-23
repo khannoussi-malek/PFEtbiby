@@ -128,6 +128,14 @@ const Antecedants = (props) => {
             <SkeletonText mt="7" noOfLines={7} spacing="7" />
           </DrawerBody>
           <DrawerBody display={isLoading ? `none` : ``}>
+            <Button
+              colorScheme="green"
+              position="absolute"
+              right="50px"
+              bottom="100px"
+            >
+              Rafraîchir
+            </Button>
             <TableContent
               header={header}
               content={patientInfo}

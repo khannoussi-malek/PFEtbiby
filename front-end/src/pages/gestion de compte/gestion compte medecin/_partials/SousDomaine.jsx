@@ -53,9 +53,9 @@ const SousDomaine = (props) => {
         mx={2}
         position="relative"
         top="31px"
-        bg={mode("blue.400", "blue.800")}
+        // bg={mode("blue.400", "blue.800")}
         ref={btnRef}
-        colorScheme="teal"
+        colorScheme={mode("green", "teal")}
         onClick={onOpen}
       >
         Ajouter

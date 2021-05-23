@@ -69,11 +69,11 @@ const MonMedecin = () => {
           Vous n'avez aucun relation avec aucun médecin
         </Heading>
         <Text mt="4" fontSize="lg">
-          si vous voulez réserver une relation avec médecin voir
+          Il n'y a pas de médecins sur votre liste.
         </Text>
-        <LinkChakra>
-          Reserver un rendez-vous <ExternalLinkIcon mx="2px" />
-        </LinkChakra>
+        <Text mt="4" fontSize="lg">
+          Vous pouvez les ajouter par e-mail au numéro de téléphone
+        </Text>
       </>
     );
   };

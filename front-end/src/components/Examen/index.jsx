@@ -1,7 +1,7 @@
 import { CloseButton } from "@chakra-ui/close-button";
 import { Box, Divider } from "@chakra-ui/layout";
 import { useState } from "react";
-import { Select2 } from "./../formInput/select";
+import { useColorModeValue as mode } from "@chakra-ui/react";
 import { TextareaForm } from "./../formInput/Textarea";
 import {
   AccordionButton,
@@ -44,7 +44,7 @@ export const Examen = (props) => {
           float="right"
         />
       </AccordionButton>
-      <AccordionPanel pb={4}>
+      <AccordionPanel bgColor={mode("green.50", "gray.700")} pb={4}>
         <MyField
           name={`${name}.type`}
           label="Type d'examen"
