@@ -90,7 +90,7 @@ const Task = (props) => {
                   />
                   {taskvalue.nomprenom}
                   {
-                    usertype == "medecin" ? (
+                    usertype == "medecin" || usertype == "secretaire" ? (
                       <Alert
                         hoverMassage="Envoyer ce patient au médecin"
                         Header="Confirmer"
