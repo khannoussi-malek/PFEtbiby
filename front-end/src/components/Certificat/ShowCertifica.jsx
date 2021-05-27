@@ -24,7 +24,6 @@ const ShowCertifica = (props) => {
   const handleSubmit = (values) => {};
   useEffect(() => {
     !!!!editorRef.current && editorRef.current.editor.setContents(structure);
-    console.log(!!editorRef.current);
   });
   return (
     <>
@@ -38,7 +37,7 @@ const ShowCertifica = (props) => {
       >
         <AlertDialogOverlay />
 
-        <AlertDialogContent minW={{ md: "700px", lg: "80vw" }}>
+        <AlertDialogContent minW={{ md: "700px", lg: "90vw" }}>
           <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
           <AlertDialogCloseButton />
           <AlertDialogBody>
