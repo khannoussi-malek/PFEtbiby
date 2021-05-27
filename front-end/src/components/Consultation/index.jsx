@@ -11,6 +11,7 @@ import {
   DrawerOverlay,
 } from "@chakra-ui/modal";
 import { useRef } from "react";
+import { useColorModeValue as mode } from "@chakra-ui/react";
 import React, { useContext, useState } from "react";
 import { TbibyContext } from "../../router/context";
 import { useHistoriqueListCertificat } from "../../services/api/Historique patient";
@@ -33,7 +34,12 @@ const HistoriqueConsultation = (props) => {
   //   });
   return (
     <>
-      <Button ref={btnRef} m={1} onClick={onOpen}>
+      <Button
+        ref={btnRef}
+        m={1}
+        colorScheme={mode("green", "blue")}
+        onClick={onOpen}
+      >
         Historique Consultation
       </Button>
       <Drawer

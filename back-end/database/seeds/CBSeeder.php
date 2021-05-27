@@ -720,8 +720,21 @@ class cms_apicustom extends seeder {
                         'responses' => 'a:0:{}',
                     ]);
                 }
+
+                if(DB::table('cms_apicustom')->where('permalink' ,'cd')->count() == 0){
+
+                    DB::table('cms_apicustom')->insert([
+                        'permalink' => 'cd',
+                        'tabel' => 'consultation',
+                        'aksi' => 'detail',
+                        'nama' => 'consultation detail',
+                        'method_type' => 'get',
+                        'parameters' => 'a:0:{}',
+                        'responses' => 'a:0:{}',
+                    ]);
+                }
         
-        
+            }
     }
 }
 class cms_apikey extends Seeder

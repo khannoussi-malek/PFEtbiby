@@ -13,6 +13,7 @@ import HistoriqueLettre from "../../Lettre/LettreHistorique";
 import HistoriqueOrdonnance from "../../Ordonnance/OrdonnanceHistorique";
 import { TableContent } from "../../table/TableContent";
 import { TablePagination } from "../../table/TablePagination";
+import { useColorModeValue as mode } from "@chakra-ui/react";
 
 const TableauDynamique = (props) => {
   const { patient, consultation } = props;
@@ -61,6 +62,7 @@ const TableauDynamique = (props) => {
     <React.Fragment>
       <SimpleGrid minChildWidth="100px" spacing="10px">
         <Button
+          colorScheme={mode("green", "blue")}
           onClick={() => {
             refetchConsultation();
           }}

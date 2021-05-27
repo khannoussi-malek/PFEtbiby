@@ -16,6 +16,7 @@ import {
   Text,
   Avatar,
   useDisclosure,
+  useColorModeValue as mode,
 } from "@chakra-ui/react";
 import {
   Drawer,
@@ -69,7 +70,7 @@ const HistoriqueActe = (props) => {
   // let header = ["Code", "Designation", "note"];
   return (
     <>
-      <Button ref={btnRef} onClick={onOpen}>
+      <Button ref={btnRef} colorScheme={mode("green", "blue")} onClick={onOpen}>
         Acte
       </Button>
       <Drawer
@@ -80,7 +81,7 @@ const HistoriqueActe = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg={mode("green.50", "gray.700")}>
           <DrawerCloseButton />
           <DrawerHeader>Acte</DrawerHeader>
 

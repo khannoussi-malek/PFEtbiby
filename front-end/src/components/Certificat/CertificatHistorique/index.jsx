@@ -9,6 +9,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from "@chakra-ui/react";
+import { useColorModeValue as mode } from "@chakra-ui/react";
 import { TbibyContext } from "../../../router/context";
 import { TableContent } from "../../table/TableContent";
 import { TablePagination } from "../../table/TablePagination";
@@ -52,7 +53,7 @@ const HistoriqueCetificat = (props) => {
   // let header = ["structure"];
   return (
     <>
-      <Button ref={btnRef} onClick={onOpen}>
+      <Button ref={btnRef} colorScheme={mode("green", "blue")} onClick={onOpen}>
         Certificat
       </Button>
       <Drawer

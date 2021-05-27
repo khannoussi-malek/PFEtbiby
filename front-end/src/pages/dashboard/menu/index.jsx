@@ -35,7 +35,6 @@ const Menu = () => {
     { url: "Trouver un médecin", icon: <BsSearch fontSize="20px" /> },
     { url: "Mes rendez vous", icon: <BsFillCalendarFill fontSize="20px" /> },
     { url: "Mes médecins", icon: <BsFillPersonLinesFill fontSize="20px" /> },
-    { url: "Trouver un médecin", icon: <BsSearch fontSize="20px" /> },
   ];
   if (user.fonctionnalite == "patient") {
     pages = Patientmenu;

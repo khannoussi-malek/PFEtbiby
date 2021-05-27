@@ -28,7 +28,7 @@ const PatientInfo = (props) => {
   return (
     <Popover>
       <PopoverTrigger>
-        <Button m={1}>
+        <Button m={1} colorScheme="green">
           <Tooltip
             label={`Plus d'informations sur ${data.nom + " " + data.prenom}`}
             aria-label={`Plus d'informations sur ${
@@ -40,7 +40,7 @@ const PatientInfo = (props) => {
         </Button>
       </PopoverTrigger>
       <Portal>
-        <PopoverContent>
+        <PopoverContent borderColor="green">
           <PopoverArrow />
           <PopoverHeader>{data.nom + " " + data.prenom} </PopoverHeader>
           <PopoverCloseButton />
@@ -60,7 +60,7 @@ const PatientInfo = (props) => {
               <Text as="a" href={"mailto:" + data.email}>
                 <Button
                   my={1}
-                  colorScheme="blue"
+                  colorScheme="green"
                   leftIcon={<EmailIcon />}
                   variant="outline"
                 >
@@ -75,7 +75,7 @@ const PatientInfo = (props) => {
                 <Button
                   my={1}
                   leftIcon={<MdCall />}
-                  colorScheme="blue"
+                  colorScheme="green"
                   variant="outline"
                 >
                   Appeller

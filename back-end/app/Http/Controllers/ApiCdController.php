@@ -35,7 +35,24 @@
 				->select('structure')
 				->where('consultation_id',$postdata['id'])
 				->get();
-				$result['data']=['consultation'=>$consultation,'certificat'=>$certificat];
+				$acte = DB::table('acte')
+				->select('code','designation','note')
+				->where('consultation_id',$postdata['id'])
+				->get();
+				$examen = DB::table('examen')
+				->select('note','type','prix')
+				->where('consultation_id',$postdata['id'])
+				->get();
+				$lettre = DB::table('lettre')
+				->select('description')
+				->where('consultation_id',$postdata['id'])
+				->get();
+				$ordonnance = DB::table('ordonnance')
+				->select('date_debut','date_fin','NBR_FOIS_JOURS')
+				->where('consultation_id',$postdata['id'])
+				->join('medicament', 'medicament.id', '=', 'ordonnance.medicament_id')
+				->get();
+				$result['data']=['consultation'=>$consultation,'certificat'=>$certificat,'acte'=>$acte,'examen'=>$examen,'lettre'=>$lettre,'ordonnance'=>$ordonnance];
 		    }
 
 		}

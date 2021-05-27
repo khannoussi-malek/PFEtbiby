@@ -8,6 +8,7 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
+  useColorModeValue as mode,
 } from "@chakra-ui/react";
 import { TbibyContext } from "../../../router/context";
 import { TableContent } from "../../table/TableContent";
@@ -54,7 +55,7 @@ const HistoriqueLettre = (props) => {
   //   let header = ["Description"];
   return (
     <>
-      <Button ref={btnRef} onClick={onOpen}>
+      <Button ref={btnRef} colorScheme={mode("green", "blue")} onClick={onOpen}>
         Lettre
       </Button>
       <Drawer
