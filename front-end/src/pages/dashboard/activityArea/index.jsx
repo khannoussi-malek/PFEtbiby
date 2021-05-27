@@ -29,68 +29,83 @@ const ActivityArea = () => {
         <PrivateRoute
           path="/dashboard"
           component={CalendarDashboard}
-          isAuth={user.isAuthenticated}
+          isAuth={true}
           exact
         />
 
         <PrivateRoute
-          path="/dashboard/consultation"
+          path="/dashboard/Consultation"
           component={Consultation}
-          isAuth={user.isAuthenticated}
+          isAuth={user.fonctionnalite == "medecin"}
           exact
         />
         <PrivateRoute
           path="/dashboard/Modèle de certificat"
           component={CertificatPage}
-          isAuth={user.isAuthenticated}
+          isAuth={
+            user.fonctionnalite == "medecin" ||
+            user.fonctionnalite == "secretaire"
+          }
           exact
         />
         <PrivateRoute
           path="/dashboard/Liste d'actes"
           component={ListeDact}
-          isAuth={user.isAuthenticated}
+          isAuth={
+            user.fonctionnalite == "medecin" ||
+            user.fonctionnalite == "secretaire"
+          }
           exact
         />
         <PrivateRoute
           path="/dashboard/Gestion de compte"
           component={Accountmanagement}
-          isAuth={user.isAuthenticated}
+          isAuth={true}
           exact
         />
         <PrivateRoute
           path="/dashboard/Mes rendez vous"
           component={MonRendezvous}
-          isAuth={user.isAuthenticated}
+          isAuth={
+            user.fonctionnalite == "patient" ||
+            user.fonctionnalite == "secretaire"
+          }
           exact
         />
         <PrivateRoute
           path="/dashboard/Rappel"
           component={Rappel}
-          isAuth={user.isAuthenticated}
+          isAuth={user.fonctionnalite == "patient"}
           exact
         />
         <PrivateRoute
           path="/dashboard/Mes patients"
           component={ListPatients}
-          isAuth={user.isAuthenticated}
+          isAuth={user.fonctionnalite == "medecin"}
           exact
         />
         <PrivateRoute
           path="/dashboard/Mes médecins"
           component={MonMedecin}
-          isAuth={user.isAuthenticated}
+          isAuth={
+            user.fonctionnalite == "patient" ||
+            user.fonctionnalite == "secretaire"
+          }
           exact
         />
         <PrivateRoute
           path="/dashboard/Trouver un médecin"
           component={TrouverUnMedecin}
-          isAuth={user.isAuthenticated}
+          isAuth={true}
           exact
         />
         <PrivateRoute
           path="/dashboard/Liste medicament"
           component={ListeMedicament}
-          isAuth={user.isAuthenticated}
+          isAuth={
+            user.fonctionnalite == "medecin" ||
+            user.fonctionnalite == "secretaire"
+          }
           exact
         />
       </Box>

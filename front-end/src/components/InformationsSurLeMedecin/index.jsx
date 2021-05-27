@@ -50,7 +50,7 @@ const InformationsSurLeMedecin = (props) => {
       <Text as="a" href={"mailto:" + medecinInfo.email}>
         <Button
           my={1}
-          colorScheme="blue"
+          colorScheme="green"
           leftIcon={<EmailIcon />}
           variant="outline"
         >

@@ -150,7 +150,7 @@ const EditerCertificat = (props) => {
                       modélisée.
                     </Box>
                     <Box py={3}>
-                      <Button colorScheme="blue" type="submit">
+                      <Button colorScheme="green" type="submit">
                         Sauvegarder {!MyForm.isValid ? `` : `👌`}
                       </Button>
                     </Box>

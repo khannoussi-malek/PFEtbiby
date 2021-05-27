@@ -13,11 +13,8 @@ import { EditIcon } from "@chakra-ui/icons";
 import EditerCertificat from "./editer";
 import { useGetCertificat } from "../../services/api/certificat";
 import { useToast, useColorModeValue as mode } from "@chakra-ui/react";
-import SunEditor from "suneditor-react";
 import { TbibyContext } from "./../../router/context";
 import { usePatentInfo } from "./../../services/api/patient information";
-import { RiPrinterFill } from "react-icons/ri";
-import { IconButton } from "@chakra-ui/button";
 import InputSunEditor from "../formInput/SunEditorInput";
 export const Certificat = (props) => {
   const { user } = useContext(TbibyContext);

@@ -59,12 +59,12 @@ const Alert = (props) => {
             <AlertDialogBody>{Body}</AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
+              <Button ref={cancelRef} onClick={onClose} colorScheme="green">
                 {btNon}
               </Button>
 
               <Button
-                colorScheme="red"
+                colorScheme="green"
                 onClick={(event) => fnTodo(event, target)}
                 ml={3}
               >

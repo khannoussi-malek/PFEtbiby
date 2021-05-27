@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Box, Spinner, useToast } from "@chakra-ui/react";
+import { Box, Spinner, useToast, Heading } from "@chakra-ui/react";
 import { TableActions } from "./../../components/table/TableActions";
 import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
@@ -47,6 +47,15 @@ const ListPatients = () => {
     fn2: (data) => <HistoriquePatient patient={data} />,
   });
   let header = ["Nom", "Prenom"];
+  const message = () => {
+    return (
+      <>
+        <Heading as="h2" size="lg" fontWeight="extrabold" letterSpacing="tight">
+          vous n'avez aucun patient
+        </Heading>
+      </>
+    );
+  };
   return (
     <React.Fragment>
       <Spinner
@@ -77,7 +86,12 @@ const ListPatients = () => {
               inputhoverTesxt={`écris quoi que ce soit pour indiquer sur la personne que tu veux trouver`}
             />
 
-            <TableContent header={header} content={content} fntable={fntable} />
+            <TableContent
+              header={header}
+              content={content}
+              fntable={fntable}
+              message={message}
+            />
             <TablePagination
               total={total}
               next_page_url={next}

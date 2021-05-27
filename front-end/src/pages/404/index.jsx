@@ -16,7 +16,7 @@ const Error404 = () => {
             onClick={() => history.push("/dashboard")}
             variant="outline"
             size="lg"
-            colorScheme="blue"
+            colorScheme="green"
           >
             🚦 Page d'accueil 🚦
           </Button>

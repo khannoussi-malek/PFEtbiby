@@ -40,7 +40,9 @@ const CalendarDashboardMedecin = () => {
       },
       onSuccess: (res) => {
         refetchTask();
-        history.push("/dashboard/consultation");
+        if (user.fonctionnalite == "medecin") {
+          history.push("/dashboard/consultation");
+        }
       },
     });
   const { mutate: DeleteMutate, isLoading: DeleteIsLoading } =
@@ -163,29 +165,44 @@ const CalendarDashboardMedecin = () => {
             </Button>
             <Spacer />
             {!isMobile ? (
-              <Button mx={2} onClick={() => setDaysView(1)}>
-                Par jour
-              </Button>
+              <Tooltip
+                label="Affiché en mode 1 jours"
+                aria-label="Affiché en mode 1 jours"
+              >
+                <Button mx={2} onClick={() => setDaysView(1)}>
+                  Par 1 jour
+                </Button>
+              </Tooltip>
             ) : (
               ``
             )}
             <Box w="120px" position="relative" top="-7px" mx={2}>
               <InputDate SyncWithVariable={setDate} name="date" />
             </Box>
-            <Button
-              mx={2}
-              onClick={() => {
-                setDate(new Date());
-              }}
+            <Tooltip
+              label="Aller à aujourd'hui"
+              aria-label="Aller à aujourd'hui"
             >
-              Aujourd'hui
-            </Button>
+              <Button
+                mx={2}
+                onClick={() => {
+                  setDate(new Date());
+                }}
+              >
+                Aujourd'hui
+              </Button>
+            </Tooltip>
 
             <ConfirmerUnRendezVous refetchDashboard={refetchTask} />
             {!isMobile ? (
-              <Button mx={2} onClick={() => setDaysView(2)}>
-                Par 2 jour
-              </Button>
+              <Tooltip
+                label="Affiché en mode 2 jours"
+                aria-label="Affiché en mode 2 jours"
+              >
+                <Button mx={2} onClick={() => setDaysView(2)}>
+                  Par 2 jour
+                </Button>
+              </Tooltip>
             ) : (
               ``
             )}

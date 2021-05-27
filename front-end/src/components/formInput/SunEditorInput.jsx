@@ -20,8 +20,16 @@ const InputSunEditor = (props) => {
 
   const { errorMessage, id, isValid, isSubmitted, setValue, value } =
     useField(props);
-  const { label, required, note, Placeholder, dtValue, Patient, editorRef } =
-    props;
+  const {
+    label,
+    required,
+    note,
+    Placeholder,
+    dtValue,
+    Patient,
+    editorRef,
+    disabled,
+  } = props;
   const [isTouched, setIsTouched] = React.useState(false);
   const showError = !isValid && (isTouched || isSubmitted);
   //   const editorRef = useRef();
@@ -110,6 +118,7 @@ const InputSunEditor = (props) => {
     <FormControl>
       <FormLabel htmlFor={id}>{label}</FormLabel>
       <SunEditor
+        disable={!!disabled}
         ref={editorRef}
         id={id}
         placeholder={

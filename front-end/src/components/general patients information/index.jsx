@@ -118,7 +118,7 @@ const GeneralPatientsInformation = (props) => {
                 <Button
                   my={1}
                   leftIcon={<MdCall />}
-                  colorScheme="blue"
+                  colorScheme="green"
                   variant="outline"
                 >
                   Appeller

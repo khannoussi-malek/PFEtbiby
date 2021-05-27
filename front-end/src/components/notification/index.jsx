@@ -16,6 +16,7 @@ import {
   Divider,
   useToast,
   Button,
+  Tooltip,
 } from "@chakra-ui/react";
 import OneNotification from "./_partials/One notification";
 import { useRemoveAllNotification } from "./../../services/api/notification";
@@ -66,12 +67,14 @@ const Notification = (props) => {
           borderRadius="full"
           _hover={{ cursor: "pointer" }}
         >
-          🔔
+          <Tooltip label="Notification" aria-label="Notification">
+            🔔
+          </Tooltip>
+
           <TagLabel>
             {notification.length != 0 ? notification.length : ``}
           </TagLabel>
         </Tag>
-        {/* <Button mx={2}>🔔</Button> */}
       </PopoverTrigger>
       <PopoverContent mx={2}>
         <PopoverArrow />
