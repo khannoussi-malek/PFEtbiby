@@ -1,13 +1,14 @@
 import InputSunEditor from "./../formInput/SunEditorInput";
 import { Formiz, useForm } from "@formiz/core";
+
 import {
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogCloseButton,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
 } from "@chakra-ui/modal";
 import { useRef, useState, useEffect } from "react";
 import { Button } from "@chakra-ui/button";
@@ -17,6 +18,7 @@ const ShowCertifica = (props) => {
 
   const editorRef = useRef();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef();
   const btnRef = useRef();
   const MyForm = useForm();
   const handleSubmit = (values) => {};
@@ -26,42 +28,41 @@ const ShowCertifica = (props) => {
   });
   return (
     <>
-      <Button ref={btnRef} m={1} onClick={onOpen}>
-        ouvrir
-      </Button>
-      <Drawer
-        size="xl"
-        isOpen={isOpen}
-        placement="right"
+      <Button onClick={onOpen}>Discard</Button>
+      <AlertDialog
+        motionPreset="slideInBottom"
+        leastDestructiveRef={cancelRef}
         onClose={onClose}
-        finalFocusRef={btnRef}
+        isOpen={isOpen}
+        isCentered
       >
-        <DrawerOverlay>
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>Historique patient</DrawerHeader>
+        <AlertDialogOverlay />
 
-            <DrawerBody>
-              <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
-                <form noValidate onSubmit={MyForm.submit}>
-                  <InputSunEditor
-                    Patient={{ id: patientId }}
-                    disabled={true}
-                    editorRef={editorRef}
-                    name="certif"
-                  />
-                </form>
-              </Formiz>
-            </DrawerBody>
-
-            <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={onClose}>
-                Annuler
-              </Button>
-            </DrawerFooter>
-          </DrawerContent>
-        </DrawerOverlay>
-      </Drawer>
+        <AlertDialogContent minW={{ md: "700px", lg: "80vw" }}>
+          <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
+          <AlertDialogCloseButton />
+          <AlertDialogBody>
+            <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
+              <form noValidate onSubmit={MyForm.submit}>
+                <InputSunEditor
+                  Patient={{ id: patientId }}
+                  disabled={true}
+                  editorRef={editorRef}
+                  name="certif"
+                />
+              </form>
+            </Formiz>
+          </AlertDialogBody>
+          <AlertDialogFooter>
+            <Button ref={cancelRef} onClick={onClose}>
+              No
+            </Button>
+            <Button colorScheme="red" ml={3}>
+              Yes
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 };
