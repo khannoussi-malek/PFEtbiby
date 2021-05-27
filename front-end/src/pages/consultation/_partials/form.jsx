@@ -50,6 +50,14 @@ const Form = (props) => {
       setpatientsWaiting([...patientsWaiting]);
       refetchPatientListe();
       setCurrentPatient({});
+      setComponentsForm([]);
+      toast({
+        title: "Enregistré avec succès ✔️",
+        description: "votre consultation enregistré avec succès ",
+        status: "success",
+        duration: `3000`,
+        isClosable: true,
+      });
     },
   });
   const MyForm = useForm();
@@ -59,7 +67,6 @@ const Form = (props) => {
     values.rendez_vous_id = Patient.rendez_vous_id;
     values.patient_id = Patient.id;
     values.medecin_id = user.id;
-    // console.log(values);
     mutate(values);
   };
   const [componentsForm, setComponentsForm] = useState([]);

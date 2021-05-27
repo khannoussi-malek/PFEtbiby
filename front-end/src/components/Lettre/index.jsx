@@ -3,6 +3,7 @@ import { Box, Divider } from "@chakra-ui/layout";
 import { useState } from "react";
 import { Select2 } from "./../formInput/select";
 import { TextareaForm } from "./../formInput/Textarea";
+import { useColorModeValue as mode } from "@chakra-ui/react";
 import {
   AccordionButton,
   AccordionIcon,
@@ -56,7 +57,7 @@ export const Lettre = (props) => {
           float="right"
         />
       </AccordionButton>
-      <AccordionPanel bgColor="gray.50" pb={4}>
+      <AccordionPanel bgColor={mode("green.50", "gray.700")} pb={4}>
         <Input
           placeholder="Écrivez le titre de cet élément"
           display={showEditTitle ? `none` : `inline`}

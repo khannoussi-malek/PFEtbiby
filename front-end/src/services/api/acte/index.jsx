@@ -15,7 +15,7 @@ export const useUpdateActe = (config) => {
   );
 };
 export const useGetListActe = ({ params, ...config } = {}) => {
-  return useQuery(["la", params], () => axios.get("la", { params }), config);
+  return useQuery("la", () => axios.get("la", { params }), config);
 };
 export const useGetAllListActe = ({ params, ...config } = {}) => {
   return useQuery(

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import Select, { components } from "react-select";
+import Select from "react-select";
 import { useField } from "@formiz/core";
 import {
   FormControl,
   FormHelperText,
   FormLabel,
 } from "@chakra-ui/form-control";
+import { useColorModeValue as mode } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/layout";
 
 export const Select2 = (props) => {
@@ -29,7 +30,7 @@ export const Select2 = (props) => {
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
       return {
         ...styles,
-        backgroundColor: isFocused ? "green" : "white",
+        backgroundColor: isFocused ? mode("green", "teal") : "white",
         color: !isFocused ? "#000" : "#FFF",
         cursor: isDisabled ? "not-allowed" : "default",
       };

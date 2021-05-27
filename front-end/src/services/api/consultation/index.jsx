@@ -2,7 +2,7 @@ import { useQuery, useMutation } from "react-query";
 import axios from "./../";
 
 export const useConsultationPatient = ({ params, ...config } = {}) => {
-  return useQuery(["cp", params], () => axios.get("cp", { params }), config);
+  return useQuery("cp", () => axios.get("cp", { params }), config);
 };
 
 export const useListOfThePatientInConsultation = ({
@@ -10,7 +10,7 @@ export const useListOfThePatientInConsultation = ({
   ...config
 } = {}) => {
   return useQuery(
-    ["liste-pattient-wating"],
+    "liste-pattient-wating",
     () => axios.get("pdcm", { params }),
     config
   );

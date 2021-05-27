@@ -27,7 +27,7 @@ const DescriptionMobile = (props) => {
             style={{ cursor: "pointer" }}
             borderRadius="20px"
             p={2}
-            colorScheme="blue"
+            colorScheme="green"
           >
             Description
           </Text>

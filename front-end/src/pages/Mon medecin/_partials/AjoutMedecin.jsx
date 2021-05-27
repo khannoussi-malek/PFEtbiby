@@ -47,7 +47,7 @@ const AjoutMedecin = (props) => {
               <FormControl minW={{ md: "320px" }} id="search">
                 <MyField
                   name="medecin_id"
-                  Placeholder="Entrez le cin, l'email ou le téléphone du médecin"
+                  Placeholder="Entrez l'email ou le téléphone du médecin"
                 />
                 <Text color="tomato">{message}</Text>
               </FormControl>

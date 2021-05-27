@@ -79,7 +79,7 @@ const Antecedants = (props) => {
               style={{ cursor: "pointer" }}
               borderRadius="20px"
               p={2}
-              colorScheme="blue"
+              colorScheme="green"
             >
               {data.medecin}
             </Text>

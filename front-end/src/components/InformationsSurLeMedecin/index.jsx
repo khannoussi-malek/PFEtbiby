@@ -30,7 +30,11 @@ const InformationsSurLeMedecin = (props) => {
     <React.Fragment>
       <Text>{medecinInfo.nom}</Text>
       {medecinInfo.photo && (
-        <Avatar size="xl" src={`${link}${medecinInfo.photo}`} />
+        <Avatar
+          size="xl"
+          name={medecinInfo.nom}
+          src={`${link}${medecinInfo.photo}`}
+        />
       )}
       <Text display="block" as="a" href={"tel:" + medecinInfo.telephone}>
         <Button
@@ -46,7 +50,7 @@ const InformationsSurLeMedecin = (props) => {
       <Text as="a" href={"mailto:" + medecinInfo.email}>
         <Button
           my={1}
-          colorScheme="blue"
+          colorScheme="green"
           leftIcon={<EmailIcon />}
           variant="outline"
         >
