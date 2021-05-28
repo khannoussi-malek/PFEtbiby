@@ -66,13 +66,14 @@ const MonMedecin = () => {
     return (
       <>
         <Heading as="h2" size="lg" fontWeight="extrabold" letterSpacing="tight">
-          Vous n'avez aucun relation avec aucun médecin
+          Vous n'avez aucun médecin dans votre liste.
         </Heading>
         <Text mt="4" fontSize="lg">
-          Il n'y a pas de médecins sur votre liste.
+          Si vous voulez trouver un médecin,entrer ses coordonnées dans le barre
+          ci-dessus
         </Text>
-        <Text mt="4" fontSize="lg">
-          Vous pouvez les ajouter par e-mail au numéro de téléphone
+        <Text mt fontSize="lg">
+          (C.I.N , E-mail, Num°tél)
         </Text>
       </>
     );

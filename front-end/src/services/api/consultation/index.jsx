@@ -15,6 +15,13 @@ export const useListOfThePatientInConsultation = ({
     config
   );
 };
+export const useDetatilOfConsultation = ({ params, ...config } = {}) => {
+  return useQuery(
+    "Detatil Of Consultation",
+    () => axios.get("cd", { params }),
+    config
+  );
+};
 
 export const useCreateConsultation = ({ params, ...config } = {}) => {
   return useMutation((params) => axios.post("consultation", params), config);

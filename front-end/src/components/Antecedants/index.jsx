@@ -42,11 +42,11 @@ const Antecedants = (props) => {
   const [page, setPage] = useState(1);
   const [patientInfo, setPatientInfo] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  let header = ["type", "description"];
+  let header = ["type", "description", "Date"];
   if (isMobile) {
     header = ["type"];
   } else {
-    header = ["type", "description"];
+    header = ["type", "description", "Date"];
   }
   const { isLoading, refetch } = useAntecedants({
     params,

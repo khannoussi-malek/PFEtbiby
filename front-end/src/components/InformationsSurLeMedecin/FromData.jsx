@@ -30,6 +30,7 @@ const MedecinInfo = (props) => {
           {isMobile ? <BiInfoCircle fontSize="30px" /> : `Info`}
         </Button>
       </PopoverTrigger>
+
       <Portal>
         <PopoverContent>
           <PopoverArrow />

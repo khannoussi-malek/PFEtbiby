@@ -27,7 +27,8 @@ import { TablePagination } from "./../table/TablePagination";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import G_Alert from "./../general alert";
 import { useSendPatientToWaitingRoomEnligne } from "../../services/api/manageTheRoom";
-import GeneralPatientsInformation from "./../general patients information";
+import GeneralPatientsInformation from "./../general patients information/index";
+import { useBreakpointValue } from "@chakra-ui/media-query";
 
 const ConfirmerUnRendezVous = (props) => {
   const { refetchDashboard } = props;
@@ -62,6 +63,8 @@ const ConfirmerUnRendezVous = (props) => {
         refetchDashboard();
       },
     });
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+
   const [fntable, setFntable] = useState({
     fn2: (data) => (
       <G_Alert
@@ -133,7 +136,8 @@ const ConfirmerUnRendezVous = (props) => {
         colorScheme="teal"
         onClick={onOpen}
       >
-        Valider un rendez vous
+        {isMobile ? `` : `Valider un rendez vous `}
+        {content == [] ? `📫` : `📪`}
       </Button>
       <Drawer
         size="lg"
@@ -145,7 +149,7 @@ const ConfirmerUnRendezVous = (props) => {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>Valider un rendez vous</DrawerHeader>
+            <DrawerHeader>📫 Valider un rendez vous </DrawerHeader>
 
             <DrawerBody>
               <Box display={isLoading ? `none` : ``}>

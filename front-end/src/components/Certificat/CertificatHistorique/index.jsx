@@ -9,10 +9,12 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from "@chakra-ui/react";
+import { useColorModeValue as mode } from "@chakra-ui/react";
 import { TbibyContext } from "../../../router/context";
 import { TableContent } from "../../table/TableContent";
 import { TablePagination } from "../../table/TablePagination";
 import { useHistoriqueListCertificat } from "../../../services/api/Historique patient";
+import ShowCertifica from "./../ShowCertifica";
 const HistoriqueCetificat = (props) => {
   const { user, cleanUser } = useContext(TbibyContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -24,37 +26,40 @@ const HistoriqueCetificat = (props) => {
   const [next, setNext] = useState("");
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
-  const [header, setHeader] = useState([]);
-  const [content, setContent] = useState([[""], [""]]);
+
+  const header = ["date"];
+  const [content, setContent] = useState([[""]]);
   const [patientId, setPatientId] = useState("");
+  const [fntable, setFntable] = useState({
+    fn: (data) => (
+      <ShowCertifica structure={data.structure} patientId={data.patient_id} />
+    ),
+  });
   const params = { medecin_id, patient_id: patient.id, page };
   const btnRef = React.useRef();
-  const {
-    isLoading: isLodingCertificat,
-    refetch: refetchCertifcat,
-  } = useHistoriqueListCertificat({
-    params,
-    onError: (error) => {
-      toast({
-        title: "Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: 4000,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setTotal(res.data.total);
-      setNext(res.data.next_page_url);
-      setPrev(res.data.prev_page_url);
-      res.data.data !== [] && setContent(res.data.data);
-      res.data.data !== [] && setHeader(["structure"]);
-    },
-  });
+  const { isLoading: isLodingCertificat, refetch: refetchCertifcat } =
+    useHistoriqueListCertificat({
+      params,
+      onError: (error) => {
+        toast({
+          title: "Problème de connexion",
+          description: " Il y a un problème de connexion",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+        });
+      },
+      onSuccess: (res) => {
+        setTotal(res.data.total);
+        setNext(res.data.next_page_url);
+        setPrev(res.data.prev_page_url);
+        res.data.data !== [] && setContent(res.data.data);
+      },
+    });
   // let header = ["structure"];
   return (
     <>
-      <Button ref={btnRef} onClick={onOpen}>
+      <Button ref={btnRef} colorScheme={mode("green", "blue")} onClick={onOpen}>
         Certificat
       </Button>
       <Drawer
@@ -65,12 +70,12 @@ const HistoriqueCetificat = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg={mode("green.50")}>
           <DrawerCloseButton />
           <DrawerHeader>Certificat</DrawerHeader>
 
           <DrawerBody>
-            <TableContent header={header} content={content} />
+            <TableContent header={header} content={content} fntable={fntable} />
             <TablePagination
               total={total}
               next_page_url={next}

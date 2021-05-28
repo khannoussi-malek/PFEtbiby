@@ -48,7 +48,7 @@ export const TableContent = (props) => {
         borderWidth="1px"
         fontSize="sm"
       >
-        <Thead bg={mode("green.50", "gray.800")}>
+        <Thead bg={mode("green.100", "gray.800")}>
           <Tr textAlign="center">
             {header.map((column, index) => (
               <Th
@@ -73,7 +73,6 @@ export const TableContent = (props) => {
         <Tbody>
           {content.map((row, index) => (
             <Tr key={index} whiteSpace="normal">
-              {" "}
               {Object.values(row)
                 .slice(1)
                 .map((column, indexcol) =>

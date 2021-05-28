@@ -1,5 +1,6 @@
 import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
+
 import {
   Drawer,
   DrawerBody,
@@ -10,43 +11,43 @@ import {
   DrawerOverlay,
 } from "@chakra-ui/modal";
 import { useRef } from "react";
-import TableauDynamique from "./_patials/TableauDynamique";
-import { useBreakpointValue } from "@chakra-ui/media-query";
-import { BiHistory } from "react-icons/bi";
-import { Tooltip } from "@chakra-ui/tooltip";
-import { useColorModeValue as mode } from "@chakra-ui/react";
+import { useColorModeValue as mode, useToast } from "@chakra-ui/react";
+import React, { useContext, useState } from "react";
+import { TbibyContext } from "../../router/context";
 
-const HistoriquePatient = (props) => {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
+import DetatilConsultation from "./_partial/DetatilConsultation";
 
-  const { patient } = props;
+const HistoriqueConsultation = (props) => {
+  const { data } = props;
+  const { user } = useContext(TbibyContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
 
   return (
     <>
-      <Button ref={btnRef} m={1} onClick={onOpen}>
-        <Tooltip
-          label={`Tout ce que j'ai fait pour ce patient`}
-          aria-label="Tout ce que j'ai fait pour ce patient"
-        >
-          {isMobile ? <BiHistory fontSize="30px" /> : `Historique`}
-        </Tooltip>
+      <Button
+        ref={btnRef}
+        m={1}
+        colorScheme={mode("green", "blue")}
+        onClick={onOpen}
+      >
+        Historique Consultation
       </Button>
       <Drawer
         size="xl"
         isOpen={isOpen}
-        placement="right"
+        placement="left"
         onClose={onClose}
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
           <DrawerContent bg={mode("green.50")}>
             <DrawerCloseButton />
-            <DrawerHeader>Historique patient</DrawerHeader>
+            <DrawerHeader>Historique consultation</DrawerHeader>
 
             <DrawerBody>
-              <TableauDynamique patient={patient} />
+              <DetatilConsultation data={data} />
             </DrawerBody>
 
             <DrawerFooter>
@@ -60,4 +61,5 @@ const HistoriquePatient = (props) => {
     </>
   );
 };
-export default HistoriquePatient;
+
+export default HistoriqueConsultation;

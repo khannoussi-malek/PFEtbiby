@@ -89,17 +89,17 @@ const UpdateAct = (props) => {
                       <MyField
                         name="code"
                         label="Code"
-                        Placeholder={data.code}
+                        dtValue={data.code}
                         required="Il est requis de compléter ce champ"
                       />
                       <MyField
                         name="designation"
-                        Placeholder={data.designation}
+                        dtValue={data.designation}
                         label="Designation"
                         required="Il est requis de compléter ce champ"
                       />
                       <Prix
-                        Placeholder={data.price}
+                        dtValue={data.price}
                         name="price"
                         label="Price"
                         required="Il est requis de compléter ce champ"

@@ -16,6 +16,7 @@ import {
   Text,
   Avatar,
   useDisclosure,
+  useColorModeValue as mode,
 } from "@chakra-ui/react";
 import {
   Drawer,
@@ -41,38 +42,35 @@ const HistoriqueActe = (props) => {
   const [next, setNext] = useState("");
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
-  const [header, setHeader] = useState([]);
+  const [header, setHeader] = useState(["Code", "Designation", "note", "Date"]);
   const [content, setContent] = useState([[""], [""]]);
   const [patientId, setPatientId] = useState("");
   const params = { medecin_id, patient_id: patient.id, page };
   const btnRef = React.useRef();
-  const {
-    isLoading: isLodingActe,
-    refetch: refetchActe,
-  } = useHistoriqueListActe({
-    params,
-    onError: (error) => {
-      toast({
-        title: ":Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: 4000,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setTotal(res.data.total);
-      setNext(res.data.next_page_url);
-      setPrev(res.data.prev_page_url);
-      res.data.data !== [] && setContent(res.data.data);
-      res.data.data !== [] && setHeader(["Code", "Designation", "note"]);
-    },
-  });
+  const { isLoading: isLodingActe, refetch: refetchActe } =
+    useHistoriqueListActe({
+      params,
+      onError: (error) => {
+        toast({
+          title: ":Problème de connexion",
+          description: " Il y a un problème de connexion",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+        });
+      },
+      onSuccess: (res) => {
+        setTotal(res.data.total);
+        setNext(res.data.next_page_url);
+        setPrev(res.data.prev_page_url);
+        setContent((res.data.data && res.data.data) || []);
+      },
+    });
 
   // let header = ["Code", "Designation", "note"];
   return (
     <>
-      <Button ref={btnRef} onClick={onOpen}>
+      <Button ref={btnRef} colorScheme={mode("green", "blue")} onClick={onOpen}>
         Acte
       </Button>
       <Drawer
@@ -83,7 +81,7 @@ const HistoriqueActe = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg={mode("green.50")}>
           <DrawerCloseButton />
           <DrawerHeader>Acte</DrawerHeader>
 

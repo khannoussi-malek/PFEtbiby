@@ -29,7 +29,7 @@
 				$result=DB::table('antecedants')
 				->where('patient_id',$postdata['patient_id'])
 				->join('cms_users', 'cms_users.id', '=', 'antecedants.medecin_id')
-				->select('antecedants.id','antecedants.type','antecedants.description',DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS medecin'),'antecedants.medecin_id')
+				->select('antecedants.id','antecedants.type','antecedants.description','antecedants.created_at',DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS medecin'),'antecedants.medecin_id')
 				->orderBy('antecedants.created_at')
 				->paginate(10);
 

@@ -8,6 +8,7 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
+  useColorModeValue as mode,
 } from "@chakra-ui/react";
 import { TbibyContext } from "../../../router/context";
 import { TableContent } from "../../table/TableContent";
@@ -24,38 +25,36 @@ const HistoriqueOrdonnance = (props) => {
   const [next, setNext] = useState("");
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
-  const [header, setHeader] = useState([]);
-  const [content, setContent] = useState([[""], [""]]);
+  const header = ["Medicament"];
+  const [content, setContent] = useState([[""]]);
   const [patientId, setPatientId] = useState("");
-  const params = { medecin_id, patient_id: patient.id, page };
+  // const params = { medecin_id, patient_id: patient.id, page };
+  const params = { patient_id: patient.id, page };
   const btnRef = React.useRef();
-  const {
-    isLoading: isLodingOrdonnance,
-    refetch: refetchOrdonnance,
-  } = useHistoriqueListOrdonnance({
-    params,
-    onError: (error) => {
-      toast({
-        title: " Problème de connexion",
-        description: " Il y a un problème de connexion",
-        status: "success",
-        duration: 4000,
-        isClosable: true,
-      });
-    },
-    onSuccess: (res) => {
-      setTotal(res.data.total);
-      setNext(res.data.next_page_url);
-      setPrev(res.data.prev_page_url);
-      res.data.data !== [] && setContent(res.data.data);
-      res.data.data !== [] && setHeader(["Description"]);
-    },
-  });
+  const { isLoading: isLodingOrdonnance, refetch: refetchOrdonnance } =
+    useHistoriqueListOrdonnance({
+      params,
+      onError: (error) => {
+        toast({
+          title: " Problème de connexion",
+          description: " Il y a un problème de connexion",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+        });
+      },
+      onSuccess: (res) => {
+        setTotal(res.data.total);
+        setNext(res.data.next_page_url);
+        setPrev(res.data.prev_page_url);
+        res.data.data !== [] && setContent(res.data.data);
+      },
+    });
 
   //   let header = ["Description"];
   return (
     <>
-      <Button ref={btnRef} onClick={onOpen}>
+      <Button ref={btnRef} onClick={onOpen} colorScheme={mode("green", "blue")}>
         Ordonnance
       </Button>
       <Drawer
@@ -66,7 +65,7 @@ const HistoriqueOrdonnance = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg={mode("green.50")}>
           <DrawerCloseButton />
           <DrawerHeader>Ordonnance</DrawerHeader>
 

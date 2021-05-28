@@ -29,7 +29,7 @@
 				$result = DB::table('antecedants')
                 ->where('patient_id',$postdata['patient_id'])
                 ->where('medecin_id',$postdata['medecin_id'])
-                ->select('id','description')->orderBy('antecedants.created_at')
+                ->select('id','description','created_at')->orderBy('antecedants.created_at')
                 ->paginate(10);
 
 		    }
