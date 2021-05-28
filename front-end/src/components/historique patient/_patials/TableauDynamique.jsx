@@ -56,7 +56,11 @@ const TableauDynamique = (props) => {
       },
     });
   const [fntable, setFntable] = useState({
-    fn: (data) => <HistoriqueConsultation data={patient} />,
+    fn: (data) => (
+      <>
+        <HistoriqueConsultation data={data} />
+      </>
+    ),
   });
   return (
     <React.Fragment>

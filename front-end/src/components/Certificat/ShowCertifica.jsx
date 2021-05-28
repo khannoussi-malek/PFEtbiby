@@ -27,7 +27,7 @@ const ShowCertifica = (props) => {
   });
   return (
     <>
-      <Button onClick={onOpen}>Discard</Button>
+      <Button onClick={onOpen}>Certificat</Button>
       <AlertDialog
         motionPreset="slideInBottom"
         leastDestructiveRef={cancelRef}
@@ -38,7 +38,7 @@ const ShowCertifica = (props) => {
         <AlertDialogOverlay />
 
         <AlertDialogContent minW={{ md: "700px", lg: "90vw" }}>
-          <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
+          <AlertDialogHeader>Certificat</AlertDialogHeader>
           <AlertDialogCloseButton />
           <AlertDialogBody>
             <Formiz connect={MyForm} onValidSubmit={handleSubmit}>
@@ -52,14 +52,6 @@ const ShowCertifica = (props) => {
               </form>
             </Formiz>
           </AlertDialogBody>
-          <AlertDialogFooter>
-            <Button ref={cancelRef} onClick={onClose}>
-              No
-            </Button>
-            <Button colorScheme="red" ml={3}>
-              Yes
-            </Button>
-          </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
     </>

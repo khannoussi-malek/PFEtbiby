@@ -30,7 +30,7 @@
 				$consultation = DB::table('consultation')
 				->select('Diagnostic','prix')
 				->where('id',$postdata['id'])
-				->get();
+				->first();
 				$certificat = DB::table('certificat')
 				->select('structure')
 				->where('consultation_id',$postdata['id'])
@@ -44,15 +44,15 @@
 				->where('consultation_id',$postdata['id'])
 				->get();
 				$lettre = DB::table('lettre')
-				->select('description')
 				->where('consultation_id',$postdata['id'])
+				->select('description')
 				->get();
 				$ordonnance = DB::table('ordonnance')
-				->select('date_debut','date_fin','NBR_FOIS_JOURS')
 				->where('consultation_id',$postdata['id'])
 				->join('medicament', 'medicament.id', '=', 'ordonnance.medicament_id')
+				->select('medicament.designation as medicament','date_debut','date_fin','NBR_FOIS_JOURS','duree_entre_chaque_medicament')
 				->get();
-				$result['data']=['consultation'=>$consultation,'certificat'=>$certificat,'acte'=>$acte,'examen'=>$examen,'lettre'=>$lettre,'ordonnance'=>$ordonnance];
+				$result['data']=['consultation'=>$consultation,'detail'=>['certificat'=>$certificat,'acte'=>$acte,'examen'=>$examen,'lettre'=>$lettre,'ordonnance'=>$ordonnance]];
 		    }
 
 		}

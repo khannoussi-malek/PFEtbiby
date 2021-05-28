@@ -66,7 +66,7 @@ const HistoriqueLettre = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg={mode("green.50")}>
           <DrawerCloseButton />
           <DrawerHeader>Lettre</DrawerHeader>
 

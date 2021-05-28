@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
-import { Box, SimpleGrid } from "@chakra-ui/layout";
+
 import {
   Drawer,
   DrawerBody,
@@ -11,27 +11,19 @@ import {
   DrawerOverlay,
 } from "@chakra-ui/modal";
 import { useRef } from "react";
-import { useColorModeValue as mode } from "@chakra-ui/react";
+import { useColorModeValue as mode, useToast } from "@chakra-ui/react";
 import React, { useContext, useState } from "react";
 import { TbibyContext } from "../../router/context";
-import { useHistoriqueListCertificat } from "../../services/api/Historique patient";
+
+import DetatilConsultation from "./_partial/DetatilConsultation";
 
 const HistoriqueConsultation = (props) => {
-  const { patient } = props;
+  const { data } = props;
   const { user } = useContext(TbibyContext);
-  const [page, setPage] = useState(1);
 
-  // const params = {
-  //   patient_id: patient.id,
-  //   medecin_id: user.id,
-  //   page,
-  // };
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
-  // const { isLoading: isLoadingCertificat, reftch: refetchCertificat } =
-  //   useHistoriqueListCertificat({
-  //     params,
-  //   });
+
   return (
     <>
       <Button
@@ -50,19 +42,12 @@ const HistoriqueConsultation = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
-          <DrawerContent>
+          <DrawerContent bg={mode("green.50")}>
             <DrawerCloseButton />
-            <DrawerHeader>Historique patient</DrawerHeader>
+            <DrawerHeader>Historique consultation</DrawerHeader>
 
             <DrawerBody>
-              <SimpleGrid minChildWidth="100px" spacing="10px">
-                <Button>Certificat</Button>
-                <Button>Acte</Button>
-                <Button>Antecedant</Button>
-                <Button>Examen</Button>
-                <Button>Ordonnace</Button>
-                <Button>Lettre</Button>
-              </SimpleGrid>
+              <DetatilConsultation data={data} />
             </DrawerBody>
 
             <DrawerFooter>

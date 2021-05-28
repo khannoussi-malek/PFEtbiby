@@ -14,6 +14,7 @@ import TableauDynamique from "./_patials/TableauDynamique";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 import { BiHistory } from "react-icons/bi";
 import { Tooltip } from "@chakra-ui/tooltip";
+import { useColorModeValue as mode } from "@chakra-ui/react";
 
 const HistoriquePatient = (props) => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
@@ -40,7 +41,7 @@ const HistoriquePatient = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
-          <DrawerContent>
+          <DrawerContent bg={mode("green.50")}>
             <DrawerCloseButton />
             <DrawerHeader>Historique patient</DrawerHeader>
 

@@ -73,7 +73,6 @@ export const TableContent = (props) => {
         <Tbody>
           {content.map((row, index) => (
             <Tr key={index} whiteSpace="normal">
-              {" "}
               {Object.values(row)
                 .slice(1)
                 .map((column, indexcol) =>

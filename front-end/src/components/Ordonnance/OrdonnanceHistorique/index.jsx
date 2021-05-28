@@ -65,7 +65,7 @@ const HistoriqueOrdonnance = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg={mode("green.50")}>
           <DrawerCloseButton />
           <DrawerHeader>Ordonnance</DrawerHeader>
 
