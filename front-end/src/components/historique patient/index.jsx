@@ -25,7 +25,7 @@ const HistoriquePatient = (props) => {
 
   return (
     <>
-      <Button ref={btnRef} m={1} onClick={onOpen}>
+      <Button ref={btnRef} m={1} colorScheme="green" onClick={onOpen}>
         <Tooltip
           label={`Tout ce que j'ai fait pour ce patient`}
           aria-label="Tout ce que j'ai fait pour ce patient"

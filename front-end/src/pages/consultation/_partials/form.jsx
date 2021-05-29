@@ -11,6 +11,8 @@ import {
   useToast,
   Spinner,
   useColorModeValue as mode,
+  Code,
+  Center,
 } from "@chakra-ui/react";
 import React, { useState, useContext } from "react";
 import { Prix } from "./../../../components/formInput/Prix";
@@ -158,6 +160,7 @@ const Form = (props) => {
                       <Ordonnance
                         id={id}
                         key={id}
+                        MyForm={MyForm}
                         removeComponentsForm={removeComponentsForm}
                         Patient={Patient}
                         name={`ordonnances[${index}]`}
@@ -227,15 +230,25 @@ const Form = (props) => {
                 value={0}
               />
             </Box>
+            {!MyForm.isValid ? (
+              <Center mt={5}>
+                <Code colorScheme="red">
+                  Remplissez les champs nécessaires puis enregistrer
+                </Code>
+              </Center>
+            ) : (
+              ` `
+            )}
             <FormControl mt={5} align="center">
               <Button
                 w="40%"
                 type="submit"
-                borderColor="green.500"
+                borderColor="green"
+                colorScheme="green"
                 disabled={!MyForm.isValid}
               >
-                Submit
-                {!MyForm.isValid ? `` : `👌`}
+                Enregistrer
+                {!MyForm.isValid ? `` : ` ✔️ `}
               </Button>
             </FormControl>
           </form>
