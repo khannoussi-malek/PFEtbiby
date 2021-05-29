@@ -1,5 +1,6 @@
 import InputSunEditor from "./../formInput/SunEditorInput";
 import { Formiz, useForm } from "@formiz/core";
+import { useColorModeValue as mode } from "@chakra-ui/react";
 
 import {
   AlertDialog,
@@ -27,7 +28,9 @@ const ShowCertifica = (props) => {
   });
   return (
     <>
-      <Button onClick={onOpen}>Certificat</Button>
+      <Button onClick={onOpen} colorScheme={mode("green", "green")}>
+        Certificat
+      </Button>
       <AlertDialog
         motionPreset="slideInBottom"
         leastDestructiveRef={cancelRef}

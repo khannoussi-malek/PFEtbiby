@@ -100,9 +100,9 @@ const Antecedants = (props) => {
   });
   return (
     <React.Fragment>
-      <Button colorScheme={mode("green", "blue")} onClick={onOpen}>
+      <Button colorScheme={mode("green", "green")} onClick={onOpen}>
         <Tooltip
-          label={`Trouver tous les antécédents médicauxr`}
+          label={`Trouver tous les antécédents médicaux`}
           aria-label="Trouver tous les antécédents médicaux"
         >
           Antécédents

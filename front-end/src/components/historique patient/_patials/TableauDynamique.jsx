@@ -66,7 +66,7 @@ const TableauDynamique = (props) => {
     <React.Fragment>
       <SimpleGrid minChildWidth="100px" spacing="10px">
         <Button
-          colorScheme={mode("green", "blue")}
+          colorScheme={mode("green", "green")}
           onClick={() => {
             refetchConsultation();
           }}

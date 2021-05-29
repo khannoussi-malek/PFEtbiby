@@ -234,7 +234,7 @@ const Form = (props) => {
                 borderColor="green.500"
                 disabled={!MyForm.isValid}
               >
-                Submit
+                Enregistrer
                 {!MyForm.isValid ? `` : `👌`}
               </Button>
             </FormControl>

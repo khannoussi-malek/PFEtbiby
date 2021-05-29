@@ -54,7 +54,11 @@ const HistoriqueOrdonnance = (props) => {
   //   let header = ["Description"];
   return (
     <>
-      <Button ref={btnRef} onClick={onOpen} colorScheme={mode("green", "blue")}>
+      <Button
+        ref={btnRef}
+        onClick={onOpen}
+        colorScheme={mode("green", "green")}
+      >
         Ordonnance
       </Button>
       <Drawer

@@ -10,10 +10,11 @@ import {
 import { useState } from "react";
 import { Text } from "@chakra-ui/react";
 import { Box, SimpleGrid } from "@chakra-ui/layout";
-import ShowCertifica from "./../../Certificat/ShowCertifica";
+import ShowCertifica from "../../Certificat/ShowCertifica";
 import { useDetatilOfConsultation } from "../../../services/api/consultation";
+import { useColorModeValue as mode } from "@chakra-ui/react";
 
-const DetatilConsultation = (props) => {
+const DetailConsultation = (props) => {
   const toast = useToast();
   const { data } = props;
   const [consultation, setConsultation] = useState({});
@@ -52,7 +53,7 @@ const DetatilConsultation = (props) => {
                 return (
                   <AccordionItem>
                     <h2>
-                      <AccordionButton bgColor="green.100">
+                      <AccordionButton bgColor="green.200">
                         <Box flex="1" textAlign="left" fontSize="30px">
                           {value}
                         </Box>
@@ -102,4 +103,4 @@ const DetatilConsultation = (props) => {
     </>
   );
 };
-export default DetatilConsultation;
+export default DetailConsultation;

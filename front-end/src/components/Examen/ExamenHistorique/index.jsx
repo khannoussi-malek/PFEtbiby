@@ -55,7 +55,11 @@ const HistoriqueExamen = (props) => {
   // let header = ["Note", "Type", "Prix"];
   return (
     <>
-      <Button ref={btnRef} onClick={onOpen} colorScheme={mode("green", "blue")}>
+      <Button
+        ref={btnRef}
+        onClick={onOpen}
+        colorScheme={mode("green", "green")}
+      >
         Examen
       </Button>
       <Drawer

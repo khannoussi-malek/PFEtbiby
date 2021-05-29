@@ -27,9 +27,8 @@ const SousDomaine = (props) => {
     },
     onSuccess: (res) => {
       toast({
-        title: "Type de certification ajouté avec succès",
-        description:
-          "Vous pouvez le sélectionner nouveau à partir de 'Type de certificat'",
+        title: "Sous domaine ajouté avec succès",
+        description: "Vous pouvez le choisir à partir de la liste",
         status: "success",
         duration: `4000`,
         isClosable: true,
@@ -69,7 +68,7 @@ const SousDomaine = (props) => {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>Ajoutez votre Sousdomaine</DrawerHeader>
+            <DrawerHeader>Ajout Sous-domaine</DrawerHeader>
             <DrawerBody>
               <Formiz connect={myForm} onValidSubmit={SubmitAPI}>
                 <form
@@ -81,7 +80,7 @@ const SousDomaine = (props) => {
                   <MyField
                     name="nom"
                     label="Sous Domaine"
-                    required="Il est requis de compléter le champ correspondant au domaine"
+                    required="Il est requis de compléter le champ correspondant au sous-domaine"
                     validations={[
                       {
                         rule: isPattern("^[a-zA-Z ]*$"),
@@ -99,7 +98,7 @@ const SousDomaine = (props) => {
                       borderColor="green.500"
                       disabled={!myForm.isValid}
                     >
-                      Submit
+                      Enregister
                       {!myForm.isValid ? `` : `👌`}
                     </Button>
                   </Box>

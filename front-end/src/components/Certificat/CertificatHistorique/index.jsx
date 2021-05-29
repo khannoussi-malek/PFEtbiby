@@ -59,7 +59,11 @@ const HistoriqueCetificat = (props) => {
   // let header = ["structure"];
   return (
     <>
-      <Button ref={btnRef} colorScheme={mode("green", "blue")} onClick={onOpen}>
+      <Button
+        ref={btnRef}
+        colorScheme={mode("green", "green")}
+        onClick={onOpen}
+      >
         Certificat
       </Button>
       <Drawer
