@@ -13,7 +13,7 @@ export const Select2 = (props) => {
   const [clickCount, setClickCount] = useState(0);
   const { errorMessage, id, isValid, isSubmitted, setValue, value } =
     useField(props);
-  const { data, name, label, note } = props;
+  const { data, name, label, note, required } = props;
   const [isTouched, setIsTouched] = React.useState(false);
   const showError = !isValid && (isTouched || isSubmitted);
 
@@ -38,7 +38,9 @@ export const Select2 = (props) => {
   };
   return (
     <FormControl>
-      <FormLabel htmlFor={id}>{label}</FormLabel>
+      <FormLabel htmlFor={id}>
+        {label} {!!required && " *"}
+      </FormLabel>
 
       <Select
         id={id}

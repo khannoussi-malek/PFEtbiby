@@ -1,7 +1,7 @@
 import { CloseButton } from "@chakra-ui/close-button";
-import { Box } from "@chakra-ui/layout";
+import { Box, Center } from "@chakra-ui/layout";
 import { useState } from "react";
-import { useColorModeValue as mode } from "@chakra-ui/react";
+import { useColorModeValue as mode, SimpleGrid } from "@chakra-ui/react";
 import { Select2 } from "./../formInput/select";
 import {
   AccordionButton,
@@ -41,7 +41,7 @@ export const Ordonnance = (props) => {
     <AccordionItem boxShadow="lg">
       <AccordionButton>
         <Box flex="1" textAlign="left">
-          {title != "" ? title : `Ordonnance`}
+          {title != "" ? title : `Medicament`}
           <EditIcon
             mx={5}
             onClick={(event) => {
@@ -51,20 +51,23 @@ export const Ordonnance = (props) => {
           />
         </Box>
         <AccordionIcon mx={3} />
+
+        <Input
+          placeholder="Écrivez le titre de cet élément"
+          display={showEditTitle ? `none` : `inline`}
+          onChange={(e) => setTitle(e.target.value)}
+        />
         <CloseButton
           onClick={() => removeComponentsForm(id)}
           colorScheme="red"
           bgColor="red.300"
           float="right"
         />
-        <Input
-          placeholder="Écrivez le titre de cet élément"
-          display={showEditTitle ? `none` : `inline`}
-          onChange={(e) => setTitle(e.target.value)}
-        />
       </AccordionButton>
       <AccordionPanel bgColor={mode("green.50", "gray.700")} pb={4}>
-        <AjoutMedicament refetch={refetch} />
+        <Center>
+          <AjoutMedicament refetch={refetch} />
+        </Center>
 
         <InputDateRange
           name={`${name}.duree`}
@@ -75,16 +78,34 @@ export const Ordonnance = (props) => {
           label="Sélectionner une medicament"
           data={selectValue}
           name={`${name}.medicament_id`}
-          required="le nom de medicament est obligatoire"
+          required=" 💊le nom de medicament est obligatoire"
         />
         <MyField
           name={`${name}.duree_entre_chaque_medicament`}
-          label="duree entre chaque medicament"
+          label="Durée entre chaque medicament"
         />
-        <MyNumberInput
-          name={`${name}.NBR_FOIS_JOURS`}
-          label="Nombre de fois par jour"
-        />
+        <SimpleGrid columns={{ lg: 1, xl: 2 }} spacing={2}>
+          <Select2
+            name={`${name}.NBR_FOIS_JOURS`}
+            label="Nombre de fois par jour"
+            data={[
+              { label: "1", value: 1 },
+              { label: "2", value: 2 },
+              { label: "3", value: 3 },
+              { label: "4", value: 4 },
+              { label: "5", value: 5 },
+              { label: "6", value: 6 },
+              { label: "7", value: 7 },
+              { label: "8", value: 8 },
+              { label: "9", value: 9 },
+              { label: "10", value: 10 },
+            ]}
+          />
+          <MyField
+            name={`${name}.lorsqueVousPrenezLeMedicament`}
+            label="Utilisation des médicaments"
+          />
+        </SimpleGrid>
       </AccordionPanel>
     </AccordionItem>
   );

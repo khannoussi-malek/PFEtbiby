@@ -36,9 +36,12 @@
 							}
 						}
 					}
+					dd("hi");
+
 					if($postdata['antecedants']!=[]){
 						foreach ($postdata['antecedants'] as &$value) {
 							if(!empty($value)){
+
 								DB::table('antecedants')->insert(
 									['type' =>$value['type'], 'description' => $value['description'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
 								);
@@ -76,7 +79,7 @@
 						foreach ($postdata['ordonnances'] as &$value) {
 							if(!empty($value)){
 								DB::table('ordonnance')->insert(
-									['consultation_id' => $id, 'patient_id' => $postdata['patient_id'],'medicament_id' => $value['medicament_id']['value'],'date_debut' => substr($value['duree'],0,10),'date_fin' => substr($value['duree'],11),'created_at' => date('Y-m-d H:i:s')]
+									['consultation_id' => $id, 'patient_id' => $postdata['patient_id'],'medicament_id' => $value['medicament_id']['value'],'NBR_FOIS_JOURS'=> $value['NBR_FOIS_JOURS']['value'],'lorsqueVousPrenezLeMedicament'=> $value['lorsqueVousPrenezLeMedicament']['value'],'duree_entre_chaque_medicament'=>$value['duree_entre_chaque_medicament'],date_debut' => substr($value['duree'],0,10),'date_fin' => substr($value['duree'],11),'created_at' => date('Y-m-d H:i:s')]
 								);
 							}
 						}

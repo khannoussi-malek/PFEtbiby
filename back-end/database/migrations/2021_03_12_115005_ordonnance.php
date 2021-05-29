@@ -26,6 +26,7 @@ class Ordonnance extends Migration
             $table->foreign('medicament_id')->references('id')->on('medicament')->onDelete('cascade')->onUpdate('cascade');
             $table->date('date_debut');
             $table->date('date_fin');
+            $table->string('lorsqueVousPrenezLeMedicament')->nullable();
             $table->string('NBR_FOIS_JOURS')->nullable();
             $table->string('duree_entre_chaque_medicament')->nullable();
             $table->timestamps();

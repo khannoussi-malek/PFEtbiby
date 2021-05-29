@@ -206,7 +206,7 @@ const Form = (props) => {
                   onClick={() => addelement({ id, type: "ordonnance" })}
                   colorScheme={mode("green", "gray")}
                 >
-                  Ordonnance
+                  Medicament
                 </Button>
                 <Button
                   onClick={() => addelement({ id, type: "lettre" })}
