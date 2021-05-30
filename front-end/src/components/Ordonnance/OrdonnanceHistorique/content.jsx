@@ -1,15 +1,13 @@
 import React, { useState, useContext } from "react";
-import { Skeleton, useToast, Stack } from "@chakra-ui/react";
+import { Skeleton, Stack, useToast } from "@chakra-ui/react";
 
 import { TbibyContext } from "../../../router/context";
 import { TableContent } from "../../table/TableContent";
 import { TablePagination } from "../../table/TablePagination";
-import { useHistoriqueListCertificat } from "../../../services/api/Historique patient";
-import ShowCertifica from "./../ShowCertifica";
-const ContentCertificat = (props) => {
-  const { user, cleanUser } = useContext(TbibyContext);
+import { useHistoriqueListOrdonnance } from "./../../../services/api/Historique patient/index";
+const ContentOrdonnance = (props) => {
+  const { user } = useContext(TbibyContext);
   const { patient } = props;
-
   const toast = useToast();
   const medecin_id = user.id;
   const [total, setTotal] = useState(0);
@@ -17,21 +15,17 @@ const ContentCertificat = (props) => {
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
 
-  const header = ["date"];
+  const header = ["Médicament"];
   const [content, setContent] = useState([[""]]);
-  const [fntable, setFntable] = useState({
-    fn: (data) => (
-      <ShowCertifica structure={data.structure} patientId={data.patient_id} />
-    ),
-  });
+
   const params = { medecin_id, patient_id: patient.id, page };
   const btnRef = React.useRef();
-  const { isLoading: isLodingCertificat, refetch: refetchCertifcat } =
-    useHistoriqueListCertificat({
+  const { isLoading: isLodingOrdonnance, refetch: refetchOrdonnance } =
+    useHistoriqueListOrdonnance({
       params,
       onError: (error) => {
         toast({
-          title: "Problème de connexion",
+          title: " Problème de connexion",
           description: " Il y a un problème de connexion",
           status: "success",
           duration: 4000,
@@ -45,11 +39,12 @@ const ContentCertificat = (props) => {
         res.data.data !== [] && setContent(res.data.data);
       },
     });
+
   return (
     <>
-      {!isLodingCertificat ? (
+      {!isLodingOrdonnance ? (
         <>
-          <TableContent header={header} content={content} fntable={fntable} />
+          <TableContent header={header} content={content} />
           <TablePagination
             total={total}
             next_page_url={next}
@@ -75,4 +70,4 @@ const ContentCertificat = (props) => {
     </>
   );
 };
-export default ContentCertificat;
+export default ContentOrdonnance;

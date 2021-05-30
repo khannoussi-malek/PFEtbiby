@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/button";
-import { SimpleGrid } from "@chakra-ui/layout";
+import { Box, SimpleGrid } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import React, { useContext, useState } from "react";
 import { TbibyContext } from "../../../router/context";
@@ -13,7 +13,7 @@ import HistoriqueLettre from "../../Lettre/LettreHistorique";
 import HistoriqueOrdonnance from "../../Ordonnance/OrdonnanceHistorique";
 import { TableContent } from "../../table/TableContent";
 import { TablePagination } from "../../table/TablePagination";
-import { useColorModeValue as mode } from "@chakra-ui/react";
+import { Skeleton, useColorModeValue as mode, Stack } from "@chakra-ui/react";
 
 const TableauDynamique = (props) => {
   const { patient, consultation } = props;
@@ -65,14 +65,14 @@ const TableauDynamique = (props) => {
   return (
     <React.Fragment>
       <SimpleGrid minChildWidth="100px" spacing="10px">
-        <Button
+        {/* <Button
           colorScheme={mode("green", "blue")}
           onClick={() => {
             refetchConsultation();
           }}
         >
           Consultation
-        </Button>
+        </Button> */}
         <HistoriqueCertificat patient={patient} />
         <HistoriqueActe patient={patient} />
         <Antecedants patient={patient} />
@@ -80,14 +80,31 @@ const TableauDynamique = (props) => {
         <HistoriqueOrdonnance patient={patient} />
         <HistoriqueLettre patient={patient} />
       </SimpleGrid>
-      <TableContent header={header} content={content} fntable={fntable} />
-      <TablePagination
-        total={total}
-        next_page_url={next}
-        prev_page_url={prev}
-        page={page}
-        setPage={setPage}
-      />
+      {!isLodingConsultation ? (
+        <>
+          <TableContent header={header} content={content} fntable={fntable} />
+          <TablePagination
+            total={total}
+            next_page_url={next}
+            prev_page_url={prev}
+            page={page}
+            setPage={setPage}
+          />
+        </>
+      ) : (
+        <Stack mt="40px">
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+        </Stack>
+      )}
     </React.Fragment>
   );
 };

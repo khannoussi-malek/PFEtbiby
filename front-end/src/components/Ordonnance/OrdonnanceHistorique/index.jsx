@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { useToast, Button, useDisclosure } from "@chakra-ui/react";
+import React, { useContext } from "react";
+import { Button, useDisclosure } from "@chakra-ui/react";
 import {
   Drawer,
   DrawerBody,
@@ -11,45 +11,13 @@ import {
   useColorModeValue as mode,
 } from "@chakra-ui/react";
 import { TbibyContext } from "../../../router/context";
-import { TableContent } from "../../table/TableContent";
-import { TablePagination } from "../../table/TablePagination";
-import { useHistoriqueListOrdonnance } from "../../../services/api/Historique patient";
+import ContentOrdonnance from "./content";
 const HistoriqueOrdonnance = (props) => {
   const { user, cleanUser } = useContext(TbibyContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { patient } = props;
 
-  const toast = useToast();
-  const medecin_id = user.id;
-  const [total, setTotal] = useState(0);
-  const [next, setNext] = useState("");
-  const [prev, setPrev] = useState("");
-  const [page, setPage] = useState(1);
-  const header = ["Medicament"];
-  const [content, setContent] = useState([[""]]);
-  const [patientId, setPatientId] = useState("");
-  // const params = { medecin_id, patient_id: patient.id, page };
-  const params = { patient_id: patient.id, page };
   const btnRef = React.useRef();
-  const { isLoading: isLodingOrdonnance, refetch: refetchOrdonnance } =
-    useHistoriqueListOrdonnance({
-      params,
-      onError: (error) => {
-        toast({
-          title: " Problème de connexion",
-          description: " Il y a un problème de connexion",
-          status: "success",
-          duration: 4000,
-          isClosable: true,
-        });
-      },
-      onSuccess: (res) => {
-        setTotal(res.data.total);
-        setNext(res.data.next_page_url);
-        setPrev(res.data.prev_page_url);
-        res.data.data !== [] && setContent(res.data.data);
-      },
-    });
 
   //   let header = ["Description"];
   return (
@@ -70,14 +38,7 @@ const HistoriqueOrdonnance = (props) => {
           <DrawerHeader>Ordonnance</DrawerHeader>
 
           <DrawerBody>
-            <TableContent header={header} content={content} />
-            <TablePagination
-              total={total}
-              next_page_url={next}
-              prev_page_url={prev}
-              page={page}
-              setPage={setPage}
-            />
+            <ContentOrdonnance patient={patient} />
           </DrawerBody>
 
           <DrawerFooter>

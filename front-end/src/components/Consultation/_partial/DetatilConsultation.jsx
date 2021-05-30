@@ -31,7 +31,6 @@ const DetatilConsultation = (props) => {
       });
     },
     onSuccess: (res) => {
-      // console.log(res.data.data);
       setConsultation(res.data.data.consultation);
       setDetatil(res.data.data.detail);
     },
@@ -49,49 +48,50 @@ const DetatilConsultation = (props) => {
           <SimpleGrid minChildWidth="100px" spacing="10px">
             <Accordion allowMultiple>
               {Object.keys(detatil).map((value) => {
-                return (
-                  <AccordionItem>
-                    <h2>
+                if (detatil[value].length != 0)
+                  return (
+                    <AccordionItem>
                       <AccordionButton bgColor="green.100">
                         <Box flex="1" textAlign="left" fontSize="30px">
                           {value}
                         </Box>
                         <AccordionIcon />
                       </AccordionButton>
-                    </h2>
-                    <AccordionPanel pb={4}>
-                      {detatil[value].map((valueobject) => (
-                        <Box borderBottom="1px" borderColor="gray.200" pb={2}>
-                          {Object.keys(valueobject).map((finalevalue) => (
-                            <Text>
-                              {value == "certificat" ? (
-                                <ShowCertifica
-                                  structure={valueobject.structure}
-                                  patientId={valueobject.patient_id}
-                                />
-                              ) : (
-                                <>
-                                  {valueobject[finalevalue] != null ? (
-                                    <>
-                                      <Text fontSize="20px">
-                                        {finalevalue}:
-                                      </Text>
-                                      <Text fontSize="15px">
-                                        {valueobject[finalevalue]}
-                                      </Text>
-                                    </>
+                      <AccordionPanel pb={4}>
+                        {detatil[value].map((valueobject) => (
+                          <Box borderBottom="1px" borderColor="gray.200" pb={2}>
+                            {Object.keys(valueobject).map((finalevalue) => (
+                              <>
+                                <Text>
+                                  {value == "certificat" ? (
+                                    <ShowCertifica
+                                      structure={valueobject.structure}
+                                      patientId={valueobject.patient_id}
+                                    />
                                   ) : (
-                                    ``
+                                    <>
+                                      {valueobject[finalevalue] != null ? (
+                                        <>
+                                          <Text fontSize="20px">
+                                            {finalevalue}:
+                                          </Text>
+                                          <Text fontSize="15px">
+                                            {valueobject[finalevalue]}
+                                          </Text>
+                                        </>
+                                      ) : (
+                                        ``
+                                      )}
+                                    </>
                                   )}
-                                </>
-                              )}
-                            </Text>
-                          ))}
-                        </Box>
-                      ))}
-                    </AccordionPanel>
-                  </AccordionItem>
-                );
+                                </Text>
+                              </>
+                            ))}
+                          </Box>
+                        ))}
+                      </AccordionPanel>
+                    </AccordionItem>
+                  );
               })}
             </Accordion>
           </SimpleGrid>
