@@ -48,7 +48,7 @@ const GeneralPatientsInformation = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <React.Fragment>
-      <Button colorScheme={mode("green", "blue")} onClick={onOpen}>
+      <Button colorScheme="green" onClick={onOpen}>
         <Tooltip
           label={`Obtenez les informations générales sur ${patientInfo.nom} ${patientInfo.prenom}`}
           aria-label={`Obtenez les informations générales sur ${patientInfo.nom} ${patientInfo.prenom}`}
