@@ -19,7 +19,11 @@ const HistoriqueCetificat = (props) => {
 
   return (
     <>
-      <Button ref={btnRef} colorScheme={mode("green", "blue")} onClick={onOpen}>
+      <Button
+        ref={btnRef}
+        colorScheme={mode("green", "green")}
+        onClick={onOpen}
+      >
         Certificat
       </Button>
       <Drawer

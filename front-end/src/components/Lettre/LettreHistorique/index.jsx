@@ -21,7 +21,11 @@ const HistoriqueLettre = (props) => {
   const btnRef = React.useRef();
   return (
     <>
-      <Button ref={btnRef} colorScheme={mode("green", "blue")} onClick={onOpen}>
+      <Button
+        ref={btnRef}
+        colorScheme={mode("green", "green")}
+        onClick={onOpen}
+      >
         Lettre
       </Button>
       <Drawer

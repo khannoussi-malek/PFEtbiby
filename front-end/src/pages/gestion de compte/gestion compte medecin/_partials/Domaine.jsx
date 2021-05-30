@@ -30,9 +30,8 @@ const AddDomaine = (props) => {
     onSuccess: (res) => {
       onClose();
       toast({
-        title: "Type de certification ajouté avec succès",
-        description:
-          "Vous pouvez le sélectionner nouveau à partir de 'Type de certificat'",
+        title: "Acte ajouté avec succès",
+        description: "Vous pouvez le choisir à partir de la liste",
         status: "success",
         duration: `4000`,
         isClosable: true,
@@ -69,7 +68,7 @@ const AddDomaine = (props) => {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>Create your account</DrawerHeader>
+            <DrawerHeader>Ajout acte</DrawerHeader>
             <DrawerBody>
               <Formiz connect={myForm} onValidSubmit={SubmitAPI}>
                 <form
@@ -99,7 +98,7 @@ const AddDomaine = (props) => {
                       borderColor="green.500"
                       disabled={!myForm.isValid}
                     >
-                      Submit
+                      Enregistrer
                       {!myForm.isValid ? `` : `👌`}
                     </Button>
                   </Box>

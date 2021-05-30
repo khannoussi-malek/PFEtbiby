@@ -15,7 +15,7 @@ import { useColorModeValue as mode, useToast } from "@chakra-ui/react";
 import React, { useContext, useState } from "react";
 import { TbibyContext } from "../../router/context";
 
-import DetatilConsultation from "./_partial/DetatilConsultation";
+import DetailConsultation from "./_partial/DetailConsultation";
 
 const HistoriqueConsultation = (props) => {
   const { data } = props;
@@ -29,7 +29,7 @@ const HistoriqueConsultation = (props) => {
       <Button
         ref={btnRef}
         m={1}
-        colorScheme={mode("green", "blue")}
+        colorScheme={mode("green", "green")}
         onClick={onOpen}
       >
         Historique Consultation
@@ -47,7 +47,7 @@ const HistoriqueConsultation = (props) => {
             <DrawerHeader>Historique consultation</DrawerHeader>
 
             <DrawerBody>
-              <DetatilConsultation data={data} />
+              <DetailConsultation data={data} />
             </DrawerBody>
 
             <DrawerFooter>
