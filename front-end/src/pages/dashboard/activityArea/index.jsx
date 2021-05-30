@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Box } from "@chakra-ui/react";
 import Accountmanagement from "./../../gestion de compte/";
 import { PrivateRoute } from "./../../../router/_partials/PrivateRoute";
-import Rappel from "./../../rappel";
 import ListPatients from "./../../Mes patients";
 import CalendarDashboard from "./../../calendar";
 import { TbibyContext } from "./../../../router/context";
@@ -13,6 +12,7 @@ import MonRendezvous from "./../../Mon rendez vous";
 import TrouverUnMedecin from "../../Trouver un médecin";
 import ListeDact from "../../ListeDact";
 import ListeMedicament from "./../../Liste Medicament";
+import TableauDynamique from "./../../../components/historique patient/_patials/TableauDynamique";
 const ActivityArea = () => {
   const { user } = useContext(TbibyContext);
 
@@ -73,8 +73,8 @@ const ActivityArea = () => {
           exact
         />
         <PrivateRoute
-          path="/dashboard/Rappel"
-          component={Rappel}
+          path="/dashboard/Mon historiques"
+          component={TableauDynamique}
           isAuth={user.fonctionnalite == "patient"}
           exact
         />

@@ -18,7 +18,13 @@ const ContentOrdonnance = (props) => {
   const header = ["Médicament"];
   const [content, setContent] = useState([[""]]);
 
-  const params = { medecin_id, patient_id: patient.id, page };
+  let params = {};
+
+  if (!!user.email) {
+    params = { patient_id: patient.id, page };
+  } else {
+    params = { medecin_id, patient_id: patient.id, page };
+  }
   const btnRef = React.useRef();
   const { isLoading: isLodingOrdonnance, refetch: refetchOrdonnance } =
     useHistoriqueListOrdonnance({

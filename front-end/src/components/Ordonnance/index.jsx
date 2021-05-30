@@ -33,7 +33,7 @@ export const Ordonnance = (props) => {
   const ordonnanceImprime = () => {
     let ord = values.ordonnances;
     return (
-      <Center w="100%">
+      <Box>
         {ord != [] && ord != null
           ? ord.map((value) => (
               <>
@@ -56,7 +56,7 @@ export const Ordonnance = (props) => {
               </>
             ))
           : ``}
-      </Center>
+      </Box>
     );
   };
 
@@ -120,7 +120,6 @@ export const Ordonnance = (props) => {
         <Center>
           <AjoutMedicament refetch={refetch} />
         </Center>
-
         {MyForm.isValid ? (
           <Button
             onClick={print}

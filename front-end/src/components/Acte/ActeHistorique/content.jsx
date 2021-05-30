@@ -19,8 +19,14 @@ const ContentActe = (props) => {
 
   const header = ["Code", "Designation", "note", "Date"];
   const [content, setContent] = useState([[""]]);
+  let params = {};
 
-  const params = { medecin_id, patient_id: patient.id, page };
+  if (!!user.email) {
+    params = { patient_id: patient.id, page };
+  } else {
+    params = { medecin_id, patient_id: patient.id, page };
+  }
+  console.log(params);
   const { isLoading: isLodingActe, refetch: refetchActe } =
     useHistoriqueListActe({
       params,

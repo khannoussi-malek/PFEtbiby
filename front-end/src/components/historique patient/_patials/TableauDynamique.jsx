@@ -16,7 +16,7 @@ import { TablePagination } from "../../table/TablePagination";
 import { Skeleton, useColorModeValue as mode, Stack } from "@chakra-ui/react";
 
 const TableauDynamique = (props) => {
-  const { patient, consultation } = props;
+  let { patient } = props;
   const { user } = useContext(TbibyContext);
   const [total, setTotal] = useState(0);
   const [next, setNext] = useState("");
@@ -25,11 +25,22 @@ const TableauDynamique = (props) => {
   const [content, setContent] = useState([""], [""]);
   const header = ["date", "Diagnostic"];
   const toast = useToast();
-  const params = {
-    patient_id: patient.id,
-    medecin_id: user.id,
-    page,
-  };
+
+  let params = {};
+  if (!!!patient) {
+    params = {
+      patient_id: user.id,
+      page,
+    };
+    patient = user;
+  } else {
+    params = {
+      patient_id: patient.id,
+      medecin_id: user.id,
+      page,
+    };
+  }
+
   const { isLoading: isLodingConsultation, refetch: refetchConsultation } =
     useHistoriqueListConsultation({
       params,
@@ -65,14 +76,6 @@ const TableauDynamique = (props) => {
   return (
     <React.Fragment>
       <SimpleGrid minChildWidth="100px" spacing="10px">
-        {/* <Button
-          colorScheme={mode("green", "blue")}
-          onClick={() => {
-            refetchConsultation();
-          }}
-        >
-          Consultation
-        </Button> */}
         <HistoriqueCertificat patient={patient} />
         <HistoriqueActe patient={patient} />
         <Antecedants patient={patient} />

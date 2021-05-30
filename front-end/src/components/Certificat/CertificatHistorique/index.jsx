@@ -30,7 +30,7 @@ const HistoriqueCetificat = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent bg={mode("green.50")}>
+        <DrawerContent bg={mode("green.50", "gray.700")}>
           <DrawerCloseButton />
           <DrawerHeader>Certificat</DrawerHeader>
 

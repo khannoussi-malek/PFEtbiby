@@ -26,11 +26,21 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
+				if(empty($postdata['medecin_id'])){
+					
+				$result = DB::table('consultation')
+                ->where('patient_id',$postdata['patient_id'])
+                ->select('id','created_at','Diagnostic')->orderBy('consultation.created_at', 'DESC')
+                ->paginate(10);
+						}else{
+							
 				$result = DB::table('consultation')
                 ->where('patient_id',$postdata['patient_id'])
                 ->where('medecin_id',$postdata['medecin_id'])
                 ->select('id','created_at','Diagnostic')->orderBy('consultation.created_at', 'DESC')
                 ->paginate(10);
+						}
+						
 
 		    }
 

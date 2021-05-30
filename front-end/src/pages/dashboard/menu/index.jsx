@@ -6,8 +6,6 @@ import {
   BsSearch,
   BsFillCalendarFill,
   BsFillPersonLinesFill,
-  BsBookmarks,
-  BsAlarm,
   BsFillPeopleFill,
 } from "react-icons/bs";
 
@@ -17,6 +15,7 @@ import {
   BiLayer,
   BiCalendarAlt,
   BiPlusMedical,
+  BiDetail,
 } from "react-icons/bi";
 
 import { useHistory } from "react-router-dom";
@@ -32,6 +31,7 @@ const Menu = () => {
   let pages = [];
   let Patientmenu = [
     { url: "Dashboard", icon: <BiCalendarAlt fontSize="20px" /> },
+    { url: "Mon historiques", icon: <BiDetail fontSize="20px" /> },
     { url: "Trouver un médecin", icon: <BsSearch fontSize="20px" /> },
     { url: "Mes rendez vous", icon: <BsFillCalendarFill fontSize="20px" /> },
     { url: "Mes médecins", icon: <BsFillPersonLinesFill fontSize="20px" /> },

@@ -27,7 +27,6 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from "@chakra-ui/react";
-import { TbibyContext } from "../../../router/context";
 import ContentActe from "./content";
 const HistoriqueActe = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -48,7 +47,7 @@ const HistoriqueActe = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent bg={mode("green.50")}>
+        <DrawerContent bg={mode("green.50", "gray.700")}>
           <DrawerCloseButton />
           <DrawerHeader>Acte</DrawerHeader>
 

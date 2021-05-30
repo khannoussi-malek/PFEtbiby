@@ -18,8 +18,13 @@ const ContentExamen = (props) => {
 
   const header = ["Note", "Type", "Prix"];
   const [content, setContent] = useState([[""]]);
+  let params = {};
 
-  const params = { medecin_id, patient_id: patient.id, page };
+  if (!!user.email) {
+    params = { patient_id: patient.id, page };
+  } else {
+    params = { medecin_id, patient_id: patient.id, page };
+  }
   const btnRef = React.useRef();
   const { isLoading: isLodingExamen, refetch: refetchExamen } =
     useHistoriqueListExamen({

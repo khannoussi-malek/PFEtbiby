@@ -26,6 +26,7 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
+				
 				$result = DB::table('ordonnance')
 				->whereDAte('ordonnance.date_fin','>', date('Y-m-d H:i:s'))
                 ->where('ordonnance.patient_id',$postdata['patient_id'])

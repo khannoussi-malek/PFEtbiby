@@ -19,7 +19,8 @@ const ContentLetter = (props) => {
   const header = ["Description", "Date"];
   const [content, setContent] = useState([[""]]);
 
-  const params = { medecin_id, patient_id: patient.id, page };
+  let params = { patient_id: patient.id, page };
+
   const btnRef = React.useRef();
   const { isLoading: isLodingLettre, refetch: refetchLettre } =
     useHistoriqueListLettre({
