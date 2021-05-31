@@ -73,7 +73,7 @@ const ActivityArea = () => {
           exact
         />
         <PrivateRoute
-          path="/dashboard/Mon historiques"
+          path="/dashboard/Historiques"
           component={TableauDynamique}
           isAuth={user.fonctionnalite == "patient"}
           exact
