@@ -89,7 +89,7 @@ const MonRendezvous = () => {
     fn2: (data) => (
       <G_Alert
         Header="Supprimer la réservation"
-        Body={`Voulez-vous vraiment supprimer cette réservation avec ${data.nom} ${data.prenom}`}
+        Body={`Voulez-vous vraiment supprimer cette réservation avec ${data.nomprenom}`}
         icon={<CloseIcon />}
         colorScheme="teal"
         bg="red.300"
