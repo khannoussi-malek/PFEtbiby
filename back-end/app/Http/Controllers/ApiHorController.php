@@ -32,7 +32,7 @@
                 ->where('ordonnance.patient_id',$postdata['patient_id'])
                 // ->where('medecin_id',$postdata['medecin_id'])
 				->join('medicament', 'medicament.id', '=', 'ordonnance.medicament_id')
-                ->select('ordonnance.id','medicament.designation')->orderBy('ordonnance.created_at')
+                ->select('ordonnance.id','medicament.designation','ordonnance.date_fin')->orderBy('ordonnance.created_at')
                 ->paginate(10);
 		    }
 

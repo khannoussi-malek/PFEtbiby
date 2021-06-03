@@ -67,7 +67,7 @@ const Antecedants = (props) => {
   // console.log(patientInfo);
   const [fntable, setFntable] = useState({
     fn: (data) => (
-      <Text fontSize="20px" color={mode("green.700", "gray.50")}>
+      <Text fontSize="20px" colorScheme={mode("green.700", "gray.50")}>
         <Popover>
           <PopoverTrigger>
             <Text

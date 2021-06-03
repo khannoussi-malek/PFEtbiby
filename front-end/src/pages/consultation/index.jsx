@@ -16,6 +16,7 @@ import GeneralPatientsInformation from "../../components/general patients inform
 import Antecedants from "./../../components/Antecedants";
 import Form from "./_partials/form";
 import { CloseIcon } from "@chakra-ui/icons";
+import HistoriquePatient from "./../../components/historique patient/index";
 
 const Consultation = () => {
   const toast = useToast();
@@ -118,6 +119,9 @@ const Consultation = () => {
             </Box>
             <Box m={5} textAlign="center">
               <Antecedants patient={currentPatient} />
+            </Box>
+            <Box m={5} textAlign="center">
+              <HistoriquePatient patient={currentPatient} />
             </Box>
           </SimpleGrid>
 

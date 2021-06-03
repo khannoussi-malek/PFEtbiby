@@ -35,7 +35,7 @@ export const TableContent = (props) => {
               fontWeight="extrabold"
               letterSpacing="tight"
             >
-              Vous n'avez aucun information
+              Vous n'avez aucune information
             </Heading>
           </>
         )}
@@ -53,7 +53,7 @@ export const TableContent = (props) => {
             {header.map((column, index) => (
               <Th
                 maxW="10%"
-                whiteSpace="nowrap"
+                whiteSpace="normal"
                 scope="col"
                 color={mode("green.900", "gray.50")}
                 key={index}
@@ -77,7 +77,7 @@ export const TableContent = (props) => {
                 .slice(1)
                 .map((column, indexcol) =>
                   indexcol < Object.values(header).length ? (
-                    <Td maxW="100px" whiteSpace="nowrap" key={indexcol}>
+                    <Td maxW="100px" whiteSpace="normal" key={indexcol}>
                       {column}
                     </Td>
                   ) : null

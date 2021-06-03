@@ -15,7 +15,7 @@ const ContentOrdonnance = (props) => {
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
 
-  const header = ["Médicament"];
+  const header = ["Médicament", "date fin"];
   const [content, setContent] = useState([[""]]);
 
   let params = {};

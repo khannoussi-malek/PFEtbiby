@@ -11,13 +11,16 @@ import {
   DrawerOverlay,
 } from "@chakra-ui/modal";
 import { useRef } from "react";
-import { useColorModeValue as mode, useToast } from "@chakra-ui/react";
-import React, { useContext, useState } from "react";
+import { useColorModeValue as mode } from "@chakra-ui/react";
+import React, { useContext } from "react";
 import { TbibyContext } from "../../router/context";
 
 import DetailConsultation from "./_partial/DetailConsultation";
+import { useBreakpointValue } from "@chakra-ui/media-query";
+import { BiFile } from "react-icons/bi";
 
 const HistoriqueConsultation = (props) => {
+  const isMobile = useBreakpointValue({ base: true, lg: false });
   const { data } = props;
   const { user } = useContext(TbibyContext);
 
@@ -32,7 +35,7 @@ const HistoriqueConsultation = (props) => {
         colorScheme={mode("green", "green")}
         onClick={onOpen}
       >
-        Historique Consultation
+        {isMobile ? <BiFile fontSize="30px" /> : ` Historique Consultation`}
       </Button>
       <Drawer
         size="xl"
