@@ -137,7 +137,7 @@ const ConfirmerUnRendezVous = (props) => {
         onClick={onOpen}
       >
         {isMobile ? `` : `Valider un rendez vous `}
-        {content == [] ? `📫` : `📪`}
+        {content.length != 0 ? `📫` : `📪`}
       </Button>
       <Drawer
         size="lg"

@@ -54,6 +54,7 @@ const Menu = () => {
       { url: "Modèle de certificat", icon: <BiClipboard fontSize="20px" /> },
       { url: "Liste d'actes", icon: <BiLayer fontSize="20px" /> },
       { url: "Liste medicament", icon: <BiPlusMedical fontSize="20px" /> },
+      { url: "Mon historiques", icon: <BiDetail fontSize="20px" /> },
       { url: "Mes rendez vous", icon: <BsFillCalendarFill fontSize="20px" /> },
       { url: "Mes médecins", icon: <BsFillPersonLinesFill fontSize="20px" /> },
       { url: "Trouver un médecin", icon: <BsSearch fontSize="20px" /> },

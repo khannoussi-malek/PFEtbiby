@@ -91,7 +91,7 @@ const AjoutActe = (props) => {
                       />
                       <Prix
                         name="price"
-                        label="Price"
+                        label="Prix"
                         required="Il est requis de compléter ce champ"
                       />
                     </Box>

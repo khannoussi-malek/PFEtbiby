@@ -16,8 +16,8 @@ const CalendarDashboard = () => {
         <Center>
           <RadioGroup onChange={setCalendarType} value={calendarType}>
             <Stack direction="row" spacing={50}>
-              <Radio value="cabine">cabine </Radio>
-              <Radio value="moi">moi</Radio>
+              <Radio value="cabine">Dhasboard cabinet </Radio>
+              <Radio value="moi">Mon dashboard</Radio>
             </Stack>
           </RadioGroup>
         </Center>
