@@ -1,0 +1,27 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.iset.tbiby"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.iset.tbiby"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.iset.tbiby"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.iset.tbiby"
+    },
+    "cordova-plugin-csp-override": {
+      "PACKAGE_NAME": "com.iset.tbiby"
+    }
+  },
+  "dependent_plugins": {}
+}
