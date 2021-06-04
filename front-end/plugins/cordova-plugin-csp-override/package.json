@@ -1,0 +1,30 @@
+{
+  "name": "cordova-plugin-csp-override",
+  "version": "1.0.0",
+  "description": "Allows the override of Content Security Policy for iOS and Android",
+  "cordova": {
+    "id": "cordova-plugin-csp-override",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AppWorkshop/cordova-plugin-csp-override"
+  },
+  "keywords": [
+    "cordova",
+    "meteor",
+    "ios",
+    "android",
+    "csp",
+    "content security policy"
+  ],
+  "author": "Mike Cunneen - The App Workshop",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AppWorkshop/cordova-plugin-csp-override/issues"
+  },
+  "homepage": "https://github.com/AppWorkshop/cordova-plugin-csp-override#readme"
+}
