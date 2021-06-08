@@ -50,7 +50,7 @@ const Menu = () => {
     ];
   } else if (user.fonctionnalite == "secretaire") {
     pages = [
-      { url: "dashboard", icon: <BiCalendarAlt fontSize="20px" /> },
+      { url: "Dashboard", icon: <BiCalendarAlt fontSize="20px" /> },
       { url: "Modèle de certificat", icon: <BiClipboard fontSize="20px" /> },
       { url: "Liste d'actes", icon: <BiLayer fontSize="20px" /> },
       { url: "Liste medicament", icon: <BiPlusMedical fontSize="20px" /> },

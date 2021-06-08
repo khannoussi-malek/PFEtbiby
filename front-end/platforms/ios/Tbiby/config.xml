@@ -34,7 +34,6 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <allow-navigation href="http://192.168.137.1:8000/*" />
     <allow-intent href="http:/*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

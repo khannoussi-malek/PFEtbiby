@@ -30,7 +30,7 @@ const EditerCertificat = (props) => {
         status: "success",
         duration: `4000`,
         isClosable: true,
-      }); // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      }); 
     },
     onSuccess: (res) => {
       onClose();

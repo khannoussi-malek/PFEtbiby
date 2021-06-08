@@ -7,7 +7,7 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
+    "cordova-plugin-csp-override": {
       "PACKAGE_NAME": "com.iset.tbiby"
     },
     "cordova-plugin-device": {
@@ -19,7 +19,7 @@
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.iset.tbiby"
     },
-    "cordova-plugin-csp-override": {
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.iset.tbiby"
     }
   },
