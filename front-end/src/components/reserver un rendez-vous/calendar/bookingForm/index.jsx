@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/modal";
 import { Button } from "@chakra-ui/button";
 import { useState, useContext } from "react";
-import { Text, Spinner } from "@chakra-ui/react";
+import { Text, Spinner, useToast } from "@chakra-ui/react";
 import { usePatientCreateReservation } from "./../../../../services/api/reservation";
 import { TbibyContext } from "./../../../../router/context";
 const BookingFormReserve = (props) => {
@@ -26,11 +26,19 @@ const BookingFormReserve = (props) => {
     data,
     end,
   } = props;
+  const toast = useToast();
+
   const { user } = useContext(TbibyContext);
 
   const { mutate, isLoading } = usePatientCreateReservation({
     onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
     },
     onSuccess: (res) => {
       refetchTask();

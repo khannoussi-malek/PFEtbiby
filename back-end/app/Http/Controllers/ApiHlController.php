@@ -30,14 +30,14 @@
 					$result = DB::table('lettre')
 					->where('patient_id',$postdata['patient_id'])
 					->orwhere('medecin_destiantaire_id',$postdata['medecin_id'])
-					->select('id','description','created_at')->orderBy('lettre.created_at')
+					->select('id','description','created_at')->orderBy('lettre.created_at','desc')
 					->paginate(10);
 							}else{
 								$result = DB::table('lettre')
 								->where('patient_id',$postdata['patient_id'])
 								->where('medecin_id',$postdata['medecin_id'])
 								->orwhere('medecin_destiantaire_id',$postdata['medecin_id'])
-								->select('id','description','created_at')->orderBy('lettre.created_at')
+								->select('id','description','created_at')->orderBy('lettre.created_at','DESC')
 								->paginate(10);
 							}
 		    }

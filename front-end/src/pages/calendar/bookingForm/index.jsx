@@ -13,11 +13,19 @@ import {
 import { Button } from "@chakra-ui/button";
 import { Select2 } from "../../../components/formInput/select";
 import { useState } from "react";
-import { Text, Spinner, RadioGroup, Radio, Stack } from "@chakra-ui/react";
+import {
+  Text,
+  Spinner,
+  RadioGroup,
+  Radio,
+  Stack,
+  useToast,
+} from "@chakra-ui/react";
 import { useCreateReservation } from "../../../services/api/reservation";
 import { useRelation } from "../../../services/api/relation";
 import AddNewPatient from "./AddNewPatient";
 const BookingForm = (props) => {
+  const toast = useToast();
   const [NomPrenom, setNomPrenom] = useState("");
   const {
     medecin_id,
@@ -32,7 +40,13 @@ const BookingForm = (props) => {
   } = props;
   const { mutate, isLoading } = useCreateReservation({
     onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
     },
     onSuccess: (res) => {
       refetchTask();

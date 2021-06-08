@@ -54,7 +54,13 @@ const CalendarReserve = (props) => {
   const { mutate: DeleteMutate, isLoading: DeleteIsLoading } =
     useDeleteReservation({
       onError: (error) => {
-        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+        toast({
+          title: "🌐 Problème de connexion",
+          description: " Il y a un problème de connexion",
+          status: "success",
+          duration: `4000`,
+          isClosable: true,
+        });
       },
       onSuccess: (res) => {
         refetchTask();
@@ -63,7 +69,13 @@ const CalendarReserve = (props) => {
 
   const { mutate, isLoading: isLoadingUpdate } = useUpdateReservation({
     onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
     },
     onSuccess: (res) => {
       refetchTask();

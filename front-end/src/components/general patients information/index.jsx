@@ -24,8 +24,12 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import { CloseIcon } from "@chakra-ui/icons";
 import { link, userImage } from "./../../services/api";
 import { MdCall } from "react-icons/md";
+import { useBreakpointValue } from "@chakra-ui/media-query";
+import { BsInfoCircle } from "react-icons/bs";
 
 const GeneralPatientsInformation = (props) => {
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+
   const [patientInfo, setPatientInfo] = useState({});
   const { patient } = props;
   const toast = useToast();
@@ -53,7 +57,7 @@ const GeneralPatientsInformation = (props) => {
           label={`Obtenez les informations générales sur ${patientInfo.nom} ${patientInfo.prenom}`}
           aria-label={`Obtenez les informations générales sur ${patientInfo.nom} ${patientInfo.prenom}`}
         >
-          Informations
+          {isMobile ? <BsInfoCircle fontSize="30px" /> : `Informations`}
         </Tooltip>
       </Button>
       <Drawer placement="left" size="md" onClose={onClose} isOpen={isOpen}>
