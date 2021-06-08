@@ -39,6 +39,7 @@
 					if($postdata['antecedants']!=[]){
 						foreach ($postdata['antecedants'] as &$value) {
 							if(!empty($value)){
+
 								DB::table('antecedants')->insert(
 									['type' =>$value['type'], 'description' => $value['description'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
 								);
@@ -69,14 +70,33 @@
 								DB::table('lettre')->insert(
 									['consultation_id' => $id,'medecin_destiantaire_id' =>$value['medecin_destiantaire_id']['value'],'description' =>$value['description'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
 								);
+								$relation= DB::table('relation')->where('patient_id',$postdata['patient_id'])->where('medecin_id',$postdata['medecin_id'])->exists();
+								if(!$relation){
+									DB::table('relation')->insert(
+										['patient_id' => $postdata['patient_id'],'medecin_id' =>$value['medecin_destiantaire_id']['value'],'created_at' => date('Y-m-d H:i:s')]
+									);
+								}
+								$medecin_id= DB::table('cms_users')->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'))
+								->where('id',$postdata['medecin_id'])->first();
+								$patient_id= DB::table('cms_users')->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'))
+								->where('id',$postdata['patient_id'])->first();
+								
+							
+								$ch="Vous avez une lettre avec le patient ".$patient_id->nomprenom." l'envoyé de ".$medecin_id->nomprenom;
+								$config['id_cms_users'] = [$value['medecin_destiantaire_id']['value']];
+								$config['content'] = $ch;
+								$config['to'] = "/dashboard/Mes%20patients";
+								CRUDBooster::sendNotification($config);
 							}
 						}
+					
 					}
 					if($postdata['ordonnances']!=[]){
 						foreach ($postdata['ordonnances'] as &$value) {
 							if(!empty($value)){
+								// dd($value);
 								DB::table('ordonnance')->insert(
-									['consultation_id' => $id, 'patient_id' => $postdata['patient_id'],'medicament_id' => $value['medicament_id']['value'],'date_debut' => substr($value['duree'],0,10),'date_fin' => substr($value['duree'],11),'created_at' => date('Y-m-d H:i:s')]
+									['consultation_id' => $id, 'patient_id' => $postdata['patient_id'],'medicament_id' => $value['medicament_id']['value'],'NBR_FOIS_JOURS'=> $value['NBR_FOIS_JOURS']['value'],'lorsqueVousPrenezLeMedicament'=> $value['lorsqueVousPrenezLeMedicament'],'duree_entre_chaque_medicament'=>$value['duree_entre_chaque_medicament'],'date_debut' => substr($value['duree'],0,10),'date_fin' => substr($value['duree'],11),'created_at' => date('Y-m-d H:i:s')]
 								);
 							}
 						}
@@ -85,8 +105,6 @@
 					}
 				$postdata=$errer;
 				$postdata=['api_status'=>1];
-			
-
 		    }
 
 		    public function hook_query(&$query) {

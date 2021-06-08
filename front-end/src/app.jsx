@@ -16,7 +16,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <TheContext>
           <MainRouter />
-          {/* <ApiDevtools initialIsOpen={false} /> */}
+          <ApiDevtools initialIsOpen={false} />
         </TheContext>
       </QueryClientProvider>
     </React.Fragment>

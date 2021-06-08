@@ -11,15 +11,16 @@ import {
   DrawerOverlay,
 } from "@chakra-ui/modal";
 import { useRef } from "react";
-import { useColorModeValue as mode, useToast } from "@chakra-ui/react";
-import React, { useContext, useState } from "react";
-import { TbibyContext } from "../../router/context";
+import { useColorModeValue as mode } from "@chakra-ui/react";
+import React from "react";
 
-import DetatilConsultation from "./_partial/DetatilConsultation";
+import DetailConsultation from "./_partial/DetailConsultation";
+import { useBreakpointValue } from "@chakra-ui/media-query";
+import { BiFile } from "react-icons/bi";
 
 const HistoriqueConsultation = (props) => {
+  const isMobile = useBreakpointValue({ base: true, lg: false });
   const { data } = props;
-  const { user } = useContext(TbibyContext);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
@@ -29,10 +30,10 @@ const HistoriqueConsultation = (props) => {
       <Button
         ref={btnRef}
         m={1}
-        colorScheme={mode("green", "blue")}
+        colorScheme={mode("green", "green")}
         onClick={onOpen}
       >
-        Historique Consultation
+        {isMobile ? <BiFile fontSize="30px" /> : ` Historique Consultation`}
       </Button>
       <Drawer
         size="xl"
@@ -42,12 +43,12 @@ const HistoriqueConsultation = (props) => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
-          <DrawerContent bg={mode("green.50")}>
+          <DrawerContent bg={mode("green.50", "gray.700")}>
             <DrawerCloseButton />
             <DrawerHeader>Historique consultation</DrawerHeader>
 
             <DrawerBody>
-              <DetatilConsultation data={data} />
+              <DetailConsultation data={data} />
             </DrawerBody>
 
             <DrawerFooter>

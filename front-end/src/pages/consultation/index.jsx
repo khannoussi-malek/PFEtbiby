@@ -5,7 +5,6 @@ import { TbibyContext } from "./../../router/context";
 import {
   useToast,
   Spinner,
-  Textarea,
   useColorModeValue as mode,
   Button,
 } from "@chakra-ui/react";
@@ -16,6 +15,7 @@ import GeneralPatientsInformation from "../../components/general patients inform
 import Antecedants from "./../../components/Antecedants";
 import Form from "./_partials/form";
 import { CloseIcon } from "@chakra-ui/icons";
+import HistoriquePatient from "./../../components/historique patient/index";
 
 const Consultation = () => {
   const toast = useToast();
@@ -27,7 +27,13 @@ const Consultation = () => {
   const { mutate: SPTWRMutate, isLoading: SPTWRIsLoading } =
     useSendPatientToWaitingRoom({
       onError: (error) => {
-        // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+        toast({
+          title: "🌐 Problème de connexion",
+          description: " Il y a un problème de connexion",
+          status: "success",
+          duration: `4000`,
+          isClosable: true,
+        });
       },
       onSuccess: (res) => {
         refetch();
@@ -118,6 +124,9 @@ const Consultation = () => {
             </Box>
             <Box m={5} textAlign="center">
               <Antecedants patient={currentPatient} />
+            </Box>
+            <Box m={5} textAlign="center">
+              <HistoriquePatient patient={currentPatient} />
             </Box>
           </SimpleGrid>
 

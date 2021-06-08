@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/button";
-import { SimpleGrid } from "@chakra-ui/layout";
+import { Box, SimpleGrid } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import React, { useContext, useState } from "react";
 import { TbibyContext } from "../../../router/context";
@@ -13,10 +13,10 @@ import HistoriqueLettre from "../../Lettre/LettreHistorique";
 import HistoriqueOrdonnance from "../../Ordonnance/OrdonnanceHistorique";
 import { TableContent } from "../../table/TableContent";
 import { TablePagination } from "../../table/TablePagination";
-import { useColorModeValue as mode } from "@chakra-ui/react";
+import { Skeleton, useColorModeValue as mode, Stack } from "@chakra-ui/react";
 
 const TableauDynamique = (props) => {
-  const { patient, consultation } = props;
+  let { patient } = props;
   const { user } = useContext(TbibyContext);
   const [total, setTotal] = useState(0);
   const [next, setNext] = useState("");
@@ -25,11 +25,22 @@ const TableauDynamique = (props) => {
   const [content, setContent] = useState([""], [""]);
   const header = ["date", "Diagnostic"];
   const toast = useToast();
-  const params = {
-    patient_id: patient.id,
-    medecin_id: user.id,
-    page,
-  };
+
+  let params = {};
+  if (!!!patient) {
+    params = {
+      patient_id: user.id,
+      page,
+    };
+    patient = user;
+  } else {
+    params = {
+      patient_id: patient.id,
+      medecin_id: user.id,
+      page,
+    };
+  }
+
   const { isLoading: isLodingConsultation, refetch: refetchConsultation } =
     useHistoriqueListConsultation({
       params,
@@ -65,14 +76,6 @@ const TableauDynamique = (props) => {
   return (
     <React.Fragment>
       <SimpleGrid minChildWidth="100px" spacing="10px">
-        <Button
-          colorScheme={mode("green", "blue")}
-          onClick={() => {
-            refetchConsultation();
-          }}
-        >
-          Consultation
-        </Button>
         <HistoriqueCertificat patient={patient} />
         <HistoriqueActe patient={patient} />
         <Antecedants patient={patient} />
@@ -80,14 +83,31 @@ const TableauDynamique = (props) => {
         <HistoriqueOrdonnance patient={patient} />
         <HistoriqueLettre patient={patient} />
       </SimpleGrid>
-      <TableContent header={header} content={content} fntable={fntable} />
-      <TablePagination
-        total={total}
-        next_page_url={next}
-        prev_page_url={prev}
-        page={page}
-        setPage={setPage}
-      />
+      {!isLodingConsultation ? (
+        <>
+          <TableContent header={header} content={content} fntable={fntable} />
+          <TablePagination
+            total={total}
+            next_page_url={next}
+            prev_page_url={prev}
+            page={page}
+            setPage={setPage}
+          />
+        </>
+      ) : (
+        <Stack mt="40px">
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+          <Skeleton startColor="gray.100" endColor="green.500" height="40px" />
+        </Stack>
+      )}
     </React.Fragment>
   );
 };

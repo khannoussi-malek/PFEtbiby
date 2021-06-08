@@ -30,6 +30,7 @@ import { TableContent } from "./../table/TableContent";
 import { TablePagination } from "./../table/TablePagination";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 import DescriptionMobile from "./descriptionMobile";
+import { BsHeart } from "react-icons/bs";
 
 const Antecedants = (props) => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
@@ -67,7 +68,7 @@ const Antecedants = (props) => {
   // console.log(patientInfo);
   const [fntable, setFntable] = useState({
     fn: (data) => (
-      <Text fontSize="20px" color={mode("green.700", "gray.50")}>
+      <Text fontSize="20px" colorScheme={mode("green.700", "gray.50")}>
         <Popover>
           <PopoverTrigger>
             <Text
@@ -100,12 +101,12 @@ const Antecedants = (props) => {
   });
   return (
     <React.Fragment>
-      <Button colorScheme={mode("green", "blue")} onClick={onOpen}>
+      <Button colorScheme={mode("green", "green")} onClick={onOpen}>
         <Tooltip
-          label={`Trouver tous les antécédents médicauxr`}
+          label={`Trouver tous les antécédents médicaux`}
           aria-label="Trouver tous les antécédents médicaux"
         >
-          Antécédents
+          {isMobile ? <BsHeart fontSize="30px" /> : `Antécédents`}
         </Tooltip>
       </Button>
       <Drawer placement="left" size="xl" onClose={onClose} isOpen={isOpen}>
