@@ -71,7 +71,7 @@ const ListeMedicament = () => {
         >
           <Grid templateColumns="repeat(2, 1fr)" w="100%" gap={2}>
             <Tooltip
-              label={`Écrivez le nom du certificat que vous avez recherché sur ce`}
+              label={`Écrivez le nom du médicament que vous vouler le chercher`}
               aria-label={`Écrivez le nom du certificat que vous avez recherché sur ce`}
             >
               <FormControl w="100%" id="search">
