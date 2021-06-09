@@ -26,7 +26,13 @@ const UpdateAct = (props) => {
   const toast = useToast();
   const { mutate, isLoading } = useUpdateActe({
     onError: (error) => {
-      // setMessage("Vérifier l'information qui vous inseri ou votre liste");
+      toast({
+        title: "🌐 Problème de connexion",
+        description: " Il y a un problème de connexion",
+        status: "success",
+        duration: `4000`,
+        isClosable: true,
+      });
     },
     onSuccess: (res) => {
       onClose();

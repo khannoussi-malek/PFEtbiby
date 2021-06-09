@@ -30,6 +30,7 @@ import { TableContent } from "./../table/TableContent";
 import { TablePagination } from "./../table/TablePagination";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 import DescriptionMobile from "./descriptionMobile";
+import { BsHeart } from "react-icons/bs";
 
 const Antecedants = (props) => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
@@ -105,7 +106,7 @@ const Antecedants = (props) => {
           label={`Trouver tous les antécédents médicaux`}
           aria-label="Trouver tous les antécédents médicaux"
         >
-          Antécédents
+          {isMobile ? <BsHeart fontSize="30px" /> : `Antécédents`}
         </Tooltip>
       </Button>
       <Drawer placement="left" size="xl" onClose={onClose} isOpen={isOpen}>

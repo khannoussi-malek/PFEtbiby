@@ -12,8 +12,7 @@ import {
 } from "@chakra-ui/modal";
 import { useRef } from "react";
 import { useColorModeValue as mode } from "@chakra-ui/react";
-import React, { useContext } from "react";
-import { TbibyContext } from "../../router/context";
+import React from "react";
 
 import DetailConsultation from "./_partial/DetailConsultation";
 import { useBreakpointValue } from "@chakra-ui/media-query";
@@ -22,7 +21,6 @@ import { BiFile } from "react-icons/bi";
 const HistoriqueConsultation = (props) => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
   const { data } = props;
-  const { user } = useContext(TbibyContext);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();

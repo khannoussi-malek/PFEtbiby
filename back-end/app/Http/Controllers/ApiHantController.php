@@ -30,14 +30,14 @@
 					
 				$result = DB::table('antecedants')
                 ->where('patient_id',$postdata['patient_id'])
-                ->select('id','description','created_at')->orderBy('antecedants.created_at')
+                ->select('id','description','created_at')->orderBy('antecedants.created_at','desc')
                 ->paginate(10);
 					}else{
 						
 				$result = DB::table('antecedants')
                 ->where('patient_id',$postdata['patient_id'])
                 ->where('medecin_id',$postdata['medecin_id'])
-                ->select('id','description','created_at')->orderBy('antecedants.created_at')
+                ->select('id','description','created_at')->orderBy('antecedants.created_at','desc')
                 ->paginate(10);
 					}
 					

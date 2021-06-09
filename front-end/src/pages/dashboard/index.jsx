@@ -35,7 +35,7 @@ const Dashboard = () => {
       w="100vw"
       bg={mode("green.500", "inherit")}
       overflow="hidden"
-      sx={{ "--sidebar-width": "230px" }}
+      sx={{ "--sidebar-width": "245px" }}
     >
       <Box
         as="nav"
@@ -67,7 +67,7 @@ const Dashboard = () => {
           maxW="2560px"
           bg={mode("white", "gray.700")}
           height="100%"
-          pb="6"
+          // pb="0"
           rounded={{ md: "lg" }}
         >
           <Flex direction="column" height="full">

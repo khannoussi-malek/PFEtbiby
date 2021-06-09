@@ -24,6 +24,7 @@ import React, { useState } from "react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import { useSingup } from "./../../../services/api/auth";
+import { Code } from "@chakra-ui/layout";
 
 const Singup = () => {
   let history = useHistory();
@@ -214,6 +215,10 @@ const Singup = () => {
                 },
               ]}
             />
+            <Code colorScheme="cyan" my={5} fontSize="15px">
+              Vous devez entrer votre email OU votre C.I.N OU votre numéro de
+              téléphone afin que vous puissiez suivre
+            </Code>
             <MyFieldPassword
               name="password"
               label="Mot de passe"

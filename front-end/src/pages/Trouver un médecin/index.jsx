@@ -29,14 +29,11 @@ import { TableContent } from "./../../components/table/TableContent";
 import { TablePagination } from "./../../components/table/TablePagination";
 import { useFindeDoctor } from "./../../services/api/Trouver un medecin";
 import ReserverUnRendezVous from "../../components/reserver un rendez-vous";
-import { link, userImage } from "./../../services/api";
 import { TableActions } from "./../../components/table/TableActions";
 import { useBreakpointValue } from "@chakra-ui/media-query";
-import { BiInfoCircle } from "react-icons/bi";
 import MedecinInfo from "./../../components/InformationsSurLeMedecin/FromData";
 const TrouverUnMedecin = (props) => {
   let header = ["Nom Prenom", "domaine"];
-  const isMobile = useBreakpointValue({ base: true, lg: false });
 
   const [content, setContent] = useState([]);
   const [total, setTotal] = useState(0);

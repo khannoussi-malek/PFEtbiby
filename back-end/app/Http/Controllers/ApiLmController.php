@@ -29,6 +29,7 @@
 		        //This method will be execute after run the main process
 				$result = DB::table('cms_users')
 				->where('id_cms_privileges', Privilege::PrivilegeID('medecin'))
+				->where('id', '<>',$postdata['id'])
 				->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS label'), 'cms_users.id AS value')
 				->get();
 

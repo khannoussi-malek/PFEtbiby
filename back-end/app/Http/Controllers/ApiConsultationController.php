@@ -70,8 +70,26 @@
 								DB::table('lettre')->insert(
 									['consultation_id' => $id,'medecin_destiantaire_id' =>$value['medecin_destiantaire_id']['value'],'description' =>$value['description'], 'medecin_id' => $postdata['medecin_id'], 'patient_id' => $postdata['patient_id'],'created_at' => date('Y-m-d H:i:s')]
 								);
+								$relation= DB::table('relation')->where('patient_id',$postdata['patient_id'])->where('medecin_id',$postdata['medecin_id'])->exists();
+								if(!$relation){
+									DB::table('relation')->insert(
+										['patient_id' => $postdata['patient_id'],'medecin_id' =>$value['medecin_destiantaire_id']['value'],'created_at' => date('Y-m-d H:i:s')]
+									);
+								}
+								$medecin_id= DB::table('cms_users')->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'))
+								->where('id',$postdata['medecin_id'])->first();
+								$patient_id= DB::table('cms_users')->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'))
+								->where('id',$postdata['patient_id'])->first();
+								
+							
+								$ch="Vous avez une lettre avec le patient ".$patient_id->nomprenom." l'envoyé de ".$medecin_id->nomprenom;
+								$config['id_cms_users'] = [$value['medecin_destiantaire_id']['value']];
+								$config['content'] = $ch;
+								$config['to'] = "/dashboard/Mes%20patients";
+								CRUDBooster::sendNotification($config);
 							}
 						}
+					
 					}
 					if($postdata['ordonnances']!=[]){
 						foreach ($postdata['ordonnances'] as &$value) {

@@ -1,6 +1,6 @@
 import { CloseButton } from "@chakra-ui/close-button";
-import { Box, Divider } from "@chakra-ui/layout";
-import { useState } from "react";
+import { Box } from "@chakra-ui/layout";
+import { useState, useContext } from "react";
 import { Select2 } from "./../formInput/select";
 import { TextareaForm } from "./../formInput/Textarea";
 import { useColorModeValue as mode } from "@chakra-ui/react";
@@ -14,14 +14,17 @@ import { Input } from "@chakra-ui/input";
 import { EditIcon } from "@chakra-ui/icons";
 import { useListeMedec } from "../../services/api/Medecin information";
 import { useToast } from "@chakra-ui/react";
+import { TbibyContext } from "./../../router/context/index";
 export const Lettre = (props) => {
+  const { user } = useContext(TbibyContext);
   const { id, removeComponentsForm, name } = props;
   const [selectValue, setSelectValue] = useState([]);
   const [title, setTitle] = useState("");
   const [showEditTitle, setShowEditTitle] = useState(true);
   const toast = useToast();
-
+  const params = { id: user.id };
   const { isLoading, refetch } = useListeMedec({
+    params,
     onError: (error) => {
       toast({
         title: "🌐 Problème de connexion",
