@@ -1,10 +1,22 @@
 import React, { useState, useContext } from "react";
-import { useToast } from "@chakra-ui/react";
+import {
+  useToast,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverHeader,
+  useColorModeValue as mode,
+  PopoverBody,
+  Text,
+} from "@chakra-ui/react";
 
 import { TbibyContext } from "../../../router/context";
 import { TableContent } from "../../table/TableContent";
 import { TablePagination } from "../../table/TablePagination";
 import { useHistoriqueListLettre } from "./../../../services/api/Historique patient/index";
+import InformationsSurLeMedecin from "./../../InformationsSurLeMedecin/index";
 const ContentLetter = (props) => {
   const { user, cleanUser } = useContext(TbibyContext);
   const { patient } = props;
@@ -22,6 +34,38 @@ const ContentLetter = (props) => {
   let params = { patient_id: patient.id, page };
 
   const btnRef = React.useRef();
+  const [fntable, setFntable] = useState({
+    fn: (data) => (
+      <Text fontSize="20px" colorScheme={mode("green.700", "gray.50")}>
+        <Popover>
+          <PopoverTrigger>
+            <Text
+              textAlign="center"
+              bgColor={mode("green.100", "gray.500")}
+              _hover={{
+                background: mode("blue.100", "gray.600"),
+              }}
+              style={{ cursor: "pointer" }}
+              borderRadius="20px"
+              p={2}
+              colorScheme="green"
+            >
+              {data.medecin}
+            </Text>
+          </PopoverTrigger>
+
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <PopoverHeader>Plus d'information</PopoverHeader>
+            <PopoverBody>
+              <InformationsSurLeMedecin medecin={data.medecin_id} />
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </Text>
+    ),
+  });
   const { isLoading: isLodingLettre, refetch: refetchLettre } =
     useHistoriqueListLettre({
       params,
@@ -44,7 +88,7 @@ const ContentLetter = (props) => {
 
   return (
     <>
-      <TableContent header={header} content={content} />
+      <TableContent header={header} content={content} fntable={fntable} />
       <TablePagination
         total={total}
         next_page_url={next}

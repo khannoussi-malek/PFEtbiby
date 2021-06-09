@@ -28,17 +28,22 @@
 		        //This method will be execute after run the main process
 				if(empty($postdata['medecin_id'])){
 					$result = DB::table('lettre')
-					->where('patient_id',$postdata['patient_id'])
-					->orwhere('medecin_destiantaire_id',$postdata['medecin_id'])
-					->select('id','description','created_at')->orderBy('lettre.created_at','desc')
+					->where('lettre.patient_id',$postdata['patient_id'])
+					->orwhere('lettre.medecin_destiantaire_id',$postdata['medecin_id'])
+					
+				->join('cms_users', 'cms_users.id', '=', 'lettre.medecin_id')
+					->select('lettre.id','lettre.description','lettre.created_at','lettre.medecin_id',DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS medecin'))->orderBy('lettre.created_at','desc')
 					->paginate(10);
 							}else{
 								$result = DB::table('lettre')
 								->where('patient_id',$postdata['patient_id'])
 								->where('medecin_id',$postdata['medecin_id'])
 								->orwhere('medecin_destiantaire_id',$postdata['medecin_id'])
-								->select('id','description','created_at')->orderBy('lettre.created_at','DESC')
+								->join('cms_users', 'cms_users.id', '=', 'lettre.medecin_id')
+								->select('lettre.id','lettre.description','lettre.created_at','lettre.medecin_id',DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS medecin'))->orderBy('lettre.created_at','desc')
 								->paginate(10);
+								// ->select('id','description','created_at','medecin_id')->orderBy('lettre.created_at','DESC')
+								// ->paginate(10);
 							}
 		    }
 

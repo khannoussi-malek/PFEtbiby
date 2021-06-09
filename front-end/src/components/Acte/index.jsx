@@ -1,6 +1,6 @@
 import { CloseButton } from "@chakra-ui/close-button";
 import { Box, Divider } from "@chakra-ui/layout";
-import { useColorModeValue as mode, useToast } from "@chakra-ui/react";
+import { useColorModeValue as mode, useToast, Center } from "@chakra-ui/react";
 import { useState } from "react";
 import { Select2 } from "./../formInput/select";
 import { TextareaForm } from "./../formInput/Textarea";
@@ -10,12 +10,16 @@ import {
   AccordionItem,
   AccordionPanel,
 } from "@chakra-ui/accordion";
+import { useContext } from "react";
 import { Input } from "@chakra-ui/input";
 import { EditIcon } from "@chakra-ui/icons";
 import { MyField } from "../formInput";
 import { Prix } from "../formInput/Prix";
 import { useGetAllListActe, useGetOnetActe } from "../../services/api/acte";
+import AjoutActe from "./_parcial/AjoutActe";
+import { TbibyContext } from "./../../router/context/index";
 export const Acte = (props) => {
+  const { user } = useContext(TbibyContext);
   const { id, removeComponentsForm, name, key } = props;
   const [title, setTitle] = useState("");
   const [showEditTitle, setShowEditTitle] = useState(true);
@@ -81,6 +85,9 @@ export const Acte = (props) => {
         />
       </AccordionButton>
       <AccordionPanel bgColor={mode("green.50", "gray.700")} pb={4}>
+        <Center>
+          <AjoutActe refetch={refetch} user={user} />
+        </Center>
         <Select2
           label="Sélectionner une acte"
           data={selectValue}
