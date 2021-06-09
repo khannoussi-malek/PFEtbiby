@@ -144,10 +144,9 @@ const EditerCertificat = (props) => {
                     />
                     <Box p={2} borderLeft="1px" my={2}>
                       Utiliser le boutton 'modèle' pour créer vos propres
-                      certificats . Exemple : si vou ajoutez 'patientNomPrénom'
+                      certificats. Exemple : si vous ajoutez 'patientNomPrénom'
                       , lors de votre consulation le nom de votre patient sera
-                      ajouté automatiquement en utilisant votre certificat
-                      modélisée.
+                      ajouté automatiquement.
                     </Box>
                     <Box py={3}>
                       <Button colorScheme="green" type="submit">
