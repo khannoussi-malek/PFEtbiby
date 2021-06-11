@@ -1,6 +1,5 @@
 import { usePatentInfo } from "./../../services/api/patient information";
 import {
-  Center,
   useToast,
   Button,
   SkeletonCircle,
@@ -76,7 +75,7 @@ const GeneralPatientsInformation = (props) => {
               onClick={() => onClose()}
             />
           </DrawerHeader>
-          <DrawerBody display={!isLoading ? `none` : ``}>
+          <DrawerBody display={isLoading ? `` : `none`}>
             <SkeletonCircle size="12" />
             <SkeletonText mt="7" noOfLines={7} spacing="7" />
           </DrawerBody>

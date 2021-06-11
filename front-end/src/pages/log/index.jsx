@@ -24,7 +24,7 @@ const log = () => {
               maxW={["140px", "140px", "140px", "275px"]}
               // maxWidth="140px"
               m="auto"
-              src="./logo192.png"
+              src={process.env.PUBLIC_URL + "/logo192.png"}
               alt="Tbiby"
             />
           </Box>
