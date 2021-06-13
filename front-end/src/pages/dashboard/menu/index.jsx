@@ -8,6 +8,7 @@ import {
   BsFillPersonLinesFill,
   BsFillPeopleFill,
 } from "react-icons/bs";
+import { useLocation, useHistory } from "react-router-dom";
 
 import {
   BiClipboard,
@@ -18,11 +19,11 @@ import {
   BiDetail,
 } from "react-icons/bi";
 
-import { useHistory } from "react-router-dom";
 import { TbibyContext } from "./../../../router/context";
 const Menu = () => {
   const { user, cleanUser } = useContext(TbibyContext);
   let history = useHistory();
+  const { pathname } = useLocation();
   let logout = () => {
     cleanUser();
     history.push("/login");
@@ -50,7 +51,10 @@ const Menu = () => {
     ];
   } else if (user.fonctionnalite == "secretaire") {
     pages = [
-      { url: "Dashboard", icon: <BiCalendarAlt fontSize="20px" /> },
+      {
+        url: "Dashboard",
+        icon: <BiCalendarAlt fontSize="20px" />,
+      },
       { url: "Modèle de certificat", icon: <BiClipboard fontSize="20px" /> },
       { url: "Liste d'actes", icon: <BiLayer fontSize="20px" /> },
       { url: "Liste medicament", icon: <BiPlusMedical fontSize="20px" /> },
@@ -60,7 +64,8 @@ const Menu = () => {
       { url: "Trouver un médecin", icon: <BsSearch fontSize="20px" /> },
     ];
   }
-
+  const customPathName =
+    pathname == "/dashboard/" ? pathname : pathname.split("/dashboard/")[1];
   return (
     <React.Fragment>
       <Box mb={{ base: "70px" }}>
@@ -69,6 +74,10 @@ const Menu = () => {
             key={page.url}
             linkto={page.url == "Dashboard" ? `` : page.url}
             icon={page.icon}
+            isActive={
+              customPathName.toLowerCase().indexOf(page.url.toLowerCase()) !==
+              -1
+            }
           >
             {page.url}
           </SidebarLink>
@@ -80,8 +89,13 @@ const Menu = () => {
         bottom={{ base: "20px", md: "24px" }}
         left={{ base: "72px", md: "95px" }}
       >
-        <Stack bgColor="red.300" rounded={8}>
+        <Stack rounded={8}>
           <SidebarLink
+            bgColor="gray.600"
+            _hover={{
+              bgColor: "gray.300",
+              color: "black",
+            }}
             onClick={logout}
             icon={<BsBoxArrowLeft />}
             fontSize="xlx"

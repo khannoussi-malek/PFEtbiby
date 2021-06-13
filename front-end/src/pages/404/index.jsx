@@ -6,19 +6,18 @@ const Error404 = () => {
   let history = useHistory();
 
   return (
-    <Center minH="100vh" textAlign="center">
+    <Center
+      minH="100vh"
+      textAlign="center"
+      onClick={() => history.push("/dashboard")}
+    >
       <Box>
         <Box>
-          <Image src="" w="100%" src="./image/404.png" />
+          <Image src="" h="75vh" src="./image/404.png" />
         </Box>
         <Box mt={10}>
-          <Button
-            onClick={() => history.push("/dashboard")}
-            variant="outline"
-            size="lg"
-            colorScheme="green"
-          >
-            🚦 Page d'accueil 🚦
+          <Button variant="outline" size="lg" colorScheme="green">
+            Bienvenue
           </Button>
         </Box>
       </Box>

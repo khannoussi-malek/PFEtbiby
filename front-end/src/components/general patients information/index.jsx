@@ -26,11 +26,10 @@ import { MdCall } from "react-icons/md";
 import { useBreakpointValue } from "@chakra-ui/media-query";
 import { BsInfoCircle } from "react-icons/bs";
 
-const GeneralPatientsInformation = (props) => {
+const GeneralPatientsInformation = ({ patient }) => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
-
   const [patientInfo, setPatientInfo] = useState({});
-  const { patient } = props;
+  // const { patient } = props;
   const toast = useToast();
   const params = { cms_users_id: patient.id };
   const { isLoading, refetch } = usePatentInfo({

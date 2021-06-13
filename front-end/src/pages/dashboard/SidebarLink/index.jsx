@@ -13,16 +13,21 @@ export const SidebarLink = (props) => {
   const { pathname } = useLocation();
   let history = useHistory();
 
-  const { children, linkto, icon = <ArrowRight />, avatar, ...rest } = props;
+  const {
+    children,
+    linkto,
+    icon = <ArrowRight />,
+    avatar,
+    isActive,
+    ...rest
+  } = props;
   return (
     <Box
       as="a"
       marginEnd="2"
       fontSize="sm"
       color="white"
-      bgColor={
-        pathname == "/dashboard/" + linkto ? mode("green.300", "gray.600") : ``
-      }
+      bgColor={isActive ? mode("green.300", "gray.600") : ``}
       onClick={() => history.push("/dashboard/" + linkto)}
       display="block"
       px="3"
