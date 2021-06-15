@@ -42,10 +42,17 @@ const ListPatients = () => {
       setContent((!!res.data.data && res.data.data) || []);
     },
   });
-  const [fntable, setFntable] = useState({
-    fn: (data) => <PatientInfo data={data} />,
-    fn2: (data) => <HistoriquePatient patient={data} />,
-  });
+  const [fntable, setFntable] = useState(
+    user.fonctionnalite == "medecin"
+      ? {
+          fn: (data) => <PatientInfo data={data} />,
+          fn2: (data) => <HistoriquePatient patient={data} />,
+        }
+      : {
+          fn: (data) => <PatientInfo data={data} />,
+        }
+  );
+
   let header = ["Nom", "Prenom"];
   const message = () => {
     return (

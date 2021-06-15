@@ -55,6 +55,8 @@ const Menu = () => {
         url: "Dashboard",
         icon: <BiCalendarAlt fontSize="20px" />,
       },
+      { url: "Mes patients", icon: <BsFillPeopleFill fontSize="20px" /> },
+
       { url: "Modèle de certificat", icon: <BiClipboard fontSize="20px" /> },
       { url: "Liste d'actes", icon: <BiLayer fontSize="20px" /> },
       { url: "Liste medicament", icon: <BiPlusMedical fontSize="20px" /> },
@@ -65,7 +67,7 @@ const Menu = () => {
     ];
   }
   const customPathName =
-    pathname == "/dashboard/" ? pathname : pathname.split("/dashboard/")[1];
+    pathname == "/dashboard" ? pathname : pathname.split("/dashboard/")[1];
   return (
     <React.Fragment>
       <Box mb={{ base: "70px" }}>
@@ -75,8 +77,11 @@ const Menu = () => {
             linkto={page.url == "Dashboard" ? `` : page.url}
             icon={page.icon}
             isActive={
-              customPathName.toLowerCase().indexOf(page.url.toLowerCase()) !==
-              -1
+              !!customPathName
+                ? customPathName
+                    .toLowerCase()
+                    .indexOf(page.url.toLowerCase()) !== -1
+                : false
             }
           >
             {page.url}

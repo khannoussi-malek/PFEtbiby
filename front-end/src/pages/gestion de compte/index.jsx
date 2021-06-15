@@ -321,7 +321,7 @@ const Accountmanagement = () => {
             </FieldGroup>
             <Divider />
             <FieldGroup title="Photo de Profil">
-              <Stack direction="row" spacing="10" align="center" width="full">
+              <VStack direction="row" spacing="10" align="center" width="full">
                 <Avatar
                   size="xl"
                   name={gcInfo.nom + " " + gcInfo.prenom}
@@ -363,7 +363,7 @@ const Accountmanagement = () => {
                     .jpg, .gif, or .png.
                   </Text>
                 </Box>
-              </Stack>
+              </VStack>
             </FieldGroup>
             <Divider />
 

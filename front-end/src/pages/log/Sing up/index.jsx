@@ -215,9 +215,9 @@ const Singup = () => {
                 },
               ]}
             />
-            <Code colorScheme="cyan" my={5} fontSize="15px">
-              Vous devez entrer votre email OU votre C.I.N OU votre numéro de
-              téléphone afin que vous puissiez suivre
+            <Code colorScheme="green" my={5} fontSize="15px">
+              vous devez saisir votre email, téléphone ou CIN afin que vous
+              puissiez s'inscrire.
             </Code>
             <MyFieldPassword
               name="password"

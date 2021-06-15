@@ -84,7 +84,10 @@ const ActivityArea = () => {
         <PrivateRoute
           path="/dashboard/Mes patients"
           component={ListPatients}
-          isAuth={user.fonctionnalite == "medecin"}
+          isAuth={
+            user.fonctionnalite == "medecin" ||
+            user.fonctionnalite == "secretaire"
+          }
           exact
         />
         <PrivateRoute
