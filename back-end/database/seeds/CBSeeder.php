@@ -1184,6 +1184,18 @@ class Cms_modulsSeeder extends Seeder
             [
 
                 'created_at' => date('Y-m-d H:i:s'),
+                'name' => 'liste patient',
+                'icon' => 'fa fa-users',
+                'path' => 'liste_patient',
+                'table_name' => 'cms_users',
+                'controller' => 'AdminListePatientController',
+                'is_protected' => 0,
+                'is_active' => 1,
+            ],
+                       
+            [
+
+                'created_at' => date('Y-m-d H:i:s'),
                 'name' => 'patient',
                 'icon' => 'fa fa-child',
                 'path' => 'relation',
@@ -1253,10 +1265,10 @@ class cms_menusseeder extends seeder
         ]);
         DB::table('cms_menus')->insert([
             'created_at' => date('Y-m-d H:i:s'),
-            'name' => "patient",
+            'name' => "liste patient",
             'type' => "Route",
-            'path' => "AdminPatientControllerGetIndex",
-            'icon' => "fa fa-child",
+            'path' => "AdminListePatientControllerGetIndex",
+            'icon' => "fa fa-users",
             'parent_id' => 0,
             'is_active' => 1,
             'is_dashboard' => 0,

@@ -6,7 +6,8 @@
 	use CRUDBooster;
 	use App\Http\Controllers\Privilege as Privilege;
 
-	class AdminCmsUsers1Controller extends \crocodicstudio\crudbooster\controllers\CBController {
+
+	class AdminListePatientController extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
@@ -20,7 +21,7 @@
 			$this->button_action_style = "button_icon";
 			$this->button_add = false;
 			$this->button_edit = true;
-			$this->button_delete = false;
+			$this->button_delete = true;
 			$this->button_detail = true;
 			$this->button_show = true;
 			$this->button_filter = true;
@@ -80,9 +81,6 @@
 	        */
 	        $this->sub_module = array();
 
-			$this->sub_module[] = ['label'=>'secretaire','path'=>'secretaire','foreign_key'=>'medecin_id','button_color'=>'success','button_icon'=>'fa fa-user-plus'];
-			$this->sub_module[] = ['label'=>'patient','path'=>'relation','foreign_key'=>'medecin_id','button_color'=>'info','button_icon'=>'fa fa-child'];
-
 
 	        /* 
 	        | ---------------------------------------------------------------------- 
@@ -95,10 +93,7 @@
 	        | @showIf 	   = If condition when action show. Use field alias. e.g : [id] == 1
 	        | 
 	        */
-			$this->addaction = array();
-			$this->addaction[] = ['label'=>'','url'=>'desactiver?medecin=[id]','icon'=>'fa fa-minus-circle','color'=>'warning','showIf'=>"[status] == 'Active'", 'confirmation' => true];
-			$this->addaction[] = ['label'=>'','url'=>'activer?medecin=[id]','icon'=>'fa fa-check','color'=>'success','showIf'=>"[status] == 'non Active'", 'confirmation' => true];
-			
+	        $this->addaction = array();
 
 
 	        /* 
@@ -256,7 +251,8 @@
 	    |
 	    */
 	    public function hook_query_index(&$query) {
-			$query->where('id_cms_privileges', Privilege::PrivilegeID('medecin'));
+			$query->where('id_cms_privileges', Privilege::PrivilegeID('patient'));
+
 	        //Your code here
 	            
 	    }

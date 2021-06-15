@@ -30,6 +30,7 @@
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
+			// $this->col[] = ["label"=>"Prenom","name"=>"(select cms_users.renom from cms_users where cms_users.id = relation.patient_id)",];
 			$this->col[] = ["label"=>"Prenom","name"=>"patient_id","join"=>"cms_users,prenom"];
 			$this->col[] = ["label"=>"Nom","name"=>"patient_id","join"=>"cms_users,nom"];
 			# END COLUMNS DO NOT REMOVE THIS LINE

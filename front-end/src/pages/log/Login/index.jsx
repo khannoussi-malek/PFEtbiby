@@ -42,7 +42,7 @@ const Login = () => {
         toast({
           title:
             "👨‍⚕️ Bienvenue " +
-            (data.sexes == "homme" ? `Mr ` : `Mrs `) +
+            (data.sexes == "homme" ? `M ` : `Mme `) +
             data.nom,
           description: " Vous êtes maintenant connecté à votre compte.",
           status: "success",
