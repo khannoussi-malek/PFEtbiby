@@ -33,7 +33,9 @@ const ListeMedicament = () => {
   const [page, setPage] = useState(1);
   const toast = useToast();
   const [inputValue, setInputValue] = useState("");
-  const [params, setParams] = useState({ page });
+  // const [params, setParams] = useState({ page });
+  const params = { page, recherche: inputValue };
+
   const { isLoading, refetch } = useListMedicament({
     params,
     onError: (error) => {
@@ -95,7 +97,7 @@ const ListeMedicament = () => {
                 <Button
                   w="100%"
                   onClick={() => {
-                    setParams({ page, recherche: inputValue });
+                    // setParams({ page, recherche: inputValue });
                     // refetch();
                   }}
                   iconSpacing="1"

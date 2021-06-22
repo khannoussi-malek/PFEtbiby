@@ -22,7 +22,7 @@
 				->join('cms_users', 'cms_users.id', '=','rendez_vous.patient_id' )
 				->select('rendez_vous.*','cms_users.*')
 				->first();
-				$ch="Votre rendez-vous chez Dr.".$user->nom." ".$user->prenom." est modifie ";
+				$ch="Votre rendez-vous chez Dr.".$user->nom." ".$user->prenom." est modifié";
 				$config['id_cms_users'] = [$user->patient_id];
 				$config['content'] = $ch;
 				$config['to'] = "/dashboard/Mes%20rendez%20vous";

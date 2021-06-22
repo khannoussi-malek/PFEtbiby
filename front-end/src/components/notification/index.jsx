@@ -18,10 +18,14 @@ import {
   Button,
   Tooltip,
 } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
+
 import OneNotification from "./_partials/One notification";
 import { useRemoveAllNotification } from "./../../services/api/notification";
 const Notification = (props) => {
-  const { user } = useContext(TbibyContext);
+  let history = useHistory();
+
+  const { user,cleanUser } = useContext(TbibyContext);
   const toast = useToast();
   const [notification, setNotification] = useState([]);
   const params = { id: user.id };
@@ -37,7 +41,11 @@ const Notification = (props) => {
       });
     },
     onSuccess: (res) => {
-      setNotification(res.data);
+      setNotification(res.data.notife);
+      if(res.data.status ==="non Active"){
+        cleanUser();
+        history.push("/login");
+      }
     },
   });
   const { mutate: removeAllNotificationMutate } = useRemoveAllNotification({

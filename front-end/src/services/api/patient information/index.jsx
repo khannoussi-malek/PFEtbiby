@@ -11,7 +11,7 @@ export const usePatentInfo = ({ params, ...config } = {}) => {
 
 export const useAntecedants = ({ params, ...config } = {}) => {
   return useQuery(
-    "antecedants",
+    ["antecedants", params],
     () => axios.get("antecedants", { params }),
     config
   );

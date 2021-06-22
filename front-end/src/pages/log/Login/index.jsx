@@ -50,14 +50,26 @@ const Login = () => {
           isClosable: true,
         });
       } else {
-        toast({
-          titre: "Vérifiez vos informations🔐",
-          description:
-            "Entrez votre e-mail, téléphone ou CIN et votre mot de passe",
-          status: "success",
-          duration: 4000,
-          isClosable: true,
-        });
+        if(data.status === "non Active"){
+          toast({
+            titre: "Vérifiez vos informations🔐",
+            description:
+              "Votre compte est désactivé",
+            status: "success",
+            duration: 4000,
+            isClosable: true,
+          });
+        }else{
+          toast({
+            titre: "Vérifiez vos informations🔐",
+            description:
+              "Entrez votre e-mail, téléphone ou CIN et votre mot de passe",
+            status: "success",
+            duration: 4000,
+            isClosable: true,
+          });
+        }
+       
       }
       history.push("/dashboard");
     },

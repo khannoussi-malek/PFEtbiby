@@ -36,7 +36,9 @@ const CertificatPage = () => {
   const [inputValue, setInputValue] = useState("");
 
   const id = user.idMedecin || user.id;
-  const [params, setParams] = useState({ id: id, page });
+  // const [params, setParams] = useState({ id: id, page });
+  const params = { id: id, page, recherche: inputValue };
+
   const { isLoading, refetch } = useGetListCertificat({
     params,
     onError: (error) => {
@@ -117,7 +119,7 @@ const CertificatPage = () => {
                   <Button
                     w="100%"
                     onClick={() => {
-                      setParams({ id: id, page, recherche: inputValue });
+                      // setParams({ id: id, page, recherche: inputValue });
                     }}
                     iconSpacing="1"
                     leftIcon={<RiFolderUserLine fontSize="1.25em" />}

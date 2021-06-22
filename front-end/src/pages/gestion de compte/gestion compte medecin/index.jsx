@@ -6,7 +6,9 @@ import {
   VStack,
   Flex,
   Box,
+  Code,
 } from "@chakra-ui/react";
+import { Center } from "@chakra-ui/layout";
 import { Select2 } from "../../../components/formInput/select";
 import { isNumber, isPattern } from "@formiz/validations";
 import { MyField } from "./../../../components/formInput";
@@ -69,7 +71,6 @@ const GestiondeCopmteMedecin = (props) => {
             //   },
             // ]}
           />
-
           <Flex w="100%">
             <Select2
               data={domaine}
@@ -102,9 +103,13 @@ const GestiondeCopmteMedecin = (props) => {
           <MyField
             name="secretaire"
             label="Secrétaire"
-            note="Entrez le cin ou le numéro de téléphone ou l'email de la secrétaire. Pour supprimer vous devez écrire 'supprimer'"
             Placeholder={gcInfo.secretaire}
           />
+          <Code colorScheme="green" my={5} fontSize="15px" borderRadius={10}>
+            Pour ajouter une secrétaire vous devez entrer son cin ou son numéro
+            de téléphone ou son l'email. Pour la supprimer vous devez écrire
+            'supprimer' dans le champs de saisie.
+          </Code>
         </VStack>
       </FieldGroup>
     </React.Fragment>

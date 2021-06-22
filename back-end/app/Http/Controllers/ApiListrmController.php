@@ -27,6 +27,7 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
+				DB::table('rendez_vous')->whereDate('date_reservation', '<',date('Y-m-d'))->delete();
 				$result=DB::table('rendez_vous')
 				->where('medecin_id',$postdata['medecin_id'])
 				->where('etat','en attente')

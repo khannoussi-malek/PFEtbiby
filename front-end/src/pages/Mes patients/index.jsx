@@ -20,7 +20,7 @@ const ListPatients = () => {
   const [next, setNext] = useState("");
   const [prev, setPrev] = useState("");
   const [page, setPage] = useState(1);
-  const [content, setContent] = useState([[""], [""]]);
+  const [content, setContent] = useState([]);
   const [patientId, setPatientId] = useState("");
   const params = { medecin_id, patient_id: patientId, page };
   const btnRef = React.useRef();

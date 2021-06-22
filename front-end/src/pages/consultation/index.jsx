@@ -6,7 +6,7 @@ import {
   useToast,
   Spinner,
   useColorModeValue as mode,
-  Button,
+  Button
 } from "@chakra-ui/react";
 import { useDeleteReservation } from "./../../services/api/reservation";
 import { useSendPatientToWaitingRoom } from "./../../services/api/manageTheRoom";
@@ -82,6 +82,7 @@ const Consultation = () => {
         p={5}
         display={isLoading || DeleteIsLoading || SPTWRIsLoading ? `none` : ``}
       >
+      
         <PatientsAtTheDoctor
           SPTWRMutate={SPTWRMutate}
           currentPatient={currentPatient}

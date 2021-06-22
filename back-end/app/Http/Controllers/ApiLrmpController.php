@@ -31,7 +31,7 @@
 					->where('relation.medecin_id',$postdata['medecin_id'])
 					->join('cms_users', 'cms_users.id', '=', 'relation.patient_id')
 					->join('patient', 'patient.cms_users_id', '=', 'cms_users.id')
-					->select('cms_users.id','cms_users.nom','cms_users.prenom','cms_users.cin','cms_users.email','cms_users.telephone','cms_users.photo','patient.Adresse','patient.Code_APCI')
+					->select('cms_users.id','cms_users.nom','cms_users.prenom','cms_users.cin','cms_users.email','cms_users.telephone','cms_users.photo','patient.Adresse','patient.Code_APCI')->distinct()
 					->paginate(10);
 
 				}else{
@@ -46,7 +46,7 @@
 					->orwhere('cms_users.telephone', 'like', "%$search%")
 					->orwhere('cms_users.nom', 'like', "%$search%")
 					->orwhere('cms_users.prenom', 'like', "%$search%")
-					->select('cms_users.id','cms_users.nom','cms_users.prenom','cms_users.cin','cms_users.email','cms_users.telephone','cms_users.photo','patient.Adresse','patient.Code_APCI')					
+					->select('cms_users.id','cms_users.nom','cms_users.prenom','cms_users.cin','cms_users.email','cms_users.telephone','cms_users.photo','patient.Adresse','patient.Code_APCI')->distinct()				
 					->paginate(10);
 				}
 				$result=$relation;

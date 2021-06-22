@@ -82,11 +82,12 @@
 								->where('id',$postdata['patient_id'])->first();
 								
 							
-								$ch="Vous avez une lettre avec le patient ".$patient_id->nomprenom." l'envoyé de ".$medecin_id->nomprenom;
+								$ch="Vous avez une lettre de la part de Dr ".$medecin_id->nomprenom." sur le patient ".$patient_id->nomprenom;
 								$config['id_cms_users'] = [$value['medecin_destiantaire_id']['value']];
 								$config['content'] = $ch;
 								$config['to'] = "/dashboard/Mes%20patients";
 								CRUDBooster::sendNotification($config);
+								
 							}
 						}
 					

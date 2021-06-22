@@ -36,7 +36,7 @@ return [
     'page_not_found_text' => 'Nous ne pouvons pas rechercher la page que vous recherchez.',
     'page_not_found_tips' => '* S\'il vous plaît assurez-vous que l\'URL est correcte <br/>
                 * S\'il vous plaît assurez-vous que la police de police est correcte, car elle est sensible à la case <br/>
-                * Peut-être que la page que vous recherchez a été supprimée par admin <br/>
+                * Peut-être que la page que vous recherchez a été supprimée par l\'admin <br/>
                 * Vous pouvez revenir en arrière par bouton de retour sur le navigateur <br/>',
 
     'log_try_view' => 'Essayez Afficher les données:name à :module',

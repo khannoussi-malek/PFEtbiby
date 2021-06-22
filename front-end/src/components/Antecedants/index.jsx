@@ -32,9 +32,10 @@ import { useBreakpointValue } from "@chakra-ui/media-query";
 import DescriptionMobile from "./descriptionMobile";
 import { BsHeart } from "react-icons/bs";
 
-const Antecedants = (props) => {
+const Antecedants = ({ patient }) => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
-  const { patient } = props;
+  // const { patient } = props;
+  console.log(patient.id);
   const toast = useToast();
   const params = { patient_id: patient.id };
   const [total, setTotal] = useState(0);
@@ -113,7 +114,7 @@ const Antecedants = (props) => {
         <DrawerOverlay />
         <DrawerContent bg={mode("green.50", "gray.700")}>
           <DrawerHeader borderBottomWidth="1px">
-            Antecedants
+            Antécédents
             <IconButton
               float="right"
               variant="outline"

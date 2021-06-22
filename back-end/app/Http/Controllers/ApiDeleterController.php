@@ -25,7 +25,7 @@
 				->join('cms_users', 'cms_users.id', '=', 'rendez_vous.patient_id')
 				->select(DB::raw('CONCAT(cms_users.nom, " ", cms_users.prenom) AS nomprenom'))
 				->first();
-				$ch="Votre réservation avec ".$patient->nomprenom." est supprimée";
+				$ch="Votre rendez-vous avec ".$patient->nomprenom." est supprimé";
 				$config['id_cms_users'] = [$users->medecin_id];
 				$config['content'] = $ch;
 				$config['to'] = "/dashboard";

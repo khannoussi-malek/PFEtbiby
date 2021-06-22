@@ -34,6 +34,8 @@
 			$this->col[] = ["label"=>"Nom","name"=>"nom"];
 			$this->col[] = ["label"=>"Prenom","name"=>"prenom"];
 			$this->col[] = ["label"=>"Photo","name"=>"photo","image"=>true];
+			$this->col[] = ["label"=>"Etat","name"=>"status"];
+
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
@@ -96,8 +98,8 @@
 	        | 
 	        */
 			$this->addaction = array();
-			$this->addaction[] = ['label'=>'','url'=>'desactiver?medecin=[id]','icon'=>'fa fa-minus-circle','color'=>'warning','showIf'=>"[status] == 'Active'", 'confirmation' => true];
-			$this->addaction[] = ['label'=>'','url'=>'activer?medecin=[id]','icon'=>'fa fa-check','color'=>'success','showIf'=>"[status] == 'non Active'", 'confirmation' => true];
+			$this->addaction[] = ['label'=>'','url'=>'desactiver?medecin=[id]','icon'=>'fa fa-minus-circle','color'=>'warning'/*,'showIf'=>"[status] == 'Active'"*/, 'confirmation' => true];
+			$this->addaction[] = ['label'=>'','url'=>'activer?medecin=[id]','icon'=>'fa fa-check','color'=>'success',/*'showIf'=>"[status] == 'non Active'",*/ 'confirmation' => true];	
 			
 
 

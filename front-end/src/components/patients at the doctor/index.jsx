@@ -4,7 +4,7 @@ import { CloseIcon } from "@chakra-ui/icons";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { useState, useRef } from "react";
 
-import { useColorModeValue as mode, Heading } from "@chakra-ui/react";
+import { useColorModeValue as mode, Heading,Code } from "@chakra-ui/react";
 
 const PatientsAtTheDoctor = (props) => {
   const {
@@ -42,6 +42,10 @@ const PatientsAtTheDoctor = (props) => {
   };
   if (patientsWaiting.length != 0) {
     return (
+      <>
+        <Center m={0} p={0}> <Code colorScheme="green" my={5} fontSize="15px" borderRadius={10}>
+              Pour commencer une consultation avec un patient. Vous devez le choisir on cliquant sur son nom. 
+            </Code></Center>
       <SimpleGrid columns={{ base: 1, md: 3, lg: 5 }} spacing={2}>
         {patientsWaiting.map((data) => (
           <Box
@@ -94,6 +98,7 @@ const PatientsAtTheDoctor = (props) => {
           </Box>
         ))}
       </SimpleGrid>
+      </>
     );
   } else {
     return (

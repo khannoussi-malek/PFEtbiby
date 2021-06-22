@@ -2,7 +2,7 @@ import { useQuery, useMutation } from "react-query";
 import axios from "./../";
 
 export const useListMedicament = ({ params, ...config } = {}) => {
-  return useQuery("listem", () => axios.get("listem", { params }), config);
+  return useQuery(["listem"], () => axios.get("listem", { params }), config);
 };
 export const useAddMedicament = (config) => {
   return useMutation(

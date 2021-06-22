@@ -26,7 +26,8 @@
 
 		    public function hook_after($postdata,&$result) {
 		        //This method will be execute after run the main process
-				$result=DB::table('cms_notifications')->select('*')->where('id_cms_users',$postdata['id'])->orderBy('id','DESC')->get();
+				$result['notife']=DB::table('cms_notifications')->select('*')->where('id_cms_users',$postdata['id'])->orderBy('id','DESC')->get();
+				$result['status']=DB::table('cms_users')->select('status')->where('id',$postdata['id'])->first()->status;
 		    }
 
 		}

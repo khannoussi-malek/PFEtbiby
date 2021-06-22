@@ -1,0 +1,4 @@
+run back-end : 
+php artisan serve
+run front-end :
+npm start

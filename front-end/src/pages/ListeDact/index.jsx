@@ -34,7 +34,9 @@ const ListeDact = () => {
   const toast = useToast();
 
   const [inputValue, setInputValue] = useState("");
-  const [params, setParams] = useState({ page });
+  // const [params, setParams] = useState({ page });
+  const params = { page, recherche: inputValue };
+
   const { isLoading, refetch } = useGetListActe({
     params,
     onError: (error) => {
@@ -99,7 +101,7 @@ const ListeDact = () => {
                 <Button
                   w="100%"
                   onClick={() => {
-                    setParams({ page, recherche: inputValue });
+                    // setParams({ page, recherche: inputValue });
                     // refetch();
                   }}
                   iconSpacing="1"
