@@ -17,8 +17,3 @@ php artisan serve
 cd front-end
 npm start
 ```
-## developed by
-Name | Class
------------- | -------------
-Khannoussi Malek | L3DSI
-Ben dawed Sarah | L3DSI
