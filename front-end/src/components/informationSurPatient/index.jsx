@@ -50,7 +50,7 @@ const PatientInfo = (props) => {
                 <Avatar
                   size="xl"
                   name={data.nom + " " + data.prenom}
-                  src={`${link}${data.photo}`}
+                  src={`${link.slice(0, -1)}${data.photo}`}
                 />
               </Box>
             )}

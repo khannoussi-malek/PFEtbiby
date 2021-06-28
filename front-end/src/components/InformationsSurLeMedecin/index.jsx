@@ -33,7 +33,7 @@ const InformationsSurLeMedecin = (props) => {
         <Avatar
           size="xl"
           name={medecinInfo.nom}
-          src={`${link}${medecinInfo.photo}`}
+          src={`${link.slice(0, -1)}${medecinInfo.photo}`}
         />
       )}
       <Text display="block" as="a" href={"tel:" + medecinInfo.telephone}>

@@ -84,8 +84,8 @@ const GeneralPatientsInformation = ({ patient }) => {
               size="xl"
               src={
                 !!patientInfo.photo
-                  ? `${link}${patientInfo.photo}`
-                  : `${link}${userImage}`
+                  ? `${link.slice(0, -1)}${patientInfo.photo}`
+                  : `${link.slice(0, -1)}${userImage}`
               }
               name={patient.nomprenom}
             />

@@ -1,6 +1,6 @@
 import { CloseButton } from "@chakra-ui/close-button";
 import { Box, Center, Code } from "@chakra-ui/layout";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ReactDOMServer from "react-dom/server";
 import {
   useColorModeValue as mode,
@@ -14,6 +14,7 @@ import {
   AccordionItem,
   AccordionPanel,
 } from "@chakra-ui/accordion";
+
 import { Input } from "@chakra-ui/input";
 import { RiPrinterFill } from "react-icons/ri";
 import { EditIcon } from "@chakra-ui/icons";
@@ -22,8 +23,10 @@ import { useGetListeMedicamentSelect2 } from "./../../services/api/list medicame
 import { useToast } from "@chakra-ui/react";
 import { MyField } from "./../formInput";
 import AjoutMedicament from "./../medicament";
-import { useField } from "@formiz/core";
+import { TbibyContext } from "./../../router/context/index";
 export const Ordonnance = (props) => {
+  const { user } = useContext(TbibyContext);
+
   const { id, removeComponentsForm, name, MyForm } = props;
   const toast = useToast();
   const [title, setTitle] = useState("");
@@ -34,6 +37,15 @@ export const Ordonnance = (props) => {
     let ord = values.ordonnances;
     return (
       <Box>
+        <div
+          style={{
+            "text-align": "center",
+            "font-size": "40px",
+            "font-weight": "bold",
+          }}
+        >
+          {user.prenom + " " + user.nom}
+        </div>
         {ord != [] && ord != null
           ? ord.map((value) => (
               <>

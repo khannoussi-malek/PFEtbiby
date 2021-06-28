@@ -328,7 +328,7 @@ const Accountmanagement = () => {
                   src={
                     !!showpictures
                       ? showpictures
-                      : gcInfo.photo && `${link}${gcInfo.photo}`
+                      : gcInfo.photo && `${link.slice(0, -1)}${gcInfo.photo}`
                   }
                 />
                 <Box>

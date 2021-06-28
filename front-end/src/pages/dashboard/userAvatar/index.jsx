@@ -14,7 +14,8 @@ import { TbibyContext } from "./../../../router/context";
 const UserAvatar = () => {
   const { user } = useContext(TbibyContext);
   let history = useHistory();
-  const image = user.photo;
+  const image = link.slice(0, -1) + user.photo;
+  console.log(link.slice(0, -1) + image);
   return (
     <React.Fragment>
       <Box
@@ -30,11 +31,7 @@ const UserAvatar = () => {
         }}
       >
         <HStack>
-          <Avatar
-            size="md"
-            src={!!user.photo ? `${link}${user.photo}` : ``}
-            name={user.nom + " " + user.prenom}
-          />
+          <Avatar size="md" src={image} name={user.nom + " " + user.prenom} />
           <Box lineHeight="1">
             <Text fontWeight="semibold">{user.nom + " " + user.prenom}</Text>
           </Box>

@@ -22,7 +22,6 @@ import {
 const MedecinInfo = (props) => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
   const { data } = props;
-
   return (
     <Popover>
       <PopoverTrigger>
@@ -45,7 +44,7 @@ const MedecinInfo = (props) => {
                 <Avatar
                   size="xl"
                   name={data.nom + " " + data.prenom}
-                  src={`${link}${data.photo}`}
+                  src={`${link.slice(0, -1)}${data.photo}`}
                 />
               </Box>
             )}
