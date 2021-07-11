@@ -34,7 +34,8 @@ const ListeMedicament = () => {
   const toast = useToast();
   const [inputValue, setInputValue] = useState("");
   // const [params, setParams] = useState({ page });
-  const params = { page, recherche: inputValue };
+  // const params = { page, recherche: inputValue };
+  const params = { page };
 
   const { isLoading, refetch } = useListMedicament({
     params,
@@ -56,7 +57,7 @@ const ListeMedicament = () => {
   });
   useEffect(() => {
     refetch();
-  }, [params]);
+  }, [page]);
   let header = ["nom"];
 
   return (
@@ -71,7 +72,7 @@ const ListeMedicament = () => {
           direction={{ base: "column", md: "row" }}
           justify="space-between"
         >
-          <Grid templateColumns="repeat(2, 1fr)" w="100%" gap={2}>
+          {/* <Grid templateColumns="repeat(2, 1fr)" w="100%" gap={2}>
             <Tooltip
               label={`Écrivez le nom du médicament que vous vouler le chercher`}
               aria-label={`Écrivez le nom du certificat que vous avez recherché sur ce`}
@@ -108,6 +109,7 @@ const ListeMedicament = () => {
               </ButtonGroup>
             </Tooltip>
           </Grid>
+         */}
         </Stack>
         <Spinner
           pt={3}

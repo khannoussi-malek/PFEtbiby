@@ -3,7 +3,7 @@ import { Spinner, Tooltip } from "@chakra-ui/react";
 
 import { Box, Spacer, Flex } from "@chakra-ui/layout";
 import Calendar from "./../../components/calendar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@chakra-ui/button";
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import { useBreakpointValue } from "@chakra-ui/media-query";
@@ -46,7 +46,7 @@ const CalendarDashboardMedecin = () => {
       },
       onSuccess: (res) => {
         refetchTask();
-        if (user.fonctionnalite == "medecin") {
+        if (user.fonctionnalite === "medecin") {
           history.push("/dashboard/consultation");
         }
       },

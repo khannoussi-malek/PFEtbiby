@@ -8,9 +8,8 @@ import {
   Input,
 } from "@chakra-ui/react";
 export const MyField = (props) => {
-  const { errorMessage, id, isValid, isSubmitted, setValue, value } = useField(
-    props
-  );
+  const { errorMessage, id, isValid, isSubmitted, setValue, value } =
+    useField(props);
 
   const { label, type, required, note, Placeholder, dtValue } = props;
   const [isTouched, setIsTouched] = React.useState(false);
